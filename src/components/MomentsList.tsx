@@ -5,14 +5,41 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import FloatingImage from './FloatingImage'
 
 const momentsData = [
-    { src: '/images/banner-1.webp', top: 4860, left: 1000 },
-  { src: '/images/banner-1.webp', top: 4320, left: 300 },
-  { src: '/images/banner-1.webp', top: 4200-300, left: 1220 },
-   { src: '/images/banner-1.webp', top: 3101-500, left: 1062 },
-  { src: '/images/banner-1.webp', top: 3665-500, left: 129 },
+  {
+    src: '/images/banner-1.webp',
+    top: 4860,
+    left: 1000,
+    text: 'Sip. Smile. Repeat.',
+  },
+  {
+    src: '/images/banner-1.webp',
+    top: 4320,
+    left: 300,
+    text: 'Every moment matters.',
+  },
+  {
+    src: '/images/banner-1.webp',
+    top: 3900,
+    left: 1220,
+    text: 'Find your flavor.',
+  },
+  {
+    src: '/images/banner-1.webp',
+    top: 2601,
+    left: 1062,
+    text: 'Naturally uplifting.',
+  },
+  {
+    src: '/images/banner-1.webp',
+    top: 3165,
+    left: 129,
+    text: 'Stay fresh, stay wild.',
+  },
 ]
 
+
 export default function TransitionToCards() {
+ 
   const containerRef = useRef<HTMLDivElement>(null)
   const [screenHeight, setScreenHeight] = useState(800)
 
@@ -28,8 +55,8 @@ export default function TransitionToCards() {
   })
 
   const transforms = momentsData.map((item, index) => {
-    const startX = index * 400
-    const startY = 0
+    const startX = index * 350
+    const startY = 350
     const endX = item.left
     const endY = item.top - screenHeight
     const parallaxSpeed = 0.3
@@ -82,15 +109,20 @@ export default function TransitionToCards() {
 
       </motion.div>
         {/* Ảnh bay từ trái → đúng tọa độ */}
-        {momentsData.map((item, index) => (
-          <FloatingImage
-            key={index}
-            src={item.src}
-            alt={`Image ${index}`}
-            transition={transforms[index]}
-            className="z-10"
-          />
-        ))}
+      {momentsData.map((item, index) => (
+        <FloatingImage
+          key={index}
+          src={item.src}
+          alt={`Image ${index}`}
+          transition={transforms[index]}
+          className="z-10"
+        >
+          <p className="text-white text-2xl font-bold text-center px-4 leading-snug">
+            {item.text}
+          </p>
+        </FloatingImage>
+      ))}
+
       {/* Phần nối thêm để scroll tiếp cho tới đúng top ảnh */}
       <div className="relative h-[400vh] z-0 pointer-events-none" />
     </div>

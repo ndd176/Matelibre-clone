@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Bebas_Neue } from 'next/font/google'

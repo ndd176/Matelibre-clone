@@ -69,19 +69,19 @@ const textY = useTransform(scrollSpring, [0.6, 1], ['15vh', '70vh'])
               clipPath: clipPathText,
               willChange: 'transform, clip-path',
             }}
-            className="text-[100px] text-black font-studio-pro-bold whitespace-nowrap"
-          >
-            THE IDEAL DOSE
-          </motion.h2>
+            className="text-[clamp(32px,10vw,100px)] text-black font-studio-pro-bold whitespace-nowrap"
+            >
+             bold minds
+            </motion.h2>
           <motion.h2
             style={{
               x: rightX,
               clipPath: clipPathText,
               willChange: 'transform, clip-path',
             }}
-            className="text-[100px] text-black font-studio-pro-bold whitespace-nowrap"
+            className="text-[clamp(32px,10vw,100px)] text-black font-studio-pro-bold whitespace-nowrap"
           >
-            OF ENERGY
+          bright futures
           </motion.h2>
         </div>
 
@@ -116,22 +116,17 @@ const textY = useTransform(scrollSpring, [0.6, 1], ['15vh', '70vh'])
           <div className="h-full flex flex-col justify-center">
             <div className="sticky top-1/2 -translate-y-1/2 bottom-[5px] flex justify-center items-center">
               <motion.h1
-                className="max-w-4xl text-white text-[100px] text-center leading-tight"
-                style={
-                  enabled
-                    ? {
-                        clipPath: textClipPath,
-                        fontFamily:
-                          'var(--font-studio-pro-bold), "Arial Black", sans-serif',
-                        fontWeight: 700,
-                        willChange: 'clip-path',
-                      }
-                    : { opacity: 0 }
-                }
+                className="max-w-4xl text-white text-[clamp(32px,8vw,100px)] text-center leading-tight"
+                style={enabled ? {
+                  clipPath: textClipPath,
+                  fontFamily: 'var(--font-studio-pro-bold), "Arial Black", sans-serif',
+                  fontWeight: 700,
+                  willChange: 'clip-path',
+                } : { opacity: 0 }}
               >
-                The perfect energy
+                coming to
                 <br />
-                for your day
+                join with us
               </motion.h1>
             </div>
           </div>

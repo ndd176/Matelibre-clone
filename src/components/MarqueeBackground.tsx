@@ -2,7 +2,7 @@
 
 import Marquee from './marquee'
 
-const speeds = 0
+const speeds = 20
 
 export default function MarqueeBackground() {
   return (

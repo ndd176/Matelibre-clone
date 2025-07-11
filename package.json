@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@fontsource/poppins": "^5.2.6",
+    "@react-spring/web": "^10.0.1",
     "@studio-freight/lenis": "^1.0.42",
     "@types/locomotive-scroll": "^4.1.4",
     "clsx": "^2.1.1",
@@ -27,6 +28,7 @@
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^9.16.0",
     "react-scroll-parallax": "^3.4.5",
+    "react-use-measure": "^2.1.7",
     "scrollmagic": "^2.0.8",
     "swiper": "^11.2.10"
   },
@@ -40,6 +42,7 @@
     "@types/scrollmagic": "^2.0.8",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
+    "prettier-plugin-tailwindcss": "^0.6.14",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

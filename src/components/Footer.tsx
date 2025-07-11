@@ -10,10 +10,10 @@ export default function Footer() {
   const [exploreOpen, setExploreOpen] = useState(false);
 
   return (
-<footer className="max-w-screen-2xl mx-auto px-4  bg-white pb-5 pl-12 text-black">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20 text-xl font-studio-pro">
-        {/* Cột 1 */}
-        <div className="space-y-4 text-4xl md:text-5xl font-studio-pro-bold leading-tight">
+    <footer className="max-w-screen-2xl mx-auto px-4 bg-white pb-5 pl-6 pr-6 md:pl-12 text-black">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 text-xl font-studio-pro">
+        {/* Column 1 */}
+        <div className="space-y-4 text-3xl sm:text-4xl md:text-5xl font-studio-pro-bold leading-tight">
           <div>about us</div>
           <div>
             <button
@@ -23,7 +23,10 @@ export default function Footer() {
               <span className={`${exploreOpen ? 'text-black' : 'text-gray-500'}`}>
                 careers
               </span>
-              <span className="text-lg transition-transform" style={{ transform: `rotate(${exploreOpen ? 180 : 0}deg)` }}>
+              <span
+                className="text-lg transition-transform"
+                style={{ transform: `rotate(${exploreOpen ? 180 : 0}deg)` }}
+              >
                 ▾
               </span>
             </button>
@@ -34,44 +37,43 @@ export default function Footer() {
                 <li><Link href="#">our story</Link></li>
                 <li><Link href="#">fair trade</Link></li>
                 <li><Link href="#">faq</Link></li>
-
               </ul>
             )}
           </div>
           <div>community</div>
-
         </div>
-        {/* Cột 2 */}
-        <div className="space-y-4 ml-8 md:ml-16">
-          <ul className="space-y-1 font-studio-pro-bold">
-             <li><Link href="#">wholesale</Link></li>
+
+        {/* Column 2 */}
+        <div className="space-y-4 ml-2 md:ml-8">
+          <ul className="space-y-1 font-studio-pro-bold text-base md:text-lg">
+            <li><Link href="#">wholesale</Link></li>
             <li><Link href="#">faq</Link></li>
             <li><Link href="#">contact</Link></li>
           </ul>
- 
         </div>
-        {/* Cột 3 */}
-        <div className="space-y-4 ml-8 md:ml-16">
-          <ul className="space-y-1 font-studio-pro-bold">
-            <div><Link href="#">privacy policy</Link></div>
-            <div><Link href="#">terms & conditions</Link></div>
-            <div><Link href="#">cookie preferences</Link></div>
+
+        {/* Column 3 */}
+        <div className="space-y-4 ml-2 md:ml-8">
+          <ul className="space-y-1 font-studio-pro-bold text-base md:text-lg">
+            <li><Link href="#">privacy policy</Link></li>
+            <li><Link href="#">terms & conditions</Link></li>
+            <li><Link href="#">cookie preferences</Link></li>
           </ul>
- 
         </div>
       </div>
+      {/* Ethanecom full-width section */}
  
-      
-{/* ethanecom section full-width */}
-<section className="w-full min-h-[45vh]   select-none flex items-end">
-  <div className="ml-[-35px]">
-    <AnimatedWord word="ethanecom" />
-  </div>
-</section>
+
+      {/* DESKTOP view */}
+      <section className="w-full min-h-[45vh] select-none   items-end hidden md:flex">
+        <div className="ml-[-35px]">
+          <AnimatedWord word="ethanecom" />
+        </div>
+      </section> 
     </footer>
-    
   );
 }
+
 
 
 function AnimatedWord({ word }: { word: string }) {
@@ -155,5 +157,7 @@ useEffect(() => {
     </div>
   )
 }
+
+
 
 

@@ -1,210 +1,187 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useRef, useLayoutEffect, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import ApplyNowWithPopup from './CareersApplyPopup'
 
 const accordionData = [
   {
-    title: 'Ingredients',
+    title: 'What you’ll be doing',
     content: [
-      'Organic yerba mate infusion (carbonated water, organic yerba mate)',
-      'Organic cane sugar',
-      'Organic lime juice concentrate',
-      'Organic lemon juice concentrate',
-      'Chlorophyll',
-      'Organic mint oil',
+      'Designing embroidery mockups and product visuals for e-commerce listings',
+      'Creating branding materials and social media assets for campaigns',
+      'Collaborating with marketing and production teams to ensure brand consistency',
+      'Optimizing design workflows for scalable product customization',
     ],
   },
   {
-    title: 'Nutritional facts',
-    content: ['Calories: 35', 'Sugar: 7g', 'Caffeine: ~70mg', 'Sodium: 0mg'],
+    title: 'What we’re looking for',
+    content: [
+      'Proficiency in Adobe Illustrator, Photoshop or equivalent design tools',
+      'Experience in embroidery or print-ready artwork is a big plus',
+      'Creative thinking, attention to detail, and an eye for clean aesthetics',
+      'Basic knowledge of layout for online stores (Shopify, Etsy, etc.)',
+    ],
   },
   {
-    title: 'No bullsh!t',
+    title: 'Perks & vibes',
     content: [
-      'No preservatives',
-      'No artificial flavors',
-      'Non-GMO',
-      'Gluten-free',
+      'Flexible schedule and hybrid work options',
+      'Friendly, fast-paced creative team environment',
+      'Room to grow in a scaling DTC brand',
+      'Employee discounts on custom apparel & patches',
     ],
   },
 ]
 
+function AccordionItem({ title, content, isOpen, onClick }: any) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [height, setHeight] = useState(0)
+
+  useLayoutEffect(() => {
+    if (ref.current) {
+      setHeight(ref.current.scrollHeight)
+    }
+  }, [isOpen])
+
+  return (
+    <div className="border-2 border-green-800 rounded-[24px] overflow-hidden transition-all">
+      <button
+        className="w-full text-left px-6 py-4 text-green-900 font-bold text-lg flex justify-between items-center"
+        onClick={onClick}
+      >
+        {title}
+        <span className="text-xl">{isOpen ? '−' : '+'}</span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height, opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: 'easeInOut' }}
+            className="overflow-hidden"
+          >
+            <div ref={ref} className="px-8 pb-5 pt-2 text-green-800 text-sm">
+              <ul className="list-disc list-inside space-y-1">
+                {content.map((point: string, i: number) => (
+                  <li key={i}>{point}</li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
 export default function ProductDetailWithAccordion() {
-  const [openIndex, setOpenIndex] = useState(0)
+  const [openIndex, setOpenIndex] = useState(-1)
 
   const toggleIndex = (index: number) => {
     setOpenIndex(prev => (prev === index ? -1 : index))
   }
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setOpenIndex(0)
+    }, 1100)
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
-<section className="bg-[#e6f3e6] px-6 md:px-20 py-24 flex flex-col md:flex-row gap-16 items-start">
-{/* Left Side */}
-  <div className="w-full md:w-1/2 font-bold max-w-2xl">
-    <div className="flex flex-col gap-0">
-      {['mint & lime', 'energy', 'infusion'].map((line, i) => (
-        <motion.h1
-          key={i}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.15, duration: 0.5 }}
-          viewport={{ once: true }}
-          className="font-bold text-[115px] leading-[1] text-green-800"
-        >
-          {line}
-        </motion.h1>
-      ))}
-    </div>
-
-{/* Icon Feature List */}
-<motion.div
-  className="flex justify-between text-xl pt-10 pb-10 gap-4"
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.5, duration: 0.5 }}
-  viewport={{ once: true }}
->
-  <Feature icon="🌿" label="organic yerba mate" />
-  <Feature icon="🔁" label="no crash" />
-  <Feature icon="☕" label="equivalent to an espresso" />
-</motion.div>
-
-    {/* Add to cart + pricing */}
-<motion.div
-  className="flex flex-row items-center gap-8 pb-8"
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.8, duration: 0.5 }}
-  viewport={{ once: true }}
->
-  <button className="bg-green-800 text-white mt-60 text-xl font-semibold px-8 py-4 rounded-full hover:scale-105 transition-transform">
-    add to cart
-  </button>
-  <div className="text-green-900 mt-60 text-base leading-snug">
-    <p className="text-xl font-semibold">$32.00 / box of 12×330 ml</p>
-    <p className="opacity-70">subscribe and save 10%</p>
-  </div>
-</motion.div>
-
- 
-
-    <div className="space-y-4">
-      {accordionData.map((item, index) => {
-        const isOpen = index === openIndex
-        return (
-          <div
-            key={index}
-            className="border-2 border-green-800 rounded-[32px] overflow-hidden transition-all"
-          >
-            <button
-              className="w-full text-left px-6 py-5 text-green-900 font-bold text-lg flex justify-between items-center"
-              onClick={() => toggleIndex(index)}
+    <section className="bg-[#e6f3e6] px-4 md:px-20 py-16 md:py-24 flex flex-col md:flex-row gap-12 md:gap-16 items-start">
+      {/* LEFT: Content */}
+      <div className="w-full md:w-1/2 font-bold max-w-2xl mx-auto">
+        <div className="flex flex-col gap-0">
+          {['creative', 'design', 'role'].map((line, i) => (
+            <motion.h1
+              key={i}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.15, duration: 0.5 }}
+              viewport={{ once: true }}
+              className="font-bold text-[48px] sm:text-[64px] md:text-[96px] lg:text-[110px] leading-[1] text-green-800"
             >
-              {item.title}
-              <span className="text-xl">{isOpen ? '−' : '+'}</span>
-            </button>
+              {line}
+            </motion.h1>
+          ))}
+        </div>
 
-            <AnimatePresence initial={false}>
-              {isOpen && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="px-8 pb-5 text-green-800 text-sm"
-                >
-                  <ul className="list-disc list-inside space-y-1">
-                    {item.content.map((point, i) => (
-                      <li key={i}>{point}</li>
-                    ))}
-                  </ul>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        )
-      })}
-    </div>
-  </div>
-
-      {/* Right Side */}
-      <div className="w-full max-w-[960px] flex flex-col pl-40 mr-[-20px] flex-wrap gap-4 mx-auto ">
-        {/* Image Top */}
         <motion.div
-          initial={{
-        y: 200,
-        scale: 0.2,
-        borderRadius: '50%',
-        backgroundColor: '#14532d', // text-green-800
-          }}
-          animate={{
-        y: 0,
-        scale: 1,
-        borderRadius: '32px',
-        backgroundColor: '#ffffff00', // transparent sau khi mở rộng
-          }}
-          transition={{
-        duration: 2,
-        ease: [0.22, 1, 0.36, 1],
-          }}
+          className="flex justify-between text-sm sm:text-base pt-8 pb-10 gap-4 flex-wrap"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <Feature icon="🎨" label="Creative freedom" />
+          <Feature icon="🧵" label="Embroidery design" />
+          <Feature icon="🚀" label="Fast-paced team" />
+        </motion.div>
+
+        <motion.div
+          className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 pb-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <ApplyNowWithPopup />
+
+          <div className="text-green-900 text-base leading-snug">
+            <p className="text-lg sm:text-xl font-semibold">Full-time or freelance</p>
+            <p className="opacity-70 text-sm">Based in Vietnam or remote</p>
+          </div>
+        </motion.div>
+
+        <div className="space-y-4">
+          {accordionData.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <AccordionItem
+                title={item.title}
+                content={item.content}
+                isOpen={openIndex === index}
+                onClick={() => toggleIndex(index)}
+              />
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* RIGHT: Image */}
+      <div className="w-full md:w-1/2 max-w-4xl flex flex-col gap-6 mx-auto">
+        <motion.div
+          initial={{ y: 200, scale: 0.2, borderRadius: '50%', backgroundColor: '#14532d' }}
+          animate={{ y: 0, scale: 1, borderRadius: '32px', backgroundColor: 'transparent' }}
+          transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
           className="w-full mx-auto overflow-hidden relative"
         >
           <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.7 }}
-        className="w-full h-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.7 }}
+            className="w-full h-auto"
           >
-        <Image
-          src="/images/position.jpg"
-          alt="mint & lime"
-          width={1900}
-          height={1900}
-          className="w-full h-auto object-cover rounded-[32px]"
-        />
+            <Image
+              src="/images/position.jpg"
+              alt="designer position"
+              width={1900}
+              height={1900}
+              className="w-full h-auto object-cover rounded-[32px]"
+            />
           </motion.div>
         </motion.div>
-
-
-        {/* Form Bottom */}
-      <form className="bg-white p-10 rounded-[32px] shadow-md w-full max-w-[960px] mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 text-[16px] font-normal">
-        <input
-          type="text"
-          placeholder="Your name"
-          required
-          className="w-full px-4 py-3 border border-gray-300 rounded-md text-[16px] font-bold"
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          required
-          className="w-full px-4 py-3 border border-gray-300 rounded-md text-[16px] font-bold"
-        />
-        <input
-          type="tel"
-          placeholder="Phone number"
-          required
-          className="w-full sm:col-span-2 px-4 py-3 border border-gray-300 rounded-md text-[16px] font-bold"
-        />
-        <textarea
-          placeholder="Cover Letter"
-          required
-          className="w-full sm:col-span-2 px-4 py-3 border border-gray-300 rounded-md text-[16px] font-bold"
-          rows={4}
-        ></textarea>
-        <div className="w-full sm:col-span-2 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <input type="file" className="font-bold text-[16px]" />
-          <button
-            type="submit"
-            className="bg-green-800 hover:bg-green-900 text-white px-8 py-3 rounded-md font-bold text-[16px]"
-          >
-            Submit Now
-          </button>
-        </div>
-      </form>
-
       </div>
     </section>
   )

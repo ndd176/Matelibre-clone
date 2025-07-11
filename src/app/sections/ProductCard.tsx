@@ -56,13 +56,13 @@ className={`relative ${bgColor} w-[500px] h-[400px] rounded-[40px] p-10 overflow
         alt=""
         width={300}
         height={300}
-        className={`absolute bottom-0 left-0 z-0 opacity-0 scale-90 transition-all duration-700 ${
+        className={`absolute bottom-0 right-0 z-0 opacity-0 scale-90 transition-all duration-700 ${
           hovered ? 'opacity-100 scale-100' : ''
         }`}
       />
 
       {/* Title */}
-      <h2 className={`text-5xl font-bold ${textColor} z-10  leading-tight`}>
+      <h2 className={`text-5xl font-bold ${textColor} z-10 leading-tight text-right`}>
         {title}
       </h2>
 
@@ -84,7 +84,7 @@ className={`relative ${bgColor} w-[500px] h-[400px] rounded-[40px] p-10 overflow
         {/* Right text + button */}
         <div className="flex flex-col justify-between w-1/2 relative">
           <p
-            className={`text-lg font-medium leading-relaxed ${textColor} pr-2`}
+            className={`text-lg  font-bold leading-relaxed ${textColor} pr-2`}
           >
             {description}
           </p>
@@ -94,8 +94,9 @@ className={`relative ${bgColor} w-[500px] h-[400px] rounded-[40px] p-10 overflow
           <button className="flex flex-col relative h-12 w-[180px] items-center justify-center 
           overflow-hidden rounded-md border border-neutral-200    bg-white px-6 font-semibold text-black text-2xl
              transition-all duration-100 
+
            [box-shadow:5px_5px_rgb(82_82_82)] active:translate-x-[3px] active:translate-y-[3px] 
-           active:[box-shadow:0px_0px_rgb(82_82_82)]">            Apply Now
+           active:[box-shadow:0px_0px_rgb(82_82_82)] cursor-pointer">            Apply Now
 </button>
           
  {/* <div className="button-container">

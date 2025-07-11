@@ -118,7 +118,7 @@ const textColor = {
     <motion.div
       initial={{ scale: 0.6 }}
       animate={{ scale: 1.3}}
-      transition={{ duration: 0.1, ease: 'easeInOut', delay: index * 0.009 }}
+      transition={{ duration: 0.2, ease: 'easeInOut', delay: index * 0.01 }}
       style={{ zIndex }}
       className={`relative ${bgColor} w-[500px] h-[400px] rounded-[40px] p-10 overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-[8px_8px_0px_#000000]`}
       onMouseEnter={() => setHovered(true)}
@@ -171,28 +171,56 @@ const textColor = {
 export default function ProductGridPage() {
   return (
      <div className="p-10 flex flex-col   gap-10">
-      <motion.h1
-        initial={{ opacity: 0, y: -40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.1, ease: 'easeInOut', delay: 0 }}
-        className="text-5xl font-extrabold"
-      >
-        Our Energy
-      </motion.h1>
-      <motion.h2
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.1, ease: 'easeOut', delay: 0.4 }}
-        className="text-4xl font-semibold"
-      >
-        Infusions
-      </motion.h2>
+<div className="flex items-end gap-4">
+  <motion.h1
+    initial={{
+        textShadow: '0px 0px 0px rgba(0,0,0,0)',
+    }}
+    animate={{
+       textShadow: '8px 8px 0px rgba(0,0,0,0.3)',
+    }}
+    transition={{
+      type: 'spring',
+      stiffness: 400,
+      damping: 15,
+      bounce: 0.6,
+       textShadow: { delay: 1.3, duration: 0.3 },
+    }}
+    className="text-[120px] leading-[1] font-extrabold tracking-tight text-black"
+  >
+    WE'RE
+  </motion.h1>
+
+  <motion.h2
+    initial={{
+      opacity: 0,
+      y: -400,
+      textShadow: '0px 0px 0px rgba(0,0,0,0)',
+    }}
+    animate={{
+      opacity: 1,
+      y: 0,
+       textShadow: '8px 8px 0px rgba(0,0,0,0.3)',
+    }}
+    transition={{
+      type: 'spring',
+      stiffness: 400,
+      damping: 15,
+       delay: 0.3,
+      textShadow: { delay: 1.3, duration: 0.3 },
+    }}
+    className="text-[120px] leading-[1] font-extrabold tracking-tight text-[#1f690c]"
+  >
+    HIRING
+  </motion.h2>
+</div>
+
     <main className="p-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         
       {products.map((product, i) => {
         const row = Math.floor(i / 3)
         const col = i % 3
-        const zIndex = row * 100 - col
+const zIndex = 1000 + row * 1000 - col
 
         return <ProductCard key={i} {...product} index={i} zIndex={zIndex} />
       })}

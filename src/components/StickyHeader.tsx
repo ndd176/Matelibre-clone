@@ -48,7 +48,7 @@ const handleToggleMenu = () => {
   return (
     <>
       {/* HEADER */}
-<motion.header
+{/* <motion.header
   initial={{ y: -100, opacity: 0 }}
   animate={{
     y: isMenuOpen ? -100 : showHeader ? 0 : -100,
@@ -73,6 +73,31 @@ className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-in-o
   <a href="/careers" className="hover:opacity-80 text-[20px] font-studio-pro">Careers</a>
   <a href="/community" className="hover:opacity-80 text-[20px] font-studio-pro">community</a>
 </div>
+</motion.header> */}
+<motion.header
+  initial={{ y: -100 }}
+  animate={{
+    y: isMenuOpen ? -100 : showHeader ? 0 : -100,
+    borderBottomLeftRadius: showHeader ? 0 : 30,
+    borderBottomRightRadius: showHeader ? 0 : 30,
+  }}
+  transition={{
+    duration: 0.5,
+    ease: 'easeInOut',
+    borderBottomLeftRadius: { duration: 0.3, ease: 'easeInOut' },
+    borderBottomRightRadius: { duration: 0.3, ease: 'easeInOut' },
+  }}
+  className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-in-out
+    hidden md:flex
+    ${isAtTop ? 'bg-transparent text-white shadow-none' : 'bg-white text-black shadow-md'}
+  `}
+>
+  <div className="w-full flex items-center gap-6 px-8 py-3">
+    <a href="/" className="text-[42px] font-studio-pro-bold">©ethan</a>
+    <a href="/about" className="hover:opacity-80 text-[20px] font-studio-pro-bold">About us</a>
+    <a href="/careers" className="hover:opacity-80 text-[18px] font-studio-pro">Careers</a>
+    <a href="/community" className="hover:opacity-80 text-[18px] font-studio-pro">Community</a>
+  </div>
 </motion.header>
 
 
@@ -81,7 +106,7 @@ className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-in-o
  
 <motion.button
   onClick={handleToggleMenu}
-  className="fixed top-4 right-6 text-2xl font-bold z-51 bg-white/80 backdrop-blur-md rounded-full w-10 h-10 flex items-center justify-center shadow"
+  className="fixed top-4 right-6 text-2xl font-bold z-5001 bg-white/80 backdrop-blur-md rounded-full w-10 h-10 flex items-center justify-center shadow"
   initial={false}
   animate={{ rotate: isMenuOpen ? 180 : 0 }}
   whileHover={{ scale: 1.1 }} // 💥 hover scale nhẹ
@@ -128,7 +153,7 @@ className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-in-o
       {/* FULLSCREEN OVERLAY */}
 <AnimatePresence>
   {isMenuOpen && (
-    <motion.div className="fixed inset-0 z-50 flex flex-col md:flex-row">
+    <motion.div className="fixed inset-0 z-5000 flex flex-col md:flex-row">
 
       {/* Khối trắng bên trái */}
       <motion.div
@@ -136,8 +161,13 @@ className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-in-o
         animate={{ x: 0 }}
         exit={{ x: '-100%' }}
         transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-        className="w-full md:w-[70%] bg-white z-40 rounded-b-[30px] md:rounded-b-none md:rounded-tr-[30px] md:rounded-br-[30px] p-6 md:p-12 flex flex-col justify-between relative -mr-20"
+        className="w-full md:w-[70%] bg-white z-40 rounded-b-[30px] md:rounded-b-none md:rounded-tr-[30px] md:rounded-br-[30px] p-6 md:p-12 flex flex-col justify-between relative -mr-40"
       >
+        {/* Logo Ethan */}
+        <a href="/" className="text-[36px] font-studio-pro-bold mb-6 block">
+          ©ethan
+        </a>
+
         <motion.div
           initial="hidden"
           animate="visible"

@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useState, useRef } from 'react'
 import { motion, MotionValue, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 
@@ -10,6 +10,7 @@ interface FloatingImageProps {
   x?: number
   y?: number
   className?: string
+  children?: React.ReactNode
   transition?: {
     x: MotionValue
     y: MotionValue
@@ -21,6 +22,7 @@ interface FloatingImageProps {
   }
 }
 
+
 export default function FloatingImage({
   src,
   alt,
@@ -28,22 +30,22 @@ export default function FloatingImage({
   y = 0,
   className = '',
   transition,
+  children, // ✅ nhận children
 }: FloatingImageProps) {
   const containerRef = useRef<HTMLDivElement>(null)
+  const [isHovered, setIsHovered] = useState(false)
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start']
   })
 
-  // Cấu hình cố định bên trong
   const width = 600
   const height = 800
   const parallaxSpeed = 0.3
   const scaleRange: [number, number, number] = [1, 1.1, 1.2]
   const borderRadius = 30
 
-  // Parallax transforms nếu không có transition truyền vào
   const defaultY = useTransform(scrollYProgress, [0, 1], ['0%', `-${parallaxSpeed * 100}%`])
   const defaultScale = useTransform(scrollYProgress, [0, 0.5, 1], scaleRange)
 
@@ -51,13 +53,14 @@ export default function FloatingImage({
     <motion.div
       ref={containerRef}
       className={`absolute ${className}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       style={{
         x: transition?.x ?? useTransform(() => x),
         y: transition?.y ?? useTransform(() => y),
         rotate: transition?.rotate,
         scale: transition?.scale,
-        opacity: transition?.opacity ?? 1, // ✅ THÊM opacity ở đây
-
+        opacity: transition?.opacity ?? 1,
       }}
     >
       <div
@@ -82,32 +85,18 @@ export default function FloatingImage({
             className="object-cover"
           />
         </motion.div>
+
+        {/* ✅ Overlay */}
+        <div
+          className={`absolute inset-0 bg-black transition-opacity duration-300 flex items-center justify-center
+          ${isHovered ? 'opacity-60' : 'opacity-0'}`}
+        >
+          {children}
+        </div>
       </div>
     </motion.div>
   )
 }
 
-export function FloatingImageGallery() {
-  return (
-    <section className="relative w-full h-[200vh] bg-gray-100 overflow-hidden">
-      <FloatingImage
-        src="/images/banner-1.webp"
-        alt="Image 1"
-        x={100}
-        y={200}
-      />
-      <FloatingImage
-        src="/images/banner-2.webp"
-        alt="Image 2"
-        x={700}
-        y={800}
-      />
-      <FloatingImage
-        src="/images/banner-3.webp"
-        alt="Image 3"
-        x={300}
-        y={1200}
-      />
-    </section>
-  )
-}
+
+ 

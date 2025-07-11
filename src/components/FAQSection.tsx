@@ -8,38 +8,47 @@ const email = 'ethanecom@gmail.com'
 
 const faqs = [
   {
-    question: 'What is Yerba Mate?',
+    question: 'What positions is Ethan Ecom hiring for?',
     answer: (
       <>
         <p className="mb-2">
-          Ilex paraguariensis, or yerba maté, is a tree native to South America. Its leaves are dried and infused for a naturally caffeinated drink.
+          We’re growing fast and always on the lookout for awesome teammates! Currently, we’re hiring for: 
+          <strong> IT, Designer, Marketing Support, EMB Designer, Fulfillment, TikTok Seller, QA, QC,</strong> and <strong>Media</strong>.  
         </p>
         <p className="mb-2">
-          Mate Libre uses these same leaves to offer a refreshing, floral, slightly sweet, and energizing beverage. Learn more about{' '}
-          <a href="#" className="underline font-semibold">
-            what is Yerba Mate
-          </a>
+          If you’re passionate, curious, and a little obsessed with embroidery or e-commerce — we want to hear from you!
         </p>
       </>
     ),
   },
   {
-    question: 'What are the benefits of Yerba Mate?',
+    question: 'How can I apply?',
     answer: (
-      <p>
-        Yerba Mate contains antioxidants, vitamins, and caffeine, which may help improve energy, focus, and digestion.
-      </p>
+      <>
+        <p className="mb-2">
+          Easy peasy 🍋 Just head over to our <a href="/careers" className="underline font-bold">Careers page</a>, pick the role that speaks to your soul, hit that "Apply" button, upload your CV — and voilà!
+        </p>
+        <p className="mb-2">
+          We’ll get in touch to schedule an interview if it’s a match. Good luck!
+        </p>
+      </>
     ),
   },
   {
-    question: 'Is it safe to drink Yerba Mate everyday?',
+    question: 'I have no experience. Can I still apply?',
     answer: (
-      <p>
-        When consumed in moderation, Yerba Mate is generally considered safe for daily use. As with all caffeinated beverages, balance is key.
-      </p>
+      <>
+        <p className="mb-2">
+          Absolutely! We all start somewhere. Some roles require more experience than others, but if you’re eager to learn, responsible, and have a good attitude — we’ll be happy to train you.
+        </p>
+        <p className="mb-2">
+          Basic computer skills are a must, and if you’ve got some English up your sleeve, that’s a sweet bonus! 🚀
+        </p>
+      </>
     ),
   },
 ]
+
 
 export default function NewsletterWithFAQ() {
   const [copied, setCopied] = useState(false)
@@ -67,8 +76,9 @@ export default function NewsletterWithFAQ() {
           </a>
 
           {/* Text */}
-          <h3 className="text-xl md:text-2xl font-studio-pro-bold max-w-xl mb-6">
-            Subscribe to our newsletter and receive 10$ off your first subscription order.
+          <h3 className="text-xl md:text-3xl font-studio-pro-bold max-w-xl mb-6">
+ Got questions or just want to say hi? Don’t hesitate to reach out — we're just a message away! 💬  
+
           </h3>
 
           {/* Email row */}
@@ -130,7 +140,7 @@ export default function NewsletterWithFAQ() {
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
                         className="overflow-hidden"
                       >
-                        <div className="mt-4 text-sm text-neutral-700 leading-relaxed">
+                        <div className="mt-4 text-lg font-bold text-neutral-700 leading-relaxed">
                           {faq.answer}
                         </div>
                       </motion.div>
