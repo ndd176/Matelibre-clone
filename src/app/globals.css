@@ -1,11 +1,18 @@
-@import "tailwindcss";
-@import "swiper/css";
-@import "swiper/css/navigation";
+@import 'tailwindcss';
+@import 'swiper/css';
+@import 'swiper/css/navigation';
 
+/* ========================================
+   CSS VARIABLES & ROOT CONFIGURATION
+======================================== */
 :root {
   --background: #000000;
   --foreground: #171717;
 }
+
+/* ========================================
+   FONT CONFIGURATIONS
+======================================== */
 /* @font-face {
   font-family: 'StudioPro';
   src: url('/fonts/studio-pro-regular.ttf') format('truetype');
@@ -29,23 +36,30 @@
   --font-mono: var(--font-studio-pro-bold);
 }
 
+/* ========================================
+   THEME CONFIGURATIONS
+======================================== */
 @media (prefers-color-scheme: dark) {
   :root {
     /* --background: #000000;
     --foreground: #ededed; */
- 
   }
 }
- 
+
+/* ========================================
+   GLOBAL STYLES
+======================================== */
 body {
   margin-top: 50px;
   cursor: url('/cursor.png'), auto;
 }
 
+/* ========================================
+   UTILITY CLASSES
+======================================== */
 .box {
   width: 100px;
   height: 100px;
-
   background: yellow;
 }
 
@@ -57,7 +71,9 @@ body {
   transform-style: preserve-3d;
 }
 
-/* Force font utilities */
+/* ========================================
+   FONT UTILITY CLASSES
+======================================== */
 .font-studio-pro {
   font-family: var(--font-studio-pro-regular), sans-serif !important;
 }
@@ -66,16 +82,22 @@ body {
   font-family: var(--font-studio-pro-bold), sans-serif !important;
 }
 
-.font-bebas{
+.font-bebas {
   font-family: var(--font-bebas), sans-serif !important;
 }
 
-  
-h1, h2, h3, h4, h5, h6, .font-bold, .font-studio-pro-bold {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-bold,
+.font-studio-pro-bold {
   font-family: var(--font-studio-pro-bold), sans-serif !important;
 }
 
-
+/* ========================================
+   COMPONENT STYLES
+======================================== */
 /*thu nut */
- 
-

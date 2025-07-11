@@ -4,8 +4,8 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ProductCard from './ProductCard'
-import MarqueeBackground from '../../components/MarqueeBackground'
-import MarqueeTailwind from '@/components/MarqueeTailwind'
+import MarqueeBackground from '../ui/MarqueeBackground'
+import MarqueeTailwind from '../ui/MarqueeTailwind'
 
 gsap.registerPlugin(ScrollTrigger)
 

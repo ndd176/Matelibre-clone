@@ -1,4 +1,4 @@
-import '../styles/plant-button.css';
+import '../../styles/plant-button.css';
 
 export default function PlantButton() {
   return (

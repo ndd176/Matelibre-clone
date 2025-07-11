@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRouter } from 'next/navigation'
-import AnimatedEnvelope from './AnimatedEnvelope';
+import AnimatedEnvelope from '../ui/AnimatedEnvelope';
 
 export default function Footer() {
   const [exploreOpen, setExploreOpen] = useState(false);

@@ -1,6 +1,6 @@
 'use client'
 
-import { useLenis } from '../app/hooks/useLenis'
+import { useLenis } from '@/lib/hooks/useLenis'
 
 export default function LenisWrapper() {
   useLenis()

@@ -5,12 +5,12 @@ import { Bebas_Neue } from 'next/font/google'
 
 import "./globals.css";
 import { Providers } from './providers';
-import LenisWrapper from '@/components/LenisWrapper'
-import StickyHeader from "@/components/StickyHeader";
-import Footer from "@/components/Footer";
-import FAQSection from "@/components/FAQSection";
+import LenisWrapper from '@/components/layout/LenisWrapper'
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import FAQSection from "@/components/sections/FAQSection";
  const studioProRegular = localFont({
-  src: './fonts/studio-pro-regular.ttf',
+  src: '../assets/fonts/studio-pro-regular.ttf',
   weight: '400',
   style: 'normal',
   variable: '--font-studio-pro-regular',
@@ -23,7 +23,7 @@ const bebasNeue = Bebas_Neue({
   variable: '--font-bebas',
 })
 const studioProBold = localFont({
-  src: './fonts/studio-pro-bold.ttf',
+  src: '../assets/fonts/studio-pro-bold.ttf',
   weight: '700',
   style: 'normal',
   variable: '--font-studio-pro-bold',
@@ -49,7 +49,7 @@ export default function RootLayout({
         className={`${studioProRegular.variable} ${studioProBold.variable} ${bebasNeue.variable} antialiased font-studio-pro font-bebas overflow-x-hidden`}
       >
         <LenisWrapper /> {/* ✅ Hook Lenis chạy tại đây */}
-        <StickyHeader/>
+        <Header/>
         <Providers>{children}</Providers>
               <FAQSection />
 

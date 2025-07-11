@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import ProductCard from '../sections/ProductCard'
+import ProductCard from '../../components/sections/ProductCard'
 
 const products = [
   {

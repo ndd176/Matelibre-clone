@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import FloatingImage from './FloatingImage'
+import FloatingImage from '../ui/FloatingImage'
 
 const momentsData = [
   {
