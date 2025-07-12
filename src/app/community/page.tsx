@@ -1,230 +1,304 @@
-// app/products/page.tsx (Next.js 13+ App Router)
+// app/community/page.tsx - Beautiful Community Page
 'use client'
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import Link from 'next/link'
 
-const products = [
-  {
-    title: 'mint & lime',
-    description: 'Refreshing and vibrant, great for summer days.',
-    canImage: '/images/duydinh-bg-2.png',
-    bgImage: '/images/mint-bg.png',
-    color: 'white',
-  },
-  {
-    title: 'passion',
-    description: 'Bold tropical flavor with a zesty twist.',
-    canImage: '/images/duydinh-bg-2.png',
-    bgImage: '/images/passion-bg.png',
-    color: 'seasalt',
-  },
-  {
-    title: 'rose & hibiscus',
-    description: 'Floral and lightly sweet, perfect for relaxing.',
-    canImage: '/images/duydinh-bg-2.png',
-    bgImage: '/images/rose-bg.png',
-    color: 'ash_gray',
-  },
-  {
-    title: 'ginger',
-    description: 'Spicy and invigorating kick in every sip.',
-    canImage: '/images/duydinh-bg-2.png',
-    bgImage: '/images/ginger-bg.png',
-    color: 'asparagus',
-  },
-  {
-    title: 'original',
-    description: 'The classic taste that started it all.',
-    canImage: '/images/duydinh-bg-2.png',
-    bgImage: '/images/original-bg.png',
-    color: 'poly_green',
-  },
-  {
-    title: 'blood orange',
-    description: 'Citrusy with a bold twist of blood orange.',
-    canImage: '/images/duydinh-bg-2.png',
-    bgImage: '/images/blood-bg.png',
-    color: 'pakistan',
-  },
-  {
-    title: 'grapefruit',
-    description: 'Bright and tangy for a refreshing hit.',
-    canImage: '/images/duydinh-bg-2.png',
-    bgImage: '/images/grapefruit-bg.png',
-    color: 'dark_1',
-  },
-  {
-    title: 'yuzu',
-    description: 'Japanese citrus flavor, sharp and unique.',
-    canImage: '/images/duydinh-bg-2.png',
-    bgImage: '/images/yuzu-bg.png',
-    color: 'dark_2',
-  },
-  {
-    title: 'cherry cola',
-    description: 'Classic cola with a cherry twist.',
-    canImage: '/images/duydinh-bg-2.png',
-    bgImage: '/images/cola-bg.png',
-    color: 'black',
-  },
+const communityStats = [
+  { label: 'Active Members', value: '10,000+', icon: '👥' },
+  { label: 'Projects Completed', value: '500+', icon: '🚀' },
+  { label: 'Countries Reached', value: '25+', icon: '🌍' },
+  { label: 'Years of Innovation', value: '5+', icon: '⭐' }
 ]
 
+const communityHighlights = [
+  {
+    title: 'Innovation Hub',
+    description: 'Join our creative community where ideas come to life through collaboration and innovation.',
+    image: '/images/office-01.jpg',
+    gradient: 'from-blue-500 to-purple-600'
+  },
+  {
+    title: 'Global Network',
+    description: 'Connect with talented individuals from around the world and build lasting professional relationships.',
+    image: '/images/congty.jpg',
+    gradient: 'from-green-500 to-teal-600'
+  },
+  {
+    title: 'Learning Together',
+    description: 'Grow your skills through workshops, mentorship programs, and knowledge sharing sessions.',
+    image: '/images/work.png',
+    gradient: 'from-orange-500 to-red-600'
+  }
+]
 
-function ProductCard({
-  title,
-   canImage,
-  bgImage,
-  color = 'green',
-  index,
-  zIndex,
-}: {
-  title: string
-  description: string
-  canImage: string
-  bgImage: string
-  color?: string
-  index: number
-  zIndex: number
-}) {
-  const [hovered, setHovered] = useState(false)
+const testimonials = [
+  {
+    name: 'Sarah Johnson',
+    role: 'Senior Designer',
+    avatar: '/images/anh-hiep.png',
+    quote: 'Being part of this community has transformed my career. The support and opportunities here are incredible.'
+  },
+  {
+    name: 'Michael Chen',
+    role: 'Developer',
+    avatar: '/images/anh-hiep.png',
+    quote: 'The collaborative environment and diverse perspectives have helped me grow both personally and professionally.'
+  },
+  {
+    name: 'Emily Rodriguez',
+    role: 'Product Manager',
+    avatar: '/images/anh-hiep.png',
+    quote: 'I love how this community values innovation and gives everyone a voice to share their ideas.'
+  }
+]
 
-const bgColor = {
-  white: 'bg-[#FDFDFD]',
-  seasalt: 'bg-[#F8F8F9]',
-  ash_gray: 'bg-[#B8C5B5]',
-  asparagus: 'bg-[#6D995C]',
-  poly_green: 'bg-[#264A20]',
-  pakistan: 'bg-[#1F3F1A]',
-  dark_1: 'bg-[#1F321B]',
-  dark_2: 'bg-[#1E2A1C]',
-  black: 'bg-[#000000]', // giữ lại nếu cần
-}[color]
-
-const textColor = {
-  white: 'text-black',
-  seasalt: 'text-black',
-  ash_gray: 'text-black',
-  asparagus: 'text-black',
-  poly_green: 'text-white',
-  pakistan: 'text-white',
-  dark_1: 'text-white',
-  dark_2: 'text-white',
-  black: 'text-white',
-}[color]
+export default function CommunityPage() {
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
 
   return (
-    <motion.div
-      initial={{ scale: 0.6 }}
-      animate={{ scale: 1.3}}
-      transition={{ duration: 0.2, ease: 'easeInOut', delay: index * 0.01 }}
-      style={{ zIndex }}
-      className={`relative ${bgColor} w-[500px] h-[400px] rounded-[40px] p-10 overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-[8px_8px_0px_#000000]`}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <Image
-        src={bgImage}
-        alt=""
-        width={300}
-        height={300}
-        className={`absolute bottom-0 left-0 z-0 opacity-0 scale-90 transition-all duration-700 ${hovered ? 'opacity-100 scale-100' : ''}`}
-      />
-
-    <h2 className={`text-5xl font-bold ${textColor} z-10 leading-tight text-right`}>
-        {title}
-      </h2>
-
-      <div className="flex flex-row h-full z-10 mt-10 gap-6">
-        <div className="flex justify-center items-center w-1/2">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 text-white">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-black/20"></div>
+          <Image
+            src="/images/tree-background-1.jpg"
+            alt=""
+            fill
+            className="object-cover"
+          />
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 py-24">
           <motion.div
-            // initial={{ x: 50, y: -30 }}
-            // animate={{ x: 0, y: 0 }}
-            // transition={{ duration: 0.1, ease: 'easeInOut', delay: index * 0.009 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
           >
-            <Image
-              src={canImage}
-              alt={title}
-              width={200}
-              height={300}
-              className={`transition-transform duration-300 transform ${hovered ? 'translate-y-10' : 'translate-y-0'}`}
-            />
+            <motion.h1
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent"
+            >
+              Our Community
+            </motion.h1>
+            
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-blue-100"
+            >
+              Where innovation meets collaboration. Join thousands of creators, developers, and visionaries building the future together.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
+              <Link
+                href="/careers"
+                className="bg-white text-indigo-600 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105"
+              >
+                Join Our Team
+              </Link>
+              <button className="border-2 border-white text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-white hover:text-indigo-600 transition-all duration-300">
+                Learn More
+              </button>
+            </motion.div>
           </motion.div>
         </div>
 
-        <div className="flex flex-col justify-between w-1/2 relative">
-          {/* <p className={`text-lg font-medium leading-relaxed ${textColor} pr-2`}>
-            {description}
-          </p> */}
-             <button
-              className="flex flex-col relative h-12 w-[180px] items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-white px-6 font-semibold text-black text-2xl transition-all duration-100 [box-shadow:5px_5px_rgb(82_82_82)] active:translate-x-[3px] active:translate-y-[3px] active:[box-shadow:0px_0px_rgb(82_82_82)]"
-            >
-              Apply Now
-            </button>
-         </div>
-      </div>
-    </motion.div>
-  )
-}
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-16 h-16 bg-blue-300/20 rounded-full animate-bounce"></div>
+        <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-purple-300/20 rounded-full animate-ping"></div>
+      </section>
 
-export default function ProductGridPage() {
-  return (
-     <div className="p-10 flex flex-col   gap-10">
-<div className="flex items-end gap-4">
-  <motion.h1
-    initial={{
-        textShadow: '0px 0px 0px rgba(0,0,0,0)',
-    }}
-    animate={{
-       textShadow: '8px 8px 0px rgba(0,0,0,0.3)',
-    }}
-    transition={{
-      type: 'spring',
-      stiffness: 400,
-      damping: 15,
-      bounce: 0.6,
-       textShadow: { delay: 1.3, duration: 0.3 },
-    }}
-    className="text-[120px] leading-[1] font-extrabold tracking-tight text-black"
-  >
-    WE'RE
-  </motion.h1>
+      {/* Stats Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+          >
+            {communityStats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="text-center group"
+              >
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                  {stat.icon}
+                </div>
+                <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-gray-600 font-medium">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
-  <motion.h2
-    initial={{
-      opacity: 0,
-      y: -400,
-      textShadow: '0px 0px 0px rgba(0,0,0,0)',
-    }}
-    animate={{
-      opacity: 1,
-      y: 0,
-       textShadow: '8px 8px 0px rgba(0,0,0,0.3)',
-    }}
-    transition={{
-      type: 'spring',
-      stiffness: 400,
-      damping: 15,
-       delay: 0.3,
-      textShadow: { delay: 1.3, duration: 0.3 },
-    }}
-    className="text-[120px] leading-[1] font-extrabold tracking-tight text-[#1f690c]"
-  >
-    HIRING
-  </motion.h2>
-</div>
+      {/* Community Highlights */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              What Makes Us Special
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Discover the unique aspects that make our community a thriving ecosystem for creativity and growth.
+            </p>
+          </motion.div>
 
-    <main className="p-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-        
-      {products.map((product, i) => {
-        const row = Math.floor(i / 3)
-        const col = i % 3
-const zIndex = 1000 + row * 1000 - col
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {communityHighlights.map((highlight, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className="group"
+                onMouseEnter={() => setHoveredCard(index)}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
+                <div className="relative overflow-hidden rounded-3xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 transform group-hover:scale-105">
+                  <div className={`absolute inset-0 bg-gradient-to-br ${highlight.gradient} opacity-0 group-hover:opacity-90 transition-opacity duration-500`}></div>
+                  
+                  <div className="relative aspect-video">
+                    <Image
+                      src={highlight.image}
+                      alt={highlight.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
+                  
+                  <div className="relative p-8">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-white transition-colors duration-300">
+                      {highlight.title}
+                    </h3>
+                    <p className="text-gray-600 group-hover:text-blue-100 transition-colors duration-300">
+                      {highlight.description}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        return <ProductCard key={i} {...product} index={i} zIndex={zIndex} />
-      })}
-    </main>
+      {/* Testimonials */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Voices from Our Community
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Hear what our community members have to say about their experience with us.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              >
+                <div className="flex items-center mb-6">
+                  <Image
+                    src={testimonial.avatar}
+                    alt={testimonial.name}
+                    width={60}
+                    height={60}
+                    className="rounded-full object-cover border-4 border-white shadow-lg"
+                  />
+                  <div className="ml-4">
+                    <h4 className="text-lg font-bold text-gray-900">
+                      {testimonial.name}
+                    </h4>
+                    <p className="text-indigo-600 font-medium">
+                      {testimonial.role}
+                    </p>
+                  </div>
+                </div>
+                <blockquote className="text-gray-700 italic leading-relaxed">
+                  "{testimonial.quote}"
+                </blockquote>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Ready to Join Our Community?
+            </h2>
+            <p className="text-xl mb-8 text-blue-100">
+              Take the first step towards being part of something amazing. Connect, create, and grow with us.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/careers"
+                className="bg-white text-indigo-600 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105"
+              >
+                Explore Opportunities
+              </Link>
+              <Link
+                href="/careers"
+                className="border-2 border-white text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-white hover:text-indigo-600 transition-all duration-300"
+              >
+                View Our Work
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   )
 }

@@ -1,5 +1,9 @@
 import { type ClassValue, clsx } from "clsx"
 
+// Re-export utility modules
+export * from './image'
+export * from './jobs'
+
 export function cn(...inputs: ClassValue[]) {
   return clsx(inputs)
 }

@@ -1,14 +1,39 @@
 'use client'
 
+import Image from 'next/image'
 import { useState, useRef, useLayoutEffect, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import ApplyNowWithPopup from '../../components/features/careers/CareersApplyPopup'
+import ApplyNowWithPopup from './CareersApplyPopup'
 
-// Import API và types từ lib structure
-import { strapiApi } from '../../lib/api/strapi'
-import { JobDetail } from '../../types/api/strapi'
-import { getImageUrl } from '../../lib/utils/image'
-import { IMAGE_CONFIG } from '../../lib/constants/index'
+// Import API và types
+import { strapiApi } from '../../../lib/api/strapi'
+import { JobDetail } from '../../../types/api/strapi'
+import { getImageUrl as getImageUrlUtil } from '../../../lib/utils/image'
+import { IMAGE_CONFIG } from '../../../lib/constants/index'
+
+// Helper function to get image URL
+const getImageUrl = (jobImage: any): string => {
+  if (!jobImage) {
+    console.log('No job image provided, using fallback')
+    return "/images/position.jpg"
+  }
+  
+  // If jobImage is already a string (fallback case)
+  if (typeof jobImage === 'string') {
+    console.log('Job image is string:', jobImage)
+    return jobImage
+  }
+  
+  // If jobImage is an object with url property
+  if (jobImage.url) {
+    const fullUrl = `${IMAGE_CONFIG.STRAPI_BASE_URL}${jobImage.url}`
+    console.log('Job image URL:', fullUrl)
+    return fullUrl
+  }
+  
+  console.log('Job image object but no URL, using fallback:', jobImage)
+  return "/images/position.jpg"
+}
 
 // Fallback data nếu API không có dữ liệu
 const fallbackAccordionData = [
@@ -295,17 +320,17 @@ export default function ProductDetailWithAccordion({ jobId }: { jobId?: string }
             transition={{ delay: 0.5, duration: 0.7 }}
             className="w-full h-auto"
           >
-            {/* Sử dụng utility function cho image */}
+            {/* Temporary debug: using img tag instead of Next Image */}
             <div className="w-full h-auto">
               <img
-                src={getImageUrl(jobData?.job_image)}
+                src={getImageUrlUtil(jobData?.job_image)}
                 alt={jobData?.job_title || "job position"}
                 className="w-full h-auto object-cover rounded-[32px]"
                 onError={(e) => {
-                  console.error('Image failed to load:', getImageUrl(jobData?.job_image))
+                  console.error('Image failed to load:', getImageUrlUtil(jobData?.job_image))
                   e.currentTarget.src = "/images/position.jpg"
                 }}
-                onLoad={() => console.log('Image loaded successfully:', getImageUrl(jobData?.job_image))}
+                onLoad={() => console.log('Image loaded successfully:', getImageUrlUtil(jobData?.job_image))}
               />
             </div>
           </motion.div>

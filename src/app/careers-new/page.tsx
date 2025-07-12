@@ -6,52 +6,96 @@ import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
-// Import từ lib
-import { Job } from '../../types/api/strapi'
+// Import từ lib structure
+import { CareersNewPosition } from '../../types/api/strapi'
 import { strapiApi } from '../../lib/api/strapi'
+import { transformJobToCareersNewPosition } from '../../lib/utils/jobs'
 
-// Interface for UI display
-interface JobDisplay {
-  id: string
-  title: string
-  description: string
-  department: string
-  location: string
-  type: string
-  canImage: string
-  bgImage: string
-  color: 'white' | 'milk' | 'matcha' | 'dark_green' | 'black'
-  requirements: string[]
-  benefits: string[]
-  salaryRange: string
-  isActive: boolean
-}
-
-// Function to convert Job to JobDisplay
-function jobToDisplay(job: Job): JobDisplay {
+// Mock data creation utility
+function createMockJob(data: Partial<CareersNewPosition> & Pick<CareersNewPosition, 'id' | 'title' | 'description' | 'department'>): CareersNewPosition {
   return {
-    id: job.id,
-    title: job.job_title,
-    description: job.short_description,
-    department: 'Technology', // Default values for missing fields
+    companyName: 'Your Company',
+    companyDescription: 'Leading company in the industry',
+    hoverText: `Join our ${data.department} team`,
     location: 'Ho Chi Minh City',
     type: 'Full-time',
-    canImage: job.avatar_image || '/images/duydinh-bg-2.png',
-    bgImage: job.sub_avatar || '/images/anh-hiep.png',
+    canImage: '/images/duydinh-bg-2.png',
+    bgImage: '/images/anh-hiep.png',
     color: 'white',
     requirements: [],
     benefits: [],
-    salaryRange: '$1500 - $3000',
-    isActive: true
+    salaryRange: '$1000 - $2000',
+    isActive: true,
+    ...data
   }
 }
+
+// Mock data fallback
+const mockJobs: CareersNewPosition[] = [
+  createMockJob({
+    id: '1',
+    title: 'IT Developer',
+    description: 'Build and maintain the backbone of our systems — from automation to optimization.',
+    department: 'Technology',
+  }),
+  createMockJob({
+    id: '2', 
+    title: 'UI/UX Designer',
+    description: 'Craft visual identities and transform bold ideas into standout designs.',
+    department: 'Design',
+  }),
+  createMockJob({
+    id: '3',
+    title: 'Embroidery Designer',
+    description: 'Sketch and digitize embroidery artwork — where every stitch tells a story.',
+    department: 'Design',
+    type: 'Contract',
+  }),
+  createMockJob({
+    id: '4',
+    title: 'Marketing Specialist',
+    description: 'Drive brand awareness and customer engagement through creative campaigns.',
+    department: 'Marketing',
+  }),
+  createMockJob({
+    id: '5',
+    title: 'Product Manager',
+    description: 'Lead product development from conception to launch.',
+    department: 'Product',
+  }),
+  createMockJob({
+    id: '6',
+    title: 'Sales Executive',
+    description: 'Build relationships and drive revenue growth.',
+    department: 'Sales',
+  }),
+  createMockJob({
+    id: '7',
+    title: 'HR Specialist',
+    description: 'Manage talent acquisition and employee relations.',
+    department: 'Human Resources',
+  }),
+  createMockJob({
+    id: '8',
+    title: 'Quality Assurance',
+    description: 'Ensure product quality and testing standards.',
+    department: 'Quality',
+  }),
+  createMockJob({
+    id: '9',
+    title: 'Operations Manager',
+    description: 'Oversee daily operations and process optimization.',
+    department: 'Operations',
+  }),
+]
+
 
 function ProductCard({
   job,
   index,
   zIndex,
 }: {
-  job: JobDisplay
+  job: CareersNewPosition
   index: number
   zIndex: number
 }) {
@@ -152,18 +196,25 @@ function ProductCard({
 }
 
 export default function CareersPage() {
-  const [jobs, setJobs] = useState<JobDisplay[]>([])
+  const [jobs, setJobs] = useState<CareersNewPosition[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function loadJobs() {
       try {
-        const response = await strapiApi.fetchJobs()
-        const apiJobs = response.data.map(jobToDisplay)
-        setJobs(apiJobs)
-      } catch (err) {
-        console.error('Error loading jobs:', err)
-        setJobs([]) // Set empty array if API fails
+        // Thử load từ API trước, fallback to mock data
+        try {
+          const response = await strapiApi.fetchJobs()
+          const apiJobs = response.data.map(transformJobToCareersNewPosition)
+          setJobs(apiJobs.length > 0 ? apiJobs : mockJobs)
+        } catch (error) {
+          // Fallback to mock data
+          console.error('Failed to load jobs from API:', error)
+          setJobs(mockJobs)
+        }
+      } catch (error) {
+        console.error('Error processing jobs:', error)
+        setJobs(mockJobs)
       } finally {
         setLoading(false)
       }
@@ -192,7 +243,7 @@ export default function CareersPage() {
             }}
             className="text-[120px] leading-[1] font-extrabold tracking-tight text-black"
           >
-            WE'RE
+            WE&apos;RE
           </motion.h1>
 
           <motion.h2
@@ -245,7 +296,7 @@ export default function CareersPage() {
     }}
     className="text-[120px] leading-[1] font-extrabold tracking-tight text-black"
   >
-    WE'RE
+    WE&apos;RE
   </motion.h1>
 
   <motion.h2
@@ -273,23 +324,15 @@ export default function CareersPage() {
 </div>
 
     <main className="p-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-      {jobs.length === 0 ? (
-        <div className="col-span-full text-center py-12">
-          <p className="text-gray-600 text-xl">No job positions available at the moment.</p>
-          <p className="text-gray-500 mt-2">Please check back later for new opportunities.</p>
-        </div>
-      ) : (
-        jobs.map((job, i) => {
-          const row = Math.floor(i / 3)
-          const col = i % 3
-          const zIndex = 1000 + row * 1000 - col
+        
+      {jobs.map((job, i) => {
+        const row = Math.floor(i / 3)
+        const col = i % 3
+const zIndex = 1000 + row * 1000 - col
 
-          return <ProductCard key={job.id} job={job} index={i} zIndex={zIndex} />
-        })
-      )}
+        return <ProductCard key={job.id} job={job} index={i} zIndex={zIndex} />
+      })}
     </main>
     </div>
   )
 }
-
- 

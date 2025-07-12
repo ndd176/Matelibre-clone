@@ -2,14 +2,18 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState } from 'react'
- export default function ProductCard({
+
+export default function ProductCard({
+  id,
   title,
   description,
   canImage,
   bgImage,
   color = 'green',
 }: {
+  id?: string
   title: string
   description: string
   canImage: string
@@ -89,15 +93,28 @@ className={`relative ${bgColor} w-[500px] h-[400px] rounded-[40px] p-10 overflow
             {description}
           </p>
           <div className="flex flex-col w-1/2 justify-end relative  bottom-20   mt-auto">
- 
- 
-          <button className="flex flex-col relative h-12 w-[180px] items-center justify-center 
-          overflow-hidden rounded-md border border-neutral-200    bg-white px-6 font-semibold text-black text-2xl
-             transition-all duration-100 
+            {id ? (
+              <Link href={`/careers/${id}`}>
+                <button className="flex flex-col relative h-12 w-[180px] items-center justify-center 
+                overflow-hidden rounded-md border border-neutral-200    bg-white px-6 font-semibold text-black text-2xl
+                   transition-all duration-100 
 
-           [box-shadow:5px_5px_rgb(82_82_82)] active:translate-x-[3px] active:translate-y-[3px] 
-           active:[box-shadow:0px_0px_rgb(82_82_82)] cursor-pointer">            Apply Now
-</button>
+                 [box-shadow:5px_5px_rgb(82_82_82)] active:translate-x-[3px] active:translate-y-[3px] 
+                 active:[box-shadow:0px_0px_rgb(82_82_82)] cursor-pointer">            
+                  Apply Now
+                </button>
+ 
+              </Link>
+            ) : (
+              <button className="flex flex-col relative h-12 w-[180px] items-center justify-center 
+              overflow-hidden rounded-md border border-neutral-200    bg-white px-6 font-semibold text-black text-2xl
+                 transition-all duration-100 
+
+               [box-shadow:5px_5px_rgb(82_82_82)] active:translate-x-[3px] active:translate-y-[3px] 
+               active:[box-shadow:0px_0px_rgb(82_82_82)] cursor-pointer">            
+                Apply Now
+              </button>
+            )}
           
  {/* <div className="button-container">
   <button className="brutalist-button openai button-1">
