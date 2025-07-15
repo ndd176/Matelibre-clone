@@ -2,7 +2,6 @@
 
 import { useState, useRef, useLayoutEffect, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import ApplyNowWithPopup from '../../components/features/careers/CareersApplyPopup'
 
 // Import API và types từ lib structure
 import { strapiApi } from '../../lib/api/strapi'
@@ -84,7 +83,13 @@ function AccordionItem({ title, content, isOpen, onClick }: any) {
   )
 }
 
-export default function ProductDetailWithAccordion({ jobId }: { jobId?: string }) {
+export default function ProductDetailWithAccordion({ 
+  jobId, 
+  onApplyClick 
+}: { 
+  jobId?: string,
+  onApplyClick?: (position: string) => void 
+}) {
   const [openIndex, setOpenIndex] = useState(-1)
   const [accordionData, setAccordionData] = useState(fallbackAccordionData)
   const [jobData, setJobData] = useState<JobDetail | null>(null)
@@ -247,7 +252,25 @@ export default function ProductDetailWithAccordion({ jobId }: { jobId?: string }
           transition={{ delay: 0.8, duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <ApplyNowWithPopup />
+          {/* Apply Now Button */}
+          <button
+            onClick={() => onApplyClick?.(jobData?.job_title || 'Unknown Position')}
+            className="group relative bg-[#2c5530] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:bg-[#1e3b22] hover:scale-105 hover:shadow-lg active:scale-95"
+          >
+            <span className="flex items-center gap-3">
+              🌱 Apply Now
+              <motion.div
+                className="inline-block"
+                whileHover={{ x: 5 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                →
+              </motion.div>
+            </span>
+            
+            {/* Hover effect overlay */}
+            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-green-400/20 to-emerald-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </button>
 
           <div className="text-green-900 text-base leading-snug">
             <p className="text-lg sm:text-xl font-semibold">

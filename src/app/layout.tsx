@@ -9,6 +9,7 @@ import LenisWrapper from '@/components/layout/LenisWrapper'
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FAQSection from "@/components/sections/FAQSection";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
  const studioProRegular = localFont({
   src: '../assets/fonts/studio-pro-regular.ttf',
   weight: '400',
@@ -54,6 +55,7 @@ export default function RootLayout({
               <FAQSection />
 
                 <Footer/>
+        <ScrollToTopButton />
 
       </body>
     </html>

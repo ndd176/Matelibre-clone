@@ -202,6 +202,7 @@
 import Link from 'next/link'
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import ScrollDiscoverIndicator from '../ui/ScrollDiscoverIndicator'
 
 export default function ParallaxHero() {
   const ref = useRef(null)
@@ -283,46 +284,8 @@ export default function ParallaxHero() {
             </motion.div>
           ))}
 
-          {/* Discover Button */}
-          <Link href="/careers">
-            <motion.button
-              initial={{
-                width: 50,
-                height: 50,
-                borderRadius: '50%',
-                opacity: 0,
-                backgroundColor: '#ffffff',
-              }}
-              animate={{
-                width: 'clamp(120px, 12vw, 160px)',
-                height: 'clamp(40px, 6vh, 54px)',
-                borderRadius: '9999px',
-                opacity: 1,
-                transition: {
-                  delay: 1.4,
-                  duration: 0.6,
-                  ease: 'easeInOut',
-                },
-              }}
-              className="text-black font-studio-pro-bold overflow-hidden relative px-6 mt-8 shadow cursor-pointer"
-            >
-              <motion.span
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{
-                  opacity: 1,
-                  scale: 1,
-                  transition: {
-                    delay: 1.7,
-                    duration: 0.4,
-                    ease: 'easeOut',
-                  },
-                }}
-              >
- 
-                discover
-              </motion.span>
-            </motion.button>
-          </Link>
+          {/* Scroll Down Indicator */}
+          <ScrollDiscoverIndicator />
         </div>
       </motion.div>
     </section>

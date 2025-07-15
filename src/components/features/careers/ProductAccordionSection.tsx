@@ -3,8 +3,7 @@
 import Image from 'next/image'
 import { useState, useRef, useLayoutEffect, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import ApplyNowWithPopup from './CareersApplyPopup'
-
+ 
 // Import API và types
 import { strapiApi } from '../../../lib/api/strapi'
 import { JobDetail } from '../../../types/api/strapi'
@@ -109,7 +108,7 @@ function AccordionItem({ title, content, isOpen, onClick }: any) {
   )
 }
 
-export default function ProductDetailWithAccordion({ jobId }: { jobId?: string }) {
+export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jobId?: string, onApplyClick?: (position: string) => void }) {
   const [openIndex, setOpenIndex] = useState(-1)
   const [accordionData, setAccordionData] = useState(fallbackAccordionData)
   const [jobData, setJobData] = useState<JobDetail | null>(null)
@@ -206,6 +205,8 @@ export default function ProductDetailWithAccordion({ jobId }: { jobId?: string }
     return () => clearTimeout(timer)
   }, [])
 
+
+
   return (
     <section className="bg-[#e6f3e6] px-4 md:px-20 py-16 md:py-24 flex flex-col md:flex-row gap-12 md:gap-16 items-start">
       {loading ? (
@@ -271,8 +272,20 @@ export default function ProductDetailWithAccordion({ jobId }: { jobId?: string }
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.5 }}
           viewport={{ once: true }}
-        >
-          <ApplyNowWithPopup />
+        > 
+
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="bg-green-700 text-white px-6 py-3 rounded-xl font-semibold shadow hover:bg-green-800 transition"
+        onClick={() => {
+          if (typeof onApplyClick === 'function') {
+            onApplyClick(jobData?.job_title || 'Unknown Position')
+          }
+        }}
+      >
+        Apply Now
+      </motion.button>
 
           <div className="text-green-900 text-base leading-snug">
             <p className="text-lg sm:text-xl font-semibold">

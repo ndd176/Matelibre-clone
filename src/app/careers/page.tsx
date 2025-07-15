@@ -135,17 +135,24 @@ function ProductCard({
         </div>
 
         <div className="flex flex-col justify-between w-1/2 relative">
-          {/* <p className={`text-lg font-medium leading-relaxed ${textColor} pr-2`}>
-            {description}
-          </p> */}
-             <Link href={`/careers/${job.id}`}>
-             <button
-              className="flex flex-col relative h-12 w-[180px] items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-white px-6 font-semibold text-black text-2xl transition-all duration-100 [box-shadow:5px_5px_rgb(82_82_82)] active:translate-x-[3px] active:translate-y-[3px] active:[box-shadow:0px_0px_rgb(82_82_82)]"
-            >
-              Apply Now
-            </button>
+          <div className="space-y-4">
+            <p className={`text-lg font-medium leading-relaxed ${textColor} pr-2`}>
+              {job.description}
+            </p>
+            <div className="flex flex-col gap-2">
+              <span className={`text-sm ${textColor} opacity-80`}>📍 {job.location}</span>
+              <span className={`text-sm ${textColor} opacity-80`}>💼 {job.type}</span>
+            </div>
+          </div>
+          
+          <div className="flex justify-end">
+            <Link href={`/careers/${job.id}`}>
+              <button className="h-12 px-6 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-white font-semibold text-black text-lg transition-all duration-100 [box-shadow:3px_3px_rgb(82_82_82)] hover:translate-x-[1px] hover:translate-y-[1px] hover:[box-shadow:2px_2px_rgb(82_82_82)] active:translate-x-[3px] active:translate-y-[3px] active:[box-shadow:0px_0px_rgb(82_82_82)]">
+                Chi tiết →
+              </button>
             </Link>
-         </div>
+          </div>
+        </div>
       </div>
     </motion.div>
   )
@@ -292,4 +299,3 @@ export default function CareersPage() {
   )
 }
 
- 

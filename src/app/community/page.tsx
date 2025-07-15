@@ -1,300 +1,507 @@
-// app/community/page.tsx - Beautiful Community Page
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
+// Clean community data
 const communityStats = [
-  { label: 'Active Members', value: '10,000+', icon: '👥' },
-  { label: 'Projects Completed', value: '500+', icon: '🚀' },
-  { label: 'Countries Reached', value: '25+', icon: '🌍' },
-  { label: 'Years of Innovation', value: '5+', icon: '⭐' }
+  { label: 'Global Members', value: '10,000+', description: 'Creative minds worldwide' },
+  { label: 'Active Projects', value: '500+', description: 'Ongoing collaborations' },
+  { label: 'Countries', value: '25+', description: 'International reach' },
+  { label: 'Innovation Years', value: '5+', description: 'Continuous growth' }
 ]
 
-const communityHighlights = [
+const communityValues = [
   {
-    title: 'Innovation Hub',
-    description: 'Join our creative community where ideas come to life through collaboration and innovation.',
-    image: '/images/office-01.jpg',
-    gradient: 'from-blue-500 to-purple-600'
+    title: 'Collaborative Spirit',
+    description: 'We believe in the power of collective creativity and shared knowledge.',
+    icon: '🤝'
   },
   {
-    title: 'Global Network',
-    description: 'Connect with talented individuals from around the world and build lasting professional relationships.',
-    image: '/images/congty.jpg',
-    gradient: 'from-green-500 to-teal-600'
+    title: 'Innovation First',
+    description: 'Pushing boundaries and exploring new possibilities together.',
+    icon: '💡'
   },
   {
-    title: 'Learning Together',
-    description: 'Grow your skills through workshops, mentorship programs, and knowledge sharing sessions.',
-    image: '/images/work.png',
-    gradient: 'from-orange-500 to-red-600'
+    title: 'Inclusive Growth',
+    description: 'Every voice matters in building our diverse community.',
+    icon: '🌱'
+  },
+  {
+    title: 'Sustainable Impact',
+    description: 'Creating meaningful change that lasts for generations.',
+    icon: '🌍'
   }
 ]
 
-const testimonials = [
+const memberSpotlight = [
   {
-    name: 'Sarah Johnson',
-    role: 'Senior Designer',
-    avatar: '/images/anh-hiep.png',
-    quote: 'Being part of this community has transformed my career. The support and opportunities here are incredible.'
+    name: 'Sarah Chen',
+    role: 'Creative Director',
+    location: 'San Francisco, USA',
+    quote: 'This community has been instrumental in my creative journey. The support and collaboration opportunities are unmatched.',
+    achievement: 'Led 15+ successful projects'
   },
   {
-    name: 'Michael Chen',
-    role: 'Developer',
-    avatar: '/images/anh-hiep.png',
-    quote: 'The collaborative environment and diverse perspectives have helped me grow both personally and professionally.'
+    name: 'Marcus Rodriguez',
+    role: 'Sustainability Advocate',
+    location: 'Barcelona, Spain', 
+    quote: 'Being part of this movement means contributing to something bigger than ourselves.',
+    achievement: 'Initiated 3 green initiatives'
   },
   {
-    name: 'Emily Rodriguez',
-    role: 'Product Manager',
-    avatar: '/images/anh-hiep.png',
-    quote: 'I love how this community values innovation and gives everyone a voice to share their ideas.'
+    name: 'Aisha Patel',
+    role: 'Innovation Lead',
+    location: 'Mumbai, India',
+    quote: 'The diversity of perspectives here constantly challenges and inspires me.',
+    achievement: 'Mentored 50+ new members'
   }
+]
+
+const navigationItems = [
+  { id: 'hero', label: 'Community' },
+  { id: 'about', label: 'About' },
+  { id: 'values', label: 'Values' },
+  { id: 'members', label: 'Members' },
+  { id: 'impact', label: 'Impact' },
+  { id: 'join', label: 'Join Us' }
 ]
 
 export default function CommunityPage() {
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+  const [activeSection, setActiveSection] = useState('')
+  const { scrollY } = useScroll()
+
+  // Track scroll position for sticky navigation
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['hero', 'about', 'values', 'members', 'impact', 'join']
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          return rect.top <= 100 && rect.bottom >= 100
+        }
+        return false
+      })
+      if (currentSection) {
+        setActiveSection(currentSection)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 text-white">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-black/20"></div>
-          <Image
-            src="/images/tree-background-1.jpg"
-            alt=""
-            fill
-            className="object-cover"
-          />
+    <div className="min-h-screen bg-white text-black font-studio-pro">
+      {/* MINIMALIST NAVIGATION */}
+      <nav className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <Link href="/" className="text-2xl font-studio-pro-bold text-black hover:text-gray-600 transition-colors">
+              MatéLibre
+            </Link>
+            
+            <div className="hidden md:flex items-center space-x-8">
+              {navigationItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`text-sm font-studio-pro transition-colors ${
+                    activeSection === item.id 
+                      ? 'text-black font-studio-pro-bold' 
+                      : 'text-gray-500 hover:text-black'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+
+            <Link 
+              href="/careers"
+              className="bg-black text-white px-6 py-2 rounded-full text-sm font-studio-pro hover:bg-gray-800 transition-colors"
+            >
+              Join Community
+            </Link>
+          </div>
         </div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 py-24">
+      </nav>
+
+      {/* MINIMALIST HERO SECTION */}
+      <section id="hero" className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
+        {/* Beautiful Plant Background */}
+        <div 
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=80)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
+
+        {/* Floating Plant Elements */}
+        <motion.div 
+          className="absolute top-20 left-20 w-16 h-16 opacity-7"
+          animate={{ 
+            rotate: [0, 10, -5, 0],
+            scale: [1, 1.1, 0.9, 1]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <svg viewBox="0 0 100 100" className="w-full h-full fill-green-600">
+            <path d="M50 15 Q30 30, 35 50 Q50 70, 65 50 Q70 30, 50 15 Z" />
+            <path d="M50 25 Q40 35, 42 50 Q50 60, 58 50 Q60 35, 50 25 Z" fill="white" fillOpacity="0.3" />
+            <line x1="50" y1="15" x2="50" y2="60" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+          </svg>
+        </motion.div>
+
+        <motion.div 
+          className="absolute bottom-32 right-20 w-12 h-12 opacity-6"
+          animate={{ 
+            y: [0, -8, 4, 0],
+            rotate: [0, -15, 15, 0]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <svg viewBox="0 0 100 100" className="w-full h-full fill-green-500">
+            <circle cx="50" cy="50" r="25" />
+            <circle cx="50" cy="50" r="15" fill="white" fillOpacity="0.4" />
+            <circle cx="50" cy="50" r="5" fill="currentColor" />
+          </svg>
+        </motion.div>
+
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
+            className="mb-8"
           >
-            <motion.h1
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent"
-            >
+            <h1 className="text-6xl md:text-8xl font-studio-pro-bold text-black mb-6 leading-tight">
               Our Community
-            </motion.h1>
-            
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-blue-100"
-            >
-              Where innovation meets collaboration. Join thousands of creators, developers, and visionaries building the future together.
-            </motion.p>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-600 font-studio-pro max-w-3xl mx-auto leading-relaxed">
+              Where passionate individuals come together to create, innovate, and build sustainable solutions for tomorrow.
+            </p>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <Link
+              href="/careers"
+              className="bg-black text-white px-8 py-4 rounded-full font-studio-pro hover:bg-gray-800 transition-colors duration-300"
             >
-              <Link
-                href="/careers"
-                className="bg-white text-indigo-600 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105"
-              >
-                Join Our Team
-              </Link>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-white hover:text-indigo-600 transition-all duration-300">
-                Learn More
-              </button>
+              Join Our Community
+            </Link>
+            <button 
+              onClick={() => scrollToSection('about')}
+              className="border border-gray-300 text-black px-8 py-4 rounded-full font-studio-pro hover:border-black transition-colors duration-300"
+            >
+              Learn More
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CLEAN ABOUT SECTION */}
+      <section id="about" className="py-24 bg-gray-50 relative overflow-hidden">
+        {/* Decorative Background */}
+        <div 
+          className="absolute top-0 right-0 w-1/3 h-full opacity-4"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1463320726281-696a485928c7?w=800&q=80)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'left',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
+
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center"
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl md:text-5xl font-studio-pro-bold text-black mb-8">
+                Building Tomorrow, Together
+              </h2>
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                Our community represents a diverse collective of creators, innovators, and changemakers united by a shared vision of sustainable progress.
+              </p>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                We believe that meaningful change happens when passionate individuals collaborate, share knowledge, and support each other's growth.
+              </p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="grid grid-cols-2 gap-8"
+            >
+              {communityStats.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-3xl font-studio-pro-bold text-black mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm font-studio-pro text-black mb-1">
+                    {stat.label}
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    {stat.description}
+                  </div>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
         </div>
-
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-16 h-16 bg-blue-300/20 rounded-full animate-bounce"></div>
-        <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-purple-300/20 rounded-full animate-ping"></div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
-          >
-            {communityStats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center group"
-              >
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                  {stat.icon}
-                </div>
-                <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-gray-600 font-medium">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+      {/* CLEAN VALUES SECTION */}
+      <section id="values" className="py-24 bg-white relative overflow-hidden">
+        {/* Background Pattern */}
+        <div 
+          className="absolute top-0 left-0 w-2/5 h-full opacity-5"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1545152840-c05b2ec3dee7?w=800&q=80)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'right center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
 
-      {/* Community Highlights */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <motion.div 
             className="text-center mb-16"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              What Makes Us Special
+            <h2 className="text-4xl md:text-5xl font-studio-pro-bold text-black mb-6">
+              Our Core Values
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover the unique aspects that make our community a thriving ecosystem for creativity and growth.
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              These principles guide everything we do and shape the culture of our community.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {communityHighlights.map((highlight, index) => (
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-12"
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {communityValues.map((value, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 className="group"
-                onMouseEnter={() => setHoveredCard(index)}
-                onMouseLeave={() => setHoveredCard(null)}
               >
-                <div className="relative overflow-hidden rounded-3xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 transform group-hover:scale-105">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${highlight.gradient} opacity-0 group-hover:opacity-90 transition-opacity duration-500`}></div>
-                  
-                  <div className="relative aspect-video">
-                    <Image
-                      src={highlight.image}
-                      alt={highlight.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
+                <div className="flex items-start space-x-4">
+                  <div className="text-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                    {value.icon}
                   </div>
-                  
-                  <div className="relative p-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-white transition-colors duration-300">
-                      {highlight.title}
+                  <div>
+                    <h3 className="text-xl font-studio-pro-bold text-black mb-3">
+                      {value.title}
                     </h3>
-                    <p className="text-gray-600 group-hover:text-blue-100 transition-colors duration-300">
-                      {highlight.description}
+                    <p className="text-gray-600 leading-relaxed">
+                      {value.description}
                     </p>
                   </div>
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+      {/* CLEAN MEMBERS SECTION */}
+      <section id="members" className="py-24 bg-gray-50 relative overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 opacity-4"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1600&q=80)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
+
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <motion.div 
             className="text-center mb-16"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Voices from Our Community
+            <h2 className="text-4xl md:text-5xl font-studio-pro-bold text-black mb-6">
+              Member Spotlight
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Hear what our community members have to say about their experience with us.
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Meet some of the incredible individuals who make our community thrive.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {memberSpotlight.map((member, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-shadow duration-300"
               >
-                <div className="flex items-center mb-6">
-                  <Image
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    width={60}
-                    height={60}
-                    className="rounded-full object-cover border-4 border-white shadow-lg"
-                  />
-                  <div className="ml-4">
-                    <h4 className="text-lg font-bold text-gray-900">
-                      {testimonial.name}
-                    </h4>
-                    <p className="text-indigo-600 font-medium">
-                      {testimonial.role}
-                    </p>
-                  </div>
+                <div className="mb-6">
+                  <div className="w-16 h-16 bg-gray-200 rounded-full mb-4"></div>
+                  <h3 className="text-xl font-studio-pro-bold text-black mb-1">
+                    {member.name}
+                  </h3>
+                  <p className="text-sm text-gray-500 mb-1">
+                    {member.role}
+                  </p>
+                  <p className="text-xs text-gray-400">
+                    {member.location}
+                  </p>
                 </div>
-                <blockquote className="text-gray-700 italic leading-relaxed">
-                  "{testimonial.quote}"
+                
+                <blockquote className="text-gray-600 mb-4 italic">
+                  "{member.quote}"
                 </blockquote>
+                
+                <div className="text-sm font-studio-pro text-black">
+                  {member.achievement}
+                </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
+      {/* CLEAN IMPACT SECTION */}
+      <section id="impact" className="py-24 bg-white relative overflow-hidden">
+        {/* Decorative Elements */}
+        <motion.div 
+          className="absolute top-20 right-20 w-12 h-12 opacity-6"
+          animate={{ 
+            rotate: [0, 360],
+            scale: [1, 1.1, 0.9, 1]
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <svg viewBox="0 0 100 100" className="w-full h-full fill-green-600">
+            <path d="M50 15 Q70 30, 65 50 Q50 70, 35 50 Q30 30, 50 15 Z" />
+            <circle cx="50" cy="45" r="8" fill="white" fillOpacity="0.4" />
+          </svg>
+        </motion.div>
+
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Ready to Join Our Community?
+            <h2 className="text-4xl md:text-5xl font-studio-pro-bold text-black mb-8">
+              Creating Lasting Impact
             </h2>
-            <p className="text-xl mb-8 text-blue-100">
-              Take the first step towards being part of something amazing. Connect, create, and grow with us.
+            <p className="text-lg text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+              Together, we're not just building products—we're cultivating a movement toward sustainable innovation and positive change.
             </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="text-center">
+                <div className="text-3xl font-studio-pro-bold text-black mb-2">50+</div>
+                <div className="text-gray-600">Sustainable Projects</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-studio-pro-bold text-black mb-2">100k+</div>
+                <div className="text-gray-600">Lives Impacted</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-studio-pro-bold text-black mb-2">25+</div>
+                <div className="text-gray-600">Global Partnerships</div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CLEAN CTA SECTION */}
+      <section id="join" className="py-24 bg-gray-50 relative overflow-hidden">
+        {/* Final Background */}
+        <div 
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
+
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-studio-pro-bold text-black mb-8">
+              Ready to Join Us?
+            </h2>
+            <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+              Become part of a community that's shaping the future through collaboration, innovation, and sustainable practices.
+            </p>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/careers"
-                className="bg-white text-indigo-600 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105"
+                className="bg-black text-white px-8 py-4 rounded-full font-studio-pro hover:bg-gray-800 transition-colors duration-300"
               >
                 Explore Opportunities
               </Link>
-              <Link
-                href="/careers"
-                className="border-2 border-white text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-white hover:text-indigo-600 transition-all duration-300"
+              <button 
+                onClick={() => scrollToSection('hero')}
+                className="border border-gray-300 text-black px-8 py-4 rounded-full font-studio-pro hover:border-black transition-colors duration-300"
               >
-                View Our Work
-              </Link>
+                Learn More
+              </button>
             </div>
           </motion.div>
         </div>

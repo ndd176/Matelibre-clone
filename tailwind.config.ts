@@ -13,6 +13,9 @@ const config: Config = {
         primary: '#F0F0F0',
         accent: '#00FFB2',
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
       fontFamily: {
         'studio-pro': ['var(--font-studio-pro-regular)', 'sans-serif'],
         'studio-pro-bold': ['var(--font-studio-pro-bold)', 'sans-serif'],

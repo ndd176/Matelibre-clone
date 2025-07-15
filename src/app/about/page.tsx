@@ -1,600 +1,925 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
-// Neo Brutalism Animation variants
-const brutalistFadeIn = {
-  initial: { opacity: 0, y: 100, scale: 0.8 },
-  animate: { opacity: 1, y: 0, scale: 1 },
-  transition: { duration: 0.3, ease: "easeOut" }
+// Refined Animation variants
+const fadeInUp = {
+  initial: { opacity: 0, y: 60 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, ease: "easeOut" }
 }
 
-const brutalistStagger = {
+const staggerContainer = {
   animate: {
     transition: {
-      staggerChildren: 0.05
+      staggerChildren: 0.1
     }
   }
 }
 
-// Extended team data
+// Extended team data with more members
 const teamMembers = [
   {
-    name: "DUY ĐINH",
-    role: "FOUNDER & CEO",
+    name: "Duy Đinh",
+    role: "Founder & CEO",
     image: "/images/anh-hiep.png",
-    bio: "VISIONARY LEADER WITH 10+ YEARS IN SUSTAINABLE FASHION. BELIEVES IN BRUTAL HONESTY AND AUTHENTIC CREATIVITY.",
-    skills: ["LEADERSHIP", "STRATEGY", "SUSTAINABILITY", "VISION"],
-    quote: "FASHION SHOULD SCREAM PERSONALITY, NOT WHISPER CONFORMITY."
+    bio: "Visionary leader with 10+ years in sustainable fashion. Passionate about creating meaningful designs that tell stories.",
+    skills: ["Leadership", "Strategy", "Sustainability", "Vision"],
+    quote: "Fashion should speak authenticity, not follow trends blindly.",
+    experience: "10+ years",
+    education: "Fashion Design, RMIT University"
   },
   {
-    name: "CREATIVE TEAM",
-    role: "DESIGN DIRECTOR",
+    name: "Creative Team",
+    role: "Design Director",
     image: "/images/duydinh-bg-2.png",
-    bio: "RADICAL DESIGNERS WHO REJECT MAINSTREAM TRENDS. PUSHING BOUNDARIES WITH EVERY STITCH.",
-    skills: ["EMBROIDERY", "ILLUSTRATION", "PATTERN DESIGN", "COLOR THEORY"],
-    quote: "WE DON'T FOLLOW TRENDS. WE DESTROY THEM."
+    bio: "Innovative designers who blend traditional craftsmanship with modern aesthetics. Masters of embroidery artistry.",
+    skills: ["Embroidery", "Illustration", "Pattern Design", "Color Theory"],
+    quote: "Every thread tells a story, every pattern holds meaning.",
+    experience: "8+ years",
+    education: "Fine Arts & Textile Design"
   },
   {
-    name: "PRODUCTION TEAM",
-    role: "OPERATIONS MANAGER",
+    name: "Production Team",
+    role: "Operations Manager",
     image: "/images/position.jpg",
-    bio: "PRECISION-FOCUSED TEAM ENSURING QUALITY WITHOUT COMPROMISE. NO SHORTCUTS, NO EXCUSES.",
-    skills: ["QUALITY CONTROL", "LOGISTICS", "EFFICIENCY", "PRECISION"],
-    quote: "PERFECTION IS NOT AN ACCIDENT. IT'S A DEMAND."
+    bio: "Quality-focused professionals ensuring excellence in every piece. Committed to sustainable manufacturing practices.",
+    skills: ["Quality Control", "Logistics", "Efficiency", "Precision"],
+    quote: "Excellence is not an accident, it's a habit.",
+    experience: "12+ years",
+    education: "Industrial Engineering"
   },
   {
-    name: "TECH DIVISION",
-    role: "DIGITAL INNOVATOR",
+    name: "Tech Division",
+    role: "Digital Innovation Lead",
     image: "/images/work.png",
-    bio: "CODING THE FUTURE OF FASHION TECHNOLOGY. MERGING DIGITAL INNOVATION WITH TRADITIONAL CRAFT.",
-    skills: ["DEVELOPMENT", "AI DESIGN", "AUTOMATION", "DIGITAL ART"],
-    quote: "CODE IS ART. ART IS CODE. EVERYTHING ELSE IS NOISE."
+    bio: "Technology enthusiasts bridging the gap between traditional craft and digital innovation. Building the future of fashion tech.",
+    skills: ["Development", "AI Design", "Automation", "Digital Art"],
+    quote: "Technology amplifies creativity, not replaces it.",
+    experience: "6+ years",
+    education: "Computer Science & Digital Arts"
+  },
+  {
+    name: "Marketing Squad",
+    role: "Brand Storyteller",
+    image: "/images/congty.jpg",
+    bio: "Creative communicators who bring our brand story to life. Masters of authentic storytelling and community building.",
+    skills: ["Storytelling", "Social Media", "Content Creation", "Brand Strategy"],
+    quote: "Great brands don't sell products, they tell stories.",
+    experience: "7+ years",
+    education: "Marketing & Communications"
+  },
+  {
+    name: "Sustainability Team",
+    role: "Environmental Guardian",
+    image: "/images/office-01.jpg",
+    bio: "Environmental advocates ensuring every decision considers our planet's future. Leading the sustainable fashion revolution.",
+    skills: ["Eco-Design", "Material Research", "Life Cycle Assessment", "Green Innovation"],
+    quote: "The Earth is not inherited from ancestors, but borrowed from children.",
+    experience: "5+ years",
+    education: "Environmental Science & Sustainable Design"
   }
 ]
 
-// Expanded values with brutalist approach
+// Enhanced values with deeper insights
 const coreValues = [
   {
-    icon: "💀",
-    title: "NO BULLSH*T",
-    description: "WE SAY WHAT WE MEAN. WE DO WHAT WE SAY. NO CORPORATE SPEAK, NO EMPTY PROMISES. JUST RAW, HONEST BUSINESS.",
-    details: "Our communication is direct, our products are exactly what we advertise, and our promises are kept. Period."
+    icon: "🌱",
+    title: "Sustainability First",
+    description: "Environmental responsibility isn't just a goal—it's woven into every decision we make, from material sourcing to packaging.",
+    details: "We use 100% organic cotton, recycled threads, and biodegradable packaging. Our carbon-neutral shipping and zero-waste production processes set industry standards.",
+    metrics: ["100% Organic Materials", "Carbon Neutral Shipping", "Zero Waste Production"]
   },
   {
-    icon: "🔥",
-    title: "RADICAL CREATIVITY",
-    description: "CONVENTIONAL IS THE ENEMY. WE BREAK RULES, CHALLENGE NORMS, AND CREATE WHAT OTHERS WON'T DARE.",
-    details: "Every design pushes boundaries. Every product tells a story that hasn't been told before."
-  },
-  {
-    icon: "⚡",
-    title: "BRUTAL QUALITY",
-    description: "GOOD ENOUGH IS NOT ENOUGH. EVERY PRODUCT MUST SURVIVE THE APOCALYPSE AND STILL LOOK AMAZING.",
-    details: "Our quality standards are unreasonably high. We test everything to destruction, then make it stronger."
-  },
-  {
-    icon: "🌍",
-    title: "PLANET FIRST",
-    description: "SUSTAINABILITY ISN'T A MARKETING BUZZWORD. IT'S A NON-NEGOTIABLE REQUIREMENT FOR EXISTENCE.",
-    details: "Every material choice, every process decision, every business move considers environmental impact first."
+    icon: "🎨",
+    title: "Authentic Creativity",
+    description: "We believe in creative freedom and authentic expression. Every design reflects genuine artistry, not mass-market trends.",
+    details: "Our designs are created in-house by skilled artisans who bring years of traditional craftsmanship knowledge combined with contemporary vision.",
+    metrics: ["100+ Original Designs", "Traditional Techniques", "Modern Innovation"]
   },
   {
     icon: "🤝",
-    title: "COMMUNITY POWER",
-    description: "WE BUILD WITH PEOPLE, NOT FOR PROFIT. OUR COMMUNITY SHAPES EVERYTHING WE CREATE.",
-    details: "Customer feedback directly influences product development. Community needs drive business decisions."
+    title: "Community Connection",
+    description: "Building meaningful relationships with customers, partners, and local communities through transparent communication and shared values.",
+    details: "We work directly with local artisans, support community workshops, and maintain open dialogue with our customers for continuous improvement.",
+    metrics: ["50+ Local Artisans", "Community Workshops", "Direct Trade"]
   },
   {
-    icon: "💪",
-    title: "RELENTLESS HUSTLE",
-    description: "COMFORT ZONES ARE FOR THE WEAK. WE PUSH HARDER, WORK SMARTER, AND NEVER SETTLE.",
-    details: "Continuous improvement isn't just a goal, it's an obsession. Every day we're better than yesterday."
+    icon: "⚡",
+    title: "Quality Excellence",
+    description: "Uncompromising quality standards ensure every product meets our high expectations and exceeds customer satisfaction.",
+    details: "Each piece undergoes rigorous quality checks, durability testing, and careful inspection before reaching our customers.",
+    metrics: ["99.5% Quality Rating", "Lifetime Warranty", "Rigorous Testing"]
+  },
+  {
+    icon: "🔍",
+    title: "Transparency",
+    description: "Complete transparency in our processes, pricing, and practices. What you see is exactly what you get.",
+    details: "From supply chain visibility to open-book pricing, we believe customers deserve to know the full story behind their purchases.",
+    metrics: ["Open Supply Chain", "Fair Pricing", "Process Documentation"]
+  },
+  {
+    icon: "�",
+    title: "Innovation Drive",
+    description: "Constantly pushing boundaries through research, experimentation, and embracing new technologies while respecting tradition.",
+    details: "Our R&D team explores new sustainable materials, improves traditional techniques, and develops innovative design tools.",
+    metrics: ["Monthly Innovations", "Patent Applications", "Research Partnerships"]
   }
 ]
 
-// Company milestones
+// Detailed company journey
 const milestones = [
   {
     year: "2020",
-    title: "FOUNDATION",
-    description: "STARTED IN A GARAGE WITH BIG DREAMS AND ZERO BUDGET",
-    impact: "First embroidery design sold to local customer"
+    title: "The Foundation",
+    description: "Started with a simple dream: creating meaningful fashion that tells authentic stories",
+    impact: "First embroidery design sold to local customer",
+    details: "Founded in a small home studio with just basic embroidery equipment and big dreams. Our first sale proved that authentic, handcrafted fashion still has a place in the modern world.",
+    achievement: "Established brand identity and core values"
   },
   {
     year: "2021",
-    title: "BREAKTHROUGH",
-    description: "FIRST VIRAL DESIGN HITS 100K+ SHARES",
-    impact: "Revenue increased 500% in 3 months"
+    title: "Community Growth",
+    description: "Our first viral design brought global attention and proved our concept",
+    impact: "Reached 100K+ social media followers, 500% revenue growth",
+    details: "A custom embroidery piece featuring Vietnamese cultural motifs went viral on social media, bringing international attention to our brand and traditional craftsmanship.",
+    achievement: "Built strong social media presence and global recognition"
   },
   {
     year: "2022",
-    title: "EXPANSION",
-    description: "OPENED FIRST DEDICATED STUDIO SPACE",
-    impact: "Team grew from 2 to 15 people"
+    title: "Team Expansion",
+    description: "Opened our first dedicated studio and brought talented artisans into the family",
+    impact: "Team grew from 2 to 15 skilled professionals",
+    details: "Moved to a professional studio space and hired skilled embroidery artisans, designers, and support staff to meet growing demand while maintaining quality.",
+    achievement: "Established professional operations and quality systems"
   },
   {
     year: "2023",
-    title: "INTERNATIONAL",
-    description: "FIRST INTERNATIONAL ORDERS FROM 25 COUNTRIES",
-    impact: "Global shipping network established"
+    title: "Global Reach",
+    description: "Expanded international shipping and partnerships with retailers worldwide",
+    impact: "Serving customers in 25+ countries",
+    details: "Developed international shipping capabilities and formed partnerships with select retailers who share our values of sustainable, authentic fashion.",
+    achievement: "Global distribution network and international brand recognition"
   },
   {
     year: "2024",
-    title: "INNOVATION",
-    description: "LAUNCHED AI-ASSISTED DESIGN PLATFORM",
-    impact: "Design process 3x faster, 10x more creative"
+    title: "Innovation Hub",
+    description: "Launched AI-assisted design tools while preserving traditional craftsmanship",
+    impact: "Design efficiency increased 300%, maintained 100% handcrafted quality",
+    details: "Developed proprietary AI tools to assist in pattern creation and color matching while ensuring all final work remains handcrafted by skilled artisans.",
+    achievement: "Perfect blend of technology and traditional craftsmanship"
   },
   {
     year: "2025",
-    title: "DOMINATION",
-    description: "LEADING SUSTAINABLE EMBROIDERY REVOLUTION",
-    impact: "Industry benchmark for quality and innovation"
+    title: "Industry Leadership",
+    description: "Recognized as a pioneer in sustainable fashion and authentic design",
+    impact: "Industry benchmark for quality and sustainability",
+    details: "Received multiple awards for sustainable practices and design innovation. Our methodologies are now studied and adopted by other fashion brands.",
+    achievement: "Thought leadership in sustainable fashion industry"
   }
 ]
 
-// Process steps
+// Enhanced design process with more detail
 const designProcess = [
   {
     step: "01",
-    title: "BRUTAL RESEARCH",
-    description: "WE DIG DEEP INTO TRENDS, CUSTOMER NEEDS, AND MARKET GAPS. NO SURFACE-LEVEL ANALYSIS."
+    title: "Research & Inspiration",
+    description: "Deep dive into cultural heritage, contemporary trends, and customer needs to find authentic inspiration.",
+    details: "We spend weeks researching traditional motifs, cultural significance, and modern applications. Every design starts with a story worth telling.",
+    duration: "2-3 weeks"
   },
   {
     step: "02", 
-    title: "CONCEPT WARFARE",
-    description: "IDEAS BATTLE EACH OTHER. ONLY THE STRONGEST, MOST INNOVATIVE CONCEPTS SURVIVE."
+    title: "Concept Development",
+    description: "Transform inspiration into concrete design concepts through sketching, digital mockups, and material exploration.",
+    details: "Our design team creates multiple concepts, exploring different interpretations and technical approaches for each idea.",
+    duration: "1-2 weeks"
   },
   {
     step: "03",
-    title: "DESIGN EXECUTION",
-    description: "PRECISION MEETS CREATIVITY. EVERY LINE, EVERY COLOR, EVERY STITCH HAS PURPOSE."
+    title: "Prototyping & Testing",
+    description: "Create physical prototypes to test design feasibility, durability, and aesthetic appeal.",
+    details: "Every design goes through multiple prototype iterations, testing different materials, thread types, and embroidery techniques.",
+    duration: "3-4 weeks"
   },
   {
     step: "04",
-    title: "QUALITY DESTRUCTION",
-    description: "WE TORTURE-TEST EVERYTHING. IF IT BREAKS, WE MAKE IT STRONGER. IF IT SURVIVES, IT SHIPS."
+    title: "Quality Refinement",
+    description: "Rigorous testing and refinement to ensure each piece meets our excellence standards.",
+    details: "Durability testing, wash testing, color fastness testing, and detailed quality inspections at every stage.",
+    duration: "2 weeks"
   },
   {
     step: "05",
-    title: "LAUNCH & ITERATE",
-    description: "SHIP FAST, LEARN FASTER. CUSTOMER FEEDBACK DRIVES IMMEDIATE IMPROVEMENTS."
+    title: "Production & Launch",
+    description: "Careful production with skilled artisans followed by strategic launch and customer feedback integration.",
+    details: "Small batch production allows for quality control and quick adjustments based on early customer feedback.",
+    duration: "4-6 weeks"
+  }
+]
+
+// New additional content sections
+const achievements = [
+  {
+    title: "Sustainability Awards",
+    items: [
+      "Green Fashion Award 2024 - Best Sustainable Practices",
+      "Eco-Innovation Prize 2023 - Traditional Craft Revival",
+      "Carbon Neutral Certification - Climate Action Network"
+    ]
+  },
+  {
+    title: "Design Recognition",
+    items: [
+      "Best Embroidery Design - International Craft Council",
+      "Cultural Heritage Preservation Award",
+      "Innovation in Traditional Arts Recognition"
+    ]
+  },
+  {
+    title: "Business Excellence",
+    items: [
+      "Small Business of the Year 2024",
+      "Customer Choice Award - Fashion Category",
+      "Ethical Business Certification"
+    ]
+  }
+]
+
+const partnerships = [
+  {
+    name: "Local Artisan Cooperatives",
+    description: "Supporting traditional craftspeople and preserving cultural heritage",
+    impact: "50+ artisans employed, traditional skills preserved"
+  },
+  {
+    name: "Environmental Organizations",
+    description: "Collaborating on sustainable fashion initiatives and environmental education",
+    impact: "3 major conservation projects supported"
+  },
+  {
+    name: "Educational Institutions",
+    description: "Workshops and mentorship programs for emerging designers",
+    impact: "200+ students trained in sustainable design"
   }
 ]
 
 export default function AboutUsPage() {
-  const [activeSection, setActiveSection] = useState('story')
+  const [activeSection, setActiveSection] = useState('')
+  const { scrollY } = useScroll()
+  
+  // Track scroll position for sticky navigation
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['hero', 'story', 'values', 'team', 'process', 'timeline', 'achievements', 'partnerships']
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          return rect.top <= 100 && rect.bottom >= 100
+        }
+        return false
+      })
+      if (currentSection) {
+        setActiveSection(currentSection)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
 
   return (
-    <div className="min-h-screen bg-black text-white font-mono">
-      {/* BRUTAL HERO SECTION */}
-      <section className="relative min-h-screen flex items-center justify-center bg-black border-b-8 border-yellow-400">
-        <div className="absolute inset-0 bg-gradient-to-br from-red-900/20 via-black to-yellow-900/20"></div>
+    <div className="min-h-screen bg-[#F2EFE6] text-[#000000] font-serif">
+      {/* HERO SECTION */}
+      <section id="hero" className="relative min-h-screen flex items-center justify-center bg-[#F2EFE6] overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#09290E]/10 via-transparent to-[#8C8A6F]/10"></div>
         
-        {/* Grid Background */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="grid grid-cols-12 h-full">
-            {Array.from({length: 12}).map((_, i) => (
-              <div key={i} className="border-r border-white/20"></div>
+        {/* Subtle Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="grid grid-cols-8 h-full">
+            {Array.from({length: 8}).map((_, i) => (
+              <div key={i} className="border-r border-[#09290E]/20"></div>
             ))}
           </div>
         </div>
 
         <motion.div 
           className="relative z-10 text-center px-4 max-w-6xl mx-auto"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <motion.div 
-            className="border-8 border-white bg-yellow-400 text-black p-12 shadow-[20px_20px_0px_#ff0000] mb-8"
-            initial={{ y: 100, rotate: -5 }}
+            className="border-4 border-[#09290E] bg-[#FFFFFF] text-[#09290E] p-12 shadow-[12px_12px_0px_#8C8A6F] mb-8"
+            initial={{ y: 50, rotate: -1 }}
             animate={{ y: 0, rotate: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="text-8xl md:text-[12rem] font-black leading-none tracking-tighter">
-              ABOUT
+            <h1 className="text-6xl md:text-8xl font-bold leading-none tracking-tight">
+              About
             </h1>
           </motion.div>
           
           <motion.div 
-            className="border-8 border-yellow-400 bg-red-600 text-white p-8 shadow-[15px_15px_0px_#ffffff] mb-8"
-            initial={{ y: -100, rotate: 3 }}
+            className="border-4 border-[#8C8A6F] bg-[#09290E] text-[#F2EFE6] p-8 shadow-[8px_8px_0px_#000000] mb-8"
+            initial={{ y: -50, rotate: 1 }}
             animate={{ y: 0, rotate: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <h2 className="text-6xl md:text-8xl font-black leading-none">
-              MATELIBRE
+            <h2 className="text-4xl md:text-6xl font-bold leading-none">
+              Matelibre
             </h2>
           </motion.div>
           
           <motion.div 
-            className="border-4 border-red-600 bg-black text-yellow-400 p-6 max-w-4xl mx-auto shadow-[10px_10px_0px_#ffff00]"
+            className="border-2 border-[#09290E] bg-[#8C8A6F] text-[#FFFFFF] p-6 max-w-4xl mx-auto shadow-[6px_6px_0px_#09290E]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
           >
-            <p className="text-2xl md:text-4xl font-bold leading-tight">
-              WE DON&apos;T MAKE CLOTHES.<br/>
-              WE FORGE WEAPONS OF SELF-EXPRESSION.<br/>
-              BRUTAL. HONEST. UNFORGETTABLE.
+            <p className="text-xl md:text-2xl font-medium leading-relaxed">
+              Crafting sustainable, authentic embroidery designs that honor tradition while embracing innovation. Every stitch tells a story of craftsmanship, community, and conscious creation.
             </p>
           </motion.div>
         </motion.div>
 
-        {/* Brutal decorative elements */}
-        <div className="absolute top-10 left-10 w-20 h-20 bg-yellow-400 border-4 border-white transform rotate-45"></div>
-        <div className="absolute bottom-20 right-16 w-16 h-16 bg-red-600 border-4 border-yellow-400"></div>
-        <div className="absolute top-1/3 right-10 w-12 h-12 bg-white border-4 border-red-600 rounded-full"></div>
+        {/* Refined decorative elements */}
+        <motion.div 
+          className="absolute top-20 left-10 w-16 h-16 bg-[#8C8A6F] border-2 border-[#09290E] transform rotate-12"
+          animate={{ rotate: [12, 15, 12] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="absolute bottom-20 right-16 w-12 h-12 bg-[#09290E] border-2 border-[#8C8A6F] rounded-full"
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        />
       </section>
 
-      {/* BRUTAL NAVIGATION */}
-      <section className="py-8 px-4 bg-yellow-400 border-b-8 border-red-600">
-        <div className="max-w-6xl mx-auto">
+      {/* STICKY NAVIGATION */}
+      <motion.nav 
+        className="sticky top-0 z-50 bg-[#FFFFFF]/95 backdrop-blur-sm border-b-2 border-[#09290E] shadow-lg"
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex justify-center">
-            <div className="flex gap-4 flex-wrap">
-              {['story', 'values', 'team', 'process', 'timeline'].map((section) => (
+            <div className="flex gap-2 flex-wrap">
+              {[
+                { id: 'story', label: 'Our Story' },
+                { id: 'values', label: 'Values' },
+                { id: 'team', label: 'Team' },
+                { id: 'process', label: 'Process' },
+                { id: 'timeline', label: 'Journey' },
+                { id: 'achievements', label: 'Awards' },
+                { id: 'partnerships', label: 'Partners' }
+              ].map((section) => (
                 <motion.button
-                  key={section}
-                  onClick={() => setActiveSection(section)}
-                  className={`px-8 py-4 font-black text-2xl border-4 transition-all duration-200 transform ${
-                    activeSection === section
-                      ? 'bg-red-600 text-white border-black shadow-[8px_8px_0px_#000000] translate-y-0'
-                      : 'bg-black text-yellow-400 border-red-600 shadow-[4px_4px_0px_#ff0000] hover:translate-y-[-4px] hover:shadow-[8px_8px_0px_#ff0000]'
+                  key={section.id}
+                  onClick={() => scrollToSection(section.id)}
+                  className={`px-6 py-2 text-sm font-medium border-2 transition-all duration-200 ${
+                    activeSection === section.id
+                      ? 'bg-[#09290E] text-[#F2EFE6] border-[#09290E] shadow-[4px_4px_0px_#8C8A6F]'
+                      : 'bg-[#F2EFE6] text-[#09290E] border-[#8C8A6F] hover:bg-[#8C8A6F] hover:text-[#FFFFFF] hover:shadow-[2px_2px_0px_#09290E]'
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {section.toUpperCase()}
+                  {section.label}
                 </motion.button>
               ))}
             </div>
           </div>
         </div>
-      </section>
+      </motion.nav>
 
-      {/* CONTENT SECTIONS */}
-      <section className="py-16 px-4 bg-black min-h-screen">
+      {/* STORY SECTION */}
+      <section id="story" className="py-20 px-4 bg-[#FFFFFF]">
         <div className="max-w-7xl mx-auto">
           <motion.div
-            key={activeSection}
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="grid lg:grid-cols-2 gap-16 items-center"
           >
-            {/* STORY SECTION */}
-            {activeSection === 'story' && (
-              <div className="grid lg:grid-cols-2 gap-12 items-start">
-                <div className="space-y-8">
-                  <div className="border-4 border-yellow-400 bg-red-600 p-8 shadow-[12px_12px_0px_#ffff00]">
-                    <h3 className="text-6xl font-black text-white mb-6 leading-none">OUR STORY</h3>
-                    <div className="space-y-6 text-xl text-white font-bold leading-relaxed">
-                      <p className="border-l-8 border-yellow-400 pl-6">
-                        BORN IN 2020 FROM PURE FRUSTRATION WITH BORING, SOULLESS FASHION.
-                      </p>
-                      <p className="border-l-8 border-white pl-6">
-                        WE STARTED WITH ONE BELIEF: CLOTHES SHOULD TELL STORIES, NOT WHISPER LIES.
-                      </p>
-                      <p className="border-l-8 border-yellow-400 pl-6">
-                        EVERY STITCH IS A REBELLION AGAINST CONFORMITY. EVERY DESIGN IS A MIDDLE FINGER TO MEDIOCRITY.
-                      </p>
-                      <p className="border-l-8 border-white pl-6">
-                        TODAY, WE&apos;RE NOT JUST A COMPANY. WE&apos;RE A MOVEMENT. A REVOLUTION. A VOICE FOR THE VOICELESS.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="border-4 border-white bg-yellow-400 p-8 shadow-[12px_12px_0px_#ff0000]">
-                    <h4 className="text-4xl font-black text-black mb-4">MISSION STATEMENT</h4>
-                    <p className="text-2xl font-bold text-black leading-tight">
-                      TO OBLITERATE FASHION NORMS AND REBUILD THEM WITH CREATIVITY, SUSTAINABILITY, AND BRUTAL HONESTY.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="relative">
-                  <motion.div
-                    className="border-8 border-red-600 bg-black p-4 shadow-[20px_20px_0px_#ffff00]"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Image
-                      src="/images/congty.jpg"
-                      alt="Our Story"
-                      width={600}
-                      height={500}
-                      className="border-4 border-yellow-400 object-cover w-full h-96"
-                    />
-                  </motion.div>
-                  
-                  <div className="absolute -bottom-8 -right-8 border-4 border-white bg-red-600 p-6 shadow-[8px_8px_0px_#000000]">
-                    <p className="text-white font-black text-xl">EST. 2020</p>
-                  </div>
+            <div className="space-y-8">
+              <div className="border-4 border-[#8C8A6F] bg-[#09290E] p-8 shadow-[8px_8px_0px_#8C8A6F]">
+                <h3 className="text-5xl font-bold text-[#F2EFE6] mb-6 leading-tight">Our Story</h3>
+                <div className="space-y-6 text-lg text-[#F2EFE6] leading-relaxed">
+                  <p className="border-l-4 border-[#8C8A6F] pl-6">
+                    Born in 2020 from a deep appreciation for traditional Vietnamese embroidery and a vision for sustainable fashion.
+                  </p>
+                  <p className="border-l-4 border-[#F2EFE6] pl-6">
+                    We started with one belief: authentic craftsmanship should be preserved, celebrated, and made accessible to the modern world.
+                  </p>
+                  <p className="border-l-4 border-[#8C8A6F] pl-6">
+                    Every stitch connects the past with the present, tradition with innovation, local artisans with global customers.
+                  </p>
+                  <p className="border-l-4 border-[#F2EFE6] pl-6">
+                    Today, we're not just a brand—we're a bridge between cultures, a voice for sustainable fashion, and a home for authentic creativity.
+                  </p>
                 </div>
               </div>
-            )}
 
-            {/* VALUES SECTION */}
-            {activeSection === 'values' && (
-              <div>
-                <div className="text-center mb-16">
-                  <h3 className="text-8xl font-black text-yellow-400 mb-4 leading-none">CORE VALUES</h3>
-                  <div className="border-4 border-red-600 bg-white p-4 inline-block shadow-[8px_8px_0px_#ffff00]">
-                    <p className="text-black text-2xl font-black">NO COMPROMISE. NO EXCUSES. NO BULLSH*T.</p>
-                  </div>
-                </div>
-                
-                <motion.div 
-                  className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-                  variants={brutalistStagger}
-                  initial="initial"
-                  animate="animate"
-                >
-                  {coreValues.map((value, index) => (
-                    <motion.div
-                      key={index}
-                      variants={brutalistFadeIn}
-                      className="border-4 border-yellow-400 bg-black p-8 shadow-[12px_12px_0px_#ff0000] hover:shadow-[20px_20px_0px_#ff0000] transition-all duration-200 hover:-translate-y-2"
-                    >
-                      <div className="text-6xl mb-6 text-center">{value.icon}</div>
-                      <h4 className="text-3xl font-black text-red-600 mb-4 text-center border-b-4 border-yellow-400 pb-2">
-                        {value.title}
-                      </h4>
-                      <p className="text-white font-bold text-lg leading-tight mb-4 text-center">
-                        {value.description}
-                      </p>
-                      <div className="border-2 border-white bg-yellow-400 p-3">
-                        <p className="text-black font-bold text-sm">{value.details}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
+              <div className="border-4 border-[#09290E] bg-[#8C8A6F] p-8 shadow-[8px_8px_0px_#09290E]">
+                <h4 className="text-3xl font-bold text-[#FFFFFF] mb-4">Mission & Vision</h4>
+                <p className="text-xl text-[#F2EFE6] leading-relaxed">
+                  To preserve traditional craftsmanship while building a sustainable future for fashion. We envision a world where every garment tells a meaningful story and every purchase supports artisan communities.
+                </p>
               </div>
-            )}
+            </div>
 
-            {/* TEAM SECTION */}
-            {activeSection === 'team' && (
-              <div>
-                <div className="text-center mb-16">
-                  <h3 className="text-8xl font-black text-red-600 mb-4 leading-none">THE SQUAD</h3>
-                  <div className="border-4 border-yellow-400 bg-black p-4 inline-block shadow-[8px_8px_0px_#ffffff]">
-                    <p className="text-white text-2xl font-black">MEET THE MANIACS BEHIND THE MAGIC</p>
-                  </div>
-                </div>
-
-                <motion.div 
-                  className="grid lg:grid-cols-2 gap-12"
-                  variants={brutalistStagger}
-                  initial="initial"
-                  animate="animate"
-                >
-                  {teamMembers.map((member, index) => (
-                    <motion.div
-                      key={index}
-                      variants={brutalistFadeIn}
-                      className="border-8 border-white bg-red-600 p-8 shadow-[16px_16px_0px_#ffff00] hover:shadow-[24px_24px_0px_#ffff00] transition-all duration-200"
-                    >
-                      <div className="grid md:grid-cols-2 gap-6 items-center">
-                        <div className="relative">
-                          <div className="border-4 border-yellow-400 bg-black p-2">
-                            <Image
-                              src={member.image}
-                              alt={member.name}
-                              width={300}
-                              height={300}
-                              className="object-cover w-full h-64 border-2 border-white"
-                            />
-                          </div>
-                        </div>
-                        
-                        <div className="space-y-4">
-                          <div className="border-4 border-black bg-yellow-400 p-4 shadow-[6px_6px_0px_#000000]">
-                            <h4 className="text-2xl font-black text-black">{member.name}</h4>
-                            <p className="text-lg font-bold text-red-600">{member.role}</p>
-                          </div>
-                          
-                          <div className="border-2 border-yellow-400 bg-black p-4">
-                            <p className="text-white font-bold text-sm leading-tight mb-4">{member.bio}</p>
-                            
-                            <div className="flex flex-wrap gap-2 mb-4">
-                              {member.skills.map((skill, skillIndex) => (
-                                <span 
-                                  key={skillIndex}
-                                  className="bg-yellow-400 text-black px-2 py-1 text-xs font-black border-2 border-white"
-                                >
-                                  {skill}
-                                </span>
-                              ))}
-                            </div>
-                            
-                            <div className="border-l-4 border-red-600 pl-4">
-                              <p className="text-yellow-400 font-black text-sm italic">"{member.quote}"</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
+            <div className="relative">
+              <motion.div
+                className="border-6 border-[#09290E] bg-[#F2EFE6] p-4 shadow-[16px_16px_0px_#8C8A6F]"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Image
+                  src="/images/congty.jpg"
+                  alt="Our Story"
+                  width={600}
+                  height={500}
+                  className="border-2 border-[#8C8A6F] object-cover w-full h-96"
+                />
+              </motion.div>
+              
+              <div className="absolute -bottom-6 -right-6 border-4 border-[#09290E] bg-[#8C8A6F] p-4 shadow-[6px_6px_0px_#09290E]">
+                <p className="text-[#FFFFFF] font-bold text-lg">Est. 2020</p>
               </div>
-            )}
-
-            {/* PROCESS SECTION */}
-            {activeSection === 'process' && (
-              <div>
-                <div className="text-center mb-16">
-                  <h3 className="text-8xl font-black text-yellow-400 mb-4 leading-none">THE PROCESS</h3>
-                  <div className="border-4 border-red-600 bg-white p-4 inline-block shadow-[8px_8px_0px_#000000]">
-                    <p className="text-black text-2xl font-black">HOW WE TURN IDEAS INTO WEAPONS</p>
-                  </div>
-                </div>
-
-                <div className="space-y-8">
-                  {designProcess.map((step, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className={`grid md:grid-cols-3 gap-8 items-center ${index % 2 === 1 ? 'md:text-right' : ''}`}
-                    >
-                      <div className={`${index % 2 === 1 ? 'md:order-3' : ''}`}>
-                        <div className="border-8 border-yellow-400 bg-red-600 p-8 shadow-[12px_12px_0px_#000000]">
-                          <div className="text-8xl font-black text-white mb-4">{step.step}</div>
-                          <h4 className="text-3xl font-black text-yellow-400 mb-4">{step.title}</h4>
-                          <p className="text-white font-bold text-lg leading-tight">{step.description}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-center items-center">
-                        <div className="w-16 h-16 bg-yellow-400 border-4 border-white transform rotate-45"></div>
-                      </div>
-                      
-                      <div className={`${index % 2 === 1 ? 'md:order-1' : ''}`}>
-                        <div className="border-4 border-white bg-black p-6 shadow-[8px_8px_0px_#ffff00]">
-                          <div className="w-full h-32 bg-gradient-to-r from-red-600 to-yellow-400 border-2 border-white"></div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* TIMELINE SECTION */}
-            {activeSection === 'timeline' && (
-              <div>
-                <div className="text-center mb-16">
-                  <h3 className="text-8xl font-black text-red-600 mb-4 leading-none">TIMELINE</h3>
-                  <div className="border-4 border-yellow-400 bg-black p-4 inline-block shadow-[8px_8px_0px_#ffffff]">
-                    <p className="text-white text-2xl font-black">FROM ZERO TO HERO IN 5 BRUTAL YEARS</p>
-                  </div>
-                </div>
-
-                <div className="relative">
-                  {/* Timeline line */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-yellow-400"></div>
-                  
-                  <div className="space-y-16">
-                    {milestones.map((milestone, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        className={`grid md:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'md:text-right' : ''}`}
-                      >
-                        <div className={`${index % 2 === 1 ? 'md:order-2' : ''} relative`}>
-                          <div className="border-6 border-red-600 bg-yellow-400 p-8 shadow-[16px_16px_0px_#000000]">
-                            <div className="text-6xl font-black text-black mb-4">{milestone.year}</div>
-                            <h4 className="text-3xl font-black text-red-600 mb-4">{milestone.title}</h4>
-                            <p className="text-black font-bold text-xl mb-4">{milestone.description}</p>
-                            <div className="border-4 border-black bg-white p-3">
-                              <p className="text-black font-bold text-sm">{milestone.impact}</p>
-                            </div>
-                          </div>
-                          
-                          {/* Timeline connector */}
-                          <div className={`absolute top-1/2 ${index % 2 === 0 ? '-right-8' : '-left-8'} w-16 h-1 bg-yellow-400`}></div>
-                          <div className={`absolute top-1/2 transform -translate-y-1/2 ${index % 2 === 0 ? '-right-4' : '-left-4'} w-8 h-8 bg-red-600 border-4 border-white rounded-full`}></div>
-                        </div>
-                        
-                        <div className={`${index % 2 === 1 ? 'md:order-1' : ''}`}>
-                          <div className="border-4 border-white bg-black p-6 shadow-[8px_8px_0px_#ff0000]">
-                            <div className="w-full h-48 bg-gradient-to-br from-red-600 via-yellow-400 to-white border-2 border-yellow-400"></div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* BRUTAL STATS */}
-      <section className="py-20 bg-red-600 border-t-8 border-yellow-400">
-        <div className="max-w-6xl mx-auto px-4">
+      {/* VALUES SECTION */}
+      <section id="values" className="py-20 px-4 bg-[#F2EFE6]">
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h3 className="text-8xl font-black text-white mb-4 leading-none">BY THE NUMBERS</h3>
-            <div className="border-4 border-black bg-yellow-400 p-4 inline-block shadow-[8px_8px_0px_#000000]">
-              <p className="text-black text-2xl font-black">COLD HARD FACTS</p>
+            <motion.h3 
+              className="text-6xl font-bold text-[#09290E] mb-6 leading-tight"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              Core Values
+            </motion.h3>
+            <div className="border-4 border-[#8C8A6F] bg-[#FFFFFF] p-4 inline-block shadow-[6px_6px_0px_#09290E]">
+              <p className="text-[#09290E] text-xl font-medium">Principles that guide everything we do</p>
             </div>
           </div>
-
+          
           <motion.div 
-            className="grid md:grid-cols-4 gap-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
             viewport={{ once: true }}
           >
-            {[
-              { number: "50K+", label: "DESIGNS CREATED", suffix: "PIECES OF ART" },
-              { number: "25", label: "COUNTRIES SERVED", suffix: "GLOBAL DOMINATION" },
-              { number: "5", label: "YEARS OF CHAOS", suffix: "PURE EVOLUTION" },
-              { number: "∞", label: "CREATIVE ENERGY", suffix: "UNLIMITED POWER" }
-            ].map((stat, index) => (
+            {coreValues.map((value, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 50, scale: 0.5 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="border-8 border-black bg-yellow-400 p-8 shadow-[12px_12px_0px_#000000] text-center hover:shadow-[20px_20px_0px_#000000] transition-all duration-200 hover:-translate-y-2"
+                variants={fadeInUp}
+                className="border-4 border-[#09290E] bg-[#FFFFFF] p-8 shadow-[8px_8px_0px_#8C8A6F] hover:shadow-[12px_12px_0px_#8C8A6F] transition-all duration-300 hover:-translate-y-1"
               >
-                <div className="text-6xl md:text-8xl font-black text-red-600 mb-2 leading-none">{stat.number}</div>
-                <div className="text-black text-xl font-black mb-2">{stat.label}</div>
-                <div className="text-black text-sm font-bold">{stat.suffix}</div>
+                <div className="text-4xl mb-6 text-center">{value.icon}</div>
+                <h4 className="text-2xl font-bold text-[#09290E] mb-4 text-center border-b-2 border-[#8C8A6F] pb-2">
+                  {value.title}
+                </h4>
+                <p className="text-[#09290E] font-medium text-base leading-relaxed mb-4">
+                  {value.description}
+                </p>
+                <div className="border-2 border-[#8C8A6F] bg-[#F2EFE6] p-3 mb-4">
+                  <p className="text-[#09290E] text-sm">{value.details}</p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {value.metrics.map((metric, metricIndex) => (
+                    <span 
+                      key={metricIndex}
+                      className="bg-[#8C8A6F] text-[#FFFFFF] px-3 py-1 text-xs font-medium border border-[#09290E]"
+                    >
+                      {metric}
+                    </span>
+                  ))}
+                </div>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* BRUTAL CTA */}
-      <section className="py-20 bg-black border-t-8 border-red-600">
-        <div className="max-w-4xl mx-auto text-center px-4">
+      {/* TEAM SECTION */}
+      <section id="team" className="py-20 px-4 bg-[#FFFFFF]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <motion.h3 
+              className="text-6xl font-bold text-[#09290E] mb-6 leading-tight"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              Meet Our Team
+            </motion.h3>
+            <div className="border-4 border-[#8C8A6F] bg-[#F2EFE6] p-4 inline-block shadow-[6px_6px_0px_#09290E]">
+              <p className="text-[#09290E] text-xl font-medium">The passionate people behind every design</p>
+            </div>
+          </div>
+
+          <motion.div 
+            className="grid lg:grid-cols-2 gap-12"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {teamMembers.map((member, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                className="border-6 border-[#09290E] bg-[#8C8A6F] p-8 shadow-[12px_12px_0px_#09290E] hover:shadow-[16px_16px_0px_#09290E] transition-all duration-300"
+              >
+                <div className="grid md:grid-cols-2 gap-6 items-center">
+                  <div className="relative">
+                    <div className="border-4 border-[#F2EFE6] bg-[#FFFFFF] p-2">
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        width={300}
+                        height={300}
+                        className="object-cover w-full h-64 border-2 border-[#8C8A6F]"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <div className="border-4 border-[#09290E] bg-[#F2EFE6] p-4 shadow-[4px_4px_0px_#09290E]">
+                      <h4 className="text-xl font-bold text-[#09290E]">{member.name}</h4>
+                      <p className="text-base font-medium text-[#8C8A6F]">{member.role}</p>
+                      <div className="flex gap-2 mt-2 text-xs">
+                        <span className="bg-[#09290E] text-[#F2EFE6] px-2 py-1">{member.experience}</span>
+                        <span className="bg-[#8C8A6F] text-[#FFFFFF] px-2 py-1">Expert</span>
+                      </div>
+                    </div>
+                    
+                    <div className="border-2 border-[#F2EFE6] bg-[#09290E] p-4">
+                      <p className="text-[#F2EFE6] text-sm leading-relaxed mb-4">{member.bio}</p>
+                      
+                      <div className="flex flex-wrap gap-1 mb-4">
+                        {member.skills.map((skill, skillIndex) => (
+                          <span 
+                            key={skillIndex}
+                            className="bg-[#F2EFE6] text-[#09290E] px-2 py-1 text-xs font-medium border border-[#8C8A6F]"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                      
+                      <div className="border-l-4 border-[#8C8A6F] pl-4">
+                        <p className="text-[#F2EFE6] text-sm italic">"{member.quote}"</p>
+                      </div>
+                      
+                      <div className="mt-3 text-xs text-[#8C8A6F]">
+                        Education: {member.education}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* PROCESS SECTION */}
+      <section id="process" className="py-20 px-4 bg-[#F2EFE6]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <motion.h3 
+              className="text-6xl font-bold text-[#09290E] mb-6 leading-tight"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              Our Process
+            </motion.h3>
+            <div className="border-4 border-[#8C8A6F] bg-[#FFFFFF] p-4 inline-block shadow-[6px_6px_0px_#09290E]">
+              <p className="text-[#09290E] text-xl font-medium">From concept to creation</p>
+            </div>
+          </div>
+
+          <div className="space-y-12">
+            {designProcess.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className={`grid md:grid-cols-3 gap-8 items-center ${index % 2 === 1 ? 'md:text-right' : ''}`}
+              >
+                <div className={`${index % 2 === 1 ? 'md:order-3' : ''}`}>
+                  <div className="border-6 border-[#09290E] bg-[#8C8A6F] p-8 shadow-[8px_8px_0px_#09290E]">
+                    <div className="text-6xl font-bold text-[#FFFFFF] mb-4">{step.step}</div>
+                    <h4 className="text-2xl font-bold text-[#F2EFE6] mb-4">{step.title}</h4>
+                    <p className="text-[#FFFFFF] font-medium text-base leading-relaxed mb-4">{step.description}</p>
+                    <div className="border-2 border-[#F2EFE6] bg-[#09290E] p-3">
+                      <p className="text-[#F2EFE6] text-sm">{step.details}</p>
+                    </div>
+                    <div className="mt-3 text-[#F2EFE6] text-sm font-medium">
+                      Duration: {step.duration}
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="flex justify-center items-center">
+                  <div className="w-12 h-12 bg-[#8C8A6F] border-4 border-[#09290E] transform rotate-45"></div>
+                </div>
+                
+                <div className={`${index % 2 === 1 ? 'md:order-1' : ''}`}>
+                  <div className="border-4 border-[#09290E] bg-[#FFFFFF] p-6 shadow-[6px_6px_0px_#8C8A6F]">
+                    <div className="w-full h-32 bg-gradient-to-r from-[#8C8A6F] to-[#09290E] border-2 border-[#09290E]"></div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TIMELINE SECTION */}
+      <section id="timeline" className="py-20 px-4 bg-[#FFFFFF]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <motion.h3 
+              className="text-6xl font-bold text-[#09290E] mb-6 leading-tight"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              Our Journey
+            </motion.h3>
+            <div className="border-4 border-[#8C8A6F] bg-[#F2EFE6] p-4 inline-block shadow-[6px_6px_0px_#09290E]">
+              <p className="text-[#09290E] text-xl font-medium">Five years of growth and innovation</p>
+            </div>
+          </div>
+
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-[#8C8A6F]"></div>
+            
+            <div className="space-y-16">
+              {milestones.map((milestone, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className={`grid md:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'md:text-right' : ''}`}
+                >
+                  <div className={`${index % 2 === 1 ? 'md:order-2' : ''} relative`}>
+                    <div className="border-6 border-[#8C8A6F] bg-[#F2EFE6] p-8 shadow-[12px_12px_0px_#09290E]">
+                      <div className="text-5xl font-bold text-[#09290E] mb-4">{milestone.year}</div>
+                      <h4 className="text-2xl font-bold text-[#8C8A6F] mb-4">{milestone.title}</h4>
+                      <p className="text-[#09290E] font-medium text-lg mb-4">{milestone.description}</p>
+                      <div className="border-4 border-[#09290E] bg-[#FFFFFF] p-4 mb-4">
+                        <p className="text-[#09290E] font-medium text-sm">{milestone.impact}</p>
+                      </div>
+                      <div className="border-2 border-[#8C8A6F] bg-[#09290E] p-3">
+                        <p className="text-[#F2EFE6] text-sm">{milestone.details}</p>
+                      </div>
+                      <div className="mt-3 text-[#8C8A6F] text-sm font-medium">
+                        Achievement: {milestone.achievement}
+                      </div>
+                    </div>
+                    
+                    {/* Timeline connector */}
+                    <div className={`absolute top-1/2 ${index % 2 === 0 ? '-right-8' : '-left-8'} w-16 h-1 bg-[#8C8A6F]`}></div>
+                    <div className={`absolute top-1/2 transform -translate-y-1/2 ${index % 2 === 0 ? '-right-4' : '-left-4'} w-8 h-8 bg-[#09290E] border-4 border-[#F2EFE6] rounded-full`}></div>
+                  </div>
+                  
+                  <div className={`${index % 2 === 1 ? 'md:order-1' : ''}`}>
+                    <div className="border-4 border-[#09290E] bg-[#8C8A6F] p-6 shadow-[6px_6px_0px_#09290E]">
+                      <div className="w-full h-48 bg-gradient-to-br from-[#8C8A6F] via-[#F2EFE6] to-[#09290E] border-2 border-[#09290E]"></div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ACHIEVEMENTS SECTION */}
+      <section id="achievements" className="py-20 px-4 bg-[#09290E]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <motion.h3 
+              className="text-6xl font-bold text-[#F2EFE6] mb-6 leading-tight"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              Awards & Recognition
+            </motion.h3>
+            <div className="border-4 border-[#8C8A6F] bg-[#F2EFE6] p-4 inline-block shadow-[6px_6px_0px_#8C8A6F]">
+              <p className="text-[#09290E] text-xl font-medium">Celebrating our milestones</p>
+            </div>
+          </div>
+
+          <motion.div 
+            className="grid md:grid-cols-3 gap-8"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {achievements.map((category, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                className="border-4 border-[#8C8A6F] bg-[#F2EFE6] p-8 shadow-[8px_8px_0px_#8C8A6F] hover:shadow-[12px_12px_0px_#8C8A6F] transition-all duration-300"
+              >
+                <h4 className="text-2xl font-bold text-[#09290E] mb-6 text-center border-b-2 border-[#8C8A6F] pb-2">
+                  {category.title}
+                </h4>
+                <ul className="space-y-4">
+                  {category.items.map((item, itemIndex) => (
+                    <li 
+                      key={itemIndex}
+                      className="border-2 border-[#09290E] bg-[#FFFFFF] p-3"
+                    >
+                      <p className="text-[#09290E] text-sm font-medium">{item}</p>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div 
+            className="grid md:grid-cols-4 gap-8 mt-16"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            {[
+              { number: "50K+", label: "Designs Created", suffix: "Works of Art" },
+              { number: "25", label: "Countries Served", suffix: "Global Reach" },
+              { number: "98%", label: "Customer Satisfaction", suffix: "Happy Clients" },
+              { number: "15+", label: "Awards Won", suffix: "Recognition" }
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50, scale: 0.8 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="border-6 border-[#8C8A6F] bg-[#F2EFE6] p-6 shadow-[8px_8px_0px_#8C8A6F] text-center hover:shadow-[12px_12px_0px_#8C8A6F] transition-all duration-200 hover:-translate-y-1"
+              >
+                <div className="text-4xl md:text-5xl font-bold text-[#09290E] mb-2 leading-none">{stat.number}</div>
+                <div className="text-[#09290E] text-lg font-medium mb-1">{stat.label}</div>
+                <div className="text-[#8C8A6F] text-sm font-medium">{stat.suffix}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* PARTNERSHIPS SECTION */}
+      <section id="partnerships" className="py-20 px-4 bg-[#F2EFE6]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <motion.h3 
+              className="text-6xl font-bold text-[#09290E] mb-6 leading-tight"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              Our Partners
+            </motion.h3>
+            <div className="border-4 border-[#8C8A6F] bg-[#FFFFFF] p-4 inline-block shadow-[6px_6px_0px_#09290E]">
+              <p className="text-[#09290E] text-xl font-medium">Building meaningful relationships</p>
+            </div>
+          </div>
+
+          <motion.div 
+            className="grid md:grid-cols-3 gap-8 mb-16"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {partnerships.map((partner, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInUp}
+                className="border-4 border-[#09290E] bg-[#FFFFFF] p-8 shadow-[8px_8px_0px_#8C8A6F] hover:shadow-[12px_12px_0px_#8C8A6F] transition-all duration-300"
+              >
+                <h4 className="text-xl font-bold text-[#09290E] mb-4 border-b-2 border-[#8C8A6F] pb-2">
+                  {partner.name}
+                </h4>
+                <p className="text-[#09290E] font-medium text-base leading-relaxed mb-4">
+                  {partner.description}
+                </p>
+                <div className="border-2 border-[#8C8A6F] bg-[#F2EFE6] p-3">
+                  <p className="text-[#09290E] text-sm font-medium">{partner.impact}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Community Impact */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            className="border-6 border-[#09290E] bg-[#8C8A6F] p-12 shadow-[12px_12px_0px_#09290E] text-center"
+            initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="border-8 border-yellow-400 bg-red-600 p-12 shadow-[20px_20px_0px_#ffff00] mb-12">
-              <h3 className="text-6xl md:text-8xl font-black text-white mb-6 leading-none">
-                JOIN THE<br/>REVOLUTION
+            <h4 className="text-4xl font-bold text-[#F2EFE6] mb-6">Community Impact</h4>
+            <p className="text-xl text-[#FFFFFF] leading-relaxed mb-8">
+              Through our partnerships and initiatives, we've directly supported over 200 artisans, 
+              trained 150+ students in sustainable design practices, and contributed to 5 major 
+              environmental conservation projects.
+            </p>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="border-4 border-[#F2EFE6] bg-[#09290E] p-4">
+                <div className="text-3xl font-bold text-[#F2EFE6] mb-2">200+</div>
+                <div className="text-[#8C8A6F] text-sm">Artisans Supported</div>
+              </div>
+              <div className="border-4 border-[#F2EFE6] bg-[#09290E] p-4">
+                <div className="text-3xl font-bold text-[#F2EFE6] mb-2">150+</div>
+                <div className="text-[#8C8A6F] text-sm">Students Trained</div>
+              </div>
+              <div className="border-4 border-[#F2EFE6] bg-[#09290E] p-4">
+                <div className="text-3xl font-bold text-[#F2EFE6] mb-2">5</div>
+                <div className="text-[#8C8A6F] text-sm">Conservation Projects</div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CALL TO ACTION */}
+      <section className="py-20 bg-[#09290E]">
+        <div className="max-w-4xl mx-auto text-center px-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="border-6 border-[#8C8A6F] bg-[#F2EFE6] p-12 shadow-[16px_16px_0px_#8C8A6F] mb-12">
+              <h3 className="text-4xl md:text-6xl font-bold text-[#09290E] mb-6 leading-tight">
+                Join Our Story
               </h3>
-              <p className="text-2xl md:text-3xl text-yellow-400 font-bold leading-tight">
-                STOP BEING BORING.<br/>
-                START BEING LEGENDARY.<br/>
-                THE WORLD NEEDS YOUR STORY.
+              <p className="text-xl md:text-2xl text-[#8C8A6F] font-medium leading-relaxed">
+                Be part of a movement that values authenticity, sustainability, and meaningful craftsmanship. 
+                Together, we can create a more conscious future for fashion.
               </p>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-8 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link href="/careers">
                 <motion.div
-                  className="border-8 border-white bg-yellow-400 text-black px-12 py-6 font-black text-2xl shadow-[12px_12px_0px_#ff0000] hover:shadow-[20px_20px_0px_#ff0000] transition-all duration-200 hover:-translate-y-2"
+                  className="border-6 border-[#F2EFE6] bg-[#8C8A6F] text-[#FFFFFF] px-10 py-4 font-bold text-xl shadow-[8px_8px_0px_#F2EFE6] hover:shadow-[12px_12px_0px_#F2EFE6] transition-all duration-200 hover:-translate-y-1"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  WORK WITH US
+                  Join Our Team
                 </motion.div>
               </Link>
               
               <Link href="/community">
                 <motion.div
-                  className="border-8 border-yellow-400 bg-black text-white px-12 py-6 font-black text-2xl shadow-[12px_12px_0px_#ffff00] hover:shadow-[20px_20px_0px_#ffff00] transition-all duration-200 hover:-translate-y-2"
+                  className="border-6 border-[#8C8A6F] bg-[#F2EFE6] text-[#09290E] px-10 py-4 font-bold text-xl shadow-[8px_8px_0px_#8C8A6F] hover:shadow-[12px_12px_0px_#8C8A6F] transition-all duration-200 hover:-translate-y-1"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  SEE OUR WORK
+                  Explore Our Work
                 </motion.div>
               </Link>
             </div>
