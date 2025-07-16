@@ -11,25 +11,25 @@ import { getImageUrl as getImageUrlUtil } from '../../../lib/utils/image'
 import { IMAGE_CONFIG } from '../../../lib/constants/index'
 
 // Helper function to get image URL
-const getImageUrl = (jobImage: any): string => {
+const getImageUrl = (jobImage: unknown): string => {
   if (!jobImage) {
     console.log('No job image provided, using fallback')
     return "/images/position.jpg"
   }
-  
+
   // If jobImage is already a string (fallback case)
   if (typeof jobImage === 'string') {
     console.log('Job image is string:', jobImage)
     return jobImage
   }
-  
+
   // If jobImage is an object with url property
-  if (jobImage.url) {
-    const fullUrl = `${IMAGE_CONFIG.STRAPI_BASE_URL}${jobImage.url}`
+  if (typeof jobImage === 'object' && jobImage !== null && 'url' in jobImage && typeof (jobImage as { url?: string }).url === 'string') {
+    const fullUrl = `${IMAGE_CONFIG.STRAPI_BASE_URL}${(jobImage as { url: string }).url}`
     console.log('Job image URL:', fullUrl)
     return fullUrl
   }
-  
+
   console.log('Job image object but no URL, using fallback:', jobImage)
   return "/images/position.jpg"
 }
@@ -65,7 +65,14 @@ const fallbackAccordionData = [
   },
 ]
 
-function AccordionItem({ title, content, isOpen, onClick }: any) {
+interface AccordionItemProps {
+  title: string;
+  content: string[];
+  isOpen: boolean;
+  onClick: () => void;
+}
+
+function AccordionItem({ title, content, isOpen, onClick }: AccordionItemProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [height, setHeight] = useState(0)
 
@@ -144,10 +151,10 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
             if (typeof jobDetail.description === 'string') {
               descriptionContent = [jobDetail.description]
             } else if (Array.isArray(jobDetail.description)) {
-              descriptionContent = jobDetail.description.map((item: any) => {
+              descriptionContent = jobDetail.description.map((item: { children?: { text?: string }[]; text?: string }) => {
                 if (typeof item === 'string') return item
                 if (item.children && Array.isArray(item.children)) {
-                  return item.children.map((child: any) => child.text || '').join('')
+                  return item.children.map((child) => child.text || '').join('')
                 }
                 return item.text || 'Task description'
               }).filter((item: string) => item.trim() !== '')
@@ -255,7 +262,7 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
           viewport={{ once: true }}
         >
           {jobData?.text_icon && jobData.text_icon.length > 0 ? 
-            jobData.text_icon.map((item: any, index: number) => (
+            jobData.text_icon.map((item: { icon: string; text: string }, index: number) => (
               <Feature key={index} icon={item.icon} label={item.text} />
             )) :
             <>

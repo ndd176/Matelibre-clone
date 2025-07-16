@@ -81,8 +81,8 @@ export interface JobDetail {
   icon?: string
   text_icon: TextIcon[]
   salary_range: string
-  description: string | any[] // Rich text blocks array
-  job_image: any // Media object with formats
+  description: string | unknown[]; // Rich text blocks array
+  job_image: unknown; // Media object with formats
   job?: Job // Relation field to Job
   createdAt?: string
   updatedAt?: string

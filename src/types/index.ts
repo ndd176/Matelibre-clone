@@ -37,11 +37,11 @@ export interface AnimationProps {
 
 // Motion component props
 export interface MotionProps extends AnimationProps {
-  initial?: any
-  animate?: any
-  exit?: any
-  whileHover?: any
-  whileTap?: any
+  initial?: unknown;
+  animate?: unknown;
+  exit?: unknown;
+  whileHover?: unknown;
+  whileTap?: unknown;
 }
 
 // Page meta data
