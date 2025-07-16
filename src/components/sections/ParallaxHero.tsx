@@ -199,8 +199,7 @@
 //tạm thời chỉ dùng 1 ảnh
 // 'use client'
 
-import Link from 'next/link'
-import { useRef } from 'react'
+ import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import ScrollDiscoverIndicator from '../ui/ScrollDiscoverIndicator'
 
@@ -210,7 +209,7 @@ export default function ParallaxHero() {
   const y = useTransform(scrollY, [0, 1000], [0, -1400])
   const radius = useTransform(scrollY, [0, 300], ['0px', '40px'])
 
-  const backgroundImage = 'images/tree-background-3.jpg'
+  const backgroundImage = '/images/tree-background-3.jpg'
 
   return (
     <section

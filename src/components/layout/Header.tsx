@@ -1,10 +1,10 @@
 'use client'
-
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-
+import Link from 'next/link'
 export default function StickyHeader() {
-  const [showHeader, setShowHeader] = useState(true)
+    const [showHeader, setShowHeader] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
   const [isAtTop, setIsAtTop] = useState(true)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -47,33 +47,7 @@ const handleToggleMenu = () => {
 
   return (
     <>
-      {/* HEADER */}
-{/* <motion.header
-  initial={{ y: -100, opacity: 0 }}
-  animate={{
-    y: isMenuOpen ? -100 : showHeader ? 0 : -100,
-    opacity: isMenuOpen ? 0 : showHeader ? 1 : 0,
-    borderBottomLeftRadius: showHeader ? 0 : 30,
-    borderBottomRightRadius: showHeader ? 0 : 30,
-  }}
-  transition={{
-    duration: 0.5,
-    delay: 1,
-    ease: 'easeInOut',
-    borderBottomLeftRadius: { duration: 0.3, ease: 'easeInOut' },
-    borderBottomRightRadius: { duration: 0.3, ease: 'easeInOut' },
-  }}
-className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-in-out
-  ${isAtTop ? 'bg-transparent text-white shadow-none' : 'bg-white text-black shadow-md'}
-`}
->
-<div className="w-full flex items-center gap-6 pl-10 pr-10 py-2">
-  <a href='/' className="text-[50px] font-studio-pro-bold">©ethan</a>
-  <a href="/about" className="hover:opacity-80 text-[22px] font-studio-pro-bold">About us</a>
-  <a href="/careers" className="hover:opacity-80 text-[20px] font-studio-pro">Careers</a>
-  <a href="/community" className="hover:opacity-80 text-[20px] font-studio-pro">community</a>
-</div>
-</motion.header> */}
+       
 <motion.header
   initial={{ y: -100 }}
   animate={{
@@ -89,14 +63,14 @@ className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-in-o
   }}
   className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-in-out
     hidden md:flex
-    ${isAtTop ? 'bg-transparent text-white shadow-none' : 'bg-white text-black shadow-md'}
+    ${isAtTop ? 'hidden' : 'bg-white text-black shadow-md flex'}
   `}
 >
-  <div className="w-full flex items-center gap-6 px-8 py-3">
-    <a href="/" className="text-[42px] font-studio-pro-bold">©ethan</a>
-    <a href="/about" className="hover:opacity-80 text-[20px] font-studio-pro-bold">About us</a>
-    <a href="/careers" className="hover:opacity-80 text-[18px] font-studio-pro">Careers</a>
-    <a href="/community" className="hover:opacity-80 text-[18px] font-studio-pro">Community</a>
+  <div className={`w-full flex items-center gap-6 px-8 py-3 ${isAtTop ? 'hidden' : 'flex'}`}>
+    <Link href="/" className="text-[42px] font-studio-pro-bold">©ethan</Link>
+    <Link href="/about" className="hover:opacity-80 text-[20px] font-studio-pro-bold">About us</Link>
+    <Link href="/careers" className="hover:opacity-80 text-[18px] font-studio-pro">Careers</Link>
+    {/* <Link href="/community" className="hover:opacity-80 text-[18px] font-studio-pro">Community</Link> */}
   </div>
 </motion.header>
 
@@ -181,16 +155,38 @@ className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-in-o
           }}
           className="space-y-6 text-4xl md:text-5xl font-studio-pro-bold text-black"
         >
-          {['products', 'explore', 'community'].map((item, i) => (
-            <motion.div
-              key={item}
-              initial={{ y: 40, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.4, delay: i * 0.15 }}
-            >
-              {item}
-            </motion.div>
-          ))}
+                    {['About us', 'Careers', 'Community'].map((item, i) => {
+            // Xác định đúng href cho từng item
+            const getHref = (itemName: string) => {
+              switch(itemName) {
+                case 'About us':
+                  return '/about';
+                case 'Careers':
+                  return '/careers';
+                case 'Community':
+                  return '/community';
+                default:
+                  return '/';
+              }
+            };
+          
+            return (
+              <motion.div
+                key={item}
+                initial={{ y: 40, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.4, delay: i * 0.4 }}
+              >
+                <Link 
+                  href={getHref(item)}
+                  className="block hover:opacity-80 transition-opacity"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item}
+                </Link>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         <div className="grid grid-cols-2 gap-2 mt-10 text-sm text-black font-studio-pro">

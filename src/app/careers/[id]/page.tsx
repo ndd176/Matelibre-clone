@@ -1,8 +1,7 @@
-// app/careers/[id]/page.tsx
 'use client'
 
 import { useParams } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useLayoutEffect } from 'react' // Thay useEffect bằng useLayoutEffect
 import ProductDetailWithAccordion from '../../../components/features/careers/ProductAccordionSection'
 import ProductCarouselHover from '../../../components/features/careers/ProductCarouselHover'
 import CVSubmissionForm from '../../../components/CVSubmissionForm'
@@ -12,6 +11,11 @@ export default function CareersDetailPage() {
   const jobId = params.id as string
   const [isCVFormOpen, setIsCVFormOpen] = useState(false)
   const [selectedPosition, setSelectedPosition] = useState('')
+
+  // Sử dụng useLayoutEffect để scroll to top ngay khi component được render
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  }, []) // Chỉ chạy một lần khi component mount
 
   const handleApplyClick = (position: string) => {
     setSelectedPosition(position)
@@ -26,7 +30,6 @@ export default function CareersDetailPage() {
        />
        <ProductCarouselHover/>
        
-       {/* CV Submission Form */}
        <CVSubmissionForm
          isOpen={isCVFormOpen}
          position={selectedPosition}

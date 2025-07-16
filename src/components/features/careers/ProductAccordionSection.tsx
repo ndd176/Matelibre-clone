@@ -225,7 +225,7 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
                 key={i}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.15, duration: 0.5 }}
+                transition={{ delay: i * 0.15 + 1.5, duration: 0.5 }}
                 viewport={{ once: true }}
                 className="font-bold text-[48px] sm:text-[64px] md:text-[96px] lg:text-[110px] leading-[1] text-green-800"
               >
@@ -237,7 +237,7 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
                 key={i}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.15, duration: 0.5 }}
+                transition={{ delay: i * 0.15 + 1.5, duration: 0.5 }}
                 viewport={{ once: true }}
                 className="font-bold text-[48px] sm:text-[64px] md:text-[96px] lg:text-[110px] leading-[1] text-green-800"
               >
@@ -251,7 +251,7 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
           className="flex justify-between text-sm sm:text-base pt-8 pb-10 gap-4 flex-wrap"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
+          transition={{ delay: 0.5 + 1.5, duration: 0.5 }}
           viewport={{ once: true }}
         >
           {jobData?.text_icon && jobData.text_icon.length > 0 ? 
@@ -270,7 +270,7 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
           className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 pb-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
+          transition={{ delay: 0.8 + 1.5, duration: 0.5 }}
           viewport={{ once: true }}
         > 
 
@@ -304,7 +304,7 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.5 }}
+              transition={{ delay: 0.6 + 1.5, duration: 0.5 }}
               viewport={{ once: true }}
             >
               <AccordionItem

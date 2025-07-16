@@ -1,13 +1,4 @@
-// const transporter = nodemailer.createTransporter({
-  service: 'gmail',
-  auth: {
-    user: 'duydinh.forfun@gmail.com',
-    pass: 'gaou_wjgi_hmzq_uutj', // App Password từ .env.local
-  },
-  tls: {
-    rejectUnauthorized: false
-  }
-});ail configuration
+
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
@@ -16,6 +7,9 @@ const transporter = nodemailer.createTransport({
     user: 'duydinh.forfun@gmail.com',
     pass: 'gaou_wjgi_hmzq_uutj', // App Password từ .env.local
   },
+  tls: {
+    rejectUnauthorized: false
+  }
 });
 
 async function testEmail() {

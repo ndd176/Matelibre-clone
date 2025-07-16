@@ -20,32 +20,28 @@ interface ProductCardData {
 }
 
 // Function to convert Job to ProductCard format với proper image URLs
-function jobToProductCard(job: Job): ProductCardData {
-  const colors = ['white', 'milk', 'matcha', 'dark_green', 'black']
-  const randomColor = colors[Math.floor(Math.random() * colors.length)]
-  
+function jobToProductCard(job: Job, index: number): ProductCardData {
+  // Không random màu nữa, set trắng đen xen kẽ theo index
+  const color = index % 2 === 0 ? 'white' : 'black'
   // Debug image processing
   console.log('🖼️ Processing carousel job images:', {
     jobId: job.id,
     avatar_image: job.avatar_image,
     sub_avatar: job.sub_avatar
   })
-  
   const canImageUrl = getImageUrl(job.avatar_image)
   const bgImageUrl = getImageUrl(job.sub_avatar)
-  
   console.log('📸 Generated carousel URLs:', {
     canImage: canImageUrl,
     bgImage: bgImageUrl
   })
-
   return {
     id: job.id,
     title: job.job_title,
     description: job.short_description,
     canImage: canImageUrl || '/images/duydinh-bg-2.png',
     bgImage: bgImageUrl || '/images/anh-hiep.png',
-    color: randomColor,
+    color,
   }
 }
 
@@ -61,7 +57,11 @@ export default function ProductCarouselHover() {
       try {
         const response = await strapiApi.fetchJobs()
         console.log('🔍 API Response for carousel:', response.data) // Debug log
-        const apiJobs = response.data.map(jobToProductCard) // Sử dụng local function
+        let apiJobs = response.data.map((job: Job, i: number) => jobToProductCard(job, i))
+        // Lấy 4 card bất kỳ
+        if (apiJobs.length > 3) {
+          apiJobs = apiJobs.sort(() => 0.5 - Math.random()).slice(0, 3)
+        }
         console.log('🎯 Processed carousel jobs:', apiJobs) // Debug log
         setProducts(apiJobs)
       } catch (err) {
@@ -121,51 +121,24 @@ export default function ProductCarouselHover() {
     )
   }
 
-  // ✅ Desktop: expand on hover, with correct zIndex stacking
-  const maxWidth = 1800
-  const expandedWidth = 520
-  const collapsedCount = products.length - 1
-  const collapsedWidth = hoveredIndex !== null
-    ? (maxWidth - expandedWidth) / collapsedCount
-    : maxWidth / products.length
-
-return (
-  <section className="bg-white py-16 px-8 overflow-hidden">
-    <div
-      className="flex mx-auto transition-all"
-      style={{
-        maxWidth: `${maxWidth}px`,
-        transform: `translateX(-${(products.length - 1) * 20}px)`, // ✅ cân lại phần dịch
-      }}
-    >
-      {products.map((product, index) => {
-        const isHovered = index === hoveredIndex
-        const width = isHovered ? expandedWidth : collapsedWidth
-        const zIndex = products.length - index
-
-        return (
-          <motion.div
+  // ✅ Desktop: chỉ hiển thị 3 card trên 1 hàng, giữ kích thước mặc định, không scale khi hover
+  const visibleProducts = products.slice(0, 3)
+  return (
+    <section className="bg-white py-16 px-8 overflow-hidden">
+      <div
+        className="flex mx-auto gap-8 justify-center items-stretch"
+        style={{  overflowX: products.length > 3 ? 'auto' : 'visible' }}
+      >
+        {visibleProducts.map((product) => (
+          <div
             key={product.id}
-            onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
-            animate={{
-              width,
-              x: (products.length - 1 - index) * 40,
-            }}
-            transition={{ type: 'spring', stiffness: 250, damping: 30 }}
-            className="rounded-[32px] overflow-hidden"
-            style={{
-              flexShrink: 0,
-              zIndex,
-              position: 'relative',
-            }}
+            className="rounded-[32px] overflow-hidden bg-white shadow-md cursor-pointer relative"
           >
             <ProductCard {...product} />
-          </motion.div>
-        )
-      })}
-    </div>
-  </section>
-)
+          </div>
+        ))}
+      </div>
+    </section>
+  )
 
 }

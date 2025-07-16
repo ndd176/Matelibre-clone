@@ -89,10 +89,12 @@ export default function ProductCardList() {
 
     const totalWidth = container.scrollWidth
     const viewportWidth = window.innerWidth
-    const scrollDistance = totalWidth - viewportWidth
+    const scrollDistance = totalWidth - viewportWidth + 700
+
+    let st: ScrollTrigger | undefined;
 
     if (scrollDistance > 0) {
-      gsap.to(container, {
+      const anim = gsap.to(container, {
         x: () => `-${scrollDistance}`,
         ease: 'none',
         scrollTrigger: {
@@ -101,11 +103,26 @@ export default function ProductCardList() {
           end: () => `+=${totalWidth}`,
           scrub: true,
           pin: true,
+          onEnter: () => {
+            // Reset position khi trigger được kích hoạt
+            gsap.set(container, { x: 0 });
+          }
         },
       })
+
+      st = anim.scrollTrigger;
+    }
+
+    // Cleanup function
+    return () => {
+      if (st) {
+        st.kill(); // Xóa ScrollTrigger instance
+      }
+      // Reset position
+      gsap.set(container, { x: 0 });
+      ScrollTrigger.refresh();
     }
   }, [loading, products])
-
   return (
     <>
       {loading ? (
@@ -130,8 +147,13 @@ export default function ProductCardList() {
             <div className="relative h-1/2 w-full flex items-center justify-center mt-16 md:mt-28">
               <div
                 ref={scrollRef}
-                className="absolute left-0 top-1/2 -translate-y-1/2 flex gap-10 md:gap-36 px-[10vw] w-max"
+  className="absolute left-[700px] top-1/2 -translate-y-1/2 flex gap-10 md:gap-36 w-max pr-[10vw]"
               >
+<div className="flex flex-col text-[100px] font-bold leading-tight">
+  {'Join our team'.split(' ').map((char, i) => (
+    <span key={i}>{char === ' ' ? '\u00A0' : char}</span> // \u00A0 = space giữ nguyên dòng
+  ))}
+</div>
                 {products.map((item, i) => (
                   <div key={i} className="shrink-0 w-[80vw] sm:w-[400px] transition-transform hover:scale-[1.02] duration-300">
                     <ProductCard {...item} />
