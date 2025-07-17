@@ -1,75 +1,94 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRouter } from 'next/navigation'
-import AnimatedEnvelope from '../ui/AnimatedEnvelope';
+ import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Footer() {
   const [exploreOpen, setExploreOpen] = useState(false);
 
   return (
-    <footer className="max-w-screen-2xl mx-auto px-4 bg-white pb-5 pl-6 pr-6 md:pl-12 text-black">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 text-xl font-studio-pro">
-        {/* Column 1 */}
-        <div className="space-y-4 text-3xl sm:text-4xl md:text-5xl font-studio-pro-bold leading-tight">
-          <div>about us</div>
-          <div>
-            <button
-              onClick={() => setExploreOpen(!exploreOpen)}
-              className="flex items-center gap-2 text-gray-700 hover:text-black transition"
-            >
-              <span className={`${exploreOpen ? 'text-black' : 'text-gray-500'}`}>
-                careers
-              </span>
-              <span
-                className="text-lg transition-transform"
-                style={{ transform: `rotate(${exploreOpen ? 180 : 0}deg)` }}
-              >
-                ▾
-              </span>
-            </button>
+<footer className="max-w-screen-2xl mx-auto px-4 bg-white py-20 text-black">
+{/* Top Text */}
+<motion.div
+  initial={{ opacity: 0, y: -40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  viewport={{ once: true }}
+  className="text-center text-[32px] md:text-[48px] font-semibold mb-10"
+>
+  COME TO JOIN
+</motion.div>
 
-            {exploreOpen && (
-              <ul className="mt-4 space-y-1 text-base font-studio-pro-bold text-black animate-fade-in">
-                <li><Link href="#">yerba mate</Link></li>
-                <li><Link href="#">our story</Link></li>
-                <li><Link href="#">fair trade</Link></li>
-                <li><Link href="#">faq</Link></li>
-              </ul>
-            )}
-          </div>
-          <div>community</div>
-        </div>
+{/* Image + Map */}
+<div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+    {/* Left: Small Image (1/3) */}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.6, delay: 0.2 }}
+      viewport={{ once: true }}
+      className="w-full max-w-xs mx-auto px-4 col-span-1 flex justify-center"
+    >
+      <img
+        src="/images/Will-Smith-meme-4.png"
+        alt="Join Image"
+        className="w-[220px] rounded-2xl object-cover"
+      />
+    </motion.div>
 
-        {/* Column 2 */}
-        <div className="space-y-4 ml-2 md:ml-8">
-          <ul className="space-y-1 font-studio-pro-bold text-base md:text-lg">
-            <li><Link href="#">wholesale</Link></li>
-            <li><Link href="#">faq</Link></li>
-            <li><Link href="#">contact</Link></li>
-          </ul>
-        </div>
+    {/* Right: Large Image with Map overlay (2/3) */}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.98 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8, delay: 0.3 }}
+      viewport={{ once: true }}
+      className="relative col-span-2 flex justify-center items-center w-full h-[350px]"
+    >
+      {/* Large background image */}
+      <img
+        src="/images/tree-background-1.jpg"
+        alt="Large Visual"
+        className="w-full h-full object-cover rounded-2xl"
+      />
 
-        {/* Column 3 */}
-        <div className="space-y-4 ml-2 md:ml-8">
-          <ul className="space-y-1 font-studio-pro-bold text-base md:text-lg">
-            <li><Link href="#">privacy policy</Link></li>
-            <li><Link href="#">terms & conditions</Link></li>
-            <li><Link href="#">cookie preferences</Link></li>
-          </ul>
-        </div>
-      </div>
-      {/* Ethanecom full-width section */}
- 
+      {/* Map overlay */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.8 }}
+        viewport={{ once: true }}
+        className="absolute bottom-4 left-4 w-[150px] h-[150px] rounded-xl overflow-hidden border border-black shadow-lg bg-white"
+      >
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.217393698736!2d107.1718264!3d11.0282733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174f1b31482ccdd%3A0xd88f760c662ca310!2sEthan%20Ecom!5e0!3m2!1sen!2s!4v1689580000000!5m2!1sen!2s"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+      </motion.div>
+    </motion.div>
+</div>
 
-      {/* DESKTOP view */}
-      <section className="w-full min-h-[45vh] select-none   items-end hidden md:flex">
+{/* Bottom Text */}
+<motion.div
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.5 }}
+  viewport={{ once: true }}
+  className="text-center text-[28px] md:text-[36px] font-medium mt-12 mb-8"
+>
+  WITH
+</motion.div>
+
+      {/* Animated Logo */}
+      <section className="w-full select-none items-end hidden md:flex">
         <div className="ml-[-35px]">
           <AnimatedWord word="ethanecom" />
         </div>
-      </section> 
+      </section>
     </footer>
   );
 }

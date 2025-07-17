@@ -190,14 +190,13 @@ const handleToggleMenu = () => {
         </motion.div>
 
         <div className="grid grid-cols-2 gap-2 mt-10 text-sm text-black font-studio-pro">
-          <a href="#">about us</a>
-          <a href="#">login</a>
-          <a href="#">retailers</a>
-          <a href="#">usd $ ▾</a>
-          <a href="#">wholesale</a>
-          <a href="#">français</a>
-          <a href="#">faq</a>
-          <a href="#">contact</a>
+           <a href="/careers/32">Designer</a>
+          <a href="/careers/49">Fulfillment</a>
+          <a href="/careers/52">EMB Designer</a>
+          <a href="/careers/25">Media</a>
+          <a href="/careers/55">Sales Support</a>
+          <a href="/careers/54">Sales Leader</a>
+          <a href="/careers/51">EMB Operator</a>
         </div>
       </motion.div>
 

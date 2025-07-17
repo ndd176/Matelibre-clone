@@ -9,8 +9,7 @@ import MarqueeBackground from '../ui/MarqueeBackground'
 // Import từ lib structure
 import { Job } from '../../types/api/strapi'
 import { strapiApi } from '../../lib/api/strapi'
-import { transformJobToProductCard } from '../../lib/utils/jobs'
-import { getImageUrl } from '../../lib/utils/image'
+ import { getImageUrl } from '../../lib/utils/image'
 
 gsap.registerPlugin(ScrollTrigger)
 

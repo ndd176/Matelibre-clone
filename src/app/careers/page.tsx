@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { CareersNewPosition } from '../../types/api/strapi'
 import { strapiApi } from '../../lib/api/strapi'
 import { transformJobToCareersNewPosition } from '../../lib/utils/jobs'
+import CareersTeamSection from './careers-alt'
 
  
  
@@ -142,61 +143,64 @@ async function loadJobs() {
  
 
   return (
-     <div className="p-10 flex flex-col   gap-10">
-<div className="flex items-end gap-4">
-  <motion.h1
-    initial={{
-        textShadow: '0px 0px 0px rgba(0,0,0,0)',
-    }}
-    animate={{
-       textShadow: '8px 8px 0px rgba(0,0,0,0.3)',
-    }}
-    transition={{
-      type: 'spring',
-      stiffness: 400,
-      damping: 15,
-      bounce: 0.6,
-       textShadow: { delay: 2.8, duration: 0.3 },
-    }}
-    className="text-[120px] leading-[1] font-extrabold tracking-tight text-black"
-  >
-    WE&apos;RE
-  </motion.h1>
+//      <div className="p-10 flex flex-col   gap-10">
+// <div className="flex items-end gap-4">
+//   <motion.h1
+//     initial={{
+//         textShadow: '0px 0px 0px rgba(0,0,0,0)',
+//     }}
+//     animate={{
+//        textShadow: '8px 8px 0px rgba(0,0,0,0.3)',
+//     }}
+//     transition={{
+//       type: 'spring',
+//       stiffness: 400,
+//       damping: 15,
+//       bounce: 0.6,
+//        textShadow: { delay: 2.8, duration: 0.3 },
+//     }}
+//     className="text-[120px] leading-[1] font-extrabold tracking-tight text-black"
+//   >
+//     WE&apos;RE
+//   </motion.h1>
 
-  <motion.h2
-    initial={{
-      opacity: 0,
-      y: -400,
-      textShadow: '0px 0px 0px rgba(0,0,0,0)',
-    }}
-    animate={{
-      opacity: 1,
-      y: 0,
-       textShadow: '8px 8px 0px rgba(0,0,0,0.3)',
-    }}
-    transition={{
-      type: 'spring',
-      stiffness: 400,
-      damping: 15,
-       delay: 1.8,
-      textShadow: { delay: 2.8, duration: 0.3 },
-    }}
-    className="text-[120px] leading-[1] font-extrabold tracking-tight text-[#1f690c]"
-  >
-    HIRING
-  </motion.h2>
-</div>
+//   <motion.h2
+//     initial={{
+//       opacity: 0,
+//       y: -400,
+//       textShadow: '0px 0px 0px rgba(0,0,0,0)',
+//     }}
+//     animate={{
+//       opacity: 1,
+//       y: 0,
+//        textShadow: '8px 8px 0px rgba(0,0,0,0.3)',
+//     }}
+//     transition={{
+//       type: 'spring',
+//       stiffness: 400,
+//       damping: 15,
+//        delay: 1.8,
+//       textShadow: { delay: 2.8, duration: 0.3 },
+//     }}
+//     className="text-[120px] leading-[1] font-extrabold tracking-tight text-[#1f690c]"
+//   >
+//     HIRING
+//   </motion.h2>
 
-    <main className="p-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20">
+// </div>
+
+//     <main className="p-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20">
         
-      {jobs.map((job, i) => {
-        const row = Math.floor(i / 3)
-        const col = i % 3
-const zIndex = 1000 + row * 1000 - col
+//       {jobs.map((job, i) => {
+//         const row = Math.floor(i / 3)
+//         const col = i % 3
+// const zIndex = 1000 + row * 1000 - col
 
-        return <ProductCard key={job.id} job={job} index={i} zIndex={zIndex} />
-      })}
-    </main>
-    </div>
+//         return <ProductCard key={job.id} job={job} index={i} zIndex={zIndex} />
+//       })}
+//     </main>
+//     </div>
+         <CareersTeamSection/>
+
   )
 }

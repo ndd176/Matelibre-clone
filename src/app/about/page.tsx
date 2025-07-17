@@ -38,7 +38,7 @@ const teamMembers = [
     achievement: "Built company from startup to 50M+ revenue"
   },
   {
-    name: "Creative Team",
+    name: "Media Team",
     role: "Design Director",
     image: "/images/duydinh-bg-2.png",
     bio: "Passionate designers pushing creative boundaries in traditional embroidery",
@@ -49,7 +49,7 @@ const teamMembers = [
     achievement: "500+ award-winning designs created"
   },
   {
-    name: "Operations Team",
+    name: "Embroidery Team",
     role: "Operations Director",
     image: "/images/position.jpg",
     bio: "Quality-focused professionals ensuring excellence at every step",
@@ -60,7 +60,7 @@ const teamMembers = [
     achievement: "99.8% quality rating maintained"
   },
   {
-    name: "Technology Team",
+    name: "IT Team",
     role: "Digital Innovation Lead",
     image: "/images/work.png",
     bio: "Building the future of fashion technology with AI and automation",
@@ -82,7 +82,7 @@ const teamMembers = [
     achievement: "10M+ social media reach"
   },
   {
-    name: "Sustainability Team",
+    name: "Designer Team",
     role: "Environmental Impact",
     image: "/images/office-01.jpg",
     bio: "Environmental champions ensuring every decision is eco-conscious",
@@ -97,156 +97,165 @@ const teamMembers = [
 // Clean values for minimalist presentation
 const coreValues = [
   {
-    icon: "🌱",
-    title: "Sustainable Innovation",
-    description: "We pioneer eco-friendly solutions that don't compromise on quality or beauty.",
-    details: "Our R&D team develops sustainable techniques that set new industry standards.",
-    metrics: ["15+ Patents", "Monthly Innovations", "Industry Recognition"],
-    impact: "Leading sustainable fashion transformation"
+    icon: "🌟",
+    title: "Creative Innovation",
+    description: "We spark trends with bold designs and cutting-edge e-commerce solutions.",
+    details: "Our team crafts unique products for TikTok, Etsy, Shopify, and WordPress, pushing creative boundaries.",
+    metrics: ["100+ Designs Launched", "Weekly Content Drops", "Trendsetter Status"],
+    impact: "Leading the e-commerce design revolution"
   },
   {
-    icon: "✨",
-    title: "Exceptional Quality",
-    description: "Every product reflects our commitment to craftsmanship and attention to detail.",
-    details: "47-point quality process ensures excellence from concept to delivery.",
-    metrics: ["99.8% Success Rate", "Zero Defects", "Quality Awards"],
-    impact: "Industry-leading quality standards"
+    icon: "🧵",
+    title: "Crafted Excellence",
+    description: "Every stitch and product reflects our dedication to quality and personalization.",
+    details: "Our custom embroidery and POD processes ensure flawless, tailored results.",
+    metrics: ["99.9% Quality Rating", "Zero Defects", "Craftsmanship Awards"],
+    impact: "Setting the standard for personalized products"
   },
   {
-    icon: "🌍",
-    title: "Planet-First Approach",
-    description: "Environmental responsibility is woven into every aspect of our business.",
-    details: "100% organic materials, carbon-neutral operations, and circular processes.",
-    metrics: ["100% Organic", "Carbon Neutral", "Zero Waste"],
-    impact: "50% carbon footprint reduction"
+    icon: "🌿",
+    title: "Sustainable Commerce",
+    description: "Eco-conscious practices are at the heart of our dropshipping and production.",
+    details: "We partner with ethical suppliers and use sustainable materials for a greener future.",
+    metrics: ["80% Eco-Friendly Materials", "Low-Waste Processes", "Green Certifications"],
+    impact: "Reducing e-commerce’s environmental footprint"
   },
   {
     icon: "⚡",
-    title: "Agile Excellence",
-    description: "Quick adaptation and rapid innovation keep us ahead of market trends.",
-    details: "From concept to market in 30 days while maintaining quality standards.",
-    metrics: ["30-Day Turnaround", "4x Faster", "Rapid Innovation"],
-    impact: "First-to-market advantage"
+    title: "Agile Execution",
+    description: "We move fast, from viral TikTok content to seamless order fulfillment.",
+    details: "Our streamlined dropshipping and POD systems deliver in record time.",
+    metrics: ["48-Hour Fulfillment", "3x Faster Market Entry", "Scalable Systems"],
+    impact: "Staying ahead in the fast-paced e-commerce world"
   },
   {
     icon: "🤝",
-    title: "Customer Focus",
-    description: "Deep understanding of customer needs drives everything we create.",
-    details: "98% satisfaction rate through direct feedback and continuous improvement.",
-    metrics: ["98% Satisfaction", "Direct Feedback", "24/7 Support"],
-    impact: "95% customer retention rate"
+    title: "Customer Obsession",
+    description: "Your vision drives us—custom orders and satisfaction are our priority.",
+    details: "From personalized embroidery to 24/7 support, we put customers first.",
+    metrics: ["97% Satisfaction Rate", "Instant Feedback Loop", "24/7 Chat Support"],
+    impact: "90% repeat customer rate"
   },
   {
-    icon: " ",
-    title: "Passionate Purpose",
-    description: "Our team's dedication to the mission creates extraordinary results.",
-    details: "Mission-driven culture where every team member contributes to our vision.",
-    metrics: ["High Engagement", "Low Turnover", "Mission-Driven"],
-    impact: "Award-winning workplace culture"
+    icon: "🔥",
+    title: "Passionate Drive",
+    description: "Our team’s energy and creativity fuel Ethan Ecom’s global impact.",
+    details: "A vibrant culture where every member is dedicated to innovation and growth.",
+    metrics: ["High Team Engagement", "Low Turnover", "Creative Culture"],
+    impact: "Recognized as a top e-commerce workplace"
   }
-]
+];
 
-// Clean milestones for minimalist presentation
+
 const milestones = [
   {
+    year: "2019",
+    title: "The Beginning",
+    description: "Ethan Ecom was founded with a small, passionate team diving into e-commerce on Amazon.",
+    impact: "Launched first dropshipping venture",
+    details: "Three close-knit team members started with a vision to disrupt e-commerce with creativity.",
+    achievement: "Foundation established",
+    metrics: "3 Team Members → First 50 Orders"
+  },
+  {
     year: "2020",
-    title: "Foundation",
-    description: "Launched with a vision to transform the fashion industry through sustainable practices",
-    impact: "First sustainable embroidery design launched",
-    details: "Started with a passion for combining traditional craftsmanship with modern sustainability.",
-    achievement: "Business model validation",
-    metrics: "1 Product → 100 Customers"
+    title: "Breakout Success",
+    description: "Achieved major traction with viral products on Amazon, fueling rapid growth.",
+    impact: "500% sales increase in one year",
+    details: "Our unique designs and strategic marketing led to a surge in customers and revenue.",
+    achievement: "Market validation",
+    metrics: "10k+ Orders → 100k+ Revenue"
   },
   {
     year: "2021",
-    title: "Recognition",
-    description: "Breakthrough design reaches global audience and gains international recognition",
-    impact: "500% revenue growth in 3 months",
-    details: "Vietnamese cultural motif design gained international acclaim across 50+ countries.",
-    achievement: "Global brand recognition",
-    metrics: "1M+ Views → 25 Countries"
+    title: "Overcoming Challenges",
+    description: "Faced tough times but stayed resilient, pivoting to stabilize the business.",
+    impact: "Avoided collapse through quick adaptation",
+    details: "Refined operations and focused on core strengths to navigate near-bankruptcy.",
+    achievement: "Business recovery",
+    metrics: "Streamlined Operations → 80% Cost Reduction"
   },
   {
     year: "2022",
-    title: "Expansion",
-    description: "Opened production facility and assembled expert team",
-    impact: "Team grew from 2 to 15 specialists",
-    details: "Established professional studio with automated processes and skilled artisan network.",
-    achievement: "Operational excellence",
-    metrics: "15 Team Members → 10x Capacity"
+    title: "Comeback & Growth",
+    description: "Seized new opportunities, expanding our reach with TikTok and Etsy.",
+    impact: "Doubled customer base with viral content",
+    details: "Leveraged TikTok’s explosive growth to showcase creative designs and drive sales.",
+    achievement: "Multi-platform presence",
+    metrics: "1M+ TikTok Views → 20k+ Customers"
   },
   {
     year: "2023",
-    title: "Global Reach",
-    description: "International expansion with strategic partnerships worldwide",
-    impact: "Serving 25+ countries globally",
-    details: "Built international supply chain and multilingual customer support.",
-    achievement: "International market presence",
-    metrics: "25 Countries → 50k+ Customers"
+    title: "Platform Expansion",
+    description: "Broadened our horizons by launching on multiple e-commerce platforms.",
+    impact: "Reached 10+ countries with diverse products",
+    details: "Introduced custom embroidery and scaled operations to meet growing demand.",
+    achievement: "Global market entry",
+    metrics: "10+ Countries → 50k+ Orders"
   },
   {
     year: "2024",
-    title: "Innovation",
-    description: "AI-powered design platform revolutionizes creative workflow",
-    impact: "300% design efficiency increase",
-    details: "Proprietary AI tools enhance designers while preserving human creativity.",
-    achievement: "Technology leadership",
-    metrics: "AI Integration → 3x Productivity"
+    title: "Scaling Up",
+    description: "Built a new office to welcome a growing team and enhance operations.",
+    impact: "Team expanded to 20+ specialists",
+    details: "New headquarters supported our push into Shopify and WordPress platforms.",
+    achievement: "Operational growth",
+    metrics: "20+ Team Members → 2x Capacity"
   },
   {
     year: "2025",
-    title: "Leadership",
-    description: "Recognized as industry leader in sustainable fashion innovation",
-    impact: "Industry benchmark status achieved",
-    details: "Our methodologies adopted by industry. Setting new standards globally.",
-    achievement: "Thought leadership",
-    metrics: "Industry Standard → Global Influence"
+    title: "Explosive Growth",
+    description: "Boomed with a packed office and opened a second location for embroidery.",
+    impact: "Established leadership in custom e-commerce",
+    details: "Expanded embroidery operations and solidified our brand as a trendsetter.",
+    achievement: "Industry leadership",
+    metrics: "2 Offices → 100k+ Custom Orders"
   }
-]
+];
 
 // Refined process steps for minimalist style
 const designProcess = [
   {
     step: "01",
-    title: "Discovery",
-    description: "Deep research into market insights, customer needs, and cultural influences",
-    details: "We analyze market trends, conduct customer interviews, and study cultural heritage.",
-    duration: "2 Days",
-    tools: "Market Research, Customer Insights, Cultural Analysis"
+    title: "Trend Spotting",
+    description: "Quickly identify hot trends and customer demands across platforms.",
+    details: "We scan TikTok, Etsy, and market data to pinpoint viral trends and customer preferences.",
+    duration: "1-2 Hours",
+    tools: "Social Media Analytics, Trend Reports, Customer Insights"
   },
   {
-    step: "02", 
-    title: "Ideation",
-    description: "Creative brainstorming sessions where the best ideas come to life",
-    details: "Multiple concepts generated, refined, and tested through collaborative design thinking.",
-    duration: "1 Week",
-    tools: "Design Thinking, Collaborative Workshops, Concept Development"
+    step: "02",
+    title: "Idea Generation",
+    description: "Rapid brainstorming to create standout designs for POD and embroidery.",
+    details: "Our team collaborates to sketch bold concepts tailored for viral appeal and customization.",
+    duration: "2 Hours",
+    tools: "Digital Sketching, Team Collaboration, Mood Boards"
   },
   {
     step: "03",
-    title: "Creation",
-    description: "Precision craftsmanship meets innovative technology",
-    details: "Combining traditional hand embroidery with modern design tools and quality systems.",
-    duration: "2-3 Weeks",
-    tools: "Hand Craftsmanship, Design Software, Quality Assurance"
+    title: "Design & Prep",
+    description: "Fast creation of digital designs and embroidery patterns for production.",
+    details: "We craft high-quality visuals and custom embroidery files, ready for supplier fulfillment.",
+    duration: "3 Hours",
+    tools: "Design Software, Embroidery Digitizing, Mockup Tools"
   },
   {
     step: "04",
-    title: "Refinement",
-    description: "Thorough testing and refinement until excellence is achieved",
-    details: "Comprehensive quality testing, durability assessment, and customer validation.",
-    duration: "1 Week",
-    tools: "Quality Testing, Customer Feedback, Performance Analysis"
+    title: "Content Creation",
+    description: "Produce engaging TikTok videos to showcase designs and drive sales.",
+    details: "We shoot and edit dynamic content to highlight products and spark customer interest.",
+    duration: "2 Hours",
+    tools: "Video Editing Software, Mobile Filming, Content Platforms"
   },
   {
     step: "05",
-    title: "Launch",
-    description: "Strategic market introduction with continuous improvement",
-    details: "Thoughtful rollout with real-time feedback integration and optimization.",
-    duration: "Ongoing",
-    tools: "Launch Strategy, Analytics, Continuous Improvement"
+    title: "Launch & Fulfill",
+    description: "Go live on platforms and coordinate with suppliers for seamless delivery.",
+    details: "Products hit TikTok, Etsy, and soon Shopify/WordPress, with real-time order tracking.",
+    duration: "1-2 Hours",
+    tools: "E-commerce Platforms, Supplier Dashboards, Analytics"
   }
-]
+];
 
 // Refined achievements for minimalist presentation
 const achievements = [
@@ -426,7 +435,7 @@ export default function AboutUsAltPage() {
             transition={{ duration: 1, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-studio-pro-bold text-black leading-tight mb-8">
-              Matelibre
+              Ethan Ecom
             </h2>
           </motion.div>
           
@@ -437,8 +446,8 @@ export default function AboutUsAltPage() {
             className="max-w-4xl mx-auto"
           >
             <p className="text-xl md:text-2xl lg:text-3xl text-gray-700 leading-relaxed font-studio-pro">
-              We don&apos;t just create fashion.<br/>
-              We craft sustainable futures.<br/>
+              We don't just create e-commerce.<br/>
+              We craft sustainable futures<br/>
               <span className="text-black font-studio-pro-bold">Beautiful. Responsible. Innovative.</span>
             </p>
           </motion.div>
@@ -453,68 +462,67 @@ export default function AboutUsAltPage() {
           </motion.div>
         </motion.div>
 
-        {/* Minimal decorative elements */}
-        <motion.div 
-          className="absolute top-20 left-20 w-2 h-2 bg-green-600 rounded-full"
-          animate={{ opacity: [0.3, 1, 0.3], scale: [1, 1.5, 1] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div 
-          className="absolute bottom-20 right-20 w-2 h-2 bg-green-500 rounded-full"
-          animate={{ opacity: [0.3, 1, 0.3], scale: [1, 1.5, 1] }}
-          transition={{ duration: 4, delay: 2, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div 
-          className="absolute top-1/2 left-10 w-1 h-1 bg-green-700 rounded-full"
-          animate={{ opacity: [0.2, 0.8, 0.2], scale: [1, 2, 1] }}
-          transition={{ duration: 6, delay: 1, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </section>
+           <motion.div 
+            className="absolute top-20 left-20 w-2 h-2 bg-green-600 rounded-full"
+            animate={{ opacity: [0.3, 1, 0.3], scale: [1, 1.5, 1] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div 
+            className="absolute bottom-20 right-20 w-2 h-2 bg-green-500 rounded-full"
+            animate={{ opacity: [0.3, 1, 0.3], scale: [1, 1.5, 1] }}
+            transition={{ duration: 4, delay: 2, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div 
+            className="absolute top-1/2 left-10 w-1 h-1 bg-green-700 rounded-full"
+            animate={{ opacity: [0.2, 0.8, 0.2], scale: [1, 2, 1] }}
+            transition={{ duration: 6, delay: 1, repeat: Infinity, ease: "easeInOut" }}
+          />
+              </section>
 
-      {/* CLEAN STICKY NAVIGATION */}
-      <motion.nav 
-        className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-      >
-        <div className="max-w-7xl mx-auto px-6 py-6">
-          <div className="flex justify-center">
-            <div className="flex gap-8 flex-wrap">
-              {[
-                { id: 'story', label: 'Our Story' },
-                { id: 'values', label: 'Values' },
-                { id: 'team', label: 'Team' },
-                { id: 'process', label: 'Process' },
-                { id: 'timeline', label: 'Journey' },
-                { id: 'achievements', label: 'Achievements' },
-                { id: 'partnerships', label: 'Partners' }
-              ].map((section) => (
-                <motion.button
-                  key={section.id}
-                  onClick={() => scrollToSection(section.id)}
-                  className={`px-6 py-3 text-sm font-studio-pro-bold transition-all duration-300 relative ${
-                    activeSection === section.id
-                      ? 'text-black'
-                      : 'text-gray-600 hover:text-black'
-                  }`}
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  {section.label}
-                  {activeSection === section.id && (
-                    <motion.div
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-black"
-                      layoutId="activeSection"
-                      transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    />
-                  )}
-                </motion.button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </motion.nav>
+ 
+              <motion.nav 
+                className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 hidden md:block"
+                initial={{ y: -100 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <div className="max-w-7xl mx-auto px-2 md:px-6 py-3 md:py-6">
+                  <div className="flex justify-center">
+                    <div className="flex gap-2 md:gap-8 flex-wrap justify-center">
+                      {[
+                        { id: 'story', label: 'Our Story' },
+                        { id: 'values', label: 'Values' },
+                        { id: 'team', label: 'Team' },
+                        { id: 'process', label: 'Process' },
+                        { id: 'timeline', label: 'Journey' },
+                        { id: 'achievements', label: 'Achievements' },
+                        { id: 'partnerships', label: 'Partners' }
+                      ].map((section) => (
+                        <motion.button
+                          key={section.id}
+                          onClick={() => scrollToSection(section.id)}
+                          className={`px-3 md:px-6 py-2 md:py-3 text-xs md:text-sm font-studio-pro-bold transition-all duration-300 relative ${
+                            activeSection === section.id
+                              ? 'text-black'
+                              : 'text-gray-600 hover:text-black'
+                          }`}
+                          whileHover={{ y: -2 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          {section.label}
+                          {activeSection === section.id && (
+                            <motion.div
+                              className="absolute bottom-0 left-0 right-0 h-0.5 bg-black"
+                              layoutId="activeSection"
+                              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                            />
+                          )}
+                        </motion.button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.nav>
 
       {/* CLEAN STORY SECTION */}
       <section id="story" className="py-24 bg-white relative overflow-hidden">
@@ -582,8 +590,7 @@ export default function AboutUsAltPage() {
                   variants={elegantFadeIn}
                 >
                   <p className="text-xl text-gray-800 leading-relaxed font-studio-pro">
-                    Born from a passion for sustainable fashion, we launched a movement that combines 
-                    traditional craftsmanship with modern innovation.
+Fueled by a passion for creative commerce, Ethan Ecom was born to blend bold designs with sustainable practices. We fuse the art of custom embroidery with the fast-paced world of e-commerce innovation.
                   </p>
                 </motion.div>
                 
@@ -592,8 +599,7 @@ export default function AboutUsAltPage() {
                   variants={elegantFadeIn}
                 >
                   <p className="text-lg leading-relaxed font-studio-pro">
-                    From a small studio to global impact. From zero budget to industry leadership.
-                    From dream to reality in just 5 years.
+From a tiny workspace to a global presence. From a spark of an idea to leading the dropshipping and POD scene. In just five years, we’ve turned our vision into a thriving reality.
                   </p>
                 </motion.div>
               </div>
@@ -609,8 +615,8 @@ export default function AboutUsAltPage() {
                   whileHover={{ scale: 1.05, y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <h3 className="text-4xl font-studio-pro-bold mb-2">50M+</h3>
-                  <p className="text-lg font-studio-pro">Revenue Generated</p>
+                  <h3 className="text-4xl font-studio-pro-bold mb-2">40+</h3>
+                  <p className="text-lg font-studio-pro">Employees</p>
                 </motion.div>
                 
                 <motion.div 
@@ -618,8 +624,8 @@ export default function AboutUsAltPage() {
                   whileHover={{ scale: 1.05, y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <h3 className="text-4xl font-studio-pro-bold mb-2">25+</h3>
-                  <p className="text-lg font-studio-pro">Countries Served</p>
+                  <h3 className="text-4xl font-studio-pro-bold mb-2">5+</h3>
+                  <p className="text-lg font-studio-pro">Years Experience</p>
                 </motion.div>
                 
                 <motion.div 
@@ -627,8 +633,8 @@ export default function AboutUsAltPage() {
                   whileHover={{ scale: 1.05, y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <h3 className="text-4xl font-studio-pro-bold mb-2">500+</h3>
-                  <p className="text-lg font-studio-pro">Artisans Empowered</p>
+                  <h3 className="text-4xl font-studio-pro-bold mb-2">500M+</h3>
+                  <p className="text-lg font-studio-pro">Served Customers</p>
                 </motion.div>
                 
                 <motion.div 
@@ -1144,7 +1150,7 @@ export default function AboutUsAltPage() {
           </svg>
         </motion.div>
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+        {/* <div className="max-w-7xl mx-auto px-6 relative z-10">
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 60 }}
@@ -1190,8 +1196,7 @@ export default function AboutUsAltPage() {
             ))}
           </div>
           
-          {/* Clean stats */}
-          <motion.div 
+           <motion.div 
             className="grid grid-cols-2 md:grid-cols-4 gap-6"
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1215,7 +1220,7 @@ export default function AboutUsAltPage() {
               </motion.div>
             ))}
           </motion.div>
-        </div>
+        </div> */}
       </section>
 
       {/* CLEAN PARTNERSHIPS SECTION */}

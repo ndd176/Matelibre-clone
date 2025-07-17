@@ -119,50 +119,27 @@ export default function ProductDetailWithAccordion({
           console.log('Job Image:', jobDetail.job_image)
           setJobData(jobDetail)
           
-          // Xử lý description content
-          let descriptionContent = fallbackAccordionData[0].content
-          if (jobDetail.description) {
-            if (typeof jobDetail.description === 'string') {
-              descriptionContent = [jobDetail.description]
-            } else if (Array.isArray(jobDetail.description)) {
-              descriptionContent = jobDetail.description.map((item: any) => {
-                if (typeof item === 'string') return item
-                if (item.children && Array.isArray(item.children)) {
-                  return item.children.map((child: any) => child.text || '').join('')
-                }
-                return item.text || 'Task description'
-              }).filter((item: string) => item.trim() !== '')
-            }
-          }
-          
-          // Transform data thành format accordion với nhiều dữ liệu thật hơn
+          // Xử lý 3 trường question_1, question_2, question_3
           const apiAccordionData = [
             {
-              title: "What you'll be doing",
-              content: descriptionContent.length > 0 ? descriptionContent : fallbackAccordionData[0].content
+              title: "Question 1",
+              content: jobDetail.question_1
+                ? jobDetail.question_1.split('\n').map((item: string) => item.trim()).filter((item: string) => item.length > 0)
+                : ["No data"],
             },
             {
-              title: "What we're looking for",
-              content: [
-                'Strong communication and collaboration skills',
-                'Ability to work in a fast-paced environment',
-                'Attention to detail and quality',
-                'Experience with relevant tools and technologies',
-                'Passion for creativity and innovation'
-              ]
+              title: "Question 2",
+              content: jobDetail.question_2
+                ? jobDetail.question_2.split('\n').map((item: string) => item.trim()).filter((item: string) => item.length > 0)
+                : ["No data"],
             },
             {
-              title: "Perks & vibes",
-              content: [
-                'Competitive salary range: ' + (jobDetail.salary_range || 'Negotiable'),
-                'Flexible working hours and remote options',
-                'Professional development opportunities', 
-                'Collaborative and creative team environment',
-                'Employee benefits and wellness programs'
-              ]
+              title: "Question 3",
+              content: jobDetail.question_3
+                ? jobDetail.question_3.split('\n').map((item: string) => item.trim()).filter((item: string) => item.length > 0)
+                : ["No data"],
             },
           ]
-          
           setAccordionData(apiAccordionData)
         } else {
           setAccordionData(fallbackAccordionData)
@@ -187,155 +164,158 @@ export default function ProductDetailWithAccordion({
   }, [])
 
   return (
-    <section className="bg-[#e6f3e6] px-4 md:px-20 py-16 md:py-24 flex flex-col md:flex-row gap-12 md:gap-16 items-start">
-      {loading ? (
-        <div className="w-full text-center py-20">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
-          <p className="text-green-800 font-medium">Loading job details...</p>
-        </div>
-      ) : (
-        <>
-          {/* LEFT: Content */}
-          <div className="w-full md:w-1/2 font-bold max-w-2xl mx-auto">
-        <div className="flex flex-col gap-0">
-          {jobData?.job_title ? 
-            jobData.job_title.toLowerCase().split(' ').map((word: string, i: number) => (
-              <motion.h1
-                key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.15, duration: 0.5 }}
-                viewport={{ once: true }}
-                className="font-bold text-[48px] sm:text-[64px] md:text-[96px] lg:text-[110px] leading-[1] text-green-800"
-              >
-                {word}
-              </motion.h1>
-            )) :
-            ['creative', 'design', 'role'].map((line, i) => (
-              <motion.h1
-                key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.15, duration: 0.5 }}
-                viewport={{ once: true }}
-                className="font-bold text-[48px] sm:text-[64px] md:text-[96px] lg:text-[110px] leading-[1] text-green-800"
-              >
-                {line}
-              </motion.h1>
-            ))
-          }
-        </div>
-
-        <motion.div
-          className="flex justify-between text-sm sm:text-base pt-8 pb-10 gap-4 flex-wrap"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          {jobData?.text_icon && jobData.text_icon.length > 0 ? 
-            jobData.text_icon.map((item: any, index: number) => (
-              <Feature key={index} icon={item.icon} label={item.text} />
-            )) :
+<section className="bg-[#e6f3e6] px-4 md:px-20 py-16 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+          {loading ? (
+            <div className="w-full text-center py-20">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
+              <p className="text-green-800 font-medium">Loading job details...</p>
+            </div>
+          ) : (
             <>
-              <Feature icon="🎨" label="Creative freedom" />
-              <Feature icon="🧵" label="Embroidery design" />
-              <Feature icon="🚀" label="Fast-paced team" />
-            </>
-          }
-        </motion.div>
+              {/* LEFT: Content */}
+              <div className="w-full md:w-1/2 font-bold max-w-2xl mx-auto min-h-[2000px]">
+            <div className="flex flex-col gap-0">
+              {jobData?.job_title ? 
+                jobData.job_title.toLowerCase().split(' ').map((word: string, i: number) => (
+                  <motion.h1
+                    key={i}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.15, duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="font-bold text-[48px] sm:text-[64px] md:text-[96px] lg:text-[110px] leading-[1] text-green-800"
+                  >
+                    {word}
+                  </motion.h1>
+                )) :
+                ['creative', 'design', 'role'].map((line, i) => (
+                  <motion.h1
+                    key={i}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.15, duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="font-bold text-[48px] sm:text-[64px] md:text-[96px] lg:text-[110px] leading-[1] text-green-800"
+                  >
+                    {line}
+                  </motion.h1>
+                ))
+              }
+            </div>
 
-        <motion.div
-          className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 pb-8"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          {/* Apply Now Button */}
-          <button
-            onClick={() => onApplyClick?.(jobData?.job_title || 'Unknown Position')}
-            className="group relative bg-[#2c5530] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:bg-[#1e3b22] hover:scale-105 hover:shadow-lg active:scale-95"
-          >
-            <span className="flex items-center gap-3">
-              🌱 Apply Now
-              <motion.div
-                className="inline-block"
-                whileHover={{ x: 5 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                →
-              </motion.div>
-            </span>
-            
-            {/* Hover effect overlay */}
-            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-green-400/20 to-emerald-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </button>
-
-          <div className="text-green-900 text-base leading-snug">
-            <p className="text-lg sm:text-xl font-semibold">
-              {jobData?.salary_range ? `💰 ${jobData.salary_range}` : 'Full-time or freelance'}
-            </p>
-            <p className="opacity-70 text-sm">📍 Based in Vietnam or remote</p>
-            {jobData?.job_title && (
-              <p className="opacity-70 text-sm mt-1">🎯 {jobData.job_title} Position</p>
-            )}
-          </div>
-        </motion.div>
-
-        <div className="space-y-4">
-          {accordionData.map((item, index) => (
             <motion.div
-              key={index}
+              className="flex justify-between text-sm sm:text-base pt-8 pb-10 gap-4 flex-wrap"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.5 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <AccordionItem
-                title={item.title}
-                content={item.content}
-                isOpen={openIndex === index}
-                onClick={() => toggleIndex(index)}
-              />
+              {jobData?.text_icon && jobData.text_icon.length > 0 ? 
+                jobData.text_icon.map((item: any, index: number) => (
+                  <Feature key={index} icon={item.icon} label={item.text} />
+                )) :
+                <>
+                  <Feature icon="🎨" label="Creative freedom" />
+                  <Feature icon="🧵" label="Embroidery design" />
+                  <Feature icon="🚀" label="Fast-paced team" />
+                </>
+              }
             </motion.div>
-          ))}
-        </div>
-      </div>
 
-      {/* RIGHT: Image */}
-      <div className="w-full md:w-1/2 max-w-4xl flex flex-col gap-6 mx-auto">
-        <motion.div
-          initial={{ y: 200, scale: 0.2, borderRadius: '50%', backgroundColor: '#14532d' }}
-          animate={{ y: 0, scale: 1, borderRadius: '32px', backgroundColor: 'transparent' }}
-          transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
-          className="w-full mx-auto overflow-hidden relative"
-        >
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.7 }}
-            className="w-full h-auto"
-          >
-            {/* Sử dụng utility function cho image */}
-            <div className="w-full h-auto">
-              <img
-                src={getImageUrl(jobData?.job_image)}
-                alt={jobData?.job_title || "job position"}
-                className="w-full h-auto object-cover rounded-[32px]"
-                onError={(e) => {
-                  console.error('Image failed to load:', getImageUrl(jobData?.job_image))
-                  e.currentTarget.src = "/images/position.jpg"
-                }}
-                onLoad={() => console.log('Image loaded successfully:', getImageUrl(jobData?.job_image))}
-              />
+            <motion.div
+              className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 pb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              {/* Apply Now Button */}
+              <button
+                onClick={() => onApplyClick?.(jobData?.job_title || 'Unknown Position')}
+                className="group relative bg-[#2c5530] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:bg-[#1e3b22] hover:scale-105 hover:shadow-lg active:scale-95"
+              >
+                <span className="flex items-center gap-3">
+                  🌱 Apply Now
+                  <motion.div
+                    className="inline-block"
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    →
+                  </motion.div>
+                </span>
+                
+                {/* Hover effect overlay */}
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-green-400/20 to-emerald-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </button>
+
+              <div className="text-green-900 text-base leading-snug">
+                <p className="text-lg sm:text-xl font-semibold">
+                  {jobData?.salary_range ? `💰 ${jobData.salary_range}` : 'Full-time or freelance'}
+                </p>
+                <p className="opacity-70 text-sm">📍 Based in Vietnam or remote</p>
+                {jobData?.job_title && (
+                  <p className="opacity-70 text-sm mt-1">🎯 {jobData.job_title} Position</p>
+                )}
+              </div>
+            </motion.div>
+
+            <div className="space-y-4">
+              {accordionData.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  viewport={{ once: true }}
+                >
+                  <AccordionItem
+                    title={item.title}
+                    content={item.content}
+                    isOpen={openIndex === index}
+                    onClick={() => toggleIndex(index)}
+                  />
+                </motion.div>
+              ))}
             </div>
-          </motion.div>
+          </div>
+
+          {/* RIGHT: Image - Sticky */}
+ <div className="w-full max-w-4xl gap-6 mx-auto">
+  <div className="h-[2000px] bg-red-100">Filler content</div>
+
+    <div className="sticky top-24">
+      <motion.div
+        initial={{ y: 200, scale: 0.2, borderRadius: '50%', backgroundColor: '#14532d' }}
+        animate={{ y: 0, scale: 1, borderRadius: '32px', backgroundColor: 'transparent' }}
+        transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+        viewport={{ once: true }}
+        className="w-full mx-auto relative"
+      >
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.7 }}
+          className="w-full h-auto"
+        >
+          <div className="w-full h-auto">
+            <img
+              src={getImageUrl(jobData?.job_image)}
+              alt={jobData?.job_title || "job position"}
+              className="w-full h-auto object-cover rounded-[32px]"
+              onError={(e) => {
+                console.error('Image failed to load:', getImageUrl(jobData?.job_image))
+                e.currentTarget.src = "/images/position.jpg"
+              }}
+              onLoad={() => console.log('Image loaded successfully:', getImageUrl(jobData?.job_image))}
+            />
+          </div>
         </motion.div>
-      </div>
-        </>
-      )}
+      </motion.div>
+    </div>
+  </div>
+            </>
+          )}
     </section>
   )
 }

@@ -144,51 +144,28 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
           console.log('Job Detail Data:', jobDetail)
           console.log('Job Image:', jobDetail.job_image)
           setJobData(jobDetail)
-          
-          // Xử lý description content
-          let descriptionContent = fallbackAccordionData[0].content
-          if (jobDetail.description) {
-            if (typeof jobDetail.description === 'string') {
-              descriptionContent = [jobDetail.description]
-            } else if (Array.isArray(jobDetail.description)) {
-              descriptionContent = jobDetail.description.map((item: { children?: { text?: string }[]; text?: string }) => {
-                if (typeof item === 'string') return item
-                if (item.children && Array.isArray(item.children)) {
-                  return item.children.map((child) => child.text || '').join('')
-                }
-                return item.text || 'Task description'
-              }).filter((item: string) => item.trim() !== '')
-            }
-          }
-          
-          // Transform data thành format accordion với nhiều dữ liệu thật hơn
+
+          // Tạo 3 mục accordion từ 3 trường mới
           const apiAccordionData = [
             {
-              title: "What you'll be doing",
-              content: descriptionContent.length > 0 ? descriptionContent : fallbackAccordionData[0].content
+              title: "Job Description",
+              content: jobDetail.question_1
+                ? jobDetail.question_1.split('\n').map((item: string) => item.trim()).filter((item: string) => item.length > 0)
+                : ["No data"],
             },
             {
-              title: "What we're looking for",
-              content: [
-                'Strong communication and collaboration skills',
-                'Ability to work in a fast-paced environment',
-                'Attention to detail and quality',
-                'Experience with relevant tools and technologies',
-                'Passion for creativity and innovation'
-              ]
+              title: "Requirements",
+              content: jobDetail.question_2
+                ? jobDetail.question_2.split('\n').map((item: string) => item.trim()).filter((item: string) => item.length > 0)
+                : ["No data"],
             },
             {
-              title: "Perks & vibes",
-              content: [
-                'Competitive salary range: ' + (jobDetail.salary_range || 'Negotiable'),
-                'Flexible working hours and remote options',
-                'Professional development opportunities', 
-                'Collaborative and creative team environment',
-                'Employee benefits and wellness programs'
-              ]
+              title: "Benefits",
+              content: jobDetail.question_3
+                ? jobDetail.question_3.split('\n').map((item: string) => item.trim()).filter((item: string) => item.length > 0)
+                : ["No data"],
             },
           ]
-          
           setAccordionData(apiAccordionData)
         } else {
           setAccordionData(fallbackAccordionData)
@@ -298,7 +275,6 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
             <p className="text-lg sm:text-xl font-semibold">
               {jobData?.salary_range ? `💰 ${jobData.salary_range}` : 'Full-time or freelance'}
             </p>
-            <p className="opacity-70 text-sm">📍 Based in Vietnam or remote</p>
             {jobData?.job_title && (
               <p className="opacity-70 text-sm mt-1">🎯 {jobData.job_title} Position</p>
             )}
