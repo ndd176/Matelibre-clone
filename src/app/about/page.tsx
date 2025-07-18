@@ -348,15 +348,15 @@ export default function AboutUsAltPage() {
       <section id="hero" className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
         {/* Beautiful Monstera Background */}
         <div className="absolute inset-0">
-          <div 
-            className="absolute inset-0 opacity-60"
-            style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1564510714597-3a775f297ef5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
+        <div className="absolute inset-0 opacity-60 z-0">
+          <Image
+            src="/images/sky-bg-01.webp" // ảnh trong thư mục /public/images/
+            alt="Sky Background"
+            fill
+            priority
+            className="object-cover"
           />
+        </div>
           <motion.div 
             className="absolute inset-0 opacity-5"
             animate={{ 
@@ -380,7 +380,7 @@ export default function AboutUsAltPage() {
           }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         >
-          <svg viewBox="0 0 100 100" className="w-full h-full fill-green-600">
+          <svg viewBox="0 0 100 100" className="w-full h-full fill-blue-300">
             <path d="M50 10 C30 20, 20 40, 30 60 C40 80, 60 80, 70 60 C80 40, 70 20, 50 10 Z" />
             <circle cx="50" cy="50" r="3" />
           </svg>
@@ -424,7 +424,7 @@ export default function AboutUsAltPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-studio-pro-bold text-black leading-none tracking-tight mb-8">
+            <h1 className="text-4xl md:text-8xl lg:text-7xl font-studio-pro-bold text-black leading-none tracking-tight mb-8">
               About
             </h1>
           </motion.div>
@@ -432,9 +432,9 @@ export default function AboutUsAltPage() {
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 1, delay: 1.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-studio-pro-bold text-black leading-tight mb-8">
+            <h2 className="text-7xl md:text-6xl lg:text-9xl font-studio-pro-bold text-white leading-tight mb-8">
               Ethan Ecom
             </h2>
           </motion.div>
@@ -531,7 +531,7 @@ export default function AboutUsAltPage() {
           <div 
             className="absolute top-0 right-0 w-1/3 h-full opacity-50"
             style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1582797488257-ae666b239ac8?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
+              backgroundImage: 'url(images/table-01.webp)',
               backgroundSize: 'cover',
               backgroundPosition: 'left center',
               backgroundRepeat: 'no-repeat'
@@ -879,7 +879,7 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
           <div 
             className="absolute top-0 right-0 w-2/5 h-full opacity-60"
             style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1711039131661-b1e336cdda75?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
+              backgroundImage: 'url(images/table-03.webp)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -1002,7 +1002,7 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
         <div 
           className="absolute top-0 left-0 w-full h-full opacity-20"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=1600&q=80)',
+            backgroundImage: 'url(images/table-04.webp)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
@@ -1108,7 +1108,7 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
       {/* CLEAN ACHIEVEMENTS SECTION */}
       <section id="achievements" className="py-24 bg-gray-50 relative overflow-hidden">
         {/* Monstera Background */}
-        <div 
+        {/* <div 
           className="absolute top-0 right-0 w-1/3 h-full opacity-6"
           style={{
             backgroundImage: 'url(https://images.unsplash.com/photo-1463320726281-696a485928c7?w=800&q=80)',
@@ -1116,7 +1116,7 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
             backgroundPosition: 'left',
             backgroundRepeat: 'no-repeat'
           }}
-        />
+        /> */}
 
         {/* Decorative Plant Elements */}
         <motion.div 
@@ -1227,9 +1227,9 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
       <section id="partnerships" className="py-24 bg-white relative overflow-hidden">
         {/* Tropical Plant Background */}
         <div 
-          className="absolute top-0 left-0 w-2/5 h-full opacity-5"
+          className="absolute top-0 left-0 w-2/5 h-full opacity-50"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1545152840-c05b2ec3dee7?w=800&q=80)',
+            backgroundImage: 'url(images/team-building-023.webp)',
             backgroundSize: 'cover',
             backgroundPosition: 'right center',
             backgroundRepeat: 'no-repeat'

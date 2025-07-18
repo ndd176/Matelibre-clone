@@ -11,9 +11,15 @@ export default function ContactPage() {
           
           {/* Title */}
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-green-900 relative inline-block">
+            <h1
+              className="text-4xl md:text-5xl font-extrabold relative inline-block"
+              style={{ color: 'var(--color-blue1)' }}
+            >
               Contact Ethan
-              <span className="block h-1 w-1/2 bg-green-500 mx-auto mt-2 rounded-full animate-pulse"></span>
+              <span
+                className="block h-1 w-1/2 mx-auto mt-2 rounded-full animate-pulse"
+                style={{ backgroundColor: 'var(--color-blue1)' }}
+              ></span>
             </h1>
             <p className="mt-4 text-gray-600 font-semibold">
               We're excited to hear from you — let’s make something amazing together.
@@ -26,28 +32,30 @@ export default function ContactPage() {
             {/* Info box */}
             <div className="md:col-span-2 bg-white p-8 rounded-2xl shadow-[0_15px_35px_-10px_rgba(0,0,0,0.15)] border border-gray-200 flex flex-col justify-between">
               <div>
-                <h2 className="text-2xl font-bold text-green-800 mb-4">📍 Ethan Head Office</h2>
+                <h2 className="text-2xl font-bold text-green-800 mb-4 "               
+                  style={{ color: 'var(--color-blue2)' }}
+                    >📍 Ethan Head Office</h2>
                 <p className="text-gray-600 mb-6 font-semibold">
                   Visit us, call us, or drop a message. We’re always ready to connect.
                 </p>
 
                 <ul className="space-y-4 text-gray-800">
                   <li className="flex items-center gap-3">
-                    <FaMapMarkerAlt className="text-green-700" />
+                    <FaMapMarkerAlt   />
                     61/1G Vo Dong 2, Gia Kiem, Thong Nhat, Dong Nai
                   </li>
                   <li className="flex items-center gap-3">
-                    <FaPhoneAlt className="text-blue-600" />
-                    <a href="tel:+84967473979" className="hover:underline text-blue-600">+84 967 473 979</a>
+                    <FaPhoneAlt className=" " />
+                    <a href="tel:+84967473979"  >+84 967 473 979</a>
                   </li>
                   <li className="flex items-center gap-3">
-                    <FaEnvelope className="text-blue-600" />
-                    <a href="mailto:hr@ethanecom.com" className="hover:underline text-blue-600">hr@ethanecom.com</a>
+                    <FaEnvelope />
+                    <a href="mailto:hr@ethanecom.com"  >hr@ethanecom.com</a>
                   </li>
 <li className="flex items-center gap-3">
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    className="w-4 h-4 text-blue-600"
+    className="w-4 h-4  "
     viewBox="0 0 24 24"
     fill="currentColor"
   >
@@ -57,8 +65,7 @@ export default function ContactPage() {
     href="https://www.facebook.com/ethanecom3979"
     target="_blank"
     rel="noopener noreferrer"
-    className="hover:underline text-blue-600"
-  >
+   >
     facebook.com/ethanecom3979
   </a>
 </li>
@@ -86,15 +93,18 @@ export default function ContactPage() {
 
           {/* Call to action */}
           <div className="bg-white/80 backdrop-blur-md rounded-xl p-10 text-center shadow-lg">
-            <h3 className="text-2xl mb-3 text-green-800">Have a project in mind or just want to say hello?</h3>
+            <h3 className="text-2xl mb-3  "
+            style={{ color: 'var(--color-blue1)' }}
+                >Have a project in mind or just want to say hello?</h3>
             <p className="mb-6 text-gray-700 font-semibold">
               We’d love to hear from you — start the conversation today.
             </p>
             <a
-              href="mailto:hr@ethanecom.com"
-              className="inline-block mt-2 px-8 py-3 bg-green-700 text-white rounded-full hover:bg-green-800 transition font-semibold"
+              href="/careers"
+              className="inline-block mt-2 px-8 py-3 text-white rounded-full transition font-semibold"
+              style={{ backgroundColor: 'var(--color-black)' }}
             >
-              Contact us now
+              Apply now
             </a>
           </div>
         </div>

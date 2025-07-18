@@ -30,13 +30,20 @@ export default function PageTransition() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: '-100%', opacity: 0 }}
           transition={{ duration: 0.5, ease: 'easeInOut' }}
-          className="fixed inset-0 z-5000 flex items-center justify-center bg-[#ffffff]"
+          className="fixed inset-0 z-5000 flex items-center justify-center"
+          style={{
+            backgroundImage: 'url(/images/sky-bg-01.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: '#ffffff'
+          }}
         >
           <div className="relative flex flex-col items-center">
 <motion.div
-  initial={{ scale: 0.9, opacity: 0 }}
+  initial={{ scale: 1.3, opacity: 0.5 }}
   animate={{ scale: 1, opacity: 1 }}
-  transition={{ duration: 0.6, ease: 'easeOut' }}
+  transition={{ duration: 0.8, ease: 'easeOut' }}
   className="mb-4 w-128 h-128"
 >
   <img 

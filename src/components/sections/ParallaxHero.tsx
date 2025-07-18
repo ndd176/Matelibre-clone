@@ -199,8 +199,9 @@
 //tạm thời chỉ dùng 1 ảnh
 // 'use client'
 
- import { useRef } from 'react'
+import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import Image from 'next/image'
 import ScrollDiscoverIndicator from '../ui/ScrollDiscoverIndicator'
 
 export default function ParallaxHero() {
@@ -209,7 +210,7 @@ export default function ParallaxHero() {
   const y = useTransform(scrollY, [0, 1000], [0, -1400])
   const radius = useTransform(scrollY, [0, 300], ['0px', '40px'])
 
-  const backgroundImage = '/images/tree-background-3.jpg'
+  const backgroundImage = '/images/office-01.jpg'
 
   return (
     <section
@@ -229,21 +230,22 @@ export default function ParallaxHero() {
         }}
       >
         {/* Background image */}
-        <motion.div
-          className="absolute inset-0 w-full h-full z-0"
-          style={{
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
+      <div className="absolute inset-0 w-full h-full z-0">
+        <Image
+          src={backgroundImage}
+          alt="Background"
+          fill
+          priority
+          className="object-cover"
         />
+      </div>
 
         {/* Dark overlay */}
         <motion.div
           className="absolute inset-0 pointer-events-none z-10"
-          initial={{ opacity: 2 }}
-          animate={{ opacity: 0 }}
-          transition={{ duration: 5, ease: 'easeOut' }}
+          initial={{ opacity: 1.5 }}
+          animate={{ opacity: 0.5 }}
+          transition={{ duration: 3, ease: 'easeOut' }}
           style={{
             backgroundColor: 'rgba(0, 0, 0, 1)',
             borderBottomLeftRadius: radius.get(),
@@ -269,7 +271,7 @@ export default function ParallaxHero() {
               transition={{
                 delay: 0.3 + i * 0.1,
                 type: 'spring',
-                stiffness: 300,
+                stiffness: 100,
                 damping: 15,
               }}
               className="font-studio-pro-bold tracking-tight"

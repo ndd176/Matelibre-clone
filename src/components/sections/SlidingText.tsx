@@ -94,7 +94,7 @@ const textY = useTransform(scrollSpring, [0.6, 1], ['15vh', '70vh'])
           }}
         >
           <Image
-            src="/images/congty.jpg"
+            src="/images/join-with-us-02.webp"
             alt="Hero Split"
             fill
             className="object-cover rounded-xl"

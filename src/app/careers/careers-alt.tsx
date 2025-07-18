@@ -81,7 +81,7 @@ const CareersAlt = () => {
                   <h3 className="text-2xl font-studio-pro-bold mb-2 text-black">{job.job_title}</h3>
                   <p className="text-sm text-gray-700 mb-4 leading-relaxed font-studio-pro">{job.short_description}</p>
                   <button
-                    className="mt-4 bg-gradient-to-r bg-black text-white font-bold py-2 px-6 rounded-full shadow hover:scale-105 transition-all duration-300"
+                    className="mt-4 bg-gradient-to-r bg-blue-300 text-white font-bold py-2 px-6 rounded-full shadow hover:scale-105 transition-all duration-300"
                     onClick={() => window.location.href = `/careers/${job.id}`}
                   >
                     Apply

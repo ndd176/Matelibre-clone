@@ -8,6 +8,10 @@
 :root {
   --background: #000000;
   --foreground: #171717;
+  --color-black: #000000;
+  --color-blue1: #1E314F;
+  --color-blue2: #202F40;
+  --color-gray: #ADB6BC;
 }
 
 /* ========================================

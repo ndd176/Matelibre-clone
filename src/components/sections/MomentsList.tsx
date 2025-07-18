@@ -6,32 +6,32 @@ import FloatingImage from '../ui/FloatingImage'
 
 const momentsData = [
   {
-    src: '/images/banner-1.webp',
+    src: '/images/table-01.webp',
     top: 3165,
     leftPercent: 0.1,
     text: 'Stay fresh, stay wild.',
   },
 
   {
-    src: '/images/banner-1.webp',
+    src: '/images/table-02.webp',
     top: 4320,
     leftPercent: 0.15,
     text: 'Every moment matters.',
   },
   {
-    src: '/images/banner-1.webp',
+    src: '/images/table-03.webp',
     top: 3700,
     leftPercent: 0.59,
     text: 'Find your flavor.',
   },
   {
-    src: '/images/banner-1.webp',
+    src: '/images/table-04.webp',
     top: 2601,
     leftPercent: 0.65,
     text: 'Naturally uplifting.',
   },
     {
-    src: '/images/banner-1.webp',
+    src: '/images/table-05.webp',
     top: 4860,
     leftPercent: 0.62,
     text: 'Sip. Smile. Repeat.',
@@ -87,7 +87,7 @@ export default function TransitionToCards() {
     <div className="relative w-full h-[600vh] bg-white" 
     ref={containerRef} 
     style={{
-        backgroundImage: 'url(/images/tree-background-3.jpg)',
+        backgroundImage: 'url(/images/office-01.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -110,7 +110,7 @@ export default function TransitionToCards() {
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
       >
         <h2 className="text-[100px] sticky-30 font-bold text-white text-center">
-          Discover<br />Our Moments
+          Discover Our Workspace
         </h2>
       </motion.div>
 

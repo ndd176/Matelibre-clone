@@ -22,7 +22,7 @@ export default function CommitmentSection() {
       {/* Left: Image */}
       <div className="w-full md:w-1/2 overflow-hidden rounded-[40px]">
         <Image
-          src="/images/congty-2.jpg"
+          src="/images/grow-together.jpg"
           alt="Teamwork at Duy Dinh"
           width={600}
           height={600}
@@ -96,6 +96,12 @@ export default function CommitmentSection() {
           discover our culture
         </motion.button>
       </div>
+      <img
+  src="/images/Will-Smith-meme-4.png"
+  alt="Tree Decoration"
+
+  className="fixed bottom-0 right-0 w-[200px] opacity-10 z-0 pointer-events-none"
+/>
     </section>
   )
 }

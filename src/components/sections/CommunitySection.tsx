@@ -14,7 +14,7 @@ export default function CommunitySection() {
           <Link href="#">
             <div className="overflow-hidden rounded-[24px]">
               <Image
-                src="/images/banner-1.webp"
+                src="/images/team-building-01.webp"
                 alt="Team Building Retreat"
                 width={900}
                 height={600}
@@ -35,7 +35,7 @@ export default function CommunitySection() {
           <Link href="#" className="block group">
             <div className="rounded-[24px] overflow-hidden">
               <Image
-                src="/images/banner-2.webp"
+                src="/images/team-building-02.webp"
                 alt="Mentorship Program"
                 width={400}
                 height={300}
@@ -53,7 +53,7 @@ export default function CommunitySection() {
           <Link href="#" className="block group">
             <div className="rounded-[24px] overflow-hidden">
               <Image
-                src="/images/banner-3.webp"
+                src="/images/team-building-03.webp"
                 alt="Shortform Videos"
                 width={400}
                 height={300}
