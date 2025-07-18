@@ -96,12 +96,12 @@ export default function CommitmentSection() {
           discover our culture
         </motion.button>
       </div>
-      <img
+      {/* <img
   src="/images/Will-Smith-meme-4.png"
   alt="Tree Decoration"
 
   className="fixed bottom-0 right-0 w-[200px] opacity-10 z-0 pointer-events-none"
-/>
+/> */}
     </section>
   )
 }
