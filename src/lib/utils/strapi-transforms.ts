@@ -32,7 +32,10 @@ export function getStrapiImageUrl(image: any): string {
     return imageUrl
   }
   
-  const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'
+  const strapiUrl =
+    process.env.NODE_ENV === 'production'
+      ? process.env.NEXT_PUBLIC_STRAPI_URL_PROD || 'https://api.nekonui.site'
+      : process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'
   return `${strapiUrl}${imageUrl}`
 }
 

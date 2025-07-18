@@ -1,0 +1,12 @@
+:root {
+  --color-black: #000000;
+  --color-blue-1: #1E314F;
+  --color-blue-2: #202F40;
+  --color-gray: #ADB6BC;
+}
+
+/* Example usage for body background and text */
+body {
+  background: var(--color-gray);
+  color: var(--color-blue-1);
+}
