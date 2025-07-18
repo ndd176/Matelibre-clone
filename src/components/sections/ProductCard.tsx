@@ -53,12 +53,17 @@ export default function ProductCard({
   //   dark_green: 'bg-[#09290E]',
   // }[computedColor]
 
-return (
+  // Đổ bóng trắng nếu là card đen, ngược lại giữ bóng đen
+  const shadowClass = computedColor === 'black'
+    ? 'shadow-[4px_4px_0px_#bdbdbd] sm:shadow-[8px_8px_0px_#bdbdbd]'
+    : 'shadow-[4px_4px_0px_#000] sm:shadow-[8px_8px_0px_#000]'
+
+  return (
     <div
       className={`relative ${bgColor} w-full sm:w-[500px] h-[400px] rounded-[20px] sm:rounded-[40px] p-4 sm:p-10 overflow-hidden flex flex-col justify-between
         transition-all duration-300
         border-2 sm:border-3 border-black
-        shadow-[4px_4px_0px_#000000] sm:shadow-[8px_8px_0px_#000000]`}
+        ${shadowClass}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >

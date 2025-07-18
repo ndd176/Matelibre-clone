@@ -70,6 +70,9 @@ const handleToggleMenu = () => {
     <Link href="/" className="text-[42px] font-studio-pro-bold">©ethan</Link>
     <Link href="/about" className="hover:opacity-80 text-[20px] font-studio-pro-bold">About us</Link>
     <Link href="/careers" className="hover:opacity-80 text-[18px] font-studio-pro">Careers</Link>
+    <Link href="/community" className="hover:opacity-80 text-[18px] font-studio-pro">Community</Link>
+    <Link href="/contact" className="hover:opacity-80 text-[18px] font-studio-pro">Contact</Link>
+
     {/* <Link href="/community" className="hover:opacity-80 text-[18px] font-studio-pro">Community</Link> */}
   </div>
 </motion.header>
@@ -155,7 +158,7 @@ const handleToggleMenu = () => {
           }}
           className="space-y-6 text-4xl md:text-5xl font-studio-pro-bold text-black"
         >
-                    {['About us', 'Careers', 'Community'].map((item, i) => {
+                    {['About us', 'Careers', 'Community','Contact'].map((item, i) => {
             // Xác định đúng href cho từng item
             const getHref = (itemName: string) => {
               switch(itemName) {
@@ -165,6 +168,8 @@ const handleToggleMenu = () => {
                   return '/careers';
                 case 'Community':
                   return '/community';
+                case 'Contact':
+                  return '/contact';
                 default:
                   return '/';
               }

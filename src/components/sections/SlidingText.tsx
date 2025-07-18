@@ -124,9 +124,9 @@ const textY = useTransform(scrollSpring, [0.6, 1], ['15vh', '70vh'])
                   willChange: 'clip-path',
                 } : { opacity: 0 }}
               >
-                coming to
+                COMING TO
                 <br />
-                join with us
+                JOIN WITH US
               </motion.h1>
             </div>
           </div>

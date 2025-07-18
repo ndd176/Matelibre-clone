@@ -108,7 +108,7 @@ export default function CommunityPage() {
         <div className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="text-2xl font-studio-pro-bold text-black hover:text-gray-600 transition-colors">
-              MatéLibre
+              Ethan
             </Link>
             
             <div className="hidden md:flex items-center space-x-8">

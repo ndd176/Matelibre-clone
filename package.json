@@ -11,6 +11,10 @@
   "dependencies": {
     "@fontsource/poppins": "^5.2.6",
     "@react-spring/web": "^10.0.1",
+    "@react-three/drei": "^10.5.1",
+    "@react-three/fiber": "^9.2.0",
+    "@react-three/postprocessing": "^3.0.4",
+    "@splinetool/react-spline": "^4.1.0",
     "@studio-freight/lenis": "^1.0.42",
     "@types/locomotive-scroll": "^4.1.4",
     "@types/nodemailer": "^6.4.17",
@@ -34,7 +38,8 @@
     "react-scroll-parallax": "^3.4.5",
     "react-use-measure": "^2.1.7",
     "scrollmagic": "^2.0.8",
-    "swiper": "^11.2.10"
+    "swiper": "^11.2.10",
+    "three": "^0.178.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

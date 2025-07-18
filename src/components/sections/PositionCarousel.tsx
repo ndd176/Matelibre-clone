@@ -24,32 +24,27 @@ interface ProductCardData {
 }
 
 // Sử dụng transform utility function
-function jobToProductCard(job: Job): ProductCardData {
-  const colors = ['white', 'milk', 'matcha', 'dark_green', 'black']
-  const randomColor = colors[Math.floor(Math.random() * colors.length)]
-  
+
+function jobToProductCard(job: Job, idx: number): ProductCardData {
   // Debug image processing
   console.log('🖼️ Processing job images:', {
     jobId: job.id,
     avatar_image: job.avatar_image,
     sub_avatar: job.sub_avatar
   })
-  
   const canImageUrl = getImageUrl(job.avatar_image)
   const bgImageUrl = getImageUrl(job.sub_avatar)
-  
   console.log('📸 Generated URLs:', {
     canImage: canImageUrl,
     bgImage: bgImageUrl
   })
-  
   return {
     id: job.id,
     title: job.job_title,
     description: job.short_description,
     canImage: canImageUrl || '/images/duydinh-bg-2.png',
     bgImage: bgImageUrl || '/images/anh-hiep.png',
-    color: randomColor,
+    color: idx % 2 === 0 ? 'black' : 'white',
   }
 }
 
@@ -65,7 +60,7 @@ export default function ProductCardList() {
       try {
         const response = await strapiApi.fetchJobs()
         console.log('🔍 API Response:', response.data) // Debug log
-        const apiJobs = response.data.map(jobToProductCard) // Sử dụng local function
+        const apiJobs = response.data.map((job: Job, idx: number) => jobToProductCard(job, idx))
         console.log('🎯 Processed Jobs:', apiJobs) // Debug log
         setProducts(apiJobs)
       } catch (err) {

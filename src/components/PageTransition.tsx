@@ -30,21 +30,21 @@ export default function PageTransition() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: '-100%', opacity: 0 }}
           transition={{ duration: 0.5, ease: 'easeInOut' }}
-          className="fixed inset-0 z-5000 flex items-center justify-center bg-green-900"
+          className="fixed inset-0 z-5000 flex items-center justify-center bg-[#ffffff]"
         >
           <div className="relative flex flex-col items-center">
-            <motion.div
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="mb-4"
-            >
-              <img 
-                src="/images/logo.png" 
-                alt="Logo" 
-                className="w-24 h-24 object-contain"
-              />
-            </motion.div>
+<motion.div
+  initial={{ scale: 0.9, opacity: 0 }}
+  animate={{ scale: 1, opacity: 1 }}
+  transition={{ duration: 0.6, ease: 'easeOut' }}
+  className="mb-4 w-128 h-128"
+>
+  <img 
+    src="/images/app-logo.png" 
+    alt="Logo" 
+    className="w-full h-full object-contain"
+  />
+</motion.div>
             
             <motion.div
               initial={{ width: 0 }}
