@@ -16,6 +16,19 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+   async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "https://api.nekonui.site",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

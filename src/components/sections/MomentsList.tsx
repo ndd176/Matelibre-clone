@@ -7,33 +7,34 @@ import FloatingImage from '../ui/FloatingImage'
 const momentsData = [
   {
     src: '/images/banner-1.webp',
-    top: 4860,
-    left: 1000,
-    text: 'Sip. Smile. Repeat.',
+    top: 3165,
+    leftPercent: 0.1,
+    text: 'Stay fresh, stay wild.',
   },
+
   {
     src: '/images/banner-1.webp',
     top: 4320,
-    left: 300,
+    leftPercent: 0.15,
     text: 'Every moment matters.',
   },
   {
     src: '/images/banner-1.webp',
-    top: 3900,
-    left: 1220,
+    top: 3700,
+    leftPercent: 0.59,
     text: 'Find your flavor.',
   },
   {
     src: '/images/banner-1.webp',
     top: 2601,
-    left: 1062,
+    leftPercent: 0.65,
     text: 'Naturally uplifting.',
   },
-  {
+    {
     src: '/images/banner-1.webp',
-    top: 3165,
-    left: 129,
-    text: 'Stay fresh, stay wild.',
+    top: 4860,
+    leftPercent: 0.62,
+    text: 'Sip. Smile. Repeat.',
   },
 ]
 
@@ -42,10 +43,18 @@ export default function TransitionToCards() {
  
   const containerRef = useRef<HTMLDivElement>(null)
   const [screenHeight, setScreenHeight] = useState(800)
+  const [screenWidth, setScreenWidth] = useState(1200)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setScreenHeight(window.innerHeight)
+      setScreenWidth(window.innerWidth)
+      const handleResize = () => {
+        setScreenHeight(window.innerHeight)
+        setScreenWidth(window.innerWidth)
+      }
+      window.addEventListener('resize', handleResize)
+      return () => window.removeEventListener('resize', handleResize)
     }
   }, [])
 
@@ -57,7 +66,7 @@ export default function TransitionToCards() {
   const transforms = momentsData.map((item, index) => {
     const startX = index * 350
     const startY = 350
-    const endX = item.left
+    const endX = (item.leftPercent ?? 0.5) * screenWidth
     const endY = item.top - screenHeight
     const parallaxSpeed = 0.3
 
