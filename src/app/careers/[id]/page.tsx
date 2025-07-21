@@ -5,8 +5,7 @@ import { useState, useLayoutEffect } from 'react' // Thay useEffect bằng useLa
 import ProductDetailWithAccordion from '../../../components/features/careers/ProductAccordionSection'
 import ProductCarouselHover from '../../../components/features/careers/ProductCarouselHover'
 import CVSubmissionForm from '../../../components/CVSubmissionForm'
-import FindYourDream from '../FindYourDream'
-import CareersTeamSection from '../careers-alt'
+ 
 export default function CareersDetailPage() {
   const params = useParams()
   const jobId = params.id as string

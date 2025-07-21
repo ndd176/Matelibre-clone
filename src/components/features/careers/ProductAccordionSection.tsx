@@ -83,9 +83,9 @@ function AccordionItem({ title, content, isOpen, onClick }: AccordionItemProps) 
   }, [isOpen])
 
   return (
-    <div className="border-2 border-green-800 rounded-[24px] overflow-hidden transition-all">
+    <div className="border-2 border-blue-300 rounded-[24px] overflow-hidden transition-all">
       <button
-        className="w-full text-left px-6 py-4 text-green-900 font-bold text-lg flex justify-between items-center"
+        className="w-full text-left px-6 py-4 text-blue-300 font-bold text-lg flex justify-between items-center"
         onClick={onClick}
       >
         {title}
@@ -101,7 +101,7 @@ function AccordionItem({ title, content, isOpen, onClick }: AccordionItemProps) 
             transition={{ duration: 0.35, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div ref={ref} className="px-8 pb-5 pt-2 text-green-800 text-sm">
+            <div ref={ref} className="px-8 pb-5 pt-2 text-blue-300 text-sm">
               <ul className="list-disc list-inside space-y-1">
                 {content.map((point: string, i: number) => (
                   <li key={i}>{point}</li>
@@ -195,8 +195,8 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
     <section className="bg-[#e6f3e6] px-4 md:px-20 py-16 md:py-24 flex flex-col md:flex-row gap-12 md:gap-16 items-start">
       {loading ? (
         <div className="w-full text-center py-20">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
-          <p className="text-green-800 font-medium">Loading job details...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-300 mx-auto mb-4"></div>
+          <p className="text-blue-300 font-medium">Loading job details...</p>
         </div>
       ) : (
         <>
@@ -211,7 +211,7 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.15 + 1.5, duration: 0.5 }}
                 viewport={{ once: true }}
-                className="font-bold text-[48px] sm:text-[64px] md:text-[96px] lg:text-[110px] leading-[1] text-green-800"
+                className="font-bold text-[48px] sm:text-[64px] md:text-[96px] lg:text-[110px] leading-[1] text-blue-400"
               >
                 {word}
               </motion.h1>
@@ -223,7 +223,7 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.15 + 1.5, duration: 0.5 }}
                 viewport={{ once: true }}
-                className="font-bold text-[48px] sm:text-[64px] md:text-[96px] lg:text-[110px] leading-[1] text-green-800"
+                className="font-bold text-[48px] sm:text-[64px] md:text-[96px] lg:text-[110px] leading-[1] text-blue-300"
               >
                 {line}
               </motion.h1>
@@ -261,7 +261,7 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="bg-green-700 text-white px-6 py-3 rounded-xl font-semibold shadow hover:bg-green-800 transition"
+        className="bg-blue-200 text-white px-6 py-3 rounded-xl font-semibold shadow hover:bg-blue-300 transition"
         onClick={() => {
           if (typeof onApplyClick === 'function') {
             onApplyClick(jobData?.job_title || 'Unknown Position')
@@ -271,7 +271,7 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
         Apply Now
       </motion.button>
 
-          <div className="text-green-900 text-base leading-snug">
+          <div className="text-blue-300 text-base leading-snug">
             <p className="text-lg sm:text-xl font-semibold">
               {jobData?.salary_range ? `💰 ${jobData.salary_range}` : 'Full-time or freelance'}
             </p>
@@ -340,7 +340,7 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
 
 function Feature({ icon, label }: { icon: string; label: string }) {
   return (
-    <div className="flex flex-col items-center text-green-800 text-sm min-w-[100px]">
+    <div className="flex flex-col items-center text-blue-300 text-sm min-w-[100px]">
       <div className="text-[50px]">{icon}</div>
       <p className="mt-1 text-center text-[16px] whitespace-nowrap">{label}</p>
     </div>

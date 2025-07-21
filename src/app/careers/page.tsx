@@ -1,206 +1,204 @@
-// app/careers/page.tsx (Next.js 13+ App Router)
 'use client'
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-
-// Import từ lib structure
-import { CareersNewPosition } from '../../types/api/strapi'
 import { strapiApi } from '../../lib/api/strapi'
-import { transformJobToCareersNewPosition } from '../../lib/utils/jobs'
-import CareersTeamSection from './careers-alt'
+import { Job } from '../../types/api/strapi'
+import { getImageUrl } from '../../lib/utils/image'
 
- 
- 
+// Animation variants để phù hợp với phong cách chung
+const elegantFadeIn = {
+  initial: { opacity: 0, y: 60 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }
+}
 
-function ProductCard({
+type JobCard = {
+  id: string | number
+  job_title: string
+  short_description: string
+  avatar_image: string
+}
+
+function JobCard({
   job,
   index,
-  zIndex,
 }: {
-  job: CareersNewPosition
+  job: JobCard
   index: number
-  zIndex: number
 }) {
-  const [hovered, setHovered] = useState(false)
-
-  const bgColorMap: Record<string, string> = {
-    white: 'bg-[#FDFDFD]',
-    seasalt: 'bg-[#F8F8F9]',
-    ash_gray: 'bg-[#B8C5B5]',
-    asparagus: 'bg-[#6D995C]',
-    poly_green: 'bg-[#264A20]',
-    pakistan: 'bg-[#1F3F1A]',
-    dark_1: 'bg-[#1F321B]',
-    dark_2: 'bg-[#1E2A1C]',
-    black: 'bg-[#000000]',
-    milk: 'bg-[#F5F5F5]',
-    matcha: 'bg-[#87A96B]',
-    dark_green: 'bg-[#2F5233]',
-  }
-
-  const textColorMap: Record<string, string> = {
-    white: 'text-black',
-    seasalt: 'text-black',
-    ash_gray: 'text-black',
-    asparagus: 'text-black',
-    poly_green: 'text-white',
-    pakistan: 'text-white',
-    dark_1: 'text-white',
-    dark_2: 'text-white',
-    black: 'text-white',
-    milk: 'text-black',
-    matcha: 'text-black',
-    dark_green: 'text-white',
-  }
-
-  // Fallback cho các màu từ color property của job
-  const actualColor = job.color === 'milk' ? 'seasalt' : 
-                     job.color === 'matcha' ? 'asparagus' :
-                     job.color === 'dark_green' ? 'poly_green' : job.color
-
-  const bgColor = bgColorMap[actualColor] || 'bg-[#FDFDFD]'
-  const textColor = textColorMap[actualColor] || 'text-black'
-
   return (
     <motion.div
-      initial={{ scale: 0.6 }}
-      animate={{ scale: 1.3}}
-      transition={{ duration: 0.2, ease: 'easeInOut', delay: index * 0.01 }}
-      style={{ zIndex }}
-      className={`relative ${bgColor} w-[500px] h-[400px] rounded-[40px] p-10 overflow-hidden flex flex-col justify-between transition-all duration-300 shadow-[8px_8px_0px_#000000] border-4 border-black`}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay: index * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
+      whileHover={{ y: -5 }}
+      className="group"
     >
-      <Image
-        src={job.bgImage}
-        alt=""
-        width={300}
-        height={300}
-        className={`absolute bottom-0 left-0 z-0 opacity-0 scale-90 transition-all duration-700 ${hovered ? 'opacity-100 scale-100' : ''}`}
-      />
-
-    <h2 className={`text-5xl font-bold ${textColor} z-10 leading-tight text-right`}>
-        {job.title}
-      </h2>
-
-      <div className="flex flex-row h-full z-10 mt-10 gap-6">
-        <div className="flex justify-center items-center w-1/2">
-          <motion.div
-            // initial={{ x: 50, y: -30 }}
-            // animate={{ x: 0, y: 0 }}
-            // transition={{ duration: 0.1, ease: 'easeInOut', delay: index * 0.009 }}
-          >
-            <Image
-              src={job.canImage}
-              alt={job.title}
-              width={200}
-              height={300}
-              className={`transition-transform duration-300 transform ${hovered ? 'translate-y-10' : 'translate-y-0'}`}
-            />
-          </motion.div>
+      <div className="bg-white rounded-[40px] overflow-hidden shadow-sm border border-gray-100 group-hover:shadow-lg transition-all duration-300 flex flex-col h-full">
+        <div className="aspect-square relative overflow-hidden">
+          <Image
+            src={job.avatar_image}
+            alt={job.job_title}
+            width={400}
+            height={400}
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            priority={index < 3}
+          />
         </div>
-
-        <div className="flex flex-col justify-between w-1/2 relative">
-          {/* <p className={`text-lg font-medium leading-relaxed ${textColor} pr-2`}>
-            {description}
-          </p> */}
-             <Link href={`/careers/${job.id}`}>
-             <button
-              className="flex flex-col relative h-12 w-[180px] items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-blue-400 px-6 font-semibold text-black text-2xl transition-all duration-100 [box-shadow:5px_5px_rgb(82_82_82)] active:translate-x-[3px] active:translate-y-[3px] active:[box-shadow:0px_0px_rgb(82_82_82)]"
+        <div className="p-8 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 className="text-2xl font-studio-pro-bold mb-3 text-black leading-tight">
+              {job.job_title}
+            </h3>
+            <p className="text-gray-600 mb-6 leading-relaxed font-studio-pro">
+              {job.short_description}
+            </p>
+          </div>
+          <Link href={`/careers/${job.id}`}>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-full text-white font-studio-pro-bold py-3 px-6 rounded-full transition-all duration-300"
+              style={{ backgroundColor: 'var(--color-black)' }}
             >
               Apply Now
-            </button>
-            </Link>
-         </div>
+            </motion.button>
+          </Link>
+        </div>
       </div>
     </motion.div>
   )
 }
 
 export default function CareersPage() {
-  const [jobs, setJobs] = useState<CareersNewPosition[]>([])
- 
-  useEffect(() => {
-async function loadJobs() {
-  try {
-    const response = await strapiApi.fetchJobs()
-    const apiJobs = response.data.map(transformJobToCareersNewPosition)
-    setJobs(apiJobs)
-  } catch (error) {
-    console.error('Failed to load jobs from API:', error)
-    setJobs([])  
-  } finally {
-   }
-}
+  const [jobs, setJobs] = useState<JobCard[]>([])
+  const [loading, setLoading] = useState(true)
 
+  useEffect(() => {
+    async function loadJobs() {
+      try {
+        const response = await strapiApi.fetchJobs()
+        const mapped: JobCard[] = response.data.map((job: Job) => ({
+          id: job.id,
+          job_title: job.job_title || 'No Title',
+          short_description: job.short_description || 'Join our dynamic team and make a difference.',
+          avatar_image: getImageUrl(job.avatar_image) || '/images/position.jpg',
+        }))
+        setJobs(mapped)
+      } catch (error) {
+        console.error('Failed to load jobs from API:', error)
+        setJobs([])
+      } finally {
+        setLoading(false)
+      }
+    }
 
     loadJobs()
   }, [])
 
- 
-
   return (
-//      <div className="p-10 flex flex-col   gap-10">
-// <div className="flex items-end gap-4">
-//   <motion.h1
-//     initial={{
-//         textShadow: '0px 0px 0px rgba(0,0,0,0)',
-//     }}
-//     animate={{
-//        textShadow: '8px 8px 0px rgba(0,0,0,0.3)',
-//     }}
-//     transition={{
-//       type: 'spring',
-//       stiffness: 400,
-//       damping: 15,
-//       bounce: 0.6,
-//        textShadow: { delay: 2.8, duration: 0.3 },
-//     }}
-//     className="text-[120px] leading-[1] font-extrabold tracking-tight text-black"
-//   >
-//     WE&apos;RE
-//   </motion.h1>
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <section className="relative px-6 sm:px-12 py-24 md:py-32 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <motion.div 
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <div className="mb-8">
+              <motion.h1
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-5xl md:text-7xl lg:text-8xl font-studio-pro-bold leading-tight mb-4"
+                style={{ color: 'var(--color-blue2)' }}
+              >
+                Join Our Team
+              </motion.h1>
+              
+              <motion.div
+                initial={{ width: 0 }}
+                animate={{ width: '100px' }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="h-1 mx-auto rounded-full"
+                style={{ backgroundColor: 'var(--color-blue1)' }}
+              />
+            </div>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-xl md:text-2xl text-gray-600 font-studio-pro max-w-3xl mx-auto leading-relaxed"
+            >
+              We&apos;re looking for passionate individuals who share our vision of creating 
+              sustainable, beautiful products that make a difference.
+            </motion.p>
+          </motion.div>
+        </div>
+      </section>
 
-//   <motion.h2
-//     initial={{
-//       opacity: 0,
-//       y: -400,
-//       textShadow: '0px 0px 0px rgba(0,0,0,0)',
-//     }}
-//     animate={{
-//       opacity: 1,
-//       y: 0,
-//        textShadow: '8px 8px 0px rgba(0,0,0,0.3)',
-//     }}
-//     transition={{
-//       type: 'spring',
-//       stiffness: 400,
-//       damping: 15,
-//        delay: 1.8,
-//       textShadow: { delay: 2.8, duration: 0.3 },
-//     }}
-//     className="text-[120px] leading-[1] font-extrabold tracking-tight text-[#1f690c]"
-//   >
-//     HIRING
-//   </motion.h2>
+      {/* Jobs Grid Section */}
+      <section className="px-6 sm:px-12 py-16 md:py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <h2 className="text-4xl md:text-5xl font-studio-pro-bold text-black mb-6">
+              Current Openings
+            </h2>
+            <div className="w-24 h-px bg-black mx-auto"></div>
+          </motion.div>
 
-// </div>
-
-//     <main className="p-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-20">
+          {loading ? (
+            <div className="text-center py-20">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 mx-auto mb-4" style={{ borderColor: 'var(--color-blue1)' }}></div>
+              <p className="text-gray-600 font-studio-pro">Loading opportunities...</p>
+            </div>
+          ) : jobs.length === 0 ? (
+            <motion.div 
+              className="text-center py-20"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="mb-6">
+                <div className="text-6xl mb-4">🔍</div>
+                <h3 className="text-2xl font-studio-pro-bold text-black mb-3">No openings right now</h3>
+                <p className="text-gray-600 font-studio-pro">
+                  We&apos;re not actively hiring, but we&apos;re always interested in meeting talented people.
+                </p>
+              </div>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="text-white font-studio-pro-bold py-3 px-8 rounded-full transition-all duration-300"
+                style={{ backgroundColor: 'var(--color-black)' }}
+                onClick={() => window.location.href = 'mailto:hr@ethanecom.com'}
+              >
+                Send us your resume
+              </motion.button>
+            </motion.div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {jobs.map((job, index) => (
+                <JobCard key={job.id} job={job} index={index} />
+              ))}
+            </div>
+          )}
+        </div>
         
-//       {jobs.map((job, i) => {
-//         const row = Math.floor(i / 3)
-//         const col = i % 3
-// const zIndex = 1000 + row * 1000 - col
-
-//         return <ProductCard key={job.id} job={job} index={i} zIndex={zIndex} />
-//       })}
-//     </main>
-//     </div>
-         <CareersTeamSection/>
-
+      </section>
+    </div>
   )
 }
