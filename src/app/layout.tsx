@@ -1,8 +1,7 @@
 // Tách phần client component ra riêng
 'use client'
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Bebas_Neue } from 'next/font/google'
+import { Plus_Jakarta_Sans, Bebas_Neue } from 'next/font/google'
 import "./globals.css";
 import { Providers } from './providers';
 import LenisWrapper from '@/components/layout/LenisWrapper'
@@ -15,11 +14,11 @@ import { useEffect } from "react";
 import PageTransition from '@/components/PageTransition';
 
 // Font definitions
-const studioProRegular = localFont({
-  src: '../assets/fonts/studio-pro-regular.ttf',
-  weight: '400',
-  style: 'normal',
-  variable: '--font-studio-pro-regular',
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  style: ['normal', 'italic'],
+  variable: '--font-plus-jakarta-sans',
   display: 'swap',
 });
 
@@ -30,17 +29,9 @@ const bebasNeue = Bebas_Neue({
   variable: '--font-bebas',
 })
 
-const studioProBold = localFont({
-  src: '../assets/fonts/studio-pro-bold.ttf',
-  weight: '700',
-  style: 'normal',
-  variable: '--font-studio-pro-bold',
-  display: 'swap',
-});
-
 const metadata: Metadata = {
   title: "Mate Libre",
-  description: "Naturally Bold",
+  description: "Tự nhiên và mạnh mẽ",
 };
 
 
@@ -64,7 +55,7 @@ function RootLayoutClient({
   return (
     <html lang="en">
       <body
-        className={`${studioProRegular.variable} ${studioProBold.variable} ${bebasNeue.variable} antialiased font-studio-pro font-bebas overflow-x-hidden`}
+        className={`${plusJakartaSans.variable} ${bebasNeue.variable} antialiased font-plus-jakarta-sans font-bebas overflow-x-hidden`}
       >
         <PageTransition />
         <LenisWrapper />

@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Upload, User, Mail, Phone, Briefcase, MessageSquare, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { strapiApi } from '../lib/api/strapi';
+import { JobDetail } from '../types/api/strapi';
 
 interface CVSubmissionFormProps {
   isOpen: boolean;
@@ -23,6 +25,9 @@ const CVSubmissionForm: React.FC<CVSubmissionFormProps> = ({ isOpen, onClose, po
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [validationErrors, setValidationErrors] = useState<{[key: string]: string}>({});
+  const [positions, setPositions] = useState<string[]>([]);
+  const [loadingPositions, setLoadingPositions] = useState(true);
   // Thông báo ngoài form
   const [showNotification, setShowNotification] = useState<null | 'success' | 'error'>(null);
   const [notificationTimeout, setNotificationTimeout] = useState<NodeJS.Timeout | null>(null);
@@ -33,6 +38,14 @@ const CVSubmissionForm: React.FC<CVSubmissionFormProps> = ({ isOpen, onClose, po
       ...prev,
       [name]: value
     }));
+    
+    // Clear validation error when user starts typing
+    if (validationErrors[name]) {
+      setValidationErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,11 +61,64 @@ const CVSubmissionForm: React.FC<CVSubmissionFormProps> = ({ isOpen, onClose, po
       }
       setCVFile(file);
       setErrorMessage('');
+      // Clear validation error for CV file
+      if (validationErrors.cvFile) {
+        setValidationErrors(prev => ({
+          ...prev,
+          cvFile: ''
+        }));
+      }
     }
+  };
+
+  const validateForm = () => {
+    const errors: {[key: string]: string} = {};
+    
+    if (!formData.fullName.trim()) {
+      errors.fullName = 'Vui lòng nhập họ và tên';
+    }
+    
+    if (!formData.email.trim()) {
+      errors.email = 'Vui lòng nhập email';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = 'Email không hợp lệ';
+    }
+    
+    if (!formData.phone.trim()) {
+      errors.phone = 'Vui lòng nhập số điện thoại';
+    } else if (!/^[0-9+\-\s()]{10,}$/.test(formData.phone)) {
+      errors.phone = 'Số điện thoại không hợp lệ';
+    }
+    
+    if (!formData.position) {
+      errors.position = 'Vui lòng chọn vị trí ứng tuyển';
+    }
+    
+    if (!cvFile) {
+      errors.cvFile = 'Vui lòng tải lên file CV';
+    }
+    
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  // Check if form is complete (all required fields filled)
+  const isFormComplete = () => {
+    return formData.fullName.trim() && 
+           formData.email.trim() && 
+           formData.phone.trim() && 
+           formData.position && 
+           cvFile;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate form before submitting
+    if (!validateForm()) {
+      return;
+    }
+    
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setErrorMessage('');
@@ -107,6 +173,26 @@ const CVSubmissionForm: React.FC<CVSubmissionFormProps> = ({ isOpen, onClose, po
     }
   };
 
+  // Load positions from API
+  useEffect(() => {
+    async function loadPositions() {
+      try {
+        setLoadingPositions(true);
+        const response = await strapiApi.fetchJobDetails();
+        const uniquePositions = [...new Set(response.data.map((job: JobDetail) => job.job_title))].filter(Boolean) as string[];
+        setPositions(uniquePositions);
+      } catch (error) {
+        console.error('Failed to load positions:', error);
+        // Fallback to default positions if API fails
+        setPositions(['Frontend Developer', 'Backend Developer', 'UI/UX Designer', 'Marketing Specialist', 'Khác']);
+      } finally {
+        setLoadingPositions(false);
+      }
+    }
+    
+    loadPositions();
+  }, []);
+
   // Tự động đóng notification sau 10s
   useEffect(() => {
     if (showNotification) {
@@ -119,18 +205,6 @@ const CVSubmissionForm: React.FC<CVSubmissionFormProps> = ({ isOpen, onClose, po
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showNotification]);
 
-  const positions = [
-    'Frontend Developer',
-    'Backend Developer',
-    'Full Stack Developer',
-    'UI/UX Designer',
-    'Product Manager',
-    'Marketing Specialist',
-    'Sales Executive',
-    'Customer Support',
-    'Khác'
-  ];
-
   return (
     <>
       {/* Notification ngoài form */}
@@ -141,15 +215,15 @@ const CVSubmissionForm: React.FC<CVSubmissionFormProps> = ({ isOpen, onClose, po
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-            className="fixed top-8 left-1/2 -translate-x-1/2 z-[9999] bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-xl flex items-center gap-4 shadow-lg px-8 py-5 min-w-[340px] max-w-[90vw]"
+            className="fixed top-8 left-1/2 -translate-x-1/2 z-[9999] bg-gradient-to-r from-blue-50 to-blue-50 border-2 border-blue-200 rounded-xl flex items-center gap-4 shadow-lg px-8 py-5 min-w-[340px] max-w-[90vw]"
           >
-            <CheckCircle className="w-8 h-8 text-green-600" />
+            <CheckCircle className="w-8 h-8 text-blue-600" />
             <div className="flex-1">
-              <p className="text-green-800 font-bold text-[16px]">🎉 CV đã được nộp thành công!</p>
-              <p className="text-green-700 font-bold text-[16px] mt-1">Cảm ơn bạn đã quan tâm đến Ethan! Chúng tôi sẽ liên hệ với bạn sớm.</p>
-              <p className="text-green-600 font-bold text-[14px] mt-2">📧 Email xác nhận đã được gửi đến: {formData.email}</p>
+              <p className="text-blue-800 font-bold text-[16px]">🎉 CV đã được nộp thành công!</p>
+              <p className="text-blue-700 font-bold text-[16px] mt-1">Cảm ơn bạn đã quan tâm đến Ethan! Chúng tôi sẽ liên hệ với bạn sớm.</p>
+              <p className="text-blue-600 font-bold text-[14px] mt-2">📧 Email xác nhận đã được gửi đến: {formData.email}</p>
             </div>
-            <button onClick={() => setShowNotification(null)} className="ml-4 text-green-700 hover:text-green-900 font-bold text-[20px]">×</button>
+            <button onClick={() => setShowNotification(null)} className="ml-4 text-blue-700 hover:text-blue-900 font-bold text-[20px]">×</button>
           </motion.div>
         )}
         {showNotification === 'error' && (
@@ -193,7 +267,7 @@ const CVSubmissionForm: React.FC<CVSubmissionFormProps> = ({ isOpen, onClose, po
               <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 rounded-t-2xl">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="text-2xl font-bold text-[#2c5530]">🌱 Nộp hồ sơ ứng tuyển</h2>
+                    <h2 className="text-2xl font-bold text-blue-600"> Nộp hồ sơ ứng tuyển</h2>
                     <p className="text-gray-600 mt-1 font-bold text-[16px]">Gửi CV của bạn đến Ethan</p>
                   </div>
                   <button
@@ -220,9 +294,14 @@ const CVSubmissionForm: React.FC<CVSubmissionFormProps> = ({ isOpen, onClose, po
                       value={formData.fullName}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2c5530] focus:border-transparent transition-colors font-bold text-[16px]"
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors font-bold text-[16px] ${
+                        validationErrors.fullName ? 'border-red-500' : 'border-gray-300'
+                      }`}
                       placeholder="Nhập họ và tên"
                     />
+                    {validationErrors.fullName && (
+                      <p className="text-red-500 text-sm mt-1 font-medium">{validationErrors.fullName}</p>
+                    )}
                   </div>
 
                   <div>
@@ -236,9 +315,14 @@ const CVSubmissionForm: React.FC<CVSubmissionFormProps> = ({ isOpen, onClose, po
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2c5530] focus:border-transparent transition-colors font-bold text-[16px]"
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors font-bold text-[16px] ${
+                        validationErrors.email ? 'border-red-500' : 'border-gray-300'
+                      }`}
                       placeholder="example@email.com"
                     />
+                    {validationErrors.email && (
+                      <p className="text-red-500 text-sm mt-1 font-medium">{validationErrors.email}</p>
+                    )}
                   </div>
 
                   <div>
@@ -252,9 +336,14 @@ const CVSubmissionForm: React.FC<CVSubmissionFormProps> = ({ isOpen, onClose, po
                       value={formData.phone}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2c5530] focus:border-transparent transition-colors font-bold text-[16px]"
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors font-bold text-[16px] ${
+                        validationErrors.phone ? 'border-red-500' : 'border-gray-300'
+                      }`}
                       placeholder="0123456789"
                     />
+                    {validationErrors.phone && (
+                      <p className="text-red-500 text-sm mt-1 font-medium">{validationErrors.phone}</p>
+                    )}
                   </div>
 
                   <div>
@@ -267,13 +356,19 @@ const CVSubmissionForm: React.FC<CVSubmissionFormProps> = ({ isOpen, onClose, po
                       value={formData.position}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2c5530] focus:border-transparent transition-colors font-bold text-[16px]"
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors font-bold text-[16px] ${
+                        validationErrors.position ? 'border-red-500' : 'border-gray-300'
+                      }`}
                     >
-                      <option value="">Chọn vị trí</option>
+                      <option value="">{loadingPositions ? 'Đang tải...' : 'Chọn vị trí'}</option>
                       {positions.map(pos => (
                         <option key={pos} value={pos}>{pos}</option>
                       ))}
+                      <option value="Khác">Khác</option>
                     </select>
+                    {validationErrors.position && (
+                      <p className="text-red-500 text-sm mt-1 font-medium">{validationErrors.position}</p>
+                    )}
                   </div>
                 </div>
 
@@ -283,7 +378,9 @@ const CVSubmissionForm: React.FC<CVSubmissionFormProps> = ({ isOpen, onClose, po
                     <Upload className="w-4 h-4 inline mr-2" />
                     CV (PDF) *
                   </label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-[#2c5530] transition-colors">
+                  <div className={`border-2 border-dashed rounded-lg p-6 text-center hover:border-blue-500 transition-colors ${
+                    validationErrors.cvFile ? 'border-red-500' : 'border-gray-300'
+                  }`}>
                     <input
                       type="file"
                       accept=".pdf"
@@ -294,7 +391,7 @@ const CVSubmissionForm: React.FC<CVSubmissionFormProps> = ({ isOpen, onClose, po
                     />
                     <label htmlFor="cv-upload" className="cursor-pointer">
                       {cvFile ? (
-                        <div className="text-[#2c5530] font-bold text-[16px]">
+                        <div className="text-blue-500 font-bold text-[16px]">
                           <Upload className="w-8 h-8 mx-auto mb-2" />
                           <p className="font-bold text-[16px]">{cvFile.name}</p>
                           <p className="text-[14px] text-gray-500">{(cvFile.size / 1024 / 1024).toFixed(2)} MB</p>
@@ -308,6 +405,9 @@ const CVSubmissionForm: React.FC<CVSubmissionFormProps> = ({ isOpen, onClose, po
                       )}
                     </label>
                   </div>
+                  {validationErrors.cvFile && (
+                    <p className="text-red-500 text-sm mt-1 font-medium">{validationErrors.cvFile}</p>
+                  )}
                 </div>
 
                 {/* Message */}
@@ -321,7 +421,7 @@ const CVSubmissionForm: React.FC<CVSubmissionFormProps> = ({ isOpen, onClose, po
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={4}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2c5530] focus:border-transparent transition-colors resize-none font-bold text-[16px]"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none font-bold text-[16px]"
                     placeholder="Giới thiệu ngắn gọn về bản thân hoặc lý do ứng tuyển..."
                   />
                 </div>
@@ -338,8 +438,12 @@ const CVSubmissionForm: React.FC<CVSubmissionFormProps> = ({ isOpen, onClose, po
                   </button>
                   <button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="flex-1 px-6 py-3 bg-[#2c5530] text-white rounded-lg hover:bg-[#1e3b22] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-2 relative overflow-hidden font-bold text-[16px]"
+                    disabled={isSubmitting || !isFormComplete()}
+                    className={`flex-1 px-6 py-3 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 relative overflow-hidden font-bold text-[16px] ${
+                      isSubmitting || !isFormComplete()
+                        ? 'bg-gray-400 text-gray-600 cursor-not-allowed opacity-50'
+                        : 'bg-blue-500 text-white hover:bg-blue-600'
+                    }`}
                   >
                     {isSubmitting ? (
                       <>
@@ -349,7 +453,7 @@ const CVSubmissionForm: React.FC<CVSubmissionFormProps> = ({ isOpen, onClose, po
                     ) : (
                       <>
                         <Send className="w-5 h-5" />
-                        <span>🌱 Gửi CV ngay</span>
+                        <span>{isFormComplete() ? 'Gửi CV ngay' : 'Gửi CV ngay'}</span>
                       </>
                     )}
                     {/* Loading overlay */}

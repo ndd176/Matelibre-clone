@@ -71,7 +71,7 @@ const textY = useTransform(scrollSpring, [0.6, 1], ['15vh', '70vh'])
             }}
             className="text-[clamp(32px,10vw,100px)] text-black font-studio-pro-bold whitespace-nowrap"
             >
-             bold minds
+             NĂNG ĐỘNG
             </motion.h2>
           <motion.h2
             style={{
@@ -81,7 +81,7 @@ const textY = useTransform(scrollSpring, [0.6, 1], ['15vh', '70vh'])
             }}
             className="text-[clamp(32px,10vw,100px)] text-black font-studio-pro-bold whitespace-nowrap"
           >
-          bright futures
+          SÁNG TẠO
           </motion.h2>
         </div>
 
@@ -124,9 +124,7 @@ const textY = useTransform(scrollSpring, [0.6, 1], ['15vh', '70vh'])
                   willChange: 'clip-path',
                 } : { opacity: 0 }}
               >
-                COMING TO
-                <br />
-                JOIN WITH US
+                  MÔI TRƯỜNG THÂN THIỆN
               </motion.h1>
             </div>
           </div>

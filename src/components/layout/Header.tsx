@@ -68,10 +68,10 @@ const handleToggleMenu = () => {
 >
   <div className={`w-full flex items-center gap-6 px-8 py-3 ${isAtTop ? 'hidden' : 'flex'}`}>
     <Link href="/" className="text-[42px] font-studio-pro-bold">©ethan</Link>
-    <Link href="/about" className="hover:opacity-80 text-[20px] font-studio-pro-bold">About us</Link>
-    <Link href="/careers" className="hover:opacity-80 text-[18px] font-studio-pro">Careers</Link>
-    <Link href="/community" className="hover:opacity-80 text-[18px] font-studio-pro">Community</Link>
-    <Link href="/contact" className="hover:opacity-80 text-[18px] font-studio-pro">Contact</Link>
+    <Link href="/about" className="hover:opacity-80 text-[20px] font-studio-pro-bold">Về chúng tôi</Link>
+    <Link href="/careers" className="hover:opacity-80 text-[18px] font-studio-pro">Tuyển dụng</Link>
+    {/* <Link href="/community" className="hover:opacity-80 text-[18px] font-studio-pro">Cộng đồng</Link> */}
+    <Link href="/contact" className="hover:opacity-80 text-[18px] font-studio-pro">Liên hệ</Link>
 
     {/* <Link href="/community" className="hover:opacity-80 text-[18px] font-studio-pro">Community</Link> */}
   </div>
@@ -158,17 +158,17 @@ const handleToggleMenu = () => {
           }}
           className="space-y-6 text-4xl md:text-5xl font-studio-pro-bold text-black"
         >
-                    {['About us', 'Careers', 'Community','Contact'].map((item, i) => {
+                    {['Về chúng tôi', 'Tuyển dụng','Liên hệ'].map((item, i) => {
             // Xác định đúng href cho từng item
             const getHref = (itemName: string) => {
               switch(itemName) {
-                case 'About us':
+                case 'Về chúng tôi':
                   return '/about';
-                case 'Careers':
+                case 'Tuyển dụng':
                   return '/careers';
-                case 'Community':
-                  return '/community';
-                case 'Contact':
+                // case 'Cộng đồng':
+                //   return '/community';
+                case 'Liên hệ':
                   return '/contact';
                 default:
                   return '/';
@@ -195,13 +195,13 @@ const handleToggleMenu = () => {
         </motion.div>
 
         <div className="grid grid-cols-2 gap-2 mt-10 text-sm text-black font-studio-pro">
-           <a href="/careers/32">Designer</a>
-          <a href="/careers/49">Fulfillment</a>
-          <a href="/careers/52">EMB Designer</a>
-          <a href="/careers/25">Media</a>
-          <a href="/careers/55">Sales Support</a>
-          <a href="/careers/54">Sales Leader</a>
-          <a href="/careers/51">EMB Operator</a>
+           <a href="/careers/67">Video creator</a>
+          <a href="/careers/61">Kỹ thuật viên thêu</a>
+          <a href="/careers/71">Seller</a>
+          <a href="/careers/73">Internet Marketing</a>
+          <a href="/careers/75">Quản lý nhân sự</a>
+          <a href="/careers/69">Graphic Designer</a>
+          <a href="/careers/59">Quản lý xưởng thêu</a>
         </div>
       </motion.div>
 
@@ -231,9 +231,9 @@ const handleToggleMenu = () => {
         />
         <div className="absolute bottom-6 right-6 bg-white/90 px-4 py-2 rounded-xl shadow">
           <div className="bg-[#f4f4f4] p-6 mt-12 rounded-[30px]">
-            <p className="mb-4 font-studio-pro">Subscribe and never miss<br />Mate Libre again</p>
+            <p className="mb-4 font-studio-pro">Đăng ký để không bỏ lỡ<br />tin tức mới từ Mate Libre</p>
             <button className="bg-black text-white rounded-full px-6 py-2 text-sm font-studio-pro-bold">
-              build your box
+              Xây dựng hộp của bạn
             </button>
           </div>
         </div>

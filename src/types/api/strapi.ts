@@ -4,6 +4,84 @@
  */
 
 /**
+ * Strapi Media Object
+ */
+export interface StrapiMedia {
+  id: number
+  documentId: string
+  name: string
+  alternativeText?: string
+  caption?: string
+  width: number
+  height: number
+  formats?: {
+    thumbnail?: StrapiMediaFormat
+    small?: StrapiMediaFormat
+    medium?: StrapiMediaFormat
+    large?: StrapiMediaFormat
+  }
+  hash: string
+  ext: string
+  mime: string
+  size: number
+  url: string
+  previewUrl?: string
+  provider: string
+  provider_metadata?: any
+  createdAt: string
+  updatedAt: string
+  publishedAt: string
+}
+
+export interface StrapiMediaFormat {
+  ext: string
+  url: string
+  hash: string
+  mime: string
+  name: string
+  path?: string
+  size: number
+  width: number
+  height: number
+  sizeInBytes: number
+}
+
+/**
+ * Job - For homepage display (basic info only)
+ */
+export interface Job {
+  id: number
+  documentId: string
+  job_title: string
+  short_description: string
+  avatar_image?: StrapiMedia
+  sub_avatar?: StrapiMedia
+  createdAt: string
+  updatedAt: string
+  publishedAt: string
+}
+
+/**
+ * Job Detail - For careers page (complete info)
+ */
+export interface JobDetail {
+  id: number
+  documentId: string
+  job_title: string
+  salary_range?: string
+  overview?: string
+  requirements?: string
+  benefits?: string
+  job_image?: StrapiMedia
+  years_experience?: number
+  level?: string
+  job?: Job // Relation to main job
+  createdAt: string
+  updatedAt: string
+  publishedAt: string
+}
+
+/**
  * Job Position (Legacy)
  */
 export interface JobPosition {
@@ -73,69 +151,24 @@ export interface Testimonial {
 }
 
 /**
- * Job Detail with rich content
- */
-export interface JobDetail {
-  id: string
-  job_title: string
-  icon?: string
-  text_icon: TextIcon[]
-  salary_range: string
-  description: string | unknown[]; // Rich text blocks array
-  job_image: unknown; // Media object with formats
-  job?: Job // Relation field to Job
-  createdAt?: string
-  updatedAt?: string
-}
-
-/**
- * Text Icon component for job details
- */
-export interface TextIcon {
-  id?: string
-  text: string
-  icon: string
-}
-
-/**
- * Job listing
- */
-export interface Job {
-  id: string
-  job_title: string
-  short_description: string
-  avatar_image: StrapiImage | string
-  sub_avatar: StrapiImage | string
-  createdAt?: string
-  updatedAt?: string
-}
-
-/**
- * CareersNewPosition interface for careers-new page display
- */
-export interface CareersNewPosition {
-  id: string
-  title: string
-  description: string
-  department: string
-  location: string
-  type: string
-  canImage: string
-  bgImage: string
-  color: string
-  companyName: string
-  companyDescription: string
-  benefits: string[]
-  requirements: string[]
-  hoverText: string
-  salaryRange: string
-  isActive?: boolean
-}
-
-/**
- * Generic Strapi API Response
+ * API Response wrapper
  */
 export interface StrapiResponse<T> {
+  data: T
+  meta?: {
+    pagination?: {
+      page: number
+      pageSize: number
+      pageCount: number
+      total: number
+    }
+  }
+}
+
+/**
+ * API Response for multiple items
+ */
+export interface StrapiListResponse<T> {
   data: T[]
   meta: {
     pagination: {
@@ -148,13 +181,20 @@ export interface StrapiResponse<T> {
 }
 
 /**
- * Strapi Image object structure
+ * Error Response
  */
-export interface StrapiImage {
-  id?: number
-  url: string
-  width?: number
-  height?: number
-  alternativeText?: string
-  caption?: string
+export interface StrapiError {
+  error: {
+    status: number
+    name: string
+    message: string
+    details?: any
+  }
 }
+
+/**
+ * Helper function types
+ */
+export type JobResponseType = StrapiListResponse<Job>
+export type JobDetailResponseType = StrapiListResponse<JobDetail>
+export type SingleJobDetailResponseType = StrapiResponse<JobDetail>

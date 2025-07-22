@@ -17,11 +17,12 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
       fontFamily: {
-        'studio-pro': ['var(--font-studio-pro-regular)', 'sans-serif'],
-        'studio-pro-bold': ['var(--font-studio-pro-bold)', 'sans-serif'],
-        'sans': ['var(--font-studio-pro-regular)', 'sans-serif'], // Set làm font mặc định
-         'bebas': ['var(--font-bebas)', 'sans-serif'], // Thêm dòng này
-
+        'plus-jakarta-sans': ['var(--font-plus-jakarta-sans)', 'sans-serif'],
+        'sans': ['var(--font-plus-jakarta-sans)', 'sans-serif'], // Set làm font mặc định
+        'bebas': ['var(--font-bebas)', 'sans-serif'], // Font Bebas Neue
+        // Backward compatibility
+        'studio-pro': ['var(--font-plus-jakarta-sans)', 'sans-serif'],
+        'studio-pro-bold': ['var(--font-plus-jakarta-sans)', 'sans-serif'],
       },
       animation: {
         fade: 'fadeIn 1s ease-in-out',

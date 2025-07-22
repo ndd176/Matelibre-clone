@@ -46,7 +46,7 @@ export default function ScrollDiscoverIndicator() {
         transition={{ delay: 2.1, duration: 0.5 }}
         className="text-white/90 font-studio-pro-regular text-sm md:text-base mb-6 text-center group-hover:text-white transition-colors duration-300"
       >
-        Scroll down to discover
+        Cuộn xuống để xem thêm
       </motion.p>
 
       {/* Animated scroll indicator */}

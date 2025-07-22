@@ -1,6 +1,6 @@
 'use client'
 
-import { useState   } from 'react'
+import { useState } from 'react'
 import { FaCopy, FaFacebookF, FaPlus, FaMinus } from 'react-icons/fa'
 import { AnimatePresence, motion } from 'framer-motion'
 
@@ -8,49 +8,48 @@ const email = 'ethanecom@gmail.com'
 
 const faqs = [
   {
-    question: 'What positions is Ethan Ecom hiring for?',
+    question: 'Ethan Ecom đang tuyển dụng những vị trí nào?',
     answer: (
       <>
         <p className="mb-2">
-          We’re growing fast and always on the lookout for awesome teammates! Currently, we’re hiring for: 
-          <strong> IT, Designer, Marketing Support, EMB Designer, Fulfillment, TikTok Seller, QA, QC,</strong> and <strong>Media</strong>.  
+          Chúng tôi đang phát triển nhanh và luôn tìm kiếm những đồng nghiệp tuyệt vời! Hiện tại, chúng tôi đang tuyển dụng: 
+          <strong> IT, Thiết kế, Internet Marketing, Thiết kế thêu, Quản lý thêu,  Seller trên các sàn thương mại ddien tử, QA, QC,</strong> và <strong>Video creator</strong>.  
         </p>
         <p className="mb-2">
-          If you’re passionate, curious, and a little obsessed with embroidery or e-commerce — we want to hear from you!
+          Nếu bạn có đam mê, hứng thú về bất kỳ ngành nghề nào ở trên, đừng ngần ngại đến với Ethan!
         </p>
       </>
     ),
   },
   {
-    question: 'How can I apply?',
+    question: 'Làm sao để ứng tuyển?',
     answer: (
       <>
         <p className="mb-2">
-          Easy peasy 🍋 Just head over to our <a href="/careers" className="underline font-bold">Careers page</a>, pick the role that speaks to your soul, hit that "Apply" button, upload your CV — and voilà!
+          Rất dễ dàng 🍋 Chỉ cần vào trang <a href="/careers" className="underline font-bold">Tuyển dụng</a>, chọn vị trí phù hợp với bạn, nhấn nút "Ứng tuyển", tải lên CV — và xong!
         </p>
         <p className="mb-2">
-          We’ll get in touch to schedule an interview if it’s a match. Good luck!
+          Chúng tôi sẽ liên hệ để lên lịch phỏng vấn nếu phù hợp. Chúc may mắn!
         </p>
       </>
     ),
   },
   {
-    question: 'I have no experience. Can I still apply?',
+    question: 'Tôi chưa có kinh nghiệm. Có thể ứng tuyển không?',
     answer: (
       <>
         <p className="mb-2">
-          Absolutely! We all start somewhere. Some roles require more experience than others, but if you’re eager to learn, responsible, and have a good attitude — we’ll be happy to train you.
+          Tất nhiên rồi! Ai cũng bắt đầu từ đâu đó. Một số vị trí yêu cầu kinh nghiệm nhiều hơn, nhưng nếu bạn háo hức học hỏi, có trách nhiệm và thái độ tốt — chúng tôi sẵn sàng đào tạo bạn.
         </p>
         <p className="mb-2">
-          Basic computer skills are a must, and if you’ve got some English up your sleeve, that’s a sweet bonus! 🚀
+          Kỹ năng máy tính cơ bản là bắt buộc, và nếu bạn biết chút tiếng Anh thì đó là điểm cộng tuyệt vời! 🚀
         </p>
       </>
     ),
   },
 ]
 
-
-export default function NewsletterWithFAQ() {
+export default function FAQSection() {
   const [copied, setCopied] = useState(false)
   const [openIndex, setOpenIndex] = useState(0)
 
@@ -76,9 +75,8 @@ export default function NewsletterWithFAQ() {
           </a>
 
           {/* Text */}
-          <h3 className="text-xl md:text-3xl font-studio-pro-bold max-w-xl mb-6">
- Got questions or just want to say hi? Don’t hesitate to reach out — we're just a message away! 💬  
-
+          <h3 className="text-xl md:text-3xl font-plus-jakarta-sans-bold max-w-xl mb-6">
+            Có câu hỏi hoặc chỉ muốn chào hỏi? Đừng ngại liên hệ — chúng tôi chỉ cách bạn một tin nhắn! 💬
           </h3>
 
           {/* Email row */}
@@ -95,7 +93,7 @@ export default function NewsletterWithFAQ() {
             {/* Copied feedback */}
             {copied && (
               <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs px-3 py-1 rounded-full animate-fade">
-                Copied!
+                Đã sao chép!
               </span>
             )}
           </div>
@@ -104,8 +102,8 @@ export default function NewsletterWithFAQ() {
         {/* RIGHT: FAQ */}
         <div>
           {/* Title on top of FAQ */}
-          <h2 className="text-2xl md:text-3xl font-studio-pro-bold mb-6">
-            Frequently asked questions
+          <h2 className="text-2xl md:text-3xl font-plus-jakarta-sans-bold mb-6">
+            Câu hỏi thường gặp
           </h2>
 
           <div className="flex flex-col divide-y divide-black/10">
@@ -117,7 +115,7 @@ export default function NewsletterWithFAQ() {
                   className={`border border-black px-6 py-4 transition-all rounded-[40px] my-3`}
                 >
                   <button
-                    className="flex items-center justify-between w-full text-left font-studio-pro-bold text-lg"
+                    className="flex items-center justify-between w-full text-left font-plus-jakarta-sans-bold text-lg"
                     onClick={() => setOpenIndex(isOpen ? -1 : index)}
                   >
                     {faq.question}

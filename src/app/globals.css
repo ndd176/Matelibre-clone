@@ -36,8 +36,8 @@
 @theme inline {
   /* --color-background: var(--background);
   --color-foreground: var(--foreground); */
-  --font-sans: var(--font-studio-pro-regular);
-  --font-mono: var(--font-studio-pro-bold);
+  --font-sans: var(--font-plus-jakarta-sans);
+  --font-mono: var(--font-plus-jakarta-sans);
 }
 
 /* ========================================
@@ -77,16 +77,54 @@ body {
 /* ========================================
    FONT UTILITY CLASSES
 ======================================== */
-.font-studio-pro {
-  font-family: var(--font-studio-pro-regular), sans-serif !important;
+.font-plus-jakarta-sans {
+  font-family: var(--font-plus-jakarta-sans), sans-serif !important;
 }
 
-.font-studio-pro-bold {
-  font-family: var(--font-studio-pro-bold), sans-serif !important;
+.font-plus-jakarta-sans-light {
+  font-family: var(--font-plus-jakarta-sans), sans-serif !important;
+  font-weight: 300 !important;
+}
+
+.font-plus-jakarta-sans-regular {
+  font-family: var(--font-plus-jakarta-sans), sans-serif !important;
+  font-weight: 400 !important;
+}
+
+.font-plus-jakarta-sans-medium {
+  font-family: var(--font-plus-jakarta-sans), sans-serif !important;
+  font-weight: 500 !important;
+}
+
+.font-plus-jakarta-sans-semibold {
+  font-family: var(--font-plus-jakarta-sans), sans-serif !important;
+  font-weight: 600 !important;
+}
+
+.font-plus-jakarta-sans-bold {
+  font-family: var(--font-plus-jakarta-sans), sans-serif !important;
+  font-weight: 700 !important;
+}
+
+.font-plus-jakarta-sans-extrabold {
+  font-family: var(--font-plus-jakarta-sans), sans-serif !important;
+  font-weight: 800 !important;
 }
 
 .font-bebas {
   font-family: var(--font-bebas), sans-serif !important;
+}
+
+/* Backward compatibility - map old classes to new ones */
+.font-studio-pro,
+.font-studio-pro-regular {
+  font-family: var(--font-plus-jakarta-sans), sans-serif !important;
+  font-weight: 400 !important;
+}
+
+.font-studio-pro-bold {
+  font-family: var(--font-plus-jakarta-sans), sans-serif !important;
+  font-weight: 700 !important;
 }
 
 h1,
@@ -95,9 +133,9 @@ h3,
 h4,
 h5,
 h6,
-.font-bold,
-.font-studio-pro-bold {
-  font-family: var(--font-studio-pro-bold), sans-serif !important;
+.font-bold {
+  font-family: var(--font-plus-jakarta-sans), sans-serif !important;
+  font-weight: 700 !important;
 }
 
 /* ========================================

@@ -28,69 +28,69 @@ const smoothStagger = {
 const teamMembers = [
   {
     name: "Duy Đinh",
-    role: "Founder & CEO",
+    role: "Nhà sáng lập & CEO",
     image: "/images/anh-hiep.png",
-    bio: "Visionary leader with 10+ years experience in sustainable fashion innovation",
-    skills: ["Leadership", "Strategy", "Sustainability", "Innovation"],
-    quote: "Creating beautiful products that respect our planet",
-    experience: "10+ Years",
-    education: "Fashion Design, RMIT University",
-    achievement: "Built company from startup to 50M+ revenue"
+    bio: "Nhà lãnh đạo có tầm nhìn với hơn 10 năm kinh nghiệm trong đổi mới thời trang bền vững",
+    skills: ["Lãnh đạo", "Chiến lược", "Bền vững", "Đổi mới"],
+    quote: "Tạo ra những sản phẩm đẹp tôn trọng hành tinh của chúng ta",
+    experience: "Hơn 10 năm",
+    education: "Thiết kế thời trang, Đại học RMIT",
+    achievement: "Xây dựng công ty từ startup lên doanh thu 50M+"
   },
   {
-    name: "Media Team",
-    role: "Design Director",
+    name: "Đội ngũ truyền thông",
+    role: "Giám đốc thiết kế",
     image: "/images/duydinh-bg-2.png",
-    bio: "Passionate designers pushing creative boundaries in traditional embroidery",
-    skills: ["Embroidery", "Illustration", "Pattern Design", "Color Theory"],
-    quote: "Every design tells a story of culture and craftsmanship",
-    experience: "8+ Years",
-    education: "Fine Arts & Textile Design",
-    achievement: "500+ award-winning designs created"
+    bio: "Các nhà thiết kế đam mê đẩy ranh giới sáng tạo trong thêu truyền thống",
+    skills: ["Thêu", "Minh họa", "Thiết kế mẫu", "Lý thuyết màu sắc"],
+    quote: "Mỗi thiết kế đều kể một câu chuyện về văn hóa và thủ công",
+    experience: "Hơn 8 năm",
+    education: "Mỹ thuật & Thiết kế dệt may",
+    achievement: "Đã tạo ra hơn 500 thiết kế đoạt giải"
   },
   {
-    name: "Embroidery Team",
-    role: "Operations Director",
+    name: "Đội ngũ thêu",
+    role: "Giám đốc vận hành",
     image: "/images/position.jpg",
-    bio: "Quality-focused professionals ensuring excellence at every step",
-    skills: ["Quality Control", "Logistics", "Process Optimization", "Excellence"],
-    quote: "Excellence is not an act but a habit",
-    experience: "12+ Years",
-    education: "Industrial Engineering",
-    achievement: "99.8% quality rating maintained"
+    bio: "Những chuyên gia tập trung vào chất lượng đảm bảo sự xuất sắc ở mọi bước",
+    skills: ["Kiểm soát chất lượng", "Hậu cần", "Tối ưu hóa quy trình", "Xuất sắc"],
+    quote: "Sự xuất sắc không phải là một hành động mà là một thói quen",
+    experience: "Hơn 12 năm",
+    education: "Kỹ thuật công nghiệp",
+    achievement: "Duy trì đánh giá chất lượng 99.8%"
   },
   {
-    name: "IT Team",
-    role: "Digital Innovation Lead",
+    name: "Đội ngũ IT",
+    role: "Trưởng đổi mới số",
     image: "/images/work.png",
-    bio: "Building the future of fashion technology with AI and automation",
-    skills: ["Development", "AI Design", "Automation", "Digital Innovation"],
-    quote: "Technology enhances creativity, never replaces it",
-    experience: "6+ Years",
-    education: "Computer Science & Digital Arts",
-    achievement: "3x production efficiency increase"
+    bio: "Xây dựng tương lai của công nghệ thời trang với AI và tự động hóa",
+    skills: ["Phát triển", "Thiết kế AI", "Tự động hóa", "Đổi mới số"],
+    quote: "Công nghệ nâng cao sự sáng tạo, không bao giờ thay thế nó",
+    experience: "Hơn 6 năm",
+    education: "Khoa học máy tính & Nghệ thuật số",
+    achievement: "Tăng hiệu suất sản xuất gấp 3 lần"
   },
   {
-    name: "Marketing Team",
-    role: "Brand & Marketing",
+    name: "Đội ngũ marketing",
+    role: "Thương hiệu & Marketing",
     image: "/images/congty.jpg",
-    bio: "Storytellers building authentic connections with our community",
-    skills: ["Brand Strategy", "Content Creation", "Community Building", "Storytelling"],
-    quote: "Authentic brands create lasting relationships",
-    experience: "7+ Years",
-    education: "Marketing & Communications",
-    achievement: "10M+ social media reach"
+    bio: "Những người kể chuyện xây dựng kết nối chân thực với cộng đồng của chúng tôi",
+    skills: ["Chiến lược thương hiệu", "Tạo nội dung", "Xây dựng cộng đồng", "Kể chuyện"],
+    quote: "Thương hiệu chân thực tạo ra những mối quan hệ bền vững",
+    experience: "Hơn 7 năm",
+    education: "Marketing & Truyền thông",
+    achievement: "Tiếp cận hơn 10 triệu lượt trên mạng xã hội"
   },
   {
-    name: "Designer Team",
-    role: "Environmental Impact",
+    name: "Đội ngũ thiết kế",
+    role: "Tác động môi trường",
     image: "/images/office-01.jpg",
-    bio: "Environmental champions ensuring every decision is eco-conscious",
-    skills: ["Eco-Design", "Material Research", "Sustainability", "Innovation"],
-    quote: "Small choices today create a better tomorrow",
-    experience: "5+ Years",
-    education: "Environmental Science",
-    achievement: "Carbon neutral certification achieved"
+    bio: "Những nhà vô địch môi trường đảm bảo mọi quyết định đều có ý thức sinh thái",
+    skills: ["Thiết kế sinh thái", "Nghiên cứu vật liệu", "Bền vững", "Đổi mới"],
+    quote: "Những lựa chọn nhỏ ngày hôm nay tạo ra một ngày mai tốt đẹp hơn",
+    experience: "Hơn 5 năm",
+    education: "Khoa học môi trường",
+    achievement: "Đạt được chứng nhận trung hòa carbon"
   }
 ]
 
@@ -98,215 +98,212 @@ const teamMembers = [
 const coreValues = [
   {
     icon: "🌟",
-    title: "Creative Innovation",
-    description: "We spark trends with bold designs and cutting-edge e-commerce solutions.",
-    details: "Our team crafts unique products for TikTok, Etsy, Shopify, and WordPress, pushing creative boundaries.",
-    metrics: ["100+ Designs Launched", "Weekly Content Drops", "Trendsetter Status"],
-    impact: "Leading the e-commerce design revolution"
-  },
-  {
-    icon: "🧵",
-    title: "Crafted Excellence",
-    description: "Every stitch and product reflects our dedication to quality and personalization.",
-    details: "Our custom embroidery and POD processes ensure flawless, tailored results.",
-    metrics: ["99.9% Quality Rating", "Zero Defects", "Craftsmanship Awards"],
-    impact: "Setting the standard for personalized products"
-  },
-  {
-    icon: "🌿",
-    title: "Sustainable Commerce",
-    description: "Eco-conscious practices are at the heart of our dropshipping and production.",
-    details: "We partner with ethical suppliers and use sustainable materials for a greener future.",
-    metrics: ["80% Eco-Friendly Materials", "Low-Waste Processes", "Green Certifications"],
-    impact: "Reducing e-commerce’s environmental footprint"
+    title: "Luôn đổi mới",
+    description: "Chúng tôi không ngừng sáng tạo để mang đến những thiết kế táo bạo cùng giải pháp thương mại điện tử hiệu quả.",
+    details: "Đội ngũ Ethan Ecom liên tục cho ra đời các sản phẩm độc đáo trên TikTok, Etsy, Shopify và WordPress – mở ra những hướng đi mới cho ngành.",
+    metrics: ["Hơn 100 thiết kế đã ra mắt", "Ra nội dung mỗi tuần", "Luôn bắt kịp xu hướng"],
+    impact: "Góp phần định hình xu hướng thương mại điện tử hiện đại"
   },
   {
     icon: "⚡",
-    title: "Agile Execution",
-    description: "We move fast, from viral TikTok content to seamless order fulfillment.",
-    details: "Our streamlined dropshipping and POD systems deliver in record time.",
-    metrics: ["48-Hour Fulfillment", "3x Faster Market Entry", "Scalable Systems"],
-    impact: "Staying ahead in the fast-paced e-commerce world"
-  },
-  {
-    icon: "🤝",
-    title: "Customer Obsession",
-    description: "Your vision drives us—custom orders and satisfaction are our priority.",
-    details: "From personalized embroidery to 24/7 support, we put customers first.",
-    metrics: ["97% Satisfaction Rate", "Instant Feedback Loop", "24/7 Chat Support"],
-    impact: "90% repeat customer rate"
+    title: "Linh hoạt và tốc độ",
+    description: "Chúng tôi làm việc nhanh, triển khai gọn và luôn sẵn sàng bắt kịp mọi cơ hội.",
+    details: "Quy trình dropshipping và sản xuất theo yêu cầu được tinh gọn tối đa, giúp đơn hàng đến tay khách hàng chỉ trong thời gian ngắn.",
+    metrics: ["Giao hàng trong 48h", "Ra mắt thị trường nhanh gấp 3 lần", "Hệ thống linh hoạt dễ mở rộng"],
+    impact: "Luôn dẫn đầu trong cuộc chơi tốc độ"
   },
   {
     icon: "🔥",
-    title: "Passionate Drive",
-    description: "Our team’s energy and creativity fuel Ethan Ecom’s global impact.",
-    details: "A vibrant culture where every member is dedicated to innovation and growth.",
-    metrics: ["High Team Engagement", "Low Turnover", "Creative Culture"],
-    impact: "Recognized as a top e-commerce workplace"
+    title: "Làm việc bằng đam mê",
+    description: "Chúng tôi là một tập thể trẻ trung, năng động và luôn khao khát phát triển.",
+    details: "Mỗi thành viên tại Ethan Ecom đều mang trong mình tinh thần cầu tiến, sáng tạo và không ngừng học hỏi để cùng nhau bứt phá.",
+    metrics: ["Tỷ lệ gắn bó cao", "Văn hóa làm việc tích cực", "Luôn tràn đầy năng lượng"],
+    impact: "Tạo nên môi trường làm việc đáng mơ ước trong ngành thương mại điện tử"
+  },
+  {
+    icon: "🧵",
+    title: "Tỉ mỉ trong từng chi tiết",
+    description: "Chúng tôi coi trọng chất lượng và sự cá nhân hóa trong từng sản phẩm gửi đến tay khách hàng.",
+    details: "Từ khâu thêu cho đến hoàn thiện, mọi sản phẩm đều được kiểm tra kỹ lưỡng để đảm bảo độ chính xác và sự tinh tế.",
+    metrics: ["Chất lượng đạt 99.9%", "Không phát sinh lỗi", "Được đánh giá cao trong giới thủ công"],
+    impact: "Trở thành tiêu chuẩn mới cho sản phẩm cá nhân hóa"
+  },
+  {
+    icon: "🤝",
+    title: "Lấy khách hàng làm trung tâm",
+    description: "Mọi điều chúng tôi làm đều xuất phát từ mong muốn mang lại trải nghiệm tốt nhất cho khách hàng.",
+    details: "Từ việc thêu theo yêu cầu đến hỗ trợ tận tình 24/7, sự hài lòng của khách hàng là ưu tiên hàng đầu tại Ethan Ecom.",
+    metrics: ["97% khách hàng hài lòng", "Phản hồi nhanh chóng", "Hỗ trợ mọi lúc"],
+    impact: "90% khách hàng quay lại và giới thiệu cho người khác"
+  },
+  {
+    icon: "🌱",
+    title: "Tinh thần cầu tiến &  môi trường thân thiện",
+    description: "Chúng tôi xây dựng môi trường làm việc cởi mở, nơi mọi người được lắng nghe và cùng nhau phát triển.",
+    details: "Ethan Ecom khuyến khích học hỏi, trân trọng sự khác biệt và luôn cải tiến để mang lại giá trị lâu dài cho cả team và khách hàng.",
+    metrics: ["Văn hóa làm việc tích cực",   "Hỗ trợ tận tình những người mới"],
+    impact: "Xây dựng một tập thể tử tế, cầu tiến và lấy con người làm gốc"
   }
 ];
+
 
 
 const milestones = [
   {
-    year: "2019",
-    title: "The Beginning",
-    description: "Ethan Ecom was founded with a small, passionate team diving into e-commerce on Amazon.",
-    impact: "Launched first dropshipping venture",
-    details: "Three close-knit team members started with a vision to disrupt e-commerce with creativity.",
-    achievement: "Foundation established",
-    metrics: "3 Team Members → First 50 Orders"
+    year: "2017",
+    title: "Khởi đầu",
+    description: "Ethan Ecom được thành lập với mục đích kinh doanh đơn giản trên nền tảng Amazon.",
+    impact: "Ra mắt những sản phẩm dropshipping đầu tiên",
+    details: "Ba thành viên thân thiết chập chững bắt đầu mô hình kinh doanh đơn giản",
+    achievement: "Đặt nền móng đầu tiên cho Ethan",
+    metrics: "3 thành viên → 50 đơn đầu tiên"
+  },
+  {
+    year: "2018",
+    title: "Thành công rực rỡ",
+    description: "Các sản phẩm viral trên Amazon giúp Ethan Ecom thu hút sự chú ý lớn, tạo đà tăng trưởng nhanh chóng.",
+    impact: "Doanh thu tăng gấp 4 lần so với lúc khởi đầu ",
+    details: "Những thiết kế độc đáo kết hợp với chiến lược marketing thông minh đã giúp lượng khách hàng và doanh thu tăng vọt.",
+    achievement: "Leo lên được top 10 amazon với sản phẩm áo in",
+    metrics: "Thoáng chốc tổng số lượng đơn hàng vượt trên 10 ngàn"
   },
   {
     year: "2020",
-    title: "Breakout Success",
-    description: "Achieved major traction with viral products on Amazon, fueling rapid growth.",
-    impact: "500% sales increase in one year",
-    details: "Our unique designs and strategic marketing led to a surge in customers and revenue.",
-    achievement: "Market validation",
-    metrics: "10k+ Orders → 100k+ Revenue"
+    title: "Nguy cơ phá sản",
+    description: "Gặp phải thử thách lớn trong kinh doanh, những sự kiện ngoài ý muốn khiến cho việc duy trì doanh nghiệp trở nên vô cùng khó khăn",
+    impact: "",
+    details: "Năm 2020, đại dịch khiến kho Amazon quá tải, đơn hàng đình trệ, doanh thu lao dốc. Sản phẩm tồn kho, chi phí đội lên, dòng tiền cạn kiệt. Ethan Ecom đứng trước bờ vực phá sản.",
+    achievement: "Học được một bài học lớn",
+    metrics: "Cố gắng duy trì → Cạn vốn"
   },
+{
+  year: "2022",
+  title: "Trở lại mạnh mẽ",
+  description: "Nắm bắt cơ hội mới từ TikTok và Etsy để mở rộng thị trường và kết nối với thế hệ khách hàng trẻ.",
+  impact: "Tăng gấp đôi lượng khách hàng nhờ nội dung viral",
+  details: "Chúng tôi tận dụng sức lan tỏa mạnh mẽ của TikTok để giới thiệu các thiết kế sáng tạo, từ đó thúc đẩy doanh số và xây dựng cộng đồng người theo dõi trung thành.",
+  achievement: "Hiện diện mạnh mẽ trên nhiều nền tảng",
+  metrics: "1 triệu lượt xem TikTok → 20.000+ khách hàng"
+},
   {
-    year: "2021",
-    title: "Overcoming Challenges",
-    description: "Faced tough times but stayed resilient, pivoting to stabilize the business.",
-    impact: "Avoided collapse through quick adaptation",
-    details: "Refined operations and focused on core strengths to navigate near-bankruptcy.",
-    achievement: "Business recovery",
-    metrics: "Streamlined Operations → 80% Cost Reduction"
-  },
-  {
-    year: "2022",
-    title: "Comeback & Growth",
-    description: "Seized new opportunities, expanding our reach with TikTok and Etsy.",
-    impact: "Doubled customer base with viral content",
-    details: "Leveraged TikTok’s explosive growth to showcase creative designs and drive sales.",
-    achievement: "Multi-platform presence",
-    metrics: "1M+ TikTok Views → 20k+ Customers"
-  },
-  {
-    year: "2023",
-    title: "Platform Expansion",
-    description: "Broadened our horizons by launching on multiple e-commerce platforms.",
-    impact: "Reached 10+ countries with diverse products",
-    details: "Introduced custom embroidery and scaled operations to meet growing demand.",
-    achievement: "Global market entry",
-    metrics: "10+ Countries → 50k+ Orders"
-  },
-  {
-    year: "2024",
-    title: "Scaling Up",
-    description: "Built a new office to welcome a growing team and enhance operations.",
-    impact: "Team expanded to 20+ specialists",
-    details: "New headquarters supported our push into Shopify and WordPress platforms.",
-    achievement: "Operational growth",
-    metrics: "20+ Team Members → 2x Capacity"
-  },
-  {
-    year: "2025",
-    title: "Explosive Growth",
-    description: "Boomed with a packed office and opened a second location for embroidery.",
-    impact: "Established leadership in custom e-commerce",
-    details: "Expanded embroidery operations and solidified our brand as a trendsetter.",
-    achievement: "Industry leadership",
-    metrics: "2 Offices → 100k+ Custom Orders"
-  }
+  year: "2023",
+  title: "Mở rộng nền tảng",
+  description: "Mở rộng quy mô hoạt động bằng cách tham gia nhiều nền tảng thương mại điện tử khác nhau.",
+  impact: "Vươn ra nhiều quốc gia hơn với danh mục sản phẩm đa dạng",
+  details: "Chúng tôi ra mắt dòng sản phẩm thêu tùy chỉnh và nâng cấp vận hành để đáp ứng nhu cầu ngày càng tăng.",
+  achievement: "Thâm nhập thị trường quốc tế",
+  metrics: "10+ quốc gia → 50.000+ đơn hàng"
+},
+{
+  year: "2024",
+  title: "Tăng tốc quy mô",
+  description: "Xây dựng văn phòng mới để chào đón đội ngũ ngày càng lớn mạnh và nâng cao hiệu quả vận hành.",
+  impact: "Mở rộng đội ngũ lên hơn 20 nhân viên",
+  details: "Trụ sở mới giúp đẩy mạnh hoạt động trên các nền tảng",
+  achievement: "Tăng trưởng vận hành",
+  metrics: "20+ thành viên → Gấp đôi năng lực xử lý"
+},
+{
+  year: "2025",
+  title: "Bùng nổ tăng trưởng",
+  description: "Văn phòng chính hoạt động hết công suất, Ethan Ecom mở thêm chi nhánh thứ hai chuyên về thêu.",
+  impact: "Team thêu được thành lập",
+  details: "Văn phòng 2 được cấp tốc chuẩn bị đến đón chào những nhân tài tề tựu về góp sức phát triển kinh doanh",
+  achievement: "+10 Máy thêu, nâng tổng số nhân viên lên 45",
+  metrics: "2 văn phòng → 10.000+ đơn hàng custom"
+}
+
 ];
 
-// Refined process steps for minimalist style
+// Các bước quy trình được tinh chỉnh cho phong cách tối giản
 const designProcess = [
   {
     step: "01",
-    title: "Trend Spotting",
-    description: "Quickly identify hot trends and customer demands across platforms.",
-    details: "We scan TikTok, Etsy, and market data to pinpoint viral trends and customer preferences.",
-    duration: "1-2 Hours",
-    tools: "Social Media Analytics, Trend Reports, Customer Insights"
-  },
+    title: "Nghiên cứu thị trường, tìm xu hướng",
+    description: "Nhanh chóng xác định xu hướng nóng và nhu cầu khách hàng trên các nền tảng.",
+    details: "Chúng tôi quét các sản thương mại để thu thập dữ liệu thị trường sau đó xác định xu hướng viral và sở thích khách hàng.",
+    duration: "Seller, Internet Marketing",
+   },
   {
     step: "02",
-    title: "Idea Generation",
-    description: "Rapid brainstorming to create standout designs for POD and embroidery.",
-    details: "Our team collaborates to sketch bold concepts tailored for viral appeal and customization.",
-    duration: "2 Hours",
-    tools: "Digital Sketching, Team Collaboration, Mood Boards"
-  },
+    title: "Phát Triển Ý Tưởng",
+    description: "Động não nhanh chóng để tạo ra các thiết kế nổi bật cho POD",
+    details: "Đội ngũ của chúng tôi hợp tác để phác thảo các khái niệm táo bạo phù hợp với sức hấp dẫn viral và tùy chỉnh.",
+    duration: "Seller, Internet Marketing",
+   },
   {
     step: "03",
-    title: "Design & Prep",
-    description: "Fast creation of digital designs and embroidery patterns for production.",
-    details: "We craft high-quality visuals and custom embroidery files, ready for supplier fulfillment.",
-    duration: "3 Hours",
-    tools: "Design Software, Embroidery Digitizing, Mockup Tools"
-  },
+    title: "Thiết Kế & Chuẩn Bị",
+    description: "Tạo nhanh các thiết kế kỹ thuật số và mẫu thêu để sản xuất.",
+    details: "Chúng tôi tạo ra hình ảnh chất lượng cao và file thêu tùy chỉnh, sẵn sàng cho việc thực hiện của nhà cung cấp.",
+    duration: "Designer",
+   },
   {
     step: "04",
-    title: "Content Creation",
-    description: "Produce engaging TikTok videos to showcase designs and drive sales.",
-    details: "We shoot and edit dynamic content to highlight products and spark customer interest.",
-    duration: "2 Hours",
-    tools: "Video Editing Software, Mobile Filming, Content Platforms"
-  },
+    title: "Tạo Nội Dung",
+    description: "Sản xuất video TikTok hấp dẫn để giới thiệu thiết kế và thúc đẩy bán hàng.",
+    details: "Chúng tôi quay và chỉnh sửa nội dung sinh động để làm nổi bật sản phẩm và khơi gợi sự quan tâm của khách hàng.",
+    duration: "Video Creator",
+   },
   {
     step: "05",
-    title: "Launch & Fulfill",
-    description: "Go live on platforms and coordinate with suppliers for seamless delivery.",
-    details: "Products hit TikTok, Etsy, and soon Shopify/WordPress, with real-time order tracking.",
-    duration: "1-2 Hours",
-    tools: "E-commerce Platforms, Supplier Dashboards, Analytics"
-  }
+    title: "Ra Mắt & Thực Hiện",
+    description: "Phát hành trên các nền tảng và phối hợp với nhà cung cấp để giao hàng suôn sẻ.",
+    details: "Sản phẩm xuất hiện trên TikTok, Etsy và sớm là Shopify/WordPress, với theo dõi đơn hàng theo thời gian thực.",
+    duration: "Fullfillment",
+   }
 ];
 
-// Refined achievements for minimalist presentation
+// Các thành tựu được tinh chỉnh để trình bày tối giản
 const achievements = [
   {
-    title: "Industry Recognition",
+    title: "Công Nhận Ngành",
     items: [
-      "Sustainable Fashion Pioneer Award 2024",
-      "Innovation Excellence Recognition",
-      "Global Impact Sustainability Prize"
+      "Giải Thưởng Tiên Phong Thời Trang Bền Vững 2024",
+      "Công Nhận Xuất Sắc Đổi Mới",
+      "Giải Thưởng Tác Động Bền Vững Toàn Cầu"
     ],
-    metrics: "15+ Major Awards"
+    metrics: "Hơn 15 Giải Thưởng Lớn"
   },
   {
-    title: "Business Excellence",
+    title: "Xuất Sắc Kinh Doanh",
     items: [
-      "Fastest Growing Fashion Startup",
-      "Customer Choice Award - 3 Years Running",
-      "Employer of the Year - Creative Industries"
+      "Startup Thời Trang Phát Triển Nhanh Nhất",
+      "Giải Thưởng Lựa Chọn Khách Hàng - 3 Năm Liên Tiếp",
+      "Nhà Tuyển Dụng Của Năm - Ngành Công Nghiệp Sáng Tạo"
     ],
-    metrics: "500% Growth Rate"
+    metrics: "Tỷ Lệ Tăng Trưởng 500%"
   },
   {
-    title: "Global Impact",
+    title: "Tác Động Toàn Cầu",
     items: [
-      "1M+ Lives Touched Through Products",
-      "500+ Artisans Empowered Globally",
-      "50% Industry Carbon Reduction Influenced"
+      "Hơn 1 Triệu Cuộc Sống Được Chạm Tới Qua Sản Phẩm",
+      "Hơn 500 Nghệ Nhân Được Trao Quyền Toàn Cầu",
+      "50% Giảm Carbon Trong Ngành Được Tác Động"
     ],
-    metrics: "Worldwide Influence"
+    metrics: "Ảnh Hưởng Toàn Thế Giới"
   }
 ]
 
-// Elegant partnerships for minimalist presentation
+// Các đối tác tuyệt vời cho bài trình bày tối giản
 const partnerships = [
   {
-    name: "Global Artisan Network",
-    description: "Empowering 500+ traditional craftspeople across 15 countries",
-    impact: "500+ Artisans Supported • $2M+ Direct Payments",
-    category: "Community Impact"
+    name: "Mạng Lưới Nghệ Nhân Toàn Cầu",
+    description: "Trao quyền cho hơn 500 nghệ nhân truyền thống trên 15 quốc gia",
+    impact: "Hơn 500 Nghệ Nhân Được Hỗ Trợ • Hơn 2 Triệu Đô La Thanh Toán Trực Tiếp",
+    category: "Tác Động Cộng Đồng"
   },
   {
-    name: "Innovation Labs",
-    description: "Collaboration with leading universities on sustainable technology",
-    impact: "5 Patents Pending • 3 Breakthrough Innovations",
-    category: "Research & Development"
+    name: "Phòng Thí Nghiệm Đổi Mới",
+    description: "Hợp tác với các trường đại học hàng đầu về công nghệ bền vững",
+    impact: "5 Bằng Sáng Chế Đang Chờ Xử Lý • 3 Đột Phá Đổi Mới",
+    category: "Nghiên Cứu & Phát Triển"
   },
   {
-    name: "Environmental Coalition",
-    description: "Leading fashion industry's sustainable transformation",
-    impact: "10M+ Carbon Credits • 50% Industry Impact",
-    category: "Sustainability Leadership"
+    name: "Liên Minh Môi Trường",
+    description: "Dẫn đầu chuyển đổi bền vững của ngành thời trang",
+    impact: "Hơn 10 Triệu Tín Chỉ Carbon • 50% Tác Động Ngành",
+    category: "Lãnh Đạo Bền Vững"
   }
 ]
 
@@ -317,7 +314,7 @@ export default function AboutUsAltPage() {
   // Track scroll position for sticky navigation
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'story', 'values', 'team', 'process', 'timeline', 'achievements', 'partnerships']
+      const sections = ['hero', 'story', 'values', 'team', 'process', 'timeline', 'achievements']
       const currentSection = sections.find(section => {
         const element = document.getElementById(section)
         if (element) {
@@ -425,7 +422,7 @@ export default function AboutUsAltPage() {
             transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <h1 className="text-4xl md:text-8xl lg:text-7xl font-studio-pro-bold text-black leading-none tracking-tight mb-8">
-              About
+              Về chúng tôi
             </h1>
           </motion.div>
           
@@ -446,9 +443,8 @@ export default function AboutUsAltPage() {
             className="max-w-4xl mx-auto"
           >
             <p className="text-xl md:text-2xl lg:text-3xl text-gray-700 leading-relaxed font-studio-pro">
-              We don't just create e-commerce.<br/>
-              We craft sustainable futures<br/>
-              <span className="text-black font-studio-pro-bold">Beautiful. Responsible. Innovative.</span>
+               Chúng tôi tạo ra tương lai bền vững<br/>
+              <span className="text-black font-studio-pro-bold">Đẹp. Có trách nhiệm. Sáng tạo.</span>
             </p>
           </motion.div>
 
@@ -490,14 +486,12 @@ export default function AboutUsAltPage() {
                   <div className="flex justify-center">
                     <div className="flex gap-2 md:gap-8 flex-wrap justify-center">
                       {[
-                        { id: 'story', label: 'Our Story' },
-                        { id: 'values', label: 'Values' },
-                        { id: 'team', label: 'Team' },
-                        { id: 'process', label: 'Process' },
-                        { id: 'timeline', label: 'Journey' },
-                        { id: 'achievements', label: 'Achievements' },
-                        { id: 'partnerships', label: 'Partners' }
-                      ].map((section) => (
+                        { id: 'story', label: 'Câu chuyện của chúng tôi' },
+                        { id: 'values', label: 'Giá trị cốt lõi' },
+                        { id: 'team', label: 'Đội ngũ' },
+                        { id: 'process', label: 'Quy trình làm việc' },
+                        { id: 'timeline', label: 'Hành trình' },
+                        ].map((section) => (
                         <motion.button
                           key={section.id}
                           onClick={() => scrollToSection(section.id)}
@@ -580,7 +574,7 @@ export default function AboutUsAltPage() {
             <motion.div variants={elegantFadeIn}>
               <div className="mb-8">
                 <h2 className="text-5xl md:text-6xl lg:text-7xl font-studio-pro-bold text-black leading-tight">
-                  Our Story
+                  Câu chuyện của chúng tôi
                 </h2>
               </div>
               
@@ -590,8 +584,7 @@ export default function AboutUsAltPage() {
                   variants={elegantFadeIn}
                 >
                   <p className="text-xl text-gray-800 leading-relaxed font-studio-pro">
-Fueled by a passion for creative commerce, Ethan Ecom was born to blend bold designs with sustainable practices. We fuse the art of custom embroidery with the fast-paced world of e-commerce innovation.
-                  </p>
+Được khơi nguồn từ đam mê trong lĩnh vực thương mại sáng tạo, Ethan Ecom ra đời với sứ mệnh kết hợp giữa những thiết kế thêu táo bạo. Chúng tôi mang đến sự giao thoa độc đáo giữa nghệ thuật thủ công và tốc độ đổi mới của thương mại điện tử hiện đại.                  </p>
                 </motion.div>
                 
                 <motion.div 
@@ -599,8 +592,7 @@ Fueled by a passion for creative commerce, Ethan Ecom was born to blend bold des
                   variants={elegantFadeIn}
                 >
                   <p className="text-lg leading-relaxed font-studio-pro">
-From a tiny workspace to a global presence. From a spark of an idea to leading the dropshipping and POD scene. In just five years, we’ve turned our vision into a thriving reality.
-                  </p>
+Từ một văn phòng nhỏ khởi đầu với ước mơ kinh doanh đơn giản, Ethan Ecom đã không ngừng phát triển để từng bước khẳng định vị thế của mình, hướng đến mục tiêu trở thành một trong những tên tuổi dẫn đầu trong ngành.                  </p>
                 </motion.div>
               </div>
             </motion.div>
@@ -616,7 +608,7 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
                   transition={{ duration: 0.3 }}
                 >
                   <h3 className="text-4xl font-studio-pro-bold mb-2">40+</h3>
-                  <p className="text-lg font-studio-pro">Employees</p>
+                  <p className="text-lg font-studio-pro">Nhân viên</p>
                 </motion.div>
                 
                 <motion.div 
@@ -624,8 +616,8 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
                   whileHover={{ scale: 1.05, y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <h3 className="text-4xl font-studio-pro-bold mb-2">5+</h3>
-                  <p className="text-lg font-studio-pro">Years Experience</p>
+                  <h3 className="text-4xl font-studio-pro-bold mb-2">7+</h3>
+                  <p className="text-lg font-studio-pro">Năm Kinh Nghiệm</p>
                 </motion.div>
                 
                 <motion.div 
@@ -634,7 +626,7 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
                   transition={{ duration: 0.3 }}
                 >
                   <h3 className="text-4xl font-studio-pro-bold mb-2">500M+</h3>
-                  <p className="text-lg font-studio-pro">Served Customers</p>
+                  <p className="text-lg font-studio-pro">Khách Hàng Đã Phục Vụ</p>
                 </motion.div>
                 
                 <motion.div 
@@ -642,8 +634,8 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
                   whileHover={{ scale: 1.05, y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <h3 className="text-4xl font-studio-pro-bold mb-2">100%</h3>
-                  <p className="text-lg font-studio-pro">Sustainable Materials</p>
+                  <h3 className="text-4xl font-studio-pro-bold mb-2">700M+</h3>
+                  <p className="text-lg font-studio-pro">Sản phẩm đã sản xuất</p>
                 </motion.div>
               </div>
             </motion.div>
@@ -704,7 +696,7 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-studio-pro-bold text-black mb-6">
-              Our Values
+              Giá trị của chúng tôi
             </h2>
             <div className="w-24 h-px bg-black mx-auto"></div>
           </motion.div>
@@ -809,7 +801,7 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-studio-pro-bold text-black mb-6">
-              Meet Our Team
+              Gặp gỡ đội ngũ của chúng tôi
             </h2>
             <div className="w-24 h-px bg-black mx-auto"></div>
           </motion.div>
@@ -939,7 +931,7 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-studio-pro-bold text-black mb-6">
-              Our Process
+              Quy trình của chúng tôi
             </h2>
             <div className="w-24 h-px bg-black mx-auto"></div>
           </motion.div>
@@ -973,9 +965,7 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
                         <div className="bg-gray-50 p-4 rounded-2xl">
                           <p className="text-sm text-gray-600 font-studio-pro">{step.details}</p>
                         </div>
-                        <div className="border-l-4 border-black pl-4">
-                          <p className="text-sm font-studio-pro-bold text-black">Tools: {step.tools}</p>
-                        </div>
+ 
                       </div>
                     </div>
                   </div>
@@ -1050,7 +1040,7 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-studio-pro-bold text-black mb-6">
-              Our Journey
+              Hành trình của chúng tôi
             </h2>
             <div className="w-24 h-px bg-black mx-auto"></div>
           </motion.div>
@@ -1082,10 +1072,10 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         <div className="bg-black text-white p-4 rounded-2xl">
-                          <p className="text-sm font-studio-pro-bold">Impact: {milestone.impact}</p>
+                          <p className="text-sm font-studio-pro-bold">Thành tựu: {milestone.impact}</p>
                         </div>
                         <div className="bg-gray-200 text-black p-4 rounded-2xl">
-                          <p className="text-sm font-studio-pro-bold">Achievement: {milestone.achievement}</p>
+                          <p className="text-sm font-studio-pro-bold">Dấu ấn: {milestone.achievement}</p>
                         </div>
                       </div>
                       
@@ -1159,7 +1149,7 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-studio-pro-bold text-black mb-6">
-              Our Achievements
+              Thành tựu của chúng tôi
             </h2>
             <div className="w-24 h-px bg-black mx-auto"></div>
           </motion.div>
@@ -1204,10 +1194,10 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             {[
-              { number: "15+", label: "Major Awards" },
-              { number: "500%", label: "Growth Rate" },
-              { number: "1M+", label: "Lives Impacted" },
-              { number: "50%", label: "Industry Influence" }
+              { number: "15+", label: "Giải thưởng lớn" },
+              { number: "500%", label: "Tỷ lệ tăng trưởng" },
+              { number: "1M+", label: "Cuộc sống tác động" },
+              { number: "50%", label: "Ảnh hưởng ngành" }
             ].map((stat, index) => (
               <motion.div
                 key={index}
@@ -1224,9 +1214,8 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
       </section>
 
       {/* CLEAN PARTNERSHIPS SECTION */}
-      <section id="partnerships" className="py-24 bg-white relative overflow-hidden">
-        {/* Tropical Plant Background */}
-        <div 
+      {/* <section id="partnerships" className="py-24 bg-white relative overflow-hidden">
+         <div 
           className="absolute top-0 left-0 w-2/5 h-full opacity-50"
           style={{
             backgroundImage: 'url(images/team-building-023.webp)',
@@ -1236,7 +1225,6 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
           }}
         />
 
-        {/* Elegant Leaf Elements */}
         <motion.div 
           className="absolute top-24 right-20 w-14 h-14 opacity-8"
           animate={{ 
@@ -1275,7 +1263,7 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-studio-pro-bold text-black mb-6">
-              Our Partners
+              Đối tác của chúng tôi
             </h2>
             <div className="w-24 h-px bg-black mx-auto"></div>
           </motion.div>
@@ -1307,7 +1295,6 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
             ))}
           </div>
           
-          {/* Community impact stats */}
           <motion.div 
             className="bg-black text-white p-12 rounded-3xl"
             initial={{ opacity: 0, y: 60 }}
@@ -1315,24 +1302,24 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <h3 className="text-4xl font-studio-pro-bold mb-8 text-center">Collective Impact</h3>
+            <h3 className="text-4xl font-studio-pro-bold mb-8 text-center">Tác động chung</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
               <div>
                 <h4 className="text-6xl font-studio-pro-bold mb-2">500+</h4>
-                <p className="text-xl font-studio-pro">Artisans Empowered</p>
+                <p className="text-xl font-studio-pro">Nghệ nhân được trao quyền</p>
               </div>
               <div>
                 <h4 className="text-6xl font-studio-pro-bold mb-2">15</h4>
-                <p className="text-xl font-studio-pro">Countries Reached</p>
+                <p className="text-xl font-studio-pro">Quốc gia tiếp cận</p>
               </div>
               <div>
                 <h4 className="text-6xl font-studio-pro-bold mb-2">50%</h4>
-                <p className="text-xl font-studio-pro">Carbon Reduction</p>
+                <p className="text-xl font-studio-pro">Giảm carbon</p>
               </div>
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* CLEAN CTA SECTION */}
       <section className="py-24 bg-gray-50 relative overflow-hidden">
@@ -1417,11 +1404,11 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
           >
             <div className="mb-12">
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-studio-pro-bold text-black mb-8 leading-tight">
-                Ready to Join Our Mission?
+                Sẵn sàng tham gia sứ mệnh của chúng tôi?
               </h2>
               <p className="text-2xl text-gray-700 mb-8 font-studio-pro leading-relaxed">
-                We&apos;re building more than a company.<br/>
-                We&apos;re crafting a sustainable future.
+                Chúng tôi đang xây dựng nhiều hơn một công ty.<br/>
+                Chúng tôi đang tạo nên một tương lai bền vững.
               </p>
             </div>
             
@@ -1432,8 +1419,8 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
                   whileHover={{ y: -5, scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <h3 className="text-3xl font-studio-pro-bold mb-4">Join Our Team</h3>
-                  <p className="text-lg font-studio-pro">Careers & Opportunities</p>
+                  <h3 className="text-3xl font-studio-pro-bold mb-4">Tham gia đội ngũ</h3>
+                  <p className="text-lg font-studio-pro">Nghề nghiệp & Cơ hội</p>
                 </motion.div>
               </Link>
               
@@ -1443,8 +1430,8 @@ From a tiny workspace to a global presence. From a spark of an idea to leading t
                   whileHover={{ y: -5, scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <h3 className="text-3xl font-studio-pro-bold mb-4">Join the Community</h3>
-                  <p className="text-lg font-studio-pro">Partnerships & Collaboration</p>
+                  <h3 className="text-3xl font-studio-pro-bold mb-4">Giải đáp thắc mắc</h3>
+                  <p className="text-lg font-studio-pro">Thông tin liên hệ</p>
                 </motion.div>
               </Link>
             </div>

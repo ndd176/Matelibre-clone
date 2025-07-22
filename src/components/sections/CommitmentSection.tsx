@@ -6,15 +6,15 @@ import { FaLeaf, FaPeopleCarry, FaRecycle, FaHandsHelping } from 'react-icons/fa
 
 export default function CommitmentSection() {
   const titleLines = [
-    'We grow together.',
-    'From people to process.',
+    'Cùng phát triển,',
+    'cùng vươn xa.',
   ]
 
   const commitmentList = [
-    { icon: <FaLeaf className="text-2xl" />, text: 'Sustainable and low-waste operations' },
-    { icon: <FaRecycle className="text-2xl" />, text: 'Eco-conscious packaging & materials' },
-    { icon: <FaPeopleCarry className="text-2xl" />, text: 'Collaborative & inclusive work culture' },
-    { icon: <FaHandsHelping className="text-2xl" />, text: 'Real support, not just slogans' },
+    { icon: <FaLeaf className="text-2xl" />, text: 'Tối ưu từ con người đến quy trình.'},
+    { icon: <FaRecycle className="text-2xl" />, text: 'Vận hành bền vững' },
+    { icon: <FaPeopleCarry className="text-2xl" />, text: 'Văn hóa làm việc cởi mở và gắn kết.' },
+    { icon: <FaHandsHelping className="text-2xl" />, text: 'Hỗ trợ thật sự – không chỉ là khẩu hiệu.' },
   ]
 
   return (
@@ -45,7 +45,7 @@ export default function CommitmentSection() {
                 delay: idx * 0.2,
               }}
               viewport={{ once: true }}
-              className="text-3xl sm:text-4xl md:text-5xl font-studio-pro-bold text-black leading-snug"
+              className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl font-studio-pro-bold text-black leading-snug"
             >
               {line}
             </motion.h2>
@@ -93,7 +93,7 @@ export default function CommitmentSection() {
           viewport={{ once: true }}
           className="mt-6 px-6 py-3 bg-black text-white rounded-full font-studio-pro-bold hover:bg-neutral-800 transition text-sm sm:text-base"
         >
-          discover our culture
+          Khám phá  
         </motion.button>
       </div>
       {/* <img

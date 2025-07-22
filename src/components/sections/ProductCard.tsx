@@ -60,7 +60,7 @@ export default function ProductCard({
 
   return (
     <div
-      className={`relative ${bgColor} w-full sm:w-[500px] h-[400px] rounded-[20px] sm:rounded-[40px] p-4 sm:p-10 overflow-hidden flex flex-col justify-between
+      className={`relative ${bgColor} w-full sm:w-[500px] h-[400px] rounded-[20px] sm:rounded-[40px] p-4 sm:p-10 pt-10 overflow-hidden flex flex-col justify-between
         transition-all duration-300
         border-2 sm:border-3 border-black
         ${shadowClass}`}
@@ -68,7 +68,7 @@ export default function ProductCard({
       onMouseLeave={() => setHovered(false)}
     >
       {/* Title */}
-      <h2 className={`text-5xl sm:text-5xl font-bold ${textColor} z-10 leading-tight text-left`}>
+      <h2 className={`text-3xl sm:text-4xl font-bold ${textColor} z-10 leading-tight text-left`}>
         {title}
       </h2>
 
@@ -99,23 +99,23 @@ export default function ProductCard({
         {id ? (
           <Link href={`/careers/${id}`}>
             <button className="flex flex-col relative h-10 sm:h-12 w-[170px] sm:w-[200px] items-center justify-center 
-              overflow-hidden rounded-lg border border-neutral-200 bg-white px-6 sm:px-8 font-semibold text-black text-xl sm:text-3xl
+              overflow-hidden rounded-lg border border-neutral-200 bg-white px-6 sm:px-8 font-bold text-black text-xl sm:text-2xl
               transition-all duration-100 
               [box-shadow:4px_4px_rgb(82_82_82)] sm:[box-shadow:7px_7px_rgb(82_82_82)] 
               active:translate-x-[3px] active:translate-y-[3px] 
               active:[box-shadow:0px_0px_rgb(82_82_82)] cursor-pointer">            
-              Apply Now
+              Ứng tuyển
             </button>
           </Link>
         ) : (
           <button className="flex flex-col relative h-12 sm:h-16 w-[170px] sm:w-[220px] items-center justify-center 
-            overflow-hidden rounded-lg border-2 border-black bg-white px-6 sm:px-8 font-semibold text-black text-xl sm:text-3xl
+            overflow-hidden rounded-lg border-2 border-black bg-white px-6 sm:px-8 font-bold text-black text-xl sm:text-2xl
             transition-all duration-100 
             [box-shadow:4px_4px_rgb(0_0_0)] sm:[box-shadow:7px_7px_rgb(0_0_0)] 
             active:translate-x-[3px] active:translate-y-[3px] 
             active:[box-shadow:0px_0px_rgb(0_0_0)] cursor-pointer
             hover:translate-x-[2px] hover:translate-y-[2px] hover:[box-shadow:3px_3px_rgb(0_0_0)] sm:hover:[box-shadow:5px_5px_rgb(0_0_0)]">            
-            Apply Now
+            Ứng tuyển
           </button>
         )}
       </div>

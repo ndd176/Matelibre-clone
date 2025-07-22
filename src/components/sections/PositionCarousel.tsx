@@ -39,7 +39,7 @@ function jobToProductCard(job: Job, idx: number): ProductCardData {
     bgImage: bgImageUrl
   })
   return {
-    id: job.id,
+    id: String(job.id),
     title: job.job_title,
     description: job.short_description,
     canImage: canImageUrl || '/images/duydinh-bg-2.png',
@@ -83,7 +83,7 @@ export default function ProductCardList() {
 
     const totalWidth = container.scrollWidth
     const viewportWidth = window.innerWidth
-    const scrollDistance = totalWidth - viewportWidth + 700
+    const scrollDistance = totalWidth - viewportWidth + 750
 
     let st: ScrollTrigger | undefined;
 
@@ -93,7 +93,7 @@ export default function ProductCardList() {
         ease: 'none',
         scrollTrigger: {
           trigger: wrapper,
-          start: 'top+=20 top',
+          start: 'top+=15 top',
           end: () => `+=${totalWidth}`,
           scrub: true,
           pin: true,
@@ -144,7 +144,7 @@ export default function ProductCardList() {
   className="absolute left-[700px] top-1/2 -translate-y-1/2 flex gap-10 md:gap-36 w-max pr-[10vw]"
               >
 <div className="flex flex-col text-[100px] font-bold leading-tight">
-  {'Join our team'.split(' ').map((char, i) => (
+  {'Chọn nghề nghiệp'.split(' ').map((char, i) => (
     <span key={i}>{char === ' ' ? '\u00A0' : char}</span> // \u00A0 = space giữ nguyên dòng
   ))}
 </div>
@@ -157,7 +157,7 @@ export default function ProductCardList() {
             </div>
 
             {/* Nửa dưới: Marquee */}
-            <div className="relative h-1/2 w-full mt-[-30px] overflow-hidden">
+            <div className="relative h-1/2 w-full   overflow-hidden">
               <MarqueeBackground />
               {/* <MarqueeTailwind/> */}
             </div>

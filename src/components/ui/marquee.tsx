@@ -57,7 +57,7 @@ function MarqueeContent({
 
   return (
     <div 
-      className={`flex font-bebas ${baseStyle} ${outlinedStyle}`}
+      className={`flex font-plus-jakarta-sans ${baseStyle} ${outlinedStyle}`}
     >
       {Array(4)
         .fill(0)

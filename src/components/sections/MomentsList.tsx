@@ -110,7 +110,7 @@ export default function TransitionToCards() {
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
       >
         <h2 className="text-[100px] sticky-30 font-bold text-white text-center">
-          Discover Our Workspace
+          Khám phá môi trường làm việc
         </h2>
       </motion.div>
 

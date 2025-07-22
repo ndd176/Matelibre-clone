@@ -263,7 +263,7 @@ export default function ParallaxHero() {
 
         <div className="max-w-screen-xl mx-auto space-y-6">
           {/* Text lines */}
-          {['Join Our Team.', 'Shape the Future.'].map((line, i) => (
+          {['NỘP CV', 'CHẦN CHỜ CHI!'].map((line, i) => (
             <motion.div
               key={line}
               initial={{ opacity: 0, y: 80, scale: 0.95 }}
@@ -272,7 +272,7 @@ export default function ParallaxHero() {
                 delay: 0.3 + i * 0.1,
                 type: 'spring',
                 stiffness: 100,
-                damping: 15,
+                damping: 10,
               }}
               className="font-studio-pro-bold tracking-tight"
               style={{

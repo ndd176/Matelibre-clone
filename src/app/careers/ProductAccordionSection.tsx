@@ -210,7 +210,7 @@ export default function ProductDetailWithAccordion({
               transition={{ delay: 0.5, duration: 0.5 }}
               viewport={{ once: true }}
             >
-              {jobData?.text_icon && jobData.text_icon.length > 0 ? 
+              {/* {jobData?.text_icon && jobData.text_icon.length > 0 ? 
                 jobData.text_icon.map((item: any, index: number) => (
                   <Feature key={index} icon={item.icon} label={item.text} />
                 )) :
@@ -219,7 +219,7 @@ export default function ProductDetailWithAccordion({
                   <Feature icon="🧵" label="Embroidery design" />
                   <Feature icon="🚀" label="Fast-paced team" />
                 </>
-              }
+              } */}
             </motion.div>
 
             <motion.div
@@ -235,7 +235,7 @@ export default function ProductDetailWithAccordion({
                 className="group relative bg-[#2c5530] text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 hover:bg-[#1e3b22] hover:scale-105 hover:shadow-lg active:scale-95"
               >
                 <span className="flex items-center gap-3">
-                  🌱 Apply Now
+                  Ứng tuyển
                   <motion.div
                     className="inline-block"
                     whileHover={{ x: 5 }}

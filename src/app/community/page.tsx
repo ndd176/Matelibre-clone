@@ -7,31 +7,31 @@ import Link from 'next/link'
 
 // Clean community data
 const communityStats = [
-  { label: 'Global Members', value: '10,000+', description: 'Creative minds worldwide' },
-  { label: 'Active Projects', value: '500+', description: 'Ongoing collaborations' },
-  { label: 'Countries', value: '25+', description: 'International reach' },
-  { label: 'Innovation Years', value: '5+', description: 'Continuous growth' }
+  { label: 'Thành viên toàn cầu', value: '10,000+', description: 'Những tâm hồn sáng tạo trên toàn thế giới' },
+  { label: 'Dự án hoạt động', value: '500+', description: 'Hợp tác đang diễn ra' },
+  { label: 'Quốc gia', value: '25+', description: 'Phạm vi quốc tế' },
+  { label: 'Năm đổi mới', value: '5+', description: 'Tăng trưởng liên tục' }
 ]
 
 const communityValues = [
   {
-    title: 'Collaborative Spirit',
-    description: 'We believe in the power of collective creativity and shared knowledge.',
+    title: 'Tinh thần hợp tác',
+    description: 'Chúng tôi tin vào sức mạnh của sự sáng tạo tập thể và kiến thức chia sẻ.',
     icon: '🤝'
   },
   {
-    title: 'Innovation First',
-    description: 'Pushing boundaries and exploring new possibilities together.',
+    title: 'Đổi mới là trên hết',
+    description: 'Vượt qua ranh giới và khám phá những khả năng mới cùng nhau.',
     icon: '💡'
   },
   {
-    title: 'Inclusive Growth',
-    description: 'Every voice matters in building our diverse community.',
+    title: 'Tăng trưởng bao trùm',
+    description: 'Mọi tiếng nói đều quan trọng trong việc xây dựng cộng đồng đa dạng của chúng ta.',
     icon: '🌱'
   },
   {
-    title: 'Sustainable Impact',
-    description: 'Creating meaningful change that lasts for generations.',
+    title: 'Tác động bền vững',
+    description: 'Tạo ra những thay đổi có ý nghĩa kéo dài qua nhiều thế hệ.',
     icon: '🌍'
   }
 ]
@@ -39,15 +39,15 @@ const communityValues = [
 const memberSpotlight = [
   {
     name: 'Sarah Chen',
-    role: 'Creative Director',
-    location: 'San Francisco, USA',
-    quote: 'This community has been instrumental in my creative journey. The support and collaboration opportunities are unmatched.',
-    achievement: 'Led 15+ successful projects'
+    role: 'Giám đốc sáng tạo',
+    location: 'San Francisco, Mỹ',
+    quote: 'Cộng đồng này đã đóng vai trò quan trọng trong hành trình sáng tạo của tôi. Sự hỗ trợ và cơ hội hợp tác là không thể sánh được.',
+    achievement: 'Dẫn dắt hơn 15 dự án thành công'
   },
   {
     name: 'Marcus Rodriguez',
-    role: 'Sustainability Advocate',
-    location: 'Barcelona, Spain', 
+    role: 'Người ủng hộ bền vững',
+    location: 'Barcelona, Tây Ban Nha', 
     quote: 'Being part of this movement means contributing to something bigger than ourselves.',
     achievement: 'Initiated 3 green initiatives'
   },
@@ -131,7 +131,7 @@ export default function CommunityPage() {
               href="/careers"
               className="bg-black text-white px-6 py-2 rounded-full text-sm font-studio-pro hover:bg-gray-800 transition-colors"
             >
-              Join Community
+              Tham gia cộng đồng
             </Link>
           </div>
         </div>
@@ -206,13 +206,13 @@ export default function CommunityPage() {
               href="/careers"
               className="bg-black text-white px-8 py-4 rounded-full font-studio-pro hover:bg-gray-800 transition-colors duration-300"
             >
-              Join Our Community
+              Tham gia cộng đồng của chúng tôi
             </Link>
             <button 
               onClick={() => scrollToSection('about')}
               className="border border-gray-300 text-black px-8 py-4 rounded-full font-studio-pro hover:border-black transition-colors duration-300"
             >
-              Learn More
+              Tìm hiểu thêm
             </button>
           </motion.div>
         </div>
@@ -245,7 +245,7 @@ export default function CommunityPage() {
               viewport={{ once: true }}
             >
               <h2 className="text-4xl md:text-5xl font-studio-pro-bold text-black mb-8">
-                Building Tomorrow, Together
+                Xây dựng tương lai, cùng nhau
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 Our community represents a diverse collective of creators, innovators, and changemakers united by a shared vision of sustainable progress.
@@ -302,10 +302,10 @@ export default function CommunityPage() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl md:text-5xl font-studio-pro-bold text-black mb-6">
-              Our Core Values
+              Giá trị cốt lõi của chúng tôi
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              These principles guide everything we do and shape the culture of our community.
+              Những nguyên tắc này định hướng mọi việc chúng tôi làm và hình thành văn hóa cộng đồng của chúng ta.
             </p>
           </motion.div>
 

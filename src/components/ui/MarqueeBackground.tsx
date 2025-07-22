@@ -14,11 +14,11 @@ export default function MarqueeBackground() {
           style={{ top: `${i *30}%` }}
         >
           <Marquee
-            text="WE'RE HIRING"
+            text="TUYỂN DỤNG"
             speed={speeds}
-            fontSize="text-[400px]"
+            fontSize="text-[300px]"
             opacity={1}
-            textColor="text-black"
+            textColor="text-black font-bold"
             reverse={i % 2 !== 0}
             outlined={i % 2 !== 0}
           />
