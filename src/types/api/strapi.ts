@@ -198,3 +198,4 @@ export interface StrapiError {
 export type JobResponseType = StrapiListResponse<Job>
 export type JobDetailResponseType = StrapiListResponse<JobDetail>
 export type SingleJobDetailResponseType = StrapiResponse<JobDetail>
+

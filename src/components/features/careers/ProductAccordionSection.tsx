@@ -5,7 +5,7 @@ import { useState, useRef, useLayoutEffect, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
  
 // Import API và types
-import { strapiApi } from '../../../lib/api/strapi'
+import strapiApi from '../../../lib/api/strapi-api'
 import { JobDetail } from '../../../types/api/strapi'
 import { getImageUrl as getImageUrlUtil } from '../../../lib/utils/image'
 import { IMAGE_CONFIG } from '../../../lib/constants/index'
@@ -13,24 +13,24 @@ import { IMAGE_CONFIG } from '../../../lib/constants/index'
 // Helper function to get image URL
 const getImageUrl = (jobImage: unknown): string => {
   if (!jobImage) {
-    console.log('No job image provided, using fallback')
+    
     return "/images/position.jpg"
   }
 
   // If jobImage is already a string (fallback case)
   if (typeof jobImage === 'string') {
-    console.log('Job image is string:', jobImage)
+    
     return jobImage
   }
 
   // If jobImage is an object with url property
   if (typeof jobImage === 'object' && jobImage !== null && 'url' in jobImage && typeof (jobImage as { url?: string }).url === 'string') {
     const fullUrl = `${IMAGE_CONFIG.STRAPI_BASE_URL}${(jobImage as { url: string }).url}`
-    console.log('Job image URL:', fullUrl)
+    
     return fullUrl
   }
 
-  console.log('Job image object but no URL, using fallback:', jobImage)
+  
   return "/images/position.jpg"
 }
 
@@ -131,19 +131,19 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
         let response
         
         if (jobId) {
-          // Fetch specific job detail by job ID
-          response = await strapiApi.fetchJobDetailById(jobId)
+          // Fetch specific job position by job ID
+          response = await strapiApi.jobPositions.getById(parseInt(jobId))
         } else {
-          // Fetch all job details (fallback to first one)
-          response = await strapiApi.fetchJobDetails()
+          // Fetch all job positions (fallback to first one)  
+          response = await strapiApi.jobPositions.getAll()
         }
         
-        if (response.data && response.data.length > 0) {
-          // Lấy job detail (specific one hoặc đầu tiên)
-          const jobDetail = response.data[0]
-          console.log('Job Detail Data:', jobDetail)
-          console.log('Job Image:', jobDetail.job_image)
-          setJobData(jobDetail)
+        if (response.data) {
+          // Handle single or array response
+          const jobDetail = Array.isArray(response.data) ? response.data[0] : response.data
+          
+          
+          setJobData(jobDetail as JobDetail)
 
           // Tạo 3 mục accordion từ 3 trường mới
           const apiAccordionData = [
@@ -172,7 +172,7 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
         }
       } catch (error) {
         console.error('Error fetching job details:', error)
-        console.log('JobId passed:', jobId)
+        
         setAccordionData(fallbackAccordionData)
       } finally {
         setLoading(false)
@@ -238,16 +238,10 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
           transition={{ delay: 0.5 + 1.5, duration: 0.5 }}
           viewport={{ once: true }}
         >
-          {jobData?.text_icon && jobData.text_icon.length > 0 ? 
-            jobData.text_icon.map((item: { icon: string; text: string }, index: number) => (
-              <Feature key={index} icon={item.icon} label={item.text} />
-            )) :
-            <>
-              <Feature icon="🎨" label="Creative freedom" />
-              <Feature icon="🧵" label="Embroidery design" />
-              <Feature icon="🚀" label="Fast-paced team" />
-            </>
-          }
+          {/* Always use fallback features since JobDetail doesn't have text_icon */}
+          <Feature icon="🎨" label="Creative freedom" />
+          <Feature icon="🧵" label="Embroidery design" />
+          <Feature icon="🚀" label="Fast-paced team" />
         </motion.div>
 
         <motion.div
@@ -323,10 +317,8 @@ export default function ProductDetailWithAccordion({ jobId, onApplyClick }: { jo
                 alt={jobData?.job_title || "job position"}
                 className="w-full h-auto object-cover rounded-[32px]"
                 onError={(e) => {
-                  console.error('Image failed to load:', getImageUrlUtil(jobData?.job_image))
                   e.currentTarget.src = "/images/position.jpg"
                 }}
-                onLoad={() => console.log('Image loaded successfully:', getImageUrlUtil(jobData?.job_image))}
               />
             </div>
           </motion.div>

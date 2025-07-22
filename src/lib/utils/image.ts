@@ -12,24 +12,24 @@ import { IMAGE_CONFIG } from '../constants/index'
  */
 export const getImageUrl = (imageData: any, fallback: string = IMAGE_CONFIG.FALLBACK_JOB_IMAGE): string => {
   if (!imageData) {
-    console.log('No image data provided, using fallback')
+    
     return fallback
   }
   
   // If imageData is already a string (fallback case)
   if (typeof imageData === 'string') {
-    console.log('Image data is string:', imageData)
+    
     return imageData
   }
   
   // If imageData is an object with url property
   if (imageData.url) {
     const fullUrl = `${IMAGE_CONFIG.STRAPI_BASE_URL}${imageData.url}`
-    console.log('Image URL:', fullUrl)
+    
     return fullUrl
   }
   
-  console.log('Image object but no URL, using fallback:', imageData)
+  
   return fallback
 }
 
@@ -51,3 +51,4 @@ export const getResponsiveImageUrl = (
   
   return `${IMAGE_CONFIG.STRAPI_BASE_URL}${imageData.formats[format].url}`
 }
+

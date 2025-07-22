@@ -12,6 +12,7 @@ import ScrollToTopButton from "@/components/ScrollToTopButton";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import PageTransition from '@/components/PageTransition';
+import CursorTooltip from "@/components/ui/CursorTooltip";
 
 // Font definitions
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -64,6 +65,7 @@ function RootLayoutClient({
         <FAQSection />
         <Footer/>
         <ScrollToTopButton />
+        <CursorTooltip/>
       </body>
     </html>
   );

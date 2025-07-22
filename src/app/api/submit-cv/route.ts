@@ -16,11 +16,11 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function POST(request: NextRequest) {
-  console.log('🚀 CV submission API called');
+  
   
   try {
     const formData = await request.formData();
-    console.log('📝 Form data received');
+    
     
     // Lấy thông tin từ form
     const fullName = formData.get('fullName') as string;
@@ -30,12 +30,10 @@ export async function POST(request: NextRequest) {
     const message = formData.get('message') as string;
     const cvFile = formData.get('cvFile') as File;
 
-    console.log('👤 Applicant info:', { fullName, email, phone, position });
-    console.log('📄 CV file:', cvFile ? `${cvFile.name} (${cvFile.size} bytes)` : 'No file');
 
     // Validate dữ liệu
     if (!fullName || !email || !phone || !position || !cvFile) {
-      console.log('❌ Validation failed - missing required fields');
+      
       return NextResponse.json(
         { error: 'Vui lòng điền đầy đủ thông tin và đính kèm CV' },
         { status: 400 }
@@ -44,7 +42,7 @@ export async function POST(request: NextRequest) {
 
     // Kiểm tra file PDF
     if (cvFile.type !== 'application/pdf') {
-      console.log('❌ Invalid file type:', cvFile.type);
+      
       return NextResponse.json(
         { error: 'Chỉ chấp nhận file PDF' },
         { status: 400 }
@@ -53,7 +51,7 @@ export async function POST(request: NextRequest) {
 
     // Kiểm tra kích thước file (max 5MB)
     if (cvFile.size > 5 * 1024 * 1024) {
-      console.log('❌ File too large:', cvFile.size);
+      
       return NextResponse.json(
         { error: 'File CV không được vượt quá 5MB' },
         { status: 400 }
@@ -62,13 +60,13 @@ export async function POST(request: NextRequest) {
 
     // Tạo thư mục uploads nếu chưa có
     const uploadsDir = path.join(process.cwd(), 'uploads');
-    console.log('📁 Uploads directory:', uploadsDir);
+    
     
     try {
       await mkdir(uploadsDir, { recursive: true });
-      console.log('✅ Uploads directory created/exists');
+      
     } catch (error) {
-      console.log('📁 Uploads directory already exists');
+      
     }
 
     // Lưu file CV
@@ -78,7 +76,7 @@ export async function POST(request: NextRequest) {
     const filePath = path.join(uploadsDir, fileName);
     
     await writeFile(filePath, buffer);
-    console.log('💾 CV file saved:', fileName);
+    
 
     // Kiểm tra cấu hình email
     console.log('📧 Email config:', {
@@ -147,12 +145,10 @@ export async function POST(request: NextRequest) {
       ]
     };
 
-    console.log('📤 Sending email to:', mailOptions.to);
-    console.log('📄 Email subject:', mailOptions.subject);
 
     // Gửi email
     const emailResult = await transporter.sendMail(mailOptions);
-    console.log('✅ Email sent successfully:', emailResult.messageId);
+    
 
     return NextResponse.json(
       { message: 'CV đã được gửi thành công!' },
@@ -167,3 +163,4 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+

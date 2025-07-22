@@ -35,7 +35,7 @@ function jobToProductCard(job: Job, index: number): ProductCardData {
     bgImage: bgImageUrl
   })
   return {
-    id: job.id,
+    id: job.id.toString(),
     title: job.job_title,
     description: job.short_description,
     canImage: canImageUrl || '/images/duydinh-bg-2.png',
@@ -55,13 +55,13 @@ export default function ProductCarouselHover() {
     async function loadJobs() {
       try {
         const response = await strapiApi.fetchJobs()
-        console.log('🔍 API Response for carousel:', response.data) // Debug log
+        
         let apiJobs = response.data.map((job: Job, i: number) => jobToProductCard(job, i))
         // Lấy 4 card bất kỳ
         if (apiJobs.length > 3) {
           apiJobs = apiJobs.sort(() => 0.5 - Math.random()).slice(0, 3)
         }
-        console.log('🎯 Processed carousel jobs:', apiJobs) // Debug log
+        
         setProducts(apiJobs)
       } catch (err) {
         console.error('Error loading jobs for carousel:', err)

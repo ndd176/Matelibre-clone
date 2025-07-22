@@ -21,7 +21,7 @@ async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promi
   }
 
   try {
-    console.log('🔗 Making API request to:', url) // Debug log
+    
     const response = await fetch(url, config)
     
     if (!response.ok) {
@@ -31,7 +31,7 @@ async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promi
     }
 
     const data = await response.json()
-    console.log(`✅ API Success for ${url}:`, data) // Debug log
+    
     return data
   } catch (error) {
     console.error('API Request failed:', error)
@@ -401,3 +401,4 @@ export default {
   newsletter: newsletterApi,
   upload: uploadApi
 }
+

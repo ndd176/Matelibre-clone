@@ -3,7 +3,7 @@
  */
 
 import { JOB_COLORS, type JobColor } from '../constants/index'
-import { Job, JobDetail, CareersNewPosition } from '../../types/api/strapi'
+import { Job, JobDetail } from '../../types/api/strapi'
 import { ProductCard } from '../../types/index'
 import { getImageUrl } from './image'
 
@@ -39,22 +39,24 @@ export const getRandomJobColor = (): JobColor => {
 /**
  * Transform Job from Strapi to CareersNewPosition format
  */
-export function transformJobToCareersNewPosition(job: Job): CareersNewPosition {
-  return {
-    id: job.id.toString(),
-    title: job.job_title || 'Untitled Position',
-    description: job.short_description || 'No description available',
-    department: 'General', // Not available in Job interface
-    location: 'Remote', // Not available in Job interface  
-    type: 'Full-time', // Not available in Job interface
-    canImage: job.avatar_image ? getImageUrl(job.avatar_image) : '/images/duydinh-bg-2.png',
-    bgImage: job.sub_avatar ? getImageUrl(job.sub_avatar) : '/images/anh-hiep.png',
-    color: 'white', // Not available in Job interface
-    companyName: 'Your Company',
-    companyDescription: 'Description of your company',
-    benefits: [], // Not available in Job interface
-    requirements: [], // Not available in Job interface
-    hoverText: job.job_title || 'Position Available',
-    salaryRange: '$1000 - $2000' // Default range
-  }
-}
+// Commented out since CareersNewPosition type doesn't exist
+// export function transformJobToCareersNewPosition(job: Job): CareersNewPosition {
+//   return {
+//     id: job.id.toString(),
+//     title: job.job_title || 'Untitled Position',
+//     description: job.short_description || 'No description available',
+//     department: 'General', // Not available in Job interface
+//     location: 'Remote', // Not available in Job interface  
+//     type: 'Full-time', // Not available in Job interface
+//     canImage: job.avatar_image ? getImageUrl(job.avatar_image) : '/images/duydinh-bg-2.png',
+//     bgImage: job.sub_avatar ? getImageUrl(job.sub_avatar) : '/images/anh-hiep.png',
+//     color: 'white', // Not available in Job interface
+//     companyName: 'Your Company',
+//     companyDescription: 'Description of your company',
+//     benefits: [], // Not available in Job interface
+//     requirements: [], // Not available in Job interface
+//     hoverText: job.job_title || 'Position Available',
+//     salaryRange: '$1000 - $2000' // Default range
+//   }
+// }
+

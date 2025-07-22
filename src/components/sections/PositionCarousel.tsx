@@ -59,9 +59,9 @@ export default function ProductCardList() {
     async function loadJobs() {
       try {
         const response = await strapiApi.fetchJobs()
-        console.log('🔍 API Response:', response.data) // Debug log
+        
         const apiJobs = response.data.map((job: Job, idx: number) => jobToProductCard(job, idx))
-        console.log('🎯 Processed Jobs:', apiJobs) // Debug log
+        
         setProducts(apiJobs)
       } catch (err) {
         console.error('Error loading jobs:', err)

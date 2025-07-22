@@ -103,3 +103,4 @@ export const strapiApi = {
 }
 
 export default strapiApi
+

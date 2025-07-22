@@ -43,8 +43,6 @@ export function getStrapiImageUrl(image: any): string {
 export function transformJobPosition(strapiData: any) {
   if (!strapiData) return null
   
-  console.log('Raw job position data:', strapiData)
-  
   // Strapi v5 uses direct fields (no attributes wrapper)
   const data = strapiData
   const id = strapiData.id || strapiData.documentId
@@ -71,9 +69,8 @@ export function transformJobPosition(strapiData: any) {
 // Transform hero slide from Strapi to frontend format
 export function transformHeroSlide(strapiData: any) {
   if (!strapiData) return null
-  
-  console.log('Raw hero slide data:', strapiData)
-  
+
+
   // Strapi v5 uses direct fields (no attributes wrapper)
   const data = strapiData
   const id = strapiData.id || strapiData.documentId
@@ -103,9 +100,8 @@ export function transformHeroSlide(strapiData: any) {
 // Transform moment from Strapi to frontend format
 export function transformMoment(strapiData: any) {
   if (!strapiData) return null
-  
-  console.log('Raw moment data:', strapiData)
-  
+
+
   // Strapi v5 uses direct fields (no attributes wrapper)
   const data = strapiData
   const id = strapiData.id || strapiData.documentId
@@ -127,9 +123,8 @@ export function transformMoment(strapiData: any) {
 // Transform testimonial from Strapi to frontend format
 export function transformTestimonial(strapiData: any) {
   if (!strapiData) return null
-  
-  console.log('Raw testimonial data:', strapiData)
-  
+
+
   // Strapi v5 uses direct fields (no attributes wrapper)
   const data = strapiData
   const id = strapiData.id || strapiData.documentId
@@ -403,3 +398,4 @@ export const transformers = {
 }
 
 export default transformers
+

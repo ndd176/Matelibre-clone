@@ -46,3 +46,4 @@ export const JOB_COLORS = [
 ] as const
 
 export type JobColor = typeof JOB_COLORS[number]
+

@@ -219,7 +219,7 @@ export default function ContactAltPage() {
                     WebkitTextFillColor: "transparent"
                   }}
                 >
-                  Kết nối với chúng tôi
+                  Liên hệ
                 </motion.h1>
                 
                 {/* Glowing backdrop for title */}
@@ -237,7 +237,7 @@ export default function ContactAltPage() {
               </motion.div>
               
               <motion.p 
-                className="text-2xl md:text-3xl text-gray-300 font-studio-pro max-w-4xl mx-auto leading-relaxed mb-8"
+                className="text-2xl md:text-3xl text-gray-300 font-studio-pro max-w-6xl mx-auto leading-relaxed mb-8"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
@@ -259,7 +259,7 @@ export default function ContactAltPage() {
                   className="group bg-blue-300 text-black font-studio-pro-bold py-4 px-10 rounded-full text-lg shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden"
                 >
                   <span className="relative z-10 flex items-center gap-3">
-                    Thêm nghề nghiệp
+                    Gửi thông điệp
                     <motion.span
                       animate={{ x: [0, 5, 0] }}
                       transition={{ duration: 1.5, repeat: Infinity }}
@@ -387,9 +387,9 @@ export default function ContactAltPage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl font-studio-pro-bold text-black mb-6">Start the Conversation</h2>
+            <h2 className="text-5xl font-studio-pro-bold text-black mb-6">Trò chuyện</h2>
             <p className="text-xl text-gray-600 font-studio-pro max-w-3xl mx-auto">
-              Tell us about your project and we'll get back to you within 24 hours with a personalized response.
+              Nói cho chúng tôi biết nhu cầu của bạn và chúng tôi sẽ liên lạc lại trong vòng 24 giờ
             </p>
           </motion.div>
 
@@ -406,7 +406,7 @@ export default function ContactAltPage() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-gray-700 font-studio-pro-bold mb-2">Full Name *</label>
+                    <label className="block text-gray-700 font-studio-pro-bold mb-2">Họ và Tên *</label>
                     <motion.input
                       whileFocus={{ scale: 1.02 }}
                       type="text"
@@ -415,11 +415,11 @@ export default function ContactAltPage() {
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-300 focus:border-transparent font-studio-pro transition-all"
-                      placeholder="Your full name"
+                      placeholder="Nhập họ và tên của bạn"
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-700 font-studio-pro-bold mb-2">Email Address *</label>
+                    <label className="block text-gray-700 font-studio-pro-bold mb-2">Địa chỉ Email *</label>
                     <motion.input
                       whileFocus={{ scale: 1.02 }}
                       type="email"
@@ -428,14 +428,14 @@ export default function ContactAltPage() {
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-300 focus:border-transparent font-studio-pro transition-all"
-                      placeholder="your@email.com"
+                      placeholder="email@example.com"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-gray-700 font-studio-pro-bold mb-2">Company</label>
+                    <label className="block text-gray-700 font-studio-pro-bold mb-2">Công ty</label>
                     <motion.input
                       whileFocus={{ scale: 1.02 }}
                       type="text"
@@ -443,11 +443,11 @@ export default function ContactAltPage() {
                       value={formData.company}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-300 focus:border-transparent font-studio-pro transition-all"
-                      placeholder="Your company name"
+                      placeholder="Tên công ty của bạn"
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-700 font-studio-pro-bold mb-2">Phone Number</label>
+                    <label className="block text-gray-700 font-studio-pro-bold mb-2">Số điện thoại</label>
                     <motion.input
                       whileFocus={{ scale: 1.02 }}
                       type="tel"
@@ -461,7 +461,7 @@ export default function ContactAltPage() {
                 </div>
 
                 <div>
-                  <label className="block text-gray-700 font-studio-pro-bold mb-2">Subject *</label>
+                  <label className="block text-gray-700 font-studio-pro-bold mb-2">Chủ đề *</label>
                   <motion.input
                     whileFocus={{ scale: 1.02 }}
                     type="text"
@@ -470,12 +470,12 @@ export default function ContactAltPage() {
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-300 focus:border-transparent font-studio-pro transition-all"
-                    placeholder="What's this about?"
+                    placeholder="Bạn muốn nói về điều gì?"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-gray-700 font-studio-pro-bold mb-2">Message *</label>
+                  <label className="block text-gray-700 font-studio-pro-bold mb-2">Tin nhắn *</label>
                   <motion.textarea
                     whileFocus={{ scale: 1.02 }}
                     name="message"
@@ -484,7 +484,7 @@ export default function ContactAltPage() {
                     required
                     rows={6}
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-300 focus:border-transparent font-studio-pro resize-none transition-all"
-                    placeholder="Tell us about your project, ideas, or questions..."
+                    placeholder="Hãy chia sẻ với chúng tôi về dự án, ý tưởng hoặc câu hỏi của bạn..."
                   />
                 </div>
 
@@ -502,11 +502,11 @@ export default function ContactAltPage() {
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                       />
-                      Sending Message...
+                      Đang gửi tin nhắn...
                     </>
                   ) : (
                     <>
-                      Send Message
+                      Gửi tin nhắn
                       <FaPaperPlane className="text-lg" />
                     </>
                   )}
@@ -524,7 +524,7 @@ export default function ContactAltPage() {
             >
               {/* Map */}
               <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
-                <h3 className="text-2xl font-studio-pro-bold text-black mb-4">Find Us Here</h3>
+                <h3 className="text-2xl font-studio-pro-bold text-black mb-4">Tìm chúng tôi tại đây</h3>
                 <div className="w-full h-64 rounded-2xl overflow-hidden">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.217393698736!2d107.1718264!3d11.0282733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174f1b31482ccdd%3A0xd88f760c662ca310!2sEthan%20Ecom!5e0!3m2!1sen!2s!4v1689580000000!5m2!1sen!2s"
@@ -540,11 +540,11 @@ export default function ContactAltPage() {
 
               {/* Office Hours */}
               <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
-                <h3 className="text-2xl font-studio-pro-bold text-black mb-4">Office Hours</h3>
+                <h3 className="text-2xl font-studio-pro-bold text-black mb-4">Giờ làm việc</h3>
                 <div className="space-y-3">
                   {[
-                    { day: 'Monday - Saturday', hours: '7:30 AM - 5:00 PM' },
-                     { day: 'Sunday', hours: 'Closed' }
+                    { day: 'Thứ 2 - Thứ 7', hours: '7:30 AM - 5:00 PM' },
+                     { day: 'Chủ nhật', hours: 'Nghỉ' }
                   ].map((schedule, index) => (
                     <div key={index} className="flex justify-between items-center">
                       <span className="font-studio-pro text-gray-600">{schedule.day}</span>
@@ -556,7 +556,7 @@ export default function ContactAltPage() {
 
               {/* Social Media */}
               <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
-                <h3 className="text-2xl font-studio-pro-bold text-black mb-4">Follow Us</h3>
+                <h3 className="text-2xl font-studio-pro-bold text-black mb-4">Theo dõi chúng tôi</h3>
                 <div className="flex gap-4">
                   {[
                     { icon: FaFacebook, color: 'text-blue-600', link: 'https://www.facebook.com/ethanecom3979' },

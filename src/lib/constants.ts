@@ -50,3 +50,4 @@ export const FOOTER_LINKS = {
     { label: 'cookie preferences', href: '#' }
   ]
 } as const
+

@@ -6,10 +6,8 @@ const STRAPI_TOKEN = process.env.NEXT_PUBLIC_STRAPI_TOKEN;
 export async function GET(request: NextRequest) {
   try {
     const url = `${STRAPI_URL}/api/jobs?populate=*`;
-    console.log('Fetching from:', url);
-    console.log('STRAPI_URL:', STRAPI_URL);
-    console.log('STRAPI_TOKEN exists:', !!STRAPI_TOKEN);
-    
+
+
     const response = await fetch(url, {
       headers: {
         'Authorization': `Bearer ${STRAPI_TOKEN}`,
@@ -18,12 +16,10 @@ export async function GET(request: NextRequest) {
       cache: 'no-store'
     });
 
-    console.log('Response status:', response.status);
-    console.log('Response headers:', Object.fromEntries(response.headers.entries()));
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.log('Error response body:', errorText);
+      
       throw new Error(`HTTP error! status: ${response.status}, body: ${errorText}`);
     }
 
@@ -55,3 +51,4 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+

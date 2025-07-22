@@ -1,7 +1,6 @@
 'use client'
 
-import Image from 'next/image'
-import { motion, useScroll, useTransform } from 'framer-motion'
+ import { motion, useScroll,   } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
@@ -71,8 +70,7 @@ const navigationItems = [
 
 export default function CommunityPage() {
   const [activeSection, setActiveSection] = useState('')
-  const { scrollY } = useScroll()
-
+ 
   // Track scroll position for sticky navigation
   useEffect(() => {
     const handleScroll = () => {

@@ -29,7 +29,7 @@ export function useLenis() {
 
   useEffect(() => {
     if (lenisInstance) {
-      console.log('Reusing existing Lenis instance')
+      
       return () => {}
     }
 
@@ -69,3 +69,4 @@ export function useLenis() {
 
   return { scrollToTop }
 }
+
