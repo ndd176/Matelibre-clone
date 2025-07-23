@@ -44,7 +44,7 @@ const nextConfig: NextConfig = {
   },
   // Tối ưu build performance
   experimental: {
-    optimizeCss: true,
+    // optimizeCss: true, // Tạm tắt để fix build error
     optimizePackageImports: ['framer-motion', 'react-icons'],
   },
   // Compress output
