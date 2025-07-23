@@ -10,11 +10,10 @@ import Footer from "@/components/layout/Footer";
 import FAQSection from "@/components/sections/FAQSection";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import PageTransition from '@/components/PageTransition';
 import CursorTooltip from "@/components/ui/CursorTooltip";
 import ErrorBoundary from '@/components/ErrorBoundary';
-import LoadingSpinner from '@/components/LoadingSpinner';
 
 // Font definitions
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -44,7 +43,6 @@ function RootLayoutClient({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname()
-  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     // Sử dụng setTimeout để đảm bảo scroll hoạt động sau khi route đã thay đổi
@@ -55,25 +53,6 @@ function RootLayoutClient({
       });
     }, 0);
   }, [pathname]);
-
-  useEffect(() => {
-    // Simulate initial loading
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 1000)
-
-    return () => clearTimeout(timer)
-  }, [])
-
-  if (isLoading) {
-    return (
-      <html lang="en">
-        <body className={`${plusJakartaSans.variable} ${bebasNeue.variable} antialiased font-plus-jakarta-sans font-bebas overflow-x-hidden`}>
-          <LoadingSpinner />
-        </body>
-      </html>
-    )
-  }
 
   return (
     <html lang="en">

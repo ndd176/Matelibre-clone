@@ -1322,7 +1322,7 @@ Từ một văn phòng nhỏ khởi đầu với ước mơ kinh doanh đơn gi�
       </section> */}
 
       {/* CLEAN CTA SECTION */}
-      <section className="py-24 bg-gray-50 relative overflow-hidden">
+      <section className="py-32 bg-gray-50 relative overflow-hidden">
         {/* Final Monstera Background */}
         <div 
           className="absolute inset-0 opacity-6"
@@ -1403,7 +1403,7 @@ Từ một văn phòng nhỏ khởi đầu với ước mơ kinh doanh đơn gi�
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <div className="mb-12">
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-studio-pro-bold text-black mb-8 leading-tight">
+<h2 className="text-5xl md:text-6xl pt-4 lg:text-7xl font-studio-pro-bold text-black mb-8 leading-snug">
                 Sẵn sàng tham gia sứ mệnh của chúng tôi?
               </h2>
               <p className="text-2xl text-gray-700 mb-8 font-studio-pro leading-relaxed">

@@ -3,79 +3,64 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
+
 export default function StickyHeader() {
-    const [showHeader, setShowHeader] = useState(true)
-  const [lastScrollY, setLastScrollY] = useState(0)
   const [isAtTop, setIsAtTop] = useState(true)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-const [isExiting, setIsExiting] = useState(false)
-const handleToggleMenu = () => {
-  if (isMenuOpen) {
-    // bắt đầu hiệu ứng exit
-    setIsExiting(true)
+  const [isMounted, setIsMounted] = useState(false)
 
-    // đợi 500ms rồi tắt menu (sau khi hiệu ứng overlay chạy xong)
-    setTimeout(() => {
-      setIsMenuOpen(false)
-      setIsExiting(false)
-    }, )
-  } else {
-    setIsMenuOpen(true)
+  // Tránh hydration mismatch bằng cách chỉ render sau khi mount
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  const handleToggleMenu = () => {
+    if (isMenuOpen) {
+      setTimeout(() => {
+        setIsMenuOpen(false)
+      }, 500)
+    } else {
+      setIsMenuOpen(true)
+    }
   }
-}
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY
       setIsAtTop(currentY <= 0)
-      const scrollingUp = currentY < lastScrollY
-      
-      // Hiển thị header ngay lập tức khi scroll up hoặc ở đầu trang
-      if (scrollingUp || currentY <= 0) {
-        setShowHeader(true)
-      } else {
-        setShowHeader(false)
-      }
-      
-      setLastScrollY(currentY)
     }
     
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
+    if (isMounted) {
+      window.addEventListener('scroll', handleScroll)
+      return () => {
+        window.removeEventListener('scroll', handleScroll)
+      }
     }
-  }, [lastScrollY])
+  }, [isMounted])
+
+  // Không render gì cho đến khi component đã mount
+  if (!isMounted) {
+    return null
+  }
 
   return (
     <>
-       
-<motion.header
-  initial={{ y: -100 }}
-  animate={{
-    y: isMenuOpen ? -100 : showHeader ? 0 : -100,
-    borderBottomLeftRadius: showHeader ? 0 : 30,
-    borderBottomRightRadius: showHeader ? 0 : 30,
-  }}
-  transition={{
-    duration: 0.5,
-    ease: 'easeInOut',
-    borderBottomLeftRadius: { duration: 0.3, ease: 'easeInOut' },
-    borderBottomRightRadius: { duration: 0.3, ease: 'easeInOut' },
-  }}
-  className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-in-out
-    hidden md:flex
-    ${isAtTop ? 'hidden' : 'bg-white text-black shadow-md flex'}
+{/* DESKTOP HEADER - Luôn hiển thị khi scroll */}
+<header
+  className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-in-out hidden md:flex transform-none
+    ${isAtTop ? 'bg-transparent' : 'bg-white/95 backdrop-blur-md shadow-lg'}
   `}
+  style={{
+    transform: 'translateY(0px)', // Luôn ở vị trí ban đầu
+    opacity: 1 // Luôn hiển thị
+  }}
 >
-  <div className={`w-full flex items-center gap-6 px-8 py-3 ${isAtTop ? 'hidden' : 'flex'}`}>
+  <div className={`w-full flex items-center gap-6 px-8 py-4 ${isAtTop ? 'text-white' : 'text-black'}`}>
     <Link href="/" className="text-[42px] font-studio-pro-bold">©ethan</Link>
-    <Link href="/about" className="hover:opacity-80 text-[20px] font-studio-pro-bold">Về chúng tôi</Link>
-    <Link href="/careers" className="hover:opacity-80 text-[18px] font-studio-pro">Tuyển dụng</Link>
-    {/* <Link href="/community" className="hover:opacity-80 text-[18px] font-studio-pro">Cộng đồng</Link> */}
-    <Link href="/contact" className="hover:opacity-80 text-[18px] font-studio-pro">Liên hệ</Link>
-
-    {/* <Link href="/community" className="hover:opacity-80 text-[18px] font-studio-pro">Community</Link> */}
+    <Link href="/about" className="hover:opacity-80 text-[20px] font-studio-pro-bold transition-opacity">Về chúng tôi</Link>
+    <Link href="/careers" className="hover:opacity-80 text-[18px] font-studio-pro transition-opacity">Tuyển dụng</Link>
+    <Link href="/contact" className="hover:opacity-80 text-[18px] font-studio-pro transition-opacity">Liên hệ</Link>
   </div>
-</motion.header>
+</header>
 
 
 
@@ -181,10 +166,11 @@ const handleToggleMenu = () => {
                 initial={{ y: 40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.4, delay: i * 0.4 }}
+                whileHover={{ scale: 1.05 }} // Chữ to lên 5% khi hover
               >
                 <Link 
                   href={getHref(item)}
-                  className="block hover:opacity-80 transition-opacity"
+                  className="block hover:opacity-80 transition-all duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item}
@@ -229,14 +215,14 @@ const handleToggleMenu = () => {
           alt="bg"
           className="absolute inset-0 w-full h-full object-cover md:rounded-tl-[30px] md:rounded-bl-[30px]"
         />
-        <div className="absolute bottom-6 right-6 bg-white/90 px-4 py-2 rounded-xl shadow">
+        {/* <div className="absolute bottom-6 right-6 bg-white/90 px-4 py-2 rounded-xl shadow">
           <div className="bg-[#f4f4f4] p-6 mt-12 rounded-[30px]">
             <p className="mb-4 font-studio-pro">Đăng ký để không bỏ lỡ<br />tin tức mới từ Mate Libre</p>
             <button className="bg-black text-white rounded-full px-6 py-2 text-sm font-studio-pro-bold">
               Xây dựng hộp của bạn
             </button>
           </div>
-        </div>
+        </div> */}
       </motion.div>
 
     </motion.div>

@@ -266,17 +266,7 @@ export default function CareersDetailPage() {
 
   return (
     <div ref={containerRef} className="min-h-screen bg-white">
-      {/* Floating Back Button */}
-      <motion.button
-        initial={{ opacity: 0, x: -100 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.5 }}
-        whileHover={{ x: -10, scale: 1.1 }}
-        onClick={() => router.push('/careers')}
-        className="fixed top-8 left-8 z-50 bg-white shadow-xl rounded-full p-4 border border-gray-100 hover:shadow-2xl transition-all duration-300"
-      >
-        <span className="text-2xl">←</span>
-      </motion.button>
+ 
 
       {/* Hero Section */}
       {mounted && (
@@ -647,7 +637,7 @@ export default function CareersDetailPage() {
                 WebkitTextFillColor: "transparent"
               }}
             >
-              Sẵn sàng tham gia?
+              Tham gia ngay
             </motion.h2>
             <p className="text-xl text-gray-300 font-studio-pro mb-12 leading-relaxed">
               Đừng bỏ lỡ cơ hội trở thành một phần của điều gì đó phi thường. 
@@ -683,14 +673,7 @@ export default function CareersDetailPage() {
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
             >
-              <p className="text-gray-400 font-studio-pro mb-4">
-                Có câu hỏi về vị trí này? Liên hệ với đội ngũ HR của chúng tôi.
-              </p>
-              <div className="flex justify-center gap-8 text-sm text-gray-300">
-                <span>📧 hr@ethanecom.com</span>
-                <span>📞 (555) 123-4567</span>
-                <span>💬 Hỗ trợ trực tuyến</span>
-              </div>
+               
             </motion.div>
           </motion.div>
         </div>
