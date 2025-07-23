@@ -3,7 +3,7 @@
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaPaperPlane, FaFacebook, FaLinkedin, FaTwitter } from 'react-icons/fa'
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaPaperPlane, FaFacebook, FaLinkedin, FaTwitter, FaCheckCircle, FaTimes } from 'react-icons/fa'
 import ScrollDiscoverIndicator from '../../components/ui/ScrollDiscoverIndicator'
 
 // Animation variants
@@ -32,6 +32,9 @@ export default function ContactAltPage() {
     phone: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [statusMessage, setStatusMessage] = useState('')
   
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -49,21 +52,43 @@ export default function ContactAltPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitStatus('idle')
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: '',
-      company: '',
-      phone: ''
-    })
-    setIsSubmitting(false)
-    alert('Tin nhắn đã được gửi thành công! Chúng tôi sẽ liên hệ lại với bạn sớm.')
+    try {
+      const response = await fetch('/api/send-contact-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        setStatusMessage(result.message || 'Tin nhắn đã được gửi thành công!')
+        setShowSuccessDialog(true)
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+          company: '',
+          phone: ''
+        })
+      } else {
+        setSubmitStatus('error')
+        setStatusMessage(result.error || 'Có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại.')
+      }
+    } catch (error) {
+      setSubmitStatus('error')
+      setStatusMessage('Không thể kết nối đến server. Vui lòng kiểm tra kết nối mạng và thử lại.')
+      console.error('Contact form error:', error)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const contactInfo = [
@@ -404,6 +429,17 @@ export default function ContactAltPage() {
               className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100"
             >
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Error Message */}
+                {submitStatus === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-4 rounded-xl text-center font-studio-pro-bold bg-red-100 text-red-800 border border-red-200"
+                  >
+                    {statusMessage}
+                  </motion.div>
+                )}
+                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-gray-700 font-studio-pro-bold mb-2">Họ và Tên *</label>
@@ -581,6 +617,117 @@ export default function ContactAltPage() {
           </div>
         </div>
       </section>
+
+      {/* Success Dialog */}
+      <AnimatePresence>
+        {showSuccessDialog && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+            onClick={() => setShowSuccessDialog(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8, y: 50 }}
+              transition={{ type: "spring", damping: 20, stiffness: 300 }}
+              className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Close button */}
+              <button
+                onClick={() => setShowSuccessDialog(false)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <FaTimes className="text-xl" />
+              </button>
+
+              {/* Success content */}
+              <div className="text-center">
+                {/* Animated check icon */}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.2, type: "spring", damping: 15, stiffness: 400 }}
+                  className="mx-auto mb-6 w-20 h-20 bg-green-100 rounded-full flex items-center justify-center"
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.4, type: "spring", damping: 15, stiffness: 400 }}
+                  >
+                    <FaCheckCircle className="text-4xl text-green-500" />
+                  </motion.div>
+                </motion.div>
+
+                {/* Title */}
+                <motion.h3
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-2xl font-studio-pro-bold text-gray-800 mb-3"
+                >
+                  Gửi thành công! 🎉
+                </motion.h3>
+
+                {/* Message */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-gray-600 font-studio-pro mb-6 leading-relaxed"
+                >
+                  {statusMessage}
+                </motion.p>
+
+                {/* Action buttons */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="flex gap-3 justify-center"
+                >
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setShowSuccessDialog(false)}
+                    className="px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-studio-pro-bold rounded-xl hover:shadow-lg transition-all duration-300"
+                  >
+                    Tuyệt vời!
+                  </motion.button>
+                  
+                  <motion.a
+                    href="tel:+84967473979"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-6 py-3 border-2 border-gray-200 text-gray-600 font-studio-pro-bold rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-all duration-300 flex items-center gap-2"
+                  >
+                    <FaPhoneAlt className="text-sm" />
+                    Gọi ngay
+                  </motion.a>
+                </motion.div>
+
+                {/* Additional info */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.6 }}
+                  className="mt-6 pt-4 border-t border-gray-100"
+                >
+                  <p className="text-sm text-gray-500 font-studio-pro">
+                    💌 Email xác nhận đã được gửi đến hộp thư của bạn
+                  </p>
+                  <p className="text-sm text-gray-500 font-studio-pro mt-1">
+                    ⏰ Chúng tôi sẽ phản hồi trong vòng 24 giờ
+                  </p>
+                </motion.div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
  
     </div>
   )
