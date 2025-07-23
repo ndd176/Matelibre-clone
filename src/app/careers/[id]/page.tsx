@@ -106,11 +106,9 @@ export default function CareersDetailPage() {
   useEffect(() => {
     async function loadJob() {
       try {
-        console.log('Loading job detail for ID:', jobId)
         
         // Tìm job detail có job.id = jobId (relation)
         const detailResponse = await jobDetailsApi.fetchJobDetails()
-        console.log('All job details:', detailResponse.data)
         
         // Tìm job detail mà có relation job.id = jobId
         const foundJobDetail = detailResponse.data.find((detail: any) => {
@@ -119,7 +117,6 @@ export default function CareersDetailPage() {
         })
         
         if (foundJobDetail) {
-          console.log('Found job detail with relation for job ID', jobId, ':', foundJobDetail)
           
           // Lấy thông tin từ job detail và job relation
           const relatedJob = foundJobDetail.job
@@ -135,8 +132,7 @@ export default function CareersDetailPage() {
             return apiHelpers.getImageUrl(imageField)
           }
           
-          console.log('Job Detail data:', JSON.stringify(foundJobDetail, null, 2))
-          console.log('Related Job data:', JSON.stringify(relatedJob, null, 2))
+
           
           setJob({
             id: jobId, // Giữ nguyên jobId từ URL
@@ -153,18 +149,16 @@ export default function CareersDetailPage() {
             short_description: relatedJob?.short_description || '',
             avatar_image: getImageSrc(relatedJob?.avatar_image),
             department: foundJobDetail.level || 'Engineering',
-            location: 'Hồ Chí Minh, Việt Nam',
+            location: 'Gia Kiệm, Đồng Nai',
             type: 'Toàn thời gian',
             experience: experienceText,
              team: ['Đồng nghiệp A', 'Đồng nghiệp B', 'Đồng nghiệp C']
           })
         } else {
           // Fallback: tìm trực tiếp job detail với id = jobId
-          console.log('No job detail found with job relation, trying direct job detail ID:', jobId)
           const directJobDetail = detailResponse.data.find((detail: any) => detail.id.toString() === jobId)
           
           if (directJobDetail) {
-            console.log('Found direct job detail for ID', jobId, ':', directJobDetail)
             
             const formattedSalary = apiHelpers.formatSalary(directJobDetail.salary_range)
             const experienceText = apiHelpers.formatExperience(directJobDetail.years_experience)
@@ -183,19 +177,12 @@ export default function CareersDetailPage() {
               short_description: '',
               avatar_image: getImageSrc(directJobDetail.job_image),
               department: directJobDetail.level || 'Engineering',
-              location: 'Hồ Chí Minh, Việt Nam',
+              location: 'Gia Kiệm, Đồng Nai',
               type: 'Toàn thời gian',
               experience: experienceText,
                team: ['Đồng nghiệp A', 'Đồng nghiệp B', 'Đồng nghiệp C']
             })
           } else {
-            console.log('No job detail found for ID:', jobId)
-            console.log('Available job detail IDs:', detailResponse.data.map((d: any) => d.id))
-            console.log('Available job relations:', detailResponse.data.map((d: any) => ({ 
-              detailId: d.id, 
-              jobId: d.job?.id, 
-              jobTitle: d.job?.job_title 
-            })))
             setJob(null)
           }
         }
@@ -424,10 +411,7 @@ export default function CareersDetailPage() {
                   ))}
                 </div>
                 
-                <div className="text-center">
-                  <div className="text-white/60 font-studio-pro text-sm mb-2">Tham gia đội ngũ</div>
-                  <div className="text-white font-studio-pro-bold text-xl">50+ nhà phát triển</div>
-                </div>
+ 
               </motion.div>
 
               {/* Floating elements */}
@@ -759,7 +743,7 @@ function SimilarPositions({ currentJobId, currentLevel }: { currentJobId: string
             short_description: detail.job?.short_description || 'Cơ hội nghề nghiệp tuyệt vời đang chờ đợi bạn.',
             job_image: apiHelpers.getImageUrl(detail.job_image || detail.job?.avatar_image),
             department: detail.level || 'Engineering',
-            location: 'Hồ Chí Minh, Việt Nam',
+            location: 'Gia Kiệm, Đồng Nai',
             type: 'Toàn thời gian'
           }))
 

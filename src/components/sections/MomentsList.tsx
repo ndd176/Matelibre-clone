@@ -3,35 +3,36 @@
 import { useRef, useEffect, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import FloatingImage from '../ui/FloatingImage'
+import { WEBSITE_IMAGES } from '@/lib/fast-images'
 
 const momentsData = [
   {
-    src: '/images/table-01.webp',
+    src: WEBSITE_IMAGES.moments.table1,
     top: 3165,
     leftPercent: 0.1,
     text: 'Stay fresh, stay wild.',
   },
 
   {
-    src: '/images/table-02.webp',
+    src: WEBSITE_IMAGES.moments.table2,
     top: 4320,
     leftPercent: 0.15,
     text: 'Every moment matters.',
   },
   {
-    src: '/images/table-03.webp',
+    src: WEBSITE_IMAGES.moments.table3,
     top: 3700,
     leftPercent: 0.59,
     text: 'Find your flavor.',
   },
   {
-    src: '/images/table-04.webp',
+    src: WEBSITE_IMAGES.moments.table4,
     top: 2601,
     leftPercent: 0.65,
     text: 'Naturally uplifting.',
   },
     {
-    src: '/images/table-05.webp',
+    src: WEBSITE_IMAGES.moments.table5,
     top: 4860,
     leftPercent: 0.62,
     text: 'Sip. Smile. Repeat.',
@@ -87,7 +88,7 @@ export default function TransitionToCards() {
     <div className="relative w-full h-[600vh] bg-white" 
     ref={containerRef} 
     style={{
-        backgroundImage: 'url(/images/office-01.jpg)',
+        backgroundImage: `url(${WEBSITE_IMAGES.hero.main})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',

@@ -203,6 +203,7 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import ScrollDiscoverIndicator from '../ui/ScrollDiscoverIndicator'
+import { WEBSITE_IMAGES } from '../../lib/fast-images'
 
 export default function ParallaxHero() {
   const ref = useRef(null)
@@ -210,7 +211,8 @@ export default function ParallaxHero() {
   const y = useTransform(scrollY, [0, 1000], [0, -1400])
   const radius = useTransform(scrollY, [0, 300], ['0px', '40px'])
 
-  const backgroundImage = '/images/office-01.jpg'
+  // Use background image from WEBSITE_IMAGES (Cloudinary optimized)
+  const backgroundImageUrl = WEBSITE_IMAGES.hero.main
 
   return (
     <section
@@ -232,10 +234,11 @@ export default function ParallaxHero() {
         {/* Background image */}
       <div className="absolute inset-0 w-full h-full z-0">
         <Image
-          src={backgroundImage}
-          alt="Background"
+          src={backgroundImageUrl}
+          alt="Hero Background"
           fill
           priority
+          sizes="100vw"
           className="object-cover"
         />
       </div>
