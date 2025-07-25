@@ -66,7 +66,7 @@ const renderNumberedContent = (text: string) => {
             transition={{ delay: index * 0.1, duration: 0.5 }}
             className="flex items-start gap-4 group hover:bg-blue-50/50 rounded-xl p-4 transition-all duration-300"
           >
-            <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 text-white rounded-full flex items-center justify-center font-studio-pro-bold text-sm shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+            <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-600 text-white rounded-full flex items-center justify-center font-plus-jakarta-sans font-bold text-sm shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
               {index + 1}
             </div>
             <div className="flex-1 text-gray-700 font-studio-pro leading-relaxed">
@@ -266,7 +266,17 @@ export default function CareersDetailPage() {
 
   return (
     <div ref={containerRef} className="min-h-screen bg-white">
- 
+      {/* Floating Back Button */}
+      <motion.button
+        initial={{ opacity: 0, x: -100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.5 }}
+        whileHover={{ x: -10, scale: 1.1 }}
+        onClick={() => router.push('/careers')}
+        className="fixed top-8 left-8 z-50 bg-white shadow-xl rounded-full p-4 border border-gray-100 hover:shadow-2xl transition-all duration-300"
+      >
+        <span className="text-2xl">←</span>
+      </motion.button>
 
       {/* Hero Section */}
       {mounted && (
@@ -307,7 +317,7 @@ export default function CareersDetailPage() {
             <div>
               <motion.div className="mb-8" variants={slideUp}>
                 <div className="flex items-center gap-4 mb-6">
-                  <span className="bg-blue-300 text-black px-4 py-2 rounded-full text-sm font-studio-pro-bold">
+                  <span className="bg-blue-300 text-black px-4 py-2 rounded-full text-sm font-plus-jakarta-sans font-bold">
                     {job.department}
                   </span>
                   <span className="text-blue-300 font-studio-pro">
@@ -315,7 +325,7 @@ export default function CareersDetailPage() {
                   </span>
                 </div>
                 
-                <h1 className="text-5xl md:text-7xl font-studio-pro-bold leading-tight mb-6">
+                <h1 className="text-5xl md:text-7xl font-plus-jakarta-sans font-bold leading-tight mb-6">
                   {job.job_title}
                 </h1>
                 
@@ -327,15 +337,15 @@ export default function CareersDetailPage() {
                 <div className="grid grid-cols-2 gap-6 mb-8">
                   <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
                     <div className="text-blue-300 text-2xl mb-2">💰</div>
-                    <div className="text-sm text-gray-400 font-studio-pro">Lương</div>
+                    <div className="text-sm text-gray-400 font-plus-jakarta-sans">Lương</div>
                     <div className="text-white font-studio-pro-bold">
                       {job.salary_range || 'Thỏa thuận'}
                     </div>
                   </div>
                   <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
                     <div className="text-blue-300 text-2xl mb-2">⏱️</div>
-                    <div className="text-sm text-gray-400 font-studio-pro">Kinh nghiệm</div>
-                    <div className="text-white font-studio-pro-bold">{job.experience}</div>
+                    <div className="text-sm text-gray-400 font-plus-jakarta-sans">Kinh nghiệm</div>
+                    <div className="text-white font-plus-jakarta-sans font-bold">{job.experience}</div>
                   </div>
                 </div>
               </motion.div>
@@ -345,7 +355,7 @@ export default function CareersDetailPage() {
                   whileHover={{ scale: 1.05, backgroundColor: '#93c5fd' }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => handleApplyClick(job.job_title)}
-                  className="bg-blue-300 text-black font-studio-pro-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3"
+                  className="bg-blue-300 text-black font-plus-jakarta-sans font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3"
                 >
                   Ứng tuyển ngay
                   <span className="text-xl">🚀</span>
@@ -359,7 +369,7 @@ export default function CareersDetailPage() {
                       behavior: 'smooth' 
                     })
                   }}
-                  className="border-2 border-white text-white font-studio-pro-bold py-4 px-8 rounded-full hover:bg-white hover:text-black transition-all duration-300"
+                  className="border-2 border-white text-white font-plus-jakarta-sans font-bold py-4 px-8 rounded-full hover:bg-white hover:text-black transition-all duration-300"
                 >
                   Tìm hiểu thêm
                 </motion.button>
@@ -394,7 +404,7 @@ export default function CareersDetailPage() {
                       initial={{ opacity: 0, scale: 0 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.5 + index * 0.1 }}
-                      className="bg-blue-300/20 text-blue-300 px-3 py-1 rounded-full text-sm font-studio-pro-bold border border-blue-300/30"
+                      className="bg-blue-300/20 text-blue-300 px-3 py-1 rounded-full text-sm font-plus-jakarta-sans font-bold border border-blue-300/30"
                     >
                       {skill}
                     </motion.span>
@@ -456,7 +466,7 @@ export default function CareersDetailPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-3 px-6 py-3 rounded-full font-studio-pro-bold transition-all duration-300 ${
+                className={`flex items-center gap-3 px-6 py-3 rounded-full font-plus-jakarta-sans font-bold transition-all duration-300 ${
                   activeTab === tab.id
                     ? 'bg-blue-300 text-white shadow-lg'
                     : 'bg-white text-gray-600 border border-gray-200 hover:border-blue-300'
@@ -480,7 +490,7 @@ export default function CareersDetailPage() {
             >
               {activeTab === 'overview' && (
                 <div>
-                  <h2 className="text-4xl font-studio-pro-bold text-black mb-8">Tổng quan công việc</h2>
+                  <h2 className="text-4xl font-plus-jakarta-sans font-bold text-black mb-8">Tổng quan công việc</h2>
                   <div className="max-w-none">
                     <div className="bg-gradient-to-br from-gray-50 to-blue-50/30 rounded-3xl p-8">
                       {renderNumberedContent(job.overview || 'Thông tin tổng quan về công việc sẽ được cập nhật sớm.')}
@@ -491,7 +501,7 @@ export default function CareersDetailPage() {
 
               {activeTab === 'requirements' && (
                 <div>
-                  <h2 className="text-4xl font-studio-pro-bold text-black mb-8">Yêu cầu công việc</h2>
+                  <h2 className="text-4xl font-plus-jakarta-sans font-bold text-black mb-8">Yêu cầu công việc</h2>
                   <div className="max-w-none">
                     <div className="bg-gradient-to-br from-gray-50 to-green-50/30 rounded-3xl p-8">
                       {renderNumberedContent(job.requirements || 'Yêu cầu công việc sẽ được cập nhật sớm.')}
@@ -502,7 +512,7 @@ export default function CareersDetailPage() {
 
               {activeTab === 'benefits' && (
                 <div>
-                  <h2 className="text-4xl font-studio-pro-bold text-black mb-8">Quyền lợi & Phúc lợi</h2>
+                  <h2 className="text-4xl font-plus-jakarta-sans font-bold text-black mb-8">Quyền lợi & Phúc lợi</h2>
                   <div className="max-w-none">
                     <div className="bg-gradient-to-br from-gray-50 to-purple-50/30 rounded-3xl p-8">
                       {renderNumberedContent(job.benefits || 'Thông tin quyền lợi sẽ được cập nhật sớm.')}
@@ -513,14 +523,14 @@ export default function CareersDetailPage() {
 
               {activeTab === 'level' && (
                 <div>
-                  <h2 className="text-4xl font-studio-pro-bold text-black mb-8">Cấp độ công việc</h2>
+                  <h2 className="text-4xl font-plus-jakarta-sans font-bold text-black mb-8">Cấp độ công việc</h2>
                   <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 text-center">
                     <div className="w-20 h-20 bg-blue-300 rounded-full mx-auto mb-6 flex items-center justify-center">
                       <span className="text-3xl">
                         {job.level === 'Quản lý' ? '👨‍💼' : '👨‍💻'}
                       </span>
                     </div>
-                    <h3 className="text-3xl font-studio-pro-bold text-black mb-4">
+                    <h3 className="text-3xl font-plus-jakarta-sans font-bold text-black mb-4">
                       {job.level || 'Nhân viên'}
                     </h3>
                     <p className="text-gray-600 font-studio-pro text-lg">
@@ -535,7 +545,7 @@ export default function CareersDetailPage() {
 
               {activeTab === 'team' && (
                 <div>
-                  <h2 className="text-4xl font-studio-pro-bold text-black mb-8">Gặp gỡ đồng nghiệp tương lai</h2>
+                  <h2 className="text-4xl font-plus-jakarta-sans font-bold text-black mb-8">Gặp gỡ đồng nghiệp tương lai</h2>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                     {job.team?.map((member, index) => (
                       <motion.div
@@ -546,10 +556,10 @@ export default function CareersDetailPage() {
                         whileHover={{ scale: 1.05 }}
                         className="text-center group"
                       >
-                        <div className="w-24 h-24 bg-blue-300 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-studio-pro-bold group-hover:bg-blue-400 transition-colors">
+                        <div className="w-24 h-24 bg-blue-300 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-plus-jakarta-sans font-bold group-hover:bg-blue-400 transition-colors">
                           {member.split(' ').map(n => n[0]).join('')}
                         </div>
-                        <h3 className="font-studio-pro-bold text-black mb-1">{member}</h3>
+                        <h3 className="font-plus-jakarta-sans font-bold text-black mb-1">{member}</h3>
                         <p className="text-gray-600 font-studio-pro text-sm">
                           {['Đội Kỹ thuật', 'Đội Thiết kế', 'Đội Sản phẩm'][index % 3]}
                         </p>
@@ -558,7 +568,7 @@ export default function CareersDetailPage() {
                   </div>
                   
                   <div className="text-center bg-gray-50 rounded-2xl p-8">
-                    <h3 className="text-2xl font-studio-pro-bold text-black mb-4">Tham gia đội ngũ đang phát triển</h3>
+                    <h3 className="text-2xl font-plus-jakarta-sans font-bold text-black mb-4">Tham gia đội ngũ đang phát triển</h3>
                     <p className="text-gray-600 font-studio-pro mb-6">
                       Làm việc cùng các chuyên gia đam mê, luôn tận tâm tạo ra những sản phẩm tuyệt vời và xây dựng môi trường hợp tác.
                     </p>
@@ -585,7 +595,7 @@ export default function CareersDetailPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-5xl font-studio-pro-bold text-black mb-6">
+            <h2 className="text-5xl font-plus-jakarta-sans font-bold text-black mb-6">
               Các vị trí tương tự
             </h2>
             <p className="text-xl text-gray-600 font-studio-pro max-w-3xl mx-auto">
@@ -622,7 +632,7 @@ export default function CareersDetailPage() {
             transition={{ duration: 0.8 }}
           >
             <motion.h2 
-              className="text-5xl md:text-6xl font-studio-pro-bold text-white mb-6"
+              className="text-5xl md:text-6xl font-plus-jakarta-sans font-bold text-white mb-6"
               animate={{ 
                 backgroundImage: [
                   "linear-gradient(45deg, #ffffff, #93c5fd)",
@@ -637,7 +647,7 @@ export default function CareersDetailPage() {
                 WebkitTextFillColor: "transparent"
               }}
             >
-              Tham gia ngay
+              Sẵn sàng tham gia?
             </motion.h2>
             <p className="text-xl text-gray-300 font-studio-pro mb-12 leading-relaxed">
               Đừng bỏ lỡ cơ hội trở thành một phần của điều gì đó phi thường. 
@@ -649,7 +659,7 @@ export default function CareersDetailPage() {
                 whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => handleApplyClick(job.job_title)}
-                className="bg-blue-300 text-black font-studio-pro-bold py-4 px-12 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3"
+                className="bg-blue-300 text-black font-plus-jakarta-sans font-bold py-4 px-12 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3"
               >
                 Ứng tuyển vị trí này
                 <span className="text-xl">🚀</span>
@@ -659,7 +669,7 @@ export default function CareersDetailPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => router.push('/careers')}
-                className="border-2 border-white text-white font-studio-pro-bold py-4 px-12 rounded-full text-lg hover:bg-white hover:text-black transition-all duration-300"
+                className="border-2 border-white text-white font-plus-jakarta-sans font-bold py-4 px-12 rounded-full text-lg hover:bg-white hover:text-black transition-all duration-300"
               >
                 Xem vị trí khác
               </motion.button>
@@ -673,7 +683,14 @@ export default function CareersDetailPage() {
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
             >
-               
+              <p className="text-gray-400 font-studio-pro mb-4">
+                Có câu hỏi về vị trí này? Liên hệ với đội ngũ HR của chúng tôi.
+              </p>
+              <div className="flex justify-center gap-8 text-sm text-gray-300">
+                <span>📧 hr@ethanecom.com</span>
+                <span>📞 (555) 123-4567</span>
+                <span>💬 Hỗ trợ trực tuyến</span>
+              </div>
             </motion.div>
           </motion.div>
         </div>
@@ -800,7 +817,7 @@ function SimilarPositions({ currentJobId, currentLevel }: { currentJobId: string
             
             {/* Level badge */}
             <div className="absolute top-4 left-4">
-              <span className="bg-blue-300 text-black px-3 py-1 rounded-full text-sm font-studio-pro-bold">
+              <span className="bg-blue-300 text-black px-3 py-1 rounded-full text-sm font-plus-jakarta-sans font-bold">
                 {similarJob.level}
               </span>
             </div>
@@ -817,7 +834,7 @@ function SimilarPositions({ currentJobId, currentLevel }: { currentJobId: string
           {/* Job Content */}
           <div className="p-6">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-blue-300 text-sm font-studio-pro-bold">
+              <span className="text-blue-300 text-sm font-plus-jakarta-sans font-bold">
                 {similarJob.department}
               </span>
               <span className="text-gray-400 text-sm font-studio-pro">
@@ -825,7 +842,7 @@ function SimilarPositions({ currentJobId, currentLevel }: { currentJobId: string
               </span>
             </div>
             
-            <h3 className="text-xl font-studio-pro-bold text-black mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
+            <h3 className="text-xl font-plus-jakarta-sans font-bold text-black mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
               {similarJob.job_title}
             </h3>
             
@@ -836,14 +853,14 @@ function SimilarPositions({ currentJobId, currentLevel }: { currentJobId: string
             {/* Job Details */}
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="bg-gray-50 rounded-xl p-3">
-                <div className="text-xs text-gray-500 mb-1">Lương</div>
-                <div className="font-studio-pro-bold text-sm text-black">
+                <div className="font-plus-jakarta-sans font-bold  mb-1  text-black">Lương</div>
+                <div className="font-plus-jakarta-sans font-bold text-sm text-gray-500">
                   {similarJob.salary_range || 'Thỏa thuận'}
                 </div>
               </div>
               <div className="bg-gray-50 rounded-xl p-3">
-                <div className="text-xs text-gray-500 mb-1">Kinh nghiệm</div>
-                <div className="font-studio-pro-bold text-sm text-black">
+                <div className="font-plus-jakarta-sans font-bold  mb-1  text-black">Kinh nghiệm</div>
+                <div className="font-plus-jakarta-sans font-bold text-sm text-gray-500">
                   {similarJob.experience}
                 </div>
               </div>
@@ -853,7 +870,7 @@ function SimilarPositions({ currentJobId, currentLevel }: { currentJobId: string
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-studio-pro-bold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-plus-jakarta-sans font-bold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
               onClick={(e) => {
                 e.stopPropagation()
                 router.push(`/careers/${similarJob.id}`)

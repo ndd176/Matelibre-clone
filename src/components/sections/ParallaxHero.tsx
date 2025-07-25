@@ -212,7 +212,9 @@ export default function ParallaxHero() {
   const radius = useTransform(scrollY, [0, 300], ['0px', '40px'])
 
   // Use background image from WEBSITE_IMAGES (Cloudinary optimized)
-  const backgroundImageUrl = WEBSITE_IMAGES.hero.main
+  // const backgroundImageUrl = WEBSITE_IMAGES.hero.main
+    const backgroundImageUrl = "https://res.cloudinary.com/dbtvr8qyd/image/upload/v1753426246/IMG_1011_wokgym.webp"
+
 
   return (
     <section

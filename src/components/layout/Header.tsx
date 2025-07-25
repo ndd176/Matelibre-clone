@@ -25,16 +25,11 @@ const handleToggleMenu = () => {
 }
   useEffect(() => {
     const handleScroll = () => {
-      const currentY = window.scrollY
+      const currentY = window.scrollY 
       setIsAtTop(currentY <= 0)
-      const scrollingUp = currentY < lastScrollY
       
-      // Hiển thị header ngay lập tức khi scroll up hoặc ở đầu trang
-      if (scrollingUp || currentY <= 0) {
-        setShowHeader(true)
-      } else {
-        setShowHeader(false)
-      }
+      // Header luôn hiển thị khi scroll xuống
+      setShowHeader(true)
       
       setLastScrollY(currentY)
     }
@@ -229,14 +224,7 @@ const handleToggleMenu = () => {
           alt="bg"
           className="absolute inset-0 w-full h-full object-cover md:rounded-tl-[30px] md:rounded-bl-[30px]"
         />
-        <div className="absolute bottom-6 right-6 bg-white/90 px-4 py-2 rounded-xl shadow">
-          <div className="bg-[#f4f4f4] p-6 mt-12 rounded-[30px]">
-            <p className="mb-4 font-studio-pro">Đăng ký để không bỏ lỡ<br />tin tức mới từ Mate Libre</p>
-            <button className="bg-black text-white rounded-full px-6 py-2 text-sm font-studio-pro-bold">
-              Xây dựng hộp của bạn
-            </button>
-          </div>
-        </div>
+ 
       </motion.div>
 
     </motion.div>

@@ -1,42 +1,20 @@
 // lib/fast-images.ts
 
-// Get cloud name with fallback
-const CLOUDINARY_CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'dbtvr8qyd';
-
-// Debug log (chỉ trong development)
-if (process.env.NODE_ENV === 'development') {
-  console.log('🔧 Cloudinary Config:', {
-    envVar: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-    fallback: CLOUDINARY_CLOUD_NAME
-  });
-}
-
 export const FAST_IMAGE_SOURCES = {
   cloudinary: (publicId: string, width?: number, height?: number) =>
-    `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/q_auto,f_auto${width ? `,w_${width}` : ''}${height ? `,h_${height}` : ''}/${publicId}`,
+    `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/q_auto,f_auto${width ? `,w_${width}` : ''}${height ? `,h_${height}` : ''}/${publicId}`,
   unsplash: (id: string, width?: number, height?: number) => 
     `https://images.unsplash.com/photo-${id}?auto=format&fit=crop${width ? `&w=${width}` : ''}${height ? `&h=${height}` : ''}&q=80`,
     pexels: (id: string, width?: number, height?: number) =>
     `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb${width ? `&w=${width}` : ''}${height ? `&h=${height}` : ''}`,
 }
 
-// Helper function để kiểm tra và tạo URL an toàn
-export const getCloudinaryUrl = (publicId: string, width?: number, height?: number): string => {
-  const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'dbtvr8qyd';
-  
-  if (!cloudName || cloudName === 'undefined') {
-    console.warn(`⚠️ Cloudinary cloud name not configured properly. Using fallback.`);
-    return `https://res.cloudinary.com/dbtvr8qyd/image/upload/q_auto,f_auto${width ? `,w_${width}` : ''}${height ? `,h_${height}` : ''}/${publicId}`;
-  }
-  
-  return `https://res.cloudinary.com/${cloudName}/image/upload/q_auto,f_auto${width ? `,w_${width}` : ''}${height ? `,h_${height}` : ''}/${publicId}`;
-}
-
 export const WEBSITE_IMAGES = {
   hero: {
-    main: getCloudinaryUrl('tree-background2', 1920, 1080), // Cloudinary optimized
-    office: getCloudinaryUrl('tree-background2', 1920, 1080), // Cloudinary optimized  
-    team: getCloudinaryUrl('team-building-02', 1920, 1080), // Cloudinary optimized
+    main: FAST_IMAGE_SOURCES.cloudinary('IMG_1011_wokgym'), // Cloudinary optimized
+    // https://res.cloudinary.com/dbtvr8qyd/image/upload/v1753426246/IMG_1011_wokgym.webp
+    office: FAST_IMAGE_SOURCES.cloudinary('tree-background2', 1920, 1080), // Cloudinary optimized  
+    team: FAST_IMAGE_SOURCES.cloudinary('team-building-02', 1920, 1080), // Cloudinary optimized
   },
   company: {
     building: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&h=600&q=80',
@@ -52,12 +30,12 @@ export const WEBSITE_IMAGES = {
   
   // Moments/Table images - Cloudinary optimized
   moments: {
-    table1: getCloudinaryUrl('table-01_izs8z6'),
-    table2: getCloudinaryUrl('table-02_hr64lo'), 
-    table3: getCloudinaryUrl('tabl-03_ftnaui'),
-    table4: getCloudinaryUrl('table-04_iniplt'),
-    table5: getCloudinaryUrl('table-05_xaqisq'),
-  },
+    table1: FAST_IMAGE_SOURCES.cloudinary('moment-05_v2jzsc'),
+    table3: FAST_IMAGE_SOURCES.cloudinary('moment-01_nxjuii'),
+    table2: FAST_IMAGE_SOURCES.cloudinary('moment-02_koivr2'), 
+    table5: FAST_IMAGE_SOURCES.cloudinary('moment-04_kyqaia'),
+    table4: FAST_IMAGE_SOURCES.cloudinary('moment-03_ydmion'),
+   },
   team: {
     person1: 'https://images.unsplash.com/photo-1507003211169-0a1dd7a76ef1?auto=format&fit=crop&w=300&h=300&q=80',
     person2: 'https://images.unsplash.com/photo-1494790108755-2616c769e3b1?auto=format&fit=crop&w=300&h=300&q=80',
@@ -69,7 +47,9 @@ export const WEBSITE_IMAGES = {
     abstract: 'https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1920&h=1080&q=80',
     geometric: 'https://images.unsplash.com/photo-1557683304-673a23048d34?auto=format&fit=crop&w=1920&h=1080&q=80',
     gradient: 'https://images.unsplash.com/photo-1557682250-33bd709cbe85?auto=format&fit=crop&w=1920&h=1080&q=80',
+    // https://res.cloudinary.com/dbtvr8qyd/image/upload/v1753417680/moment-bg-02_itxsc3.webp
   }
+
 }
 
 export function getOptimizedUrl(originalUrl: string, width?: number, height?: number) {

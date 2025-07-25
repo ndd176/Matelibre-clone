@@ -58,7 +58,7 @@ const textY = useTransform(scrollSpring, [0.6, 1], ['15vh', '70vh'])
         containerRef.current = el
         inViewRef(el)
       }}
-      className="relative h-[300vh]"
+      className="relative h-[300vh] hidden lg:block"
     >
       <motion.div className="sticky top-0 h-screen w-full   bg-white">
         {/* STAGE 1+2: Text with clip */}
@@ -94,7 +94,7 @@ const textY = useTransform(scrollSpring, [0.6, 1], ['15vh', '70vh'])
           }}
         >
           <Image
-            src="/images/join-with-us-02.webp"
+            src="/images/hop-03.jpg"
             alt="Hero Split"
             fill
             className="object-cover rounded-xl"
@@ -112,24 +112,24 @@ const textY = useTransform(scrollSpring, [0.6, 1], ['15vh', '70vh'])
         {/* STAGE 4: Final Text */}
         {/* NEW: Floating Text Sticky Relative to Page */}
         {/* STAGE 4: Final Text (Sticky within image bounds only) */}
-        <div className="absolute inset-0 z-40 pointer-events-none">
-          <div className="h-full flex flex-col justify-center">
-            <div className="sticky top-1/2 -translate-y-1/2 bottom-[5px] flex justify-center items-center">
-              <motion.h1
-                className="max-w-4xl text-white text-[clamp(32px,8vw,100px)] text-center leading-tight"
-                style={enabled ? {
-                  clipPath: textClipPath,
-                  fontFamily: 'var(--font-studio-pro-bold), "Arial Black", sans-serif',
-                  fontWeight: 700,
-                  willChange: 'clip-path',
-                } : { opacity: 0 }}
-              >
-                  MÔI TRƯỜNG THÂN THIỆN
-              </motion.h1>
+          <div className="absolute inset-0 z-40 pointer-events-none">
+            <div className="h-full flex flex-col justify-center">
+              <div className="sticky top-1/2 -translate-y-1/2 bottom-[5px] flex justify-center items-center">
+                <motion.h1
+            className="max-w-4xl text-white text-[clamp(48px,12vw,130px)] md:text-[clamp(32px,8vw,100px)] text-center leading-tight"
+            style={enabled ? {
+              clipPath: textClipPath,
+              fontFamily: 'var(--font-studio-pro-bold), "Arial Black", sans-serif',
+              fontWeight: 700,
+              willChange: 'clip-path',
+            } : { opacity: 0 }}
+                >
+              MÔI TRƯỜNG THÂN THIỆN
+                </motion.h1>
+              </div>
             </div>
-          </div>
-        </div>
-      </motion.div>
+          </div>  
+           </motion.div>
     </div>
   )
 }

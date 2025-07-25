@@ -13,7 +13,6 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import PageTransition from '@/components/PageTransition';
 import CursorTooltip from "@/components/ui/CursorTooltip";
-import ErrorBoundary from '@/components/ErrorBoundary';
 
 // Font definitions
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -59,16 +58,14 @@ function RootLayoutClient({
       <body
         className={`${plusJakartaSans.variable} ${bebasNeue.variable} antialiased font-plus-jakarta-sans font-bebas overflow-x-hidden`}
       >
-        <ErrorBoundary>
-          <PageTransition />
-          <LenisWrapper />
-          <Header/>
-          <Providers>{children}</Providers>
-          <FAQSection />
-          <Footer/>
-          <ScrollToTopButton />
-          <CursorTooltip/>
-        </ErrorBoundary>
+        <PageTransition />
+        <LenisWrapper />
+        <Header/>
+        <Providers>{children}</Providers>
+        <FAQSection />
+        <Footer/>
+        <ScrollToTopButton />
+        <CursorTooltip/>
       </body>
     </html>
   );

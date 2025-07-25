@@ -27,72 +27,64 @@ const smoothStagger = {
 // Refined team data with minimalist presentation
 const teamMembers = [
   {
-    name: "Duy Đinh",
+    name: "Đình Duy",
     role: "Nhà sáng lập & CEO",
-    image: "/images/anh-hiep.png",
-    bio: "Nhà lãnh đạo có tầm nhìn với hơn 10 năm kinh nghiệm trong đổi mới thời trang bền vững",
-    skills: ["Lãnh đạo", "Chiến lược", "Bền vững", "Đổi mới"],
-    quote: "Tạo ra những sản phẩm đẹp tôn trọng hành tinh của chúng ta",
+    image: "/images/anhduy.png",
+    bio: "Người khởi xướng hành trình thêu hiện đại, kết hợp tinh thần thủ công với chiến lược phát triển bền vững và công nghệ.",
+    skills: ["Lãnh đạo", "Chiến lược", "Đổi mới sáng tạo", "Phát triển bền vững"],
+    quote: "Tạo ra những sản phẩm đẹp và có trách nhiệm với hành tinh này.",
     experience: "Hơn 10 năm",
-    education: "Thiết kế thời trang, Đại học RMIT",
-    achievement: "Xây dựng công ty từ startup lên doanh thu 50M+"
+     achievement: "Từ startup nhỏ phát triển thành doanh nghiệp doanh thu 50M+"
   },
   {
-    name: "Đội ngũ truyền thông",
-    role: "Giám đốc thiết kế",
-    image: "/images/duydinh-bg-2.png",
-    bio: "Các nhà thiết kế đam mê đẩy ranh giới sáng tạo trong thêu truyền thống",
-    skills: ["Thêu", "Minh họa", "Thiết kế mẫu", "Lý thuyết màu sắc"],
-    quote: "Mỗi thiết kế đều kể một câu chuyện về văn hóa và thủ công",
-    experience: "Hơn 8 năm",
-    education: "Mỹ thuật & Thiết kế dệt may",
-    achievement: "Đã tạo ra hơn 500 thiết kế đoạt giải"
+    name: "Minh Nguyệt",
+    role: "Đội trưởng tâm huyết",
+    image: "/images/chinguyet.png",
+    bio: "Người thủ lĩnh truyền cảm hứng, dẫn dắt đội ngũ thiết kế vượt qua từng thử thách với lòng đam mê và sự tỉ mỉ.",
+    skills: ["Lãnh đạo", "Chiến lược", "Đổi mới sáng tạo", "Phát triển bền vững"],
+    quote: "Mỗi thiết kế là một câu chuyện về văn hóa và cảm xúc."
   },
   {
-    name: "Đội ngũ thêu",
-    role: "Giám đốc vận hành",
-    image: "/images/position.jpg",
-    bio: "Những chuyên gia tập trung vào chất lượng đảm bảo sự xuất sắc ở mọi bước",
-    skills: ["Kiểm soát chất lượng", "Hậu cần", "Tối ưu hóa quy trình", "Xuất sắc"],
-    quote: "Sự xuất sắc không phải là một hành động mà là một thói quen",
-    experience: "Hơn 12 năm",
-    education: "Kỹ thuật công nghiệp",
-    achievement: "Duy trì đánh giá chất lượng 99.8%"
-  },
-  {
-    name: "Đội ngũ IT",
-    role: "Trưởng đổi mới số",
-    image: "/images/work.png",
-    bio: "Xây dựng tương lai của công nghệ thời trang với AI và tự động hóa",
-    skills: ["Phát triển", "Thiết kế AI", "Tự động hóa", "Đổi mới số"],
-    quote: "Công nghệ nâng cao sự sáng tạo, không bao giờ thay thế nó",
-    experience: "Hơn 6 năm",
-    education: "Khoa học máy tính & Nghệ thuật số",
-    achievement: "Tăng hiệu suất sản xuất gấp 3 lần"
-  },
-  {
-    name: "Đội ngũ marketing",
-    role: "Thương hiệu & Marketing",
-    image: "/images/congty.jpg",
-    bio: "Những người kể chuyện xây dựng kết nối chân thực với cộng đồng của chúng tôi",
-    skills: ["Chiến lược thương hiệu", "Tạo nội dung", "Xây dựng cộng đồng", "Kể chuyện"],
-    quote: "Thương hiệu chân thực tạo ra những mối quan hệ bền vững",
-    experience: "Hơn 7 năm",
-    education: "Marketing & Truyền thông",
-    achievement: "Tiếp cận hơn 10 triệu lượt trên mạng xã hội"
+    name: "Đội ngũ seller",
+    role: "Kinh doanh & Phân phối",
+    image: "/images/seller.jpg",
+    bio: "Là cầu nối giữa sản phẩm thủ công và khách hàng toàn cầu – mang giá trị Việt Nam vươn xa.",
+    skills: ["Bán hàng", "Thị trường quốc tế", "Thương mại điện tử", "Phân phối"],
+    quote: "Chúng tôi không chỉ bán sản phẩm, mà lan tỏa tinh thần thủ công Việt.",
+    achievement: "Phân phối sản phẩm đến hơn 30 quốc gia"
   },
   {
     name: "Đội ngũ thiết kế",
-    role: "Tác động môi trường",
-    image: "/images/office-01.jpg",
-    bio: "Những nhà vô địch môi trường đảm bảo mọi quyết định đều có ý thức sinh thái",
-    skills: ["Thiết kế sinh thái", "Nghiên cứu vật liệu", "Bền vững", "Đổi mới"],
-    quote: "Những lựa chọn nhỏ ngày hôm nay tạo ra một ngày mai tốt đẹp hơn",
-    experience: "Hơn 5 năm",
-    education: "Khoa học môi trường",
-    achievement: "Đạt được chứng nhận trung hòa carbon"
+    role: "Vận hành & Sản xuất",
+    image: "/images/designer.jpg",
+    bio: "Những nghệ nhân phía sau mỗi sản phẩm hoàn hảo, đảm bảo chất lượng cao nhất từ ý tưởng đến tay người dùng.",
+    skills: ["Chất lượng sản phẩm", "Quy trình sản xuất", "Quản lý vận hành", "Tối ưu hóa"],
+    quote: "Sự xuất sắc đến từ từng chi tiết nhỏ.",
+     achievement: "Duy trì chất lượng đạt 99.8% trong suốt 5 năm"
+  },
+  {
+    name: "Đội ngũ media",
+    role: "Đổi mới số & Công nghệ",
+    image: "/images/media2.jpg",
+    bio: "Kết nối công nghệ và sáng tạo để nâng tầm trải nghiệm khách hàng và tối ưu hóa sản xuất.",
+    skills: ["AI ứng dụng", "Tự động hóa", "Thiết kế số", "Công nghệ sáng tạo"],
+    quote: "Công nghệ hỗ trợ nghệ thuật – không thay thế nó.",
+    achievement: "Tăng hiệu suất sản xuất gấp 3 lần"
+  },
+  {
+    name: "Đội ngũ support",
+    role: "Chăm sóc khách hàng",
+    image: "/images/support.webp",
+    bio: "Luôn lắng nghe và đồng hành để mỗi khách hàng đều cảm thấy được trân trọng và thấu hiểu.",
+    skills: ["Giao tiếp", "Tư vấn khách hàng", "Giải quyết vấn đề", "Xây dựng niềm tin"],
+    quote: "Mỗi phản hồi tích cực là động lực để chúng tôi làm tốt hơn.",
+    experience: "Hơn 7 năm",
+     achievement: "Đạt 4.9/5 sao từ hơn 10,000 lượt đánh giá"
   }
 ]
+
+
+
 
 // Clean values for minimalist presentation
 const coreValues = [
@@ -342,12 +334,12 @@ export default function AboutUsAltPage() {
   return (
     <div className="min-h-screen bg-white text-black font-studio-pro">
       {/* MINIMALIST HERO SECTION */}
-      <section id="hero" className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden">
+      <section id="hero" className="relative min-h-screen flex items-center justify-center bg-black overflow-hidden">
         {/* Beautiful Monstera Background */}
         <div className="absolute inset-0">
         <div className="absolute inset-0 opacity-60 z-0">
           <Image
-            src="/images/sky-bg-01.webp" // ảnh trong thư mục /public/images/
+            src="/images/ethan-02.webp" // ảnh trong thư mục /public/images/
             alt="Sky Background"
             fill
             priority
@@ -421,9 +413,7 @@ export default function AboutUsAltPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <h1 className="text-4xl md:text-8xl lg:text-7xl font-studio-pro-bold text-black leading-none tracking-tight mb-8">
-              Về chúng tôi
-            </h1>
+ 
           </motion.div>
           
           <motion.div
@@ -442,9 +432,8 @@ export default function AboutUsAltPage() {
             transition={{ duration: 1, delay: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="max-w-4xl mx-auto"
           >
-            <p className="text-xl md:text-2xl lg:text-3xl text-gray-700 leading-relaxed font-studio-pro">
-               Chúng tôi tạo ra tương lai bền vững<br/>
-              <span className="text-black font-studio-pro-bold">Đẹp. Có trách nhiệm. Sáng tạo.</span>
+            <p className="text-xl md:text-2xl lg:text-3xl text-white leading-relaxed font-studio-pro">
+               <span className="text-white font-studio-pro-bold">Đồng lòng, đồng sức, bứt phá, gặt thành công</span>
             </p>
           </motion.div>
 
@@ -454,7 +443,7 @@ export default function AboutUsAltPage() {
             transition={{ duration: 0.8, delay: 1.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="mt-16"
           >
-            <div className="w-24 h-px bg-black mx-auto"></div>
+            <div className="w-24 h-px bg-white mx-auto"></div>
           </motion.div>
         </motion.div>
 
@@ -871,7 +860,7 @@ Từ một văn phòng nhỏ khởi đầu với ước mơ kinh doanh đơn gi�
           <div 
             className="absolute top-0 right-0 w-2/5 h-full opacity-60"
             style={{
-              backgroundImage: 'url(images/table-03.webp)',
+              backgroundImage: 'url(images/moment-01.webp)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -985,18 +974,19 @@ Từ một văn phòng nhỏ khởi đầu với ước mơ kinh doanh đơn gi�
           </div>
         </div>
       </section>
-
+<br />
       {/* CLEAN TIMELINE SECTION */}
       <section id="timeline" className="py-24 bg-white relative overflow-hidden">
         {/* Background Plant Image */}
         <div 
-          className="absolute top-0 left-0 w-full h-full opacity-20"
+          className="absolute top-0 left-0 w-full h-full opacity-30"
           style={{
-            backgroundImage: 'url(images/table-04.webp)',
+            backgroundImage: 'url(images/moment-02.webp)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
           }}
+          
         />
 
         {/* Floating Branch Pattern */}
@@ -1212,115 +1202,7 @@ Từ một văn phòng nhỏ khởi đầu với ước mơ kinh doanh đơn gi�
           </motion.div>
         </div> */}
       </section>
-
-      {/* CLEAN PARTNERSHIPS SECTION */}
-      {/* <section id="partnerships" className="py-24 bg-white relative overflow-hidden">
-         <div 
-          className="absolute top-0 left-0 w-2/5 h-full opacity-50"
-          style={{
-            backgroundImage: 'url(images/team-building-023.webp)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'right center',
-            backgroundRepeat: 'no-repeat'
-          }}
-        />
-
-        <motion.div 
-          className="absolute top-24 right-20 w-14 h-14 opacity-8"
-          animate={{ 
-            rotate: [0, 12, -8, 0],
-            y: [0, -4, 2, 0]
-          }}
-          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <svg viewBox="0 0 100 100" className="w-full h-full stroke-green-600 fill-green-100">
-            <path d="M50 10 Q70 25, 75 50 Q70 75, 50 85 Q30 75, 25 50 Q30 25, 50 10 Z" strokeWidth="1" />
-            <path d="M50 20 Q65 30, 68 50 Q65 70, 50 75 Q35 70, 32 50 Q35 30, 50 20 Z" fill="white" fillOpacity="0.4" />
-            <line x1="50" y1="15" x2="50" y2="80" stroke="currentColor" strokeWidth="0.5" opacity="0.6" />
-          </svg>
-        </motion.div>
-
-        <motion.div 
-          className="absolute bottom-20 right-12 w-8 h-8 opacity-7"
-          animate={{ 
-            scale: [1, 1.2, 0.8, 1],
-            rotate: [0, 360]
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <svg viewBox="0 0 100 100" className="w-full h-full fill-green-500">
-            <path d="M50 20 L55 35 L70 35 L60 45 L65 60 L50 52 L35 60 L40 45 L30 35 L45 35 Z" />
-            <circle cx="50" cy="45" r="8" fill="white" fillOpacity="0.3" />
-          </svg>
-        </motion.div>
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          >
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-studio-pro-bold text-black mb-6">
-              Đối tác của chúng tôi
-            </h2>
-            <div className="w-24 h-px bg-black mx-auto"></div>
-          </motion.div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-            {partnerships.map((partnership, index) => (
-              <motion.div
-                key={index}
-                className="group"
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-                whileHover={{ y: -5 }}
-              >
-                <div className="bg-gray-50 p-8 h-full rounded-3xl group-hover:bg-white group-hover:shadow-lg transition-all duration-300">
-                  <div className="bg-black text-white p-3 mb-6 rounded-2xl">
-                    <p className="text-xs font-studio-pro-bold">{partnership.category}</p>
-                  </div>
-                  
-                  <h3 className="text-2xl font-studio-pro-bold mb-4 text-black">{partnership.name}</h3>
-                  <p className="text-lg text-gray-700 mb-6 leading-relaxed font-studio-pro">{partnership.description}</p>
-                  
-                  <div className="border-l-4 border-black pl-4">
-                    <p className="text-sm font-studio-pro-bold text-black">{partnership.impact}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          
-          <motion.div 
-            className="bg-black text-white p-12 rounded-3xl"
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          >
-            <h3 className="text-4xl font-studio-pro-bold mb-8 text-center">Tác động chung</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-              <div>
-                <h4 className="text-6xl font-studio-pro-bold mb-2">500+</h4>
-                <p className="text-xl font-studio-pro">Nghệ nhân được trao quyền</p>
-              </div>
-              <div>
-                <h4 className="text-6xl font-studio-pro-bold mb-2">15</h4>
-                <p className="text-xl font-studio-pro">Quốc gia tiếp cận</p>
-              </div>
-              <div>
-                <h4 className="text-6xl font-studio-pro-bold mb-2">50%</h4>
-                <p className="text-xl font-studio-pro">Giảm carbon</p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section> */}
-
+ 
       {/* CLEAN CTA SECTION */}
       <section className="py-32 bg-gray-50 relative overflow-hidden">
         {/* Final Monstera Background */}

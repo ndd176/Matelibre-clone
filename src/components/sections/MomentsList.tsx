@@ -85,17 +85,17 @@ export default function TransitionToCards() {
   const stickyPosition = useTransform(scrollYProgress, [0, 0.6, 0.61], ['sticky', 'sticky', 'relative'])
 
   return (
-    <div className="relative w-full h-[600vh] bg-white" 
+    <div className="relative w-full h-[600vh] bg-white hidden lg:block" 
     ref={containerRef} 
     style={{
-        backgroundImage: `url(${WEBSITE_IMAGES.hero.main})`,
+        backgroundImage: 'url(https://res.cloudinary.com/dbtvr8qyd/image/upload/v1753417680/moment-bg-02_itxsc3.webp)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundAttachment: 'fixed',
-        backgroundBlendMode:'darken'
-      }}
-    >
+        backgroundBlendMode: 'darken',
+            }}
+          >
           <div className="absolute inset-0 bg-black/50 z-10"></div> {/* lớp phủ mờ */}
 
       {/* Sticky stage: giữ khung hình đến khi ảnh đạt vị trí */}

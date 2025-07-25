@@ -22,7 +22,7 @@ export default function CommitmentSection() {
       {/* Left: Image */}
       <div className="w-full md:w-1/2 overflow-hidden rounded-[40px]">
         <Image
-          src="/images/grow-together.jpg"
+          src="/images/IMG_1011.jpg"
           alt="Teamwork at Duy Dinh"
           width={600}
           height={600}
