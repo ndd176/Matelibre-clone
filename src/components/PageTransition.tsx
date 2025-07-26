@@ -40,18 +40,13 @@ export default function PageTransition() {
           }}
         >
           <div className="relative flex flex-col items-center">
-<motion.div
-  initial={{ scale: 1.3, opacity: 0.5 }}
-  animate={{ scale: 1, opacity: 1 }}
-  transition={{ duration: 0.8, ease: 'easeOut' }}
-  className="mb-4 w-128 h-128"
->
-  <img 
-    src="/images/app-logo.png" 
-    alt="Logo" 
-    className="w-full h-full object-contain"
-  />
-</motion.div>
+            <div className="mb-4 w-64 h-64">
+              <img 
+                src="/images/app-logo.png" 
+                alt="Logo" 
+                className="w-full h-full object-contain"
+              />
+            </div>
             
             <motion.div
               initial={{ width: 0 }}

@@ -8,6 +8,7 @@ import {
   PositionCarousel,
   MomentsList
 } from '@/components'
+import SimpleMoments from '@/components/sections/SimpleMoments'
 
 const Home = () => {
   return (
@@ -17,7 +18,9 @@ const Home = () => {
       <SlidingText />
       <CommitmentSection />
       <CommunitySection />
-      <MomentsList/>
+      {/* <MomentsList/> */}
+      <SimpleMoments/>
+       
     </div>
   )
 }

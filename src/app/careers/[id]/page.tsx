@@ -1,10 +1,10 @@
 'use client'
 
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useParams, useRouter } from 'next/navigation'
 import { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import Image from 'next/image'
-import { jobDetailsApi, jobsApi, apiHelpers } from '../../../lib/api/jobs'
+import { jobDetailsApi, apiHelpers } from '../../../lib/api/jobs'
 import CVSubmissionForm from '../../../components/CVSubmissionForm'
 
 interface JobDetail {
@@ -267,16 +267,7 @@ export default function CareersDetailPage() {
   return (
     <div ref={containerRef} className="min-h-screen bg-white">
       {/* Floating Back Button */}
-      <motion.button
-        initial={{ opacity: 0, x: -100 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.5 }}
-        whileHover={{ x: -10, scale: 1.1 }}
-        onClick={() => router.push('/careers')}
-        className="fixed top-8 left-8 z-50 bg-white shadow-xl rounded-full p-4 border border-gray-100 hover:shadow-2xl transition-all duration-300"
-      >
-        <span className="text-2xl">←</span>
-      </motion.button>
+       
 
       {/* Hero Section */}
       {mounted && (
@@ -385,13 +376,13 @@ export default function CareersDetailPage() {
                 whileHover={{ rotateY: 5, scale: 1.02 }}
                 className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-2xl"
               >
-                <div className="aspect-square relative rounded-2xl overflow-hidden mb-6">
+                <div className="aspect-square relative rounded-2xl overflow-hidden items-end mb-6">
                   <Image
                     src={job.job_image || job.avatar_image || '/images/position.jpg'}
                     alt={job.job_title}
                     width={400}
                     height={400}
-                    className="object-cover w-full h-full"
+                    className="object-cover object-top w-full h-full"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 </div>
@@ -804,38 +795,11 @@ function SimilarPositions({ currentJobId, currentLevel }: { currentJobId: string
           onClick={() => router.push(`/careers/${similarJob.id}`)}
           className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer border border-gray-100 group"
         >
-          {/* Job Image */}
-          <div className="relative aspect-video overflow-hidden">
-            <Image
-              src={similarJob.job_image || '/images/position.jpg'}
-              alt={similarJob.job_title}
-              width={400}
-              height={240}
-              className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-            
-            {/* Level badge */}
-            <div className="absolute top-4 left-4">
-              <span className="bg-blue-300 text-black px-3 py-1 rounded-full text-sm font-plus-jakarta-sans font-bold">
-                {similarJob.level}
-              </span>
-            </div>
-            
-            {/* Quick view button */}
-            <motion.div 
-              className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              whileHover={{ scale: 1.1 }}
-            >
-              <span className="text-white text-lg">👁️</span>
-            </motion.div>
-          </div>
-
           {/* Job Content */}
           <div className="p-6">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-blue-300 text-sm font-plus-jakarta-sans font-bold">
-                {similarJob.department}
+              <span className="bg-blue-300 text-black px-3 py-1 rounded-full text-sm font-plus-jakarta-sans font-bold">
+                {similarJob.level}
               </span>
               <span className="text-gray-400 text-sm font-studio-pro">
                 📍 {similarJob.location}
@@ -853,13 +817,13 @@ function SimilarPositions({ currentJobId, currentLevel }: { currentJobId: string
             {/* Job Details */}
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="bg-gray-50 rounded-xl p-3">
-                <div className="font-plus-jakarta-sans font-bold  mb-1  text-black">Lương</div>
+                <div className="font-plus-jakarta-sans font-bold mb-1 text-black">Lương</div>
                 <div className="font-plus-jakarta-sans font-bold text-sm text-gray-500">
                   {similarJob.salary_range || 'Thỏa thuận'}
                 </div>
               </div>
               <div className="bg-gray-50 rounded-xl p-3">
-                <div className="font-plus-jakarta-sans font-bold  mb-1  text-black">Kinh nghiệm</div>
+                <div className="font-plus-jakarta-sans font-bold mb-1 text-black">Kinh nghiệm</div>
                 <div className="font-plus-jakarta-sans font-bold text-sm text-gray-500">
                   {similarJob.experience}
                 </div>
