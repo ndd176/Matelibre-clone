@@ -74,20 +74,19 @@ export default function ProductCard({
 
       {/* Bottom content */}
       <div className="flex flex-row h-full z-10 mt-4 sm:mt-6 gap-3 sm:gap-6">
-        {/* Left image */}
-        <div className="flex justify-center items-center w-1/2">
+        {/* Left image - chiếm nhiều không gian hơn */}
+        <div className="  w-2/3 pl-0 z-20 -ml-6">
           <Image
             src={hovered ? bgImage : canImage}
             alt={title}
             width={500}
-            height={500}
-            sizes="(max-width: 640px) 400px, 400px"
-            className="transition-opacity duration-1000 sm:duration-2000"
+            height={750}
+            className="transition-opacity duration-1000 sm:duration-2000 object-contain w-full h-auto max-h-full z-20"
           />
         </div>
 
-         {/* Right text + button */}
-        <div className="flex flex-col h-full w-1/2 justify-between">
+         {/* Right text + button - thu nhỏ lại */}
+        <div className="flex flex-col h-full w-1/3 justify-between">
           {/* Description section */}
           <div>
             <p className={`text-lg sm:text-lg font-bold leading-relaxed ${textColor} pr-1 sm:pr-2`}>
