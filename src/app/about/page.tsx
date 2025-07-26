@@ -42,7 +42,8 @@ const teamMembers = [
     image: "/images/chinguyet.png",
     bio: "Người thủ lĩnh truyền cảm hứng, dẫn dắt đội ngũ thiết kế vượt qua từng thử thách với lòng đam mê và sự tỉ mỉ.",
     skills: ["Lãnh đạo", "Chiến lược", "Đổi mới sáng tạo", "Phát triển bền vững"],
-    quote: "Mỗi thiết kế là một câu chuyện về văn hóa và cảm xúc."
+    quote: "Mỗi thiết kế là một câu chuyện về văn hóa và cảm xúc.",
+    achievement: "Dẫn dắt đội ngũ đạt 99.9% chất lượng sản phẩm trong 5 năm liên tiếp"
   },
   {
     name: "Đội ngũ seller",
@@ -89,39 +90,15 @@ const teamMembers = [
 // Clean values for minimalist presentation
 const coreValues = [
   {
-    icon: "🌟",
+    icon: "/images/star.jpg",
     title: "Luôn đổi mới",
     description: "Chúng tôi không ngừng sáng tạo để mang đến những thiết kế táo bạo cùng giải pháp thương mại điện tử hiệu quả.",
     details: "Đội ngũ Ethan Ecom liên tục cho ra đời các sản phẩm độc đáo trên TikTok, Etsy, Shopify và WordPress – mở ra những hướng đi mới cho ngành.",
     metrics: ["Hơn 100 thiết kế đã ra mắt", "Ra nội dung mỗi tuần", "Luôn bắt kịp xu hướng"],
     impact: "Góp phần định hình xu hướng thương mại điện tử hiện đại"
   },
-  {
-    icon: "⚡",
-    title: "Linh hoạt và tốc độ",
-    description: "Chúng tôi làm việc nhanh, triển khai gọn và luôn sẵn sàng bắt kịp mọi cơ hội.",
-    details: "Quy trình dropshipping và sản xuất theo yêu cầu được tinh gọn tối đa, giúp đơn hàng đến tay khách hàng chỉ trong thời gian ngắn.",
-    metrics: ["Giao hàng trong 48h", "Ra mắt thị trường nhanh gấp 3 lần", "Hệ thống linh hoạt dễ mở rộng"],
-    impact: "Luôn dẫn đầu trong cuộc chơi tốc độ"
-  },
-  {
-    icon: "🔥",
-    title: "Làm việc bằng đam mê",
-    description: "Chúng tôi là một tập thể trẻ trung, năng động và luôn khao khát phát triển.",
-    details: "Mỗi thành viên tại Ethan Ecom đều mang trong mình tinh thần cầu tiến, sáng tạo và không ngừng học hỏi để cùng nhau bứt phá.",
-    metrics: ["Tỷ lệ gắn bó cao", "Văn hóa làm việc tích cực", "Luôn tràn đầy năng lượng"],
-    impact: "Tạo nên môi trường làm việc đáng mơ ước trong ngành thương mại điện tử"
-  },
-  {
-    icon: "🧵",
-    title: "Tỉ mỉ trong từng chi tiết",
-    description: "Chúng tôi coi trọng chất lượng và sự cá nhân hóa trong từng sản phẩm gửi đến tay khách hàng.",
-    details: "Từ khâu thêu cho đến hoàn thiện, mọi sản phẩm đều được kiểm tra kỹ lưỡng để đảm bảo độ chính xác và sự tinh tế.",
-    metrics: ["Chất lượng đạt 99.9%", "Không phát sinh lỗi", "Được đánh giá cao trong giới thủ công"],
-    impact: "Trở thành tiêu chuẩn mới cho sản phẩm cá nhân hóa"
-  },
-  {
-    icon: "🤝",
+    {
+    icon: "/images/handshake.jpg",
     title: "Lấy khách hàng làm trung tâm",
     description: "Mọi điều chúng tôi làm đều xuất phát từ mong muốn mang lại trải nghiệm tốt nhất cho khách hàng.",
     details: "Từ việc thêu theo yêu cầu đến hỗ trợ tận tình 24/7, sự hài lòng của khách hàng là ưu tiên hàng đầu tại Ethan Ecom.",
@@ -129,13 +106,39 @@ const coreValues = [
     impact: "90% khách hàng quay lại và giới thiệu cho người khác"
   },
   {
-    icon: "🌱",
+    icon: "/images/flash.jpg",
+    title: "Linh hoạt và tốc độ",
+    description: "Chúng tôi làm việc nhanh, triển khai gọn và luôn sẵn sàng bắt kịp mọi cơ hội.",
+    details: "Quy trình dropshipping và sản xuất theo yêu cầu được tinh gọn tối đa, giúp đơn hàng đến tay khách hàng chỉ trong thời gian ngắn.",
+    metrics: ["Giao hàng trong 48h", "Ra mắt thị trường nhanh gấp 3 lần", "Hệ thống linh hoạt dễ mở rộng"],
+    impact: "Luôn dẫn đầu trong cuộc chơi tốc độ"
+  },
+    {
+    icon: "/images/tree-of-life.jpg",
     title: "Tinh thần cầu tiến &  môi trường thân thiện",
     description: "Chúng tôi xây dựng môi trường làm việc cởi mở, nơi mọi người được lắng nghe và cùng nhau phát triển.",
     details: "Ethan Ecom khuyến khích học hỏi, trân trọng sự khác biệt và luôn cải tiến để mang lại giá trị lâu dài cho cả team và khách hàng.",
     metrics: ["Văn hóa làm việc tích cực",   "Hỗ trợ tận tình những người mới"],
     impact: "Xây dựng một tập thể tử tế, cầu tiến và lấy con người làm gốc"
-  }
+  },
+    {
+    icon: "/images/needle.jpg",
+    title: "Tỉ mỉ trong từng chi tiết",
+    description: "Chúng tôi coi trọng chất lượng và sự cá nhân hóa trong từng sản phẩm gửi đến tay khách hàng.",
+    details: "Từ khâu thêu cho đến hoàn thiện, mọi sản phẩm đều được kiểm tra kỹ lưỡng để đảm bảo độ chính xác và sự tinh tế.",
+    metrics: ["Chất lượng đạt 99.9%", "Không phát sinh lỗi", "Được đánh giá cao trong giới thủ công"],
+    impact: "Trở thành tiêu chuẩn mới cho sản phẩm cá nhân hóa"
+  },
+  {
+    icon: "/images/fire.jpg",
+    title: "Làm việc bằng đam mê",
+    description: "Chúng tôi là một tập thể trẻ trung, năng động và luôn khao khát phát triển.",
+    details: "Mỗi thành viên tại Ethan Ecom đều mang trong mình tinh thần cầu tiến, sáng tạo và không ngừng học hỏi để cùng nhau bứt phá.",
+    metrics: ["Tỷ lệ gắn bó cao", "Văn hóa làm việc tích cực", "Luôn tràn đầy năng lượng"],
+    impact: "Tạo nên môi trường làm việc đáng mơ ước trong ngành thương mại điện tử"
+  },
+
+
 ];
 
 
@@ -161,12 +164,12 @@ const milestones = [
   },
   {
     year: "2020",
-    title: "Nguy cơ phá sản",
+    title: "Vượt qua giông bão để tiến lên",
     description: "Gặp phải thử thách lớn trong kinh doanh, những sự kiện ngoài ý muốn khiến cho việc duy trì doanh nghiệp trở nên vô cùng khó khăn",
-    impact: "",
+    impact: "Tái cấu trúc mô hình vận hành",
     details: "Năm 2020, đại dịch khiến kho Amazon quá tải, đơn hàng đình trệ, doanh thu lao dốc. Sản phẩm tồn kho, chi phí đội lên, dòng tiền cạn kiệt. Ethan Ecom đứng trước bờ vực phá sản.",
     achievement: "Học được một bài học lớn",
-    metrics: "Cố gắng duy trì → Cạn vốn"
+    metrics: "Giai đoạn khó khăn này là bước ngoặt giúp Ethan Ecom củng cố nội lực, chuẩn bị cho một chiến lược phát triển bền vững và linh hoạt hơn trong tương lai."
   },
 {
   year: "2022",
@@ -175,7 +178,7 @@ const milestones = [
   impact: "Tăng gấp đôi lượng khách hàng nhờ nội dung viral",
   details: "Chúng tôi tận dụng sức lan tỏa mạnh mẽ của TikTok để giới thiệu các thiết kế sáng tạo, từ đó thúc đẩy doanh số và xây dựng cộng đồng người theo dõi trung thành.",
   achievement: "Hiện diện mạnh mẽ trên nhiều nền tảng",
-  metrics: "1 triệu lượt xem TikTok → 20.000+ khách hàng"
+  metrics: "153 triệu lượt xem TikTok → 2.510.000+ khách hàng"
 },
   {
   year: "2023",
@@ -241,7 +244,7 @@ const designProcess = [
     step: "05",
     title: "Ra Mắt & Thực Hiện",
     description: "Phát hành trên các nền tảng và phối hợp với nhà cung cấp để giao hàng suôn sẻ.",
-    details: "Sản phẩm xuất hiện trên TikTok, Etsy và sớm là Shopify/WordPress, với theo dõi đơn hàng theo thời gian thực.",
+    details: "Sản phẩm của chúng tôi hiện diện trên nhiều nền tảng bán lẻ và sáng tạo toàn cầu, bao gồm: TikTok Shop, Etsy, Amazon Handmade, eBay, Redbubble, Zazzle, Society6, Faire, Notonthehighstreet, cùng các kênh mạng xã hội như Facebook Shop, Instagram Shopping, Pinterest, YouTube Shopping.",
     duration: "Fullfillment",
    }
 ];
@@ -596,7 +599,7 @@ Từ một văn phòng nhỏ khởi đầu với ước mơ kinh doanh đơn gi�
                   whileHover={{ scale: 1.05, y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <h3 className="text-4xl font-studio-pro-bold mb-2">40+</h3>
+                  <h3 className="text-4xl font-studio-pro-bold mb-2">50+</h3>
                   <p className="text-lg font-studio-pro">Nhân viên</p>
                 </motion.div>
                 
@@ -614,8 +617,8 @@ Từ một văn phòng nhỏ khởi đầu với ước mơ kinh doanh đơn gi�
                   whileHover={{ scale: 1.05, y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <h3 className="text-4xl font-studio-pro-bold mb-2">500M+</h3>
-                  <p className="text-lg font-studio-pro">Khách Hàng Đã Phục Vụ</p>
+                  <h3 className="text-4xl font-studio-pro-bold mb-2">1M+</h3>
+                  <p className="text-lg font-studio-pro">Khách Hàng Tin Tưởng</p>
                 </motion.div>
                 
                 <motion.div 
@@ -623,8 +626,8 @@ Từ một văn phòng nhỏ khởi đầu với ước mơ kinh doanh đơn gi�
                   whileHover={{ scale: 1.05, y: -5 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <h3 className="text-4xl font-studio-pro-bold mb-2">700M+</h3>
-                  <p className="text-lg font-studio-pro">Sản phẩm đã sản xuất</p>
+                  <h3 className="text-4xl font-studio-pro-bold mb-2">10M+</h3>
+                  <p className="text-lg font-studio-pro">Sản phẩm thủ công được gửi đi khắp thế giới</p>
                 </motion.div>
               </div>
             </motion.div>
@@ -702,7 +705,14 @@ Từ một văn phòng nhỏ khởi đầu với ước mơ kinh doanh đơn gi�
                 whileHover={{ y: -5 }}
               >
                 <div className="bg-white p-8 h-full rounded-3xl shadow-sm border border-gray-100 group-hover:shadow-lg transition-all duration-300">
-                  <div className="text-5xl mb-6">{value.icon}</div>
+              <div className="relative w-[60px] h-[60px] mb-6">
+                <Image
+                  src={value.icon}
+                  alt={value.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
                   <h3 className="text-2xl font-studio-pro-bold mb-4 text-black">{value.title}</h3>
                   <p className="text-lg text-gray-700 mb-6 leading-relaxed font-studio-pro">{value.description}</p>
                   <div className="space-y-4">
