@@ -38,7 +38,7 @@ const teamMembers = [
   },
   {
     name: "Minh Nguyệt",
-    role: "Đội trưởng tâm huyết",
+    role: "COO",
     image: "/images/chinguyet.png",
     bio: "Người thủ lĩnh truyền cảm hứng, dẫn dắt đội ngũ thiết kế vượt qua từng thử thách với lòng đam mê và sự tỉ mỉ.",
     skills: ["Lãnh đạo", "Chiến lược", "Đổi mới sáng tạo", "Phát triển bền vững"],

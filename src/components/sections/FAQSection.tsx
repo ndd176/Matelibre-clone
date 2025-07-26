@@ -39,7 +39,7 @@ const faqs = [
     answer: (
       <>
         <p className="mb-2">
-          Tất nhiên rồi! Ai cũng bắt đầu từ đâu đó. Một số vị trí yêu cầu kinh nghiệm nhiều hơn, nhưng nếu bạn háo hức học hỏi, có trách nhiệm và thái độ tốt — chúng tôi sẵn sàng đào tạo bạn.
+          Ưu tiên những người đã có kinh nghiệm trong lĩnh vực mà mình muốn ứng tuyển, một số vị trí yêu cầu độ chính xác trong công việc nhiều hơn.
         </p>
         <p className="mb-2">
           Kỹ năng máy tính cơ bản là bắt buộc, và nếu bạn biết chút tiếng Anh thì đó là điểm cộng tuyệt vời! 🚀

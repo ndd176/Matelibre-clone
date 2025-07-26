@@ -85,7 +85,7 @@ export default function TransitionToCards() {
   const stickyPosition = useTransform(scrollYProgress, [0, 0.6, 0.61], ['sticky', 'sticky', 'relative'])
 
   return (
-    <div className="relative w-full h-[600vh] bg-white hidden lg:block" 
+    <div className="relative w-full h-[600vh] bg-white hidden 2xl:block" 
     ref={containerRef} 
     style={{
         backgroundImage: 'url(https://res.cloudinary.com/dbtvr8qyd/image/upload/v1753417680/moment-bg-02_itxsc3.webp)',

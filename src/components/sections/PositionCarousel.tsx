@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ProductCard from './ProductCard'
@@ -137,17 +137,17 @@ export default function ProductCardList() {
         <section ref={wrapperRef} className="relative w-full h-screen bg-white">
           <div className="flex flex-col w-full h-full">
             
-            {/* Nửa trên: Horizontal Slider */}
+            {/* Nửa trên: Horizontal Slider với drag */}
             <div className="relative h-1/2 w-full flex items-center justify-center mt-16 md:mt-28">
               <div
                 ref={scrollRef}
-  className="absolute left-[700px] top-1/2 -translate-y-1/2 flex gap-10 md:gap-36 w-max pr-[10vw]"
+                className="absolute left-[700px] top-1/2 -translate-y-1/2 flex gap-16 md:gap-32 w-max pr-[10vw]"
               >
-<div className="flex flex-col text-[100px] font-bold leading-tight">
-  {'Chọn nghề nghiệp'.split(' ').map((char, i) => (
-    <span key={i}>{char === ' ' ? '\u00A0' : char}</span> // \u00A0 = space giữ nguyên dòng
-  ))}
-</div>
+                <div className="flex flex-col text-[100px] font-bold leading-tight">
+                  {'Chọn nghề nghiệp'.split(' ').map((char, i) => (
+                    <span key={i}>{char === ' ' ? '\u00A0' : char}</span>
+                  ))}
+                </div>
                 {products.map((item, i) => (
                   <div key={i} className="shrink-0 w-[80vw] sm:w-[400px] transition-transform hover:scale-[1.02] duration-300">
                     <ProductCard {...item} />
@@ -157,9 +157,8 @@ export default function ProductCardList() {
             </div>
 
             {/* Nửa dưới: Marquee */}
-            <div className="relative h-1/2 w-full   overflow-hidden">
+            <div className="relative h-1/2 w-full overflow-hidden">
               <MarqueeBackground />
-              {/* <MarqueeTailwind/> */}
             </div>
 
           </div>

@@ -6,7 +6,7 @@
 // API Configuration
 const API_BASE_URL =
   process.env.NODE_ENV === 'production'
-    ? process.env.NEXT_PUBLIC_STRAPI_URL_PROD || 'https://api.nekonui.site'
+    ? process.env.NEXT_PUBLIC_STRAPI_URL_PROD || 'https://api.ethanecom.com'
     : process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'
 const API_TOKEN = process.env.NEXT_PUBLIC_STRAPI_TOKEN
 

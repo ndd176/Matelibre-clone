@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'api.nekonui.site',
+        hostname: 'api.ethanecom.com',
         pathname: '/uploads/**',
       },
       {
@@ -58,7 +58,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Access-Control-Allow-Origin",
-            value: "https://api.nekonui.site",
+            value: "https://api.ethanecom.com",
           },
           // Thêm cache headers
           {

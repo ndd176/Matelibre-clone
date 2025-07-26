@@ -26,31 +26,22 @@ export default function HeroSplitScrollEffect() {
     if (inView) setEnabled(true)
   }, [inView])
 
-  // STAGE 1: Text fly in
-  const leftX = useTransform(scrollSpring, [0, 0.2], ['-600px', '0px'])
-  const rightX = useTransform(scrollSpring, [0, 0.2], ['600px', '0px'])
-
-  // STAGE 2: Clip text inward
-  const clipInset = useTransform(scrollSpring, [0.2, 0.4], [0, 100])
-  const clipPathText = useTransform(clipInset, (v) => `inset(0% ${v}% 0% ${v}%)`)
-
-  // STAGE 3: Image reveal
-  // const sideInset = useTransform(scrollSpring, [0.4, 0.6], [100, 0])
-  const sideInset = useTransform(scrollSpring, [0.25, 0.45], [100, 0])
-
+  // STAGE 1: Text fly in và image reveal cùng lúc
+  const leftX = useTransform(scrollSpring, [0, 0.3], ['-600px', '0px'])
+  const rightX = useTransform(scrollSpring, [0, 0.3], ['600px', '0px'])
+  const sideInset = useTransform(scrollSpring, [0, 0.3], [100, 0])
   const clipPathImage = useTransform(sideInset, (v) => `inset(0% ${v}% 0% ${v}%)`)
 
-  // STAGE 4: Overlay
-  // const overlayOpacity = useTransform(scrollSpring, [0.6, 0.7], [0, 0.6])
-const overlayOpacity = useTransform(scrollSpring, [0.6, 0.75], [0, 0.6])
+  // Text color change (đen -> trắng khi nằm trên hình)
+  const textColorProgress = useTransform(scrollSpring, [0.1, 0.25], [0, 1])
+  
+  // Text fade out khi hoàn thành
+  const textOpacity = useTransform(scrollSpring, [0.25, 0.35], [1, 0])
 
-  // STAGE 5: Final text
-  // const textReveal = useTransform(scrollSpring, [0.6, 0.8], [50, 0])
-  const textReveal = useTransform(scrollSpring, [0.45, 0.6], [50, 0])
-
+  // STAGE 2: Overlay và final text
+  const overlayOpacity = useTransform(scrollSpring, [0.3, 0.6], [0, 0.6])
+  const textReveal = useTransform(scrollSpring, [0.3, 0.6], [50, 0])
   const textClipPath = useTransform(textReveal, (v) => `inset(${v}% 0% ${v}%)`)
-  // const textY = useTransform(scrollSpring, [0.6, 1], ['15vh', '70vh'])
-const textY = useTransform(scrollSpring, [0.6, 1], ['15vh', '70vh'])
 
   return (
     <div
@@ -61,31 +52,33 @@ const textY = useTransform(scrollSpring, [0.6, 1], ['15vh', '70vh'])
       className="relative h-[300vh] hidden lg:block"
     >
       <motion.div className="sticky top-0 h-screen w-full   bg-white">
-        {/* STAGE 1+2: Text with clip */}
+        {/* STAGE 1: Text fly in (đổi màu và fade out) */}
         <div className="absolute inset-0 z-20 flex flex-col justify-center items-center">
           <motion.h2
             style={{
               x: leftX,
-              clipPath: clipPathText,
-              willChange: 'transform, clip-path',
+              opacity: textOpacity,
+              color: useTransform(textColorProgress, [0, 1], ['#000000', '#ffffff']),
+              willChange: 'transform, opacity, color',
             }}
-            className="text-[clamp(32px,10vw,100px)] text-black font-studio-pro-bold whitespace-nowrap"
+            className="text-[clamp(32px,10vw,100px)] font-studio-pro-bold whitespace-nowrap"
             >
              NĂNG ĐỘNG
             </motion.h2>
           <motion.h2
             style={{
               x: rightX,
-              clipPath: clipPathText,
-              willChange: 'transform, clip-path',
+              opacity: textOpacity,
+              color: useTransform(textColorProgress, [0, 1], ['#000000', '#ffffff']),
+              willChange: 'transform, opacity, color',
             }}
-            className="text-[clamp(32px,10vw,100px)] text-black font-studio-pro-bold whitespace-nowrap"
+            className="text-[clamp(32px,10vw,100px)] font-studio-pro-bold whitespace-nowrap"
           >
           SÁNG TẠO
           </motion.h2>
         </div>
 
-        {/* STAGE 3: Image Reveal */}
+        {/* STAGE 1: Image Reveal (cùng lúc với text) */}
         <motion.div
           className="absolute inset-0 z-10"
           style={{
@@ -109,9 +102,7 @@ const textY = useTransform(scrollSpring, [0.6, 1], ['15vh', '70vh'])
           />
         </motion.div>
 
-        {/* STAGE 4: Final Text */}
-        {/* NEW: Floating Text Sticky Relative to Page */}
-        {/* STAGE 4: Final Text (Sticky within image bounds only) */}
+        {/* STAGE 2: Final Text (overlay + text reveal) */}
           <div className="absolute inset-0 z-40 pointer-events-none">
             <div className="h-full flex flex-col justify-center">
               <div className="sticky top-1/2 -translate-y-1/2 bottom-[5px] flex justify-center items-center">

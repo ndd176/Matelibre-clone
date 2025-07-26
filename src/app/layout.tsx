@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Bebas_Neue } from 'next/font/google'
 import "./globals.css";
 import { Providers } from './providers';
-import LenisWrapper from '@/components/layout/LenisWrapper'
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FAQSection from "@/components/sections/FAQSection";
@@ -59,7 +58,6 @@ function RootLayoutClient({
         className={`${plusJakartaSans.variable} ${bebasNeue.variable} antialiased font-plus-jakarta-sans font-bebas overflow-x-hidden`}
       >
         <PageTransition />
-        <LenisWrapper />
         <Header/>
         <Providers>{children}</Providers>
         <FAQSection />
