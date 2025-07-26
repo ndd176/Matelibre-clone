@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
 export default function StickyHeader() {
+    const pathname = usePathname()
     const [showHeader, setShowHeader] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
   const [isAtTop, setIsAtTop] = useState(true)
@@ -63,10 +64,31 @@ const handleToggleMenu = () => {
 >
   <div className={`w-full flex items-center gap-6 px-8 py-3 ${isAtTop ? 'hidden' : 'flex'}`}>
     <Link href="/" className="text-[42px] font-studio-pro-bold">©ethan</Link>
-    <Link href="/about" className="hover:opacity-80 text-[20px] font-studio-pro-bold">Về chúng tôi</Link>
-    <Link href="/careers" className="hover:opacity-80 text-[18px] font-studio-pro">Tuyển dụng</Link>
+    <Link 
+      href="/about" 
+      className={`hover:opacity-80 text-[20px] font-studio-pro-bold transition-colors ${
+        pathname === '/about' ? 'text-blue-600' : 'text-black'
+      }`}
+    >
+      Về chúng tôi
+    </Link>
+    <Link 
+      href="/careers" 
+      className={`hover:opacity-80 text-[18px] font-studio-pro transition-colors ${
+        pathname === '/careers' || pathname.startsWith('/careers/') ? 'text-blue-600' : 'text-black'
+      }`}
+    >
+      Tuyển dụng
+    </Link>
     {/* <Link href="/community" className="hover:opacity-80 text-[18px] font-studio-pro">Cộng đồng</Link> */}
-    <Link href="/contact" className="hover:opacity-80 text-[18px] font-studio-pro">Liên hệ</Link>
+    <Link 
+      href="/contact" 
+      className={`hover:opacity-80 text-[18px] font-studio-pro transition-colors ${
+        pathname === '/contact' ? 'text-blue-600' : 'text-black'
+      }`}
+    >
+      Liên hệ
+    </Link>
 
     {/* <Link href="/community" className="hover:opacity-80 text-[18px] font-studio-pro">Community</Link> */}
   </div>
@@ -170,6 +192,12 @@ const handleToggleMenu = () => {
               }
             };
           
+            // Kiểm tra trang hiện tại để highlight
+            const isCurrentPage = (itemName: string) => {
+              const href = getHref(itemName);
+              return pathname === href || (href === '/careers' && pathname.startsWith('/careers/'));
+            };
+          
             return (
               <motion.div
                 key={item}
@@ -179,7 +207,9 @@ const handleToggleMenu = () => {
               >
                 <Link 
                   href={getHref(item)}
-                  className="block hover:opacity-80 transition-opacity"
+                  className={`block hover:opacity-80 transition-all ${
+                    isCurrentPage(item) ? 'text-blue-600 opacity-100' : 'text-black'
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item}
