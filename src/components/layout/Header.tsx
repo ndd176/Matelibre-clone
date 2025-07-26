@@ -74,7 +74,7 @@ const handleToggleMenu = () => {
     </Link>
     <Link 
       href="/careers" 
-      className={`hover:opacity-80 text-[18px] font-studio-pro transition-colors ${
+      className={`hover:opacity-80 text-[18px] font-studio-pro-bold transition-colors ${
         pathname === '/careers' || pathname.startsWith('/careers/') ? 'text-blue-600' : 'text-black'
       }`}
     >
@@ -83,7 +83,7 @@ const handleToggleMenu = () => {
     {/* <Link href="/community" className="hover:opacity-80 text-[18px] font-studio-pro">Cộng đồng</Link> */}
     <Link 
       href="/contact" 
-      className={`hover:opacity-80 text-[18px] font-studio-pro transition-colors ${
+      className={`hover:opacity-80 text-[18px] font-studio-pro-bold transition-colors ${
         pathname === '/contact' ? 'text-blue-600' : 'text-black'
       }`}
     >

@@ -14,7 +14,7 @@ export default function CommunitySection() {
           <Link href="#">
             <div className="overflow-hidden rounded-[24px]">
               <Image
-                src="/images/community-02.jpg"
+                src="https://res.cloudinary.com/dbtvr8qyd/image/upload/v1753504547/community-02_t9mmjw.jpg"
                 alt="Team Building Retreat"
                 width={900}
                 height={600}
@@ -35,7 +35,7 @@ export default function CommunitySection() {
           <Link href="#" className="block group">
             <div className="rounded-[24px] overflow-hidden">
               <Image
-                src="/images/community-01.jpg"
+                src="https://res.cloudinary.com/dbtvr8qyd/image/upload/v1753504620/community-01_c3984y.jpg"
                 alt="Mentorship Program"
                 width={300}
                 height={300}
@@ -53,7 +53,7 @@ export default function CommunitySection() {
           <Link href="#" className="block group">
             <div className="rounded-[24px] overflow-hidden">
               <Image
-                src="/images/community-03.jpg"
+                src="https://res.cloudinary.com/dbtvr8qyd/image/upload/v1753504544/community-03_dzog8s.jpg"
                 alt="Shortform Videos"
                 width={400}
                 height={300}
