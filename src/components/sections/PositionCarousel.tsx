@@ -83,7 +83,7 @@ export default function ProductCardList() {
 
     const totalWidth = container.scrollWidth
     const viewportWidth = window.innerWidth
-    const scrollDistance = totalWidth - viewportWidth + 750
+    const scrollDistance = totalWidth - viewportWidth + 900
 
     let st: ScrollTrigger | undefined;
 
