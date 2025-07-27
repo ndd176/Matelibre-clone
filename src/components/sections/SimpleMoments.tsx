@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react'
 import { WEBSITE_IMAGES } from '@/lib/fast-images'
 
 const momentsData = [
@@ -19,8 +20,40 @@ const momentsData = [
 ]
 
 export default function SimpleMoments() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  // Early detection with large rootMargin to preload images
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          // Preload all images when section is approaching
+          momentsData.forEach((moment) => {
+            const link = document.createElement('link')
+            link.rel = 'preload'
+            link.as = 'image'
+            link.href = moment.src
+            document.head.appendChild(link)
+          })
+        }
+      },
+      { 
+        rootMargin: '300px', // Load images 300px before section comes into view
+        threshold: 0 
+      }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
   return (
     <section 
+      ref={sectionRef}
       className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 relative"
       style={{
         backgroundImage: 'url(https://res.cloudinary.com/dbtvr8qyd/image/upload/v1753417680/moment-bg-02_itxsc3.webp)',
@@ -55,7 +88,9 @@ export default function SimpleMoments() {
                   fill
                   className="object-cover"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  loading="lazy"
+                  loading="eager" // All images load immediately now
+                  priority={index === 0} // First image still has highest priority
+                  quality={90} // Higher quality for faster visible loading
                 />
                 
                 {/* Gradient Overlay */}

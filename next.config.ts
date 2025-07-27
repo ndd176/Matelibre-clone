@@ -44,11 +44,56 @@ const nextConfig: NextConfig = {
   },
   // Tối ưu build performance
   experimental: {
-    // optimizeCss: true, // Tạm tắt để fix build error
     optimizePackageImports: ['framer-motion', 'react-icons'],
+    // Turbopack configuration
+    turbo: {
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
+        },
+      },
+    },
   },
+  // Move serverComponentsExternalPackages to top level
+  serverExternalPackages: ['@studio-freight/lenis'],
   // Compress output
   compress: true,
+  // Bundle splitting for better performance (only in production)
+  ...(process.env.NODE_ENV === 'production' && {
+    webpack: (config, { isServer }) => {
+      if (!isServer) {
+        config.optimization.splitChunks = {
+          chunks: 'all',
+          cacheGroups: {
+            default: false,
+            vendors: false,
+            // vendor chunk
+            vendor: {
+              chunks: 'all',
+              test: /node_modules/,
+              name: 'vendor',
+            },
+            // framer motion chunk
+            framerMotion: {
+              chunks: 'all',
+              test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+              name: 'framer-motion',
+              priority: 30,
+            },
+            // gsap chunk  
+            gsap: {
+              chunks: 'all',
+              test: /[\\/]node_modules[\\/]gsap[\\/]/,
+              name: 'gsap',
+              priority: 30,
+            }
+          }
+        }
+      }
+      return config
+    }
+  }),
   // Cải thiện performance
   poweredByHeader: false,
   async headers() {

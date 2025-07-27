@@ -155,13 +155,16 @@ const handleToggleMenu = () => {
         animate={{ x: 0 }}
         exit={{ x: '-100%' }}
         transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-        className="w-full md:w-[70%] bg-white z-40 rounded-b-[30px] md:rounded-b-none md:rounded-tr-[30px] md:rounded-br-[30px] p-6 md:p-12 flex flex-col justify-between relative -mr-40"
+        className="w-full md:w-[70%] bg-white z-40 rounded-b-[30px] md:rounded-b-none md:rounded-tr-[30px] md:rounded-br-[30px] p-6 md:p-12 flex flex-col justify-between relative -mr-40 min-h-screen"
       >
-        {/* Logo Ethan */}
-        <a href="/" className="text-[36px] font-studio-pro-bold mb-6 block">
-          ©ethan
-        </a>
+        {/* Logo Ethan - Phần trên */}
+        <div className="flex-shrink-0">
+          <a href="/" className="text-[36px] font-studio-pro-bold mb-6 block">
+            ©ethan
+          </a>
+        </div>
 
+        {/* Navigation - Phần giữa */}
         <motion.div
           initial="hidden"
           animate="visible"
@@ -173,9 +176,9 @@ const handleToggleMenu = () => {
               }
             }
           }}
-          className="space-y-6 text-4xl md:text-5xl font-studio-pro-bold text-black"
+          className="flex-1 flex flex-col justify-center space-y-8 text-4xl md:text-5xl font-studio-pro-bold text-black"
         >
-                    {['Về chúng tôi', 'Tuyển dụng','Liên hệ'].map((item, i) => {
+          {['Về chúng tôi', 'Tuyển dụng','Liên hệ'].map((item, i) => {
             // Xác định đúng href cho từng item
             const getHref = (itemName: string) => {
               switch(itemName) {
@@ -183,8 +186,6 @@ const handleToggleMenu = () => {
                   return '/about';
                 case 'Tuyển dụng':
                   return '/careers';
-                // case 'Cộng đồng':
-                //   return '/community';
                 case 'Liên hệ':
                   return '/contact';
                 default:
@@ -203,11 +204,11 @@ const handleToggleMenu = () => {
                 key={item}
                 initial={{ y: 40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.4, delay: i * 0.4 }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
               >
                 <Link 
                   href={getHref(item)}
-                  className={`block hover:opacity-80 transition-all ${
+                  className={`block hover:opacity-80 transition-all text-center md:text-left ${
                     isCurrentPage(item) ? 'text-blue-600 opacity-100' : 'text-black'
                   }`}
                   onClick={() => setIsMenuOpen(false)}
@@ -219,15 +220,16 @@ const handleToggleMenu = () => {
           })}
         </motion.div>
 
-        <div className="grid grid-cols-2 gap-2 mt-10 text-sm text-black font-studio-pro">
-           <a href="/careers/67">Video creator</a>
-          <a href="/careers/61">Kỹ thuật viên thêu</a>
-          <a href="/careers/71">Seller</a>
-          <a href="/careers/73">Internet Marketing</a>
-          <a href="/careers/75">Quản lý nhân sự</a>
-          <a href="/careers/69">Graphic Designer</a>
-          <a href="/careers/59">Quản lý xưởng thêu</a>
-        </div>
+        {/* Footer info - Phần dưới */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="flex-shrink-0 text-black font-bold space-y-2"
+        >
+ 
+        </motion.div>
+
       </motion.div>
 
       {/* Overlay mờ giữa */}
@@ -250,7 +252,7 @@ const handleToggleMenu = () => {
         className="w-0 md:w-[46%] hidden md:block relative overflow-hidden z-20"
       >
         <img
-          src="https://plus.unsplash.com/premium_photo-1750343360238-b6861fc1f95b?q=80&w=718&auto=format&fit=crop"
+          src="images/ethan-02.webp"
           alt="bg"
           className="absolute inset-0 w-full h-full object-cover md:rounded-tl-[30px] md:rounded-bl-[30px]"
         />

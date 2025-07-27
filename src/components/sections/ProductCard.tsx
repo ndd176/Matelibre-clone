@@ -87,8 +87,8 @@ export default function ProductCard({
 
          {/* Right text + button - thu nhỏ lại */}
         <div className="flex flex-col h-full w-1/3 justify-between">
-          {/* Description section */}
-          <div>
+          {/* Description section - ẩn trên mobile */}
+          <div className="hidden sm:block">
             <p className={`text-lg sm:text-lg font-bold leading-relaxed ${textColor} pr-1 sm:pr-2`}>
               {description}
             </p>

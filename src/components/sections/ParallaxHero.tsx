@@ -202,8 +202,7 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
-import ScrollDiscoverIndicator from '../ui/ScrollDiscoverIndicator'
-import { WEBSITE_IMAGES } from '../../lib/fast-images'
+ import { WEBSITE_IMAGES } from '../../lib/fast-images'
 
 export default function ParallaxHero() {
   const ref = useRef(null)
@@ -291,8 +290,7 @@ export default function ParallaxHero() {
           ))}
 
           {/* Scroll Down Indicator */}
-          <ScrollDiscoverIndicator />
-        </div>
+         </div>
       </motion.div>
     </section>
   )

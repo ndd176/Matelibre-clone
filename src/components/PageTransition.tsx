@@ -9,12 +9,12 @@ export default function PageTransition() {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    // Kiểm tra nếu không phải trang chủ thì mới hiện loading
+    // Giảm thời gian loading từ 1000ms xuống 300ms
     if (pathname !== '/') {
       setIsLoading(true)
       const timer = setTimeout(() => {
         setIsLoading(false)
-      }, 1000)
+      }, 300) // Reduced from 1000ms
 
       return () => clearTimeout(timer)
     } else {

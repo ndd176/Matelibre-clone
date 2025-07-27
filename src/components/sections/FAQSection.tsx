@@ -13,7 +13,7 @@ const faqs = [
       <>
         <p className="mb-2">
           Chúng tôi đang phát triển nhanh và luôn tìm kiếm những đồng nghiệp tuyệt vời! Hiện tại, chúng tôi đang tuyển dụng: 
-          <strong> IT, Thiết kế, Internet Marketing, Thiết kế thêu, Quản lý thêu,  Seller trên các sàn thương mại ddien tử, QA, QC,</strong> và <strong>Video creator</strong>.  
+          <strong> IT, Thiết kế, Internet Marketing, Thiết kế thêu, Quản lý thêu,  Seller trên các sàn thương mại điện tử, QA, QC,</strong> và <strong>Video creator</strong>.  
         </p>
         <p className="mb-2">
           Nếu bạn có đam mê, hứng thú về bất kỳ ngành nghề nào ở trên, đừng ngần ngại đến với Ethan!

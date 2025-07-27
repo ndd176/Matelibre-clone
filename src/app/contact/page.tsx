@@ -4,8 +4,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaPaperPlane, FaFacebook, FaLinkedin, FaTwitter, FaCheckCircle, FaTimes } from 'react-icons/fa'
-import ScrollDiscoverIndicator from '../../components/ui/ScrollDiscoverIndicator'
-
+ 
 // Animation variants
 const slideUp = {
   initial: { opacity: 0, y: 100 },
@@ -385,9 +384,7 @@ export default function ContactAltPage() {
           </motion.div>
         </div>
 
-         {/* <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2">
-          <ScrollDiscoverIndicator />
-        </div> */}
+ 
 
         {/* Corner decorative elements */}
         <motion.div 

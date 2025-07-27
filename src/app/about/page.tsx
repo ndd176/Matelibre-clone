@@ -30,7 +30,7 @@ const teamMembers = [
     name: "Đình Duy",
     role: "Nhà sáng lập & CEO",
     image: "/images/anhduy.png",
-    bio: "Người khởi xướng hành trình thêu hiện đại, kết hợp tinh thần thủ công với chiến lược phát triển bền vững và công nghệ.",
+    bio: "Người tạo dựng hành trình khởi nghiệp từ POD và Dropshipping, xây nền tảng bền vững bằng sáng tạo, công nghệ và tinh thần không ngừng đổi mới.",
     skills: ["Lãnh đạo", "Chiến lược", "Đổi mới sáng tạo", "Phát triển bền vững"],
     quote: "Tạo ra những sản phẩm đẹp và có trách nhiệm với hành tinh này.",
     experience: "Hơn 10 năm",
@@ -101,7 +101,7 @@ const coreValues = [
     icon: "/images/handshake.jpg",
     title: "Lấy khách hàng làm trung tâm",
     description: "Mọi điều chúng tôi làm đều xuất phát từ mong muốn mang lại trải nghiệm tốt nhất cho khách hàng.",
-    details: "Từ việc thêu theo yêu cầu đến hỗ trợ tận tình 24/7, sự hài lòng của khách hàng là ưu tiên hàng đầu tại Ethan Ecom.",
+    details: "Từ việc sản xuất theo yêu cầu đến hỗ trợ tận tình 24/7, sự hài lòng của khách hàng là ưu tiên hàng đầu tại Ethan Ecom.",
     metrics: ["97% khách hàng hài lòng", "Phản hồi nhanh chóng", "Hỗ trợ mọi lúc"],
     impact: "90% khách hàng quay lại và giới thiệu cho người khác"
   },
@@ -125,7 +125,7 @@ const coreValues = [
     icon: "/images/needle.jpg",
     title: "Tỉ mỉ trong từng chi tiết",
     description: "Chúng tôi coi trọng chất lượng và sự cá nhân hóa trong từng sản phẩm gửi đến tay khách hàng.",
-    details: "Từ khâu thêu cho đến hoàn thiện, mọi sản phẩm đều được kiểm tra kỹ lưỡng để đảm bảo độ chính xác và sự tinh tế.",
+    details: "Từ khâu sản xuất cho đến hoàn thiện, mọi sản phẩm đều được kiểm tra kỹ lưỡng để đảm bảo độ chính xác và sự tinh tế.",
     metrics: ["Chất lượng đạt 99.9%", "Không phát sinh lỗi", "Được đánh giá cao trong giới thủ công"],
     impact: "Trở thành tiêu chuẩn mới cho sản phẩm cá nhân hóa"
   },
@@ -185,7 +185,7 @@ const milestones = [
   title: "Mở rộng nền tảng",
   description: "Mở rộng quy mô hoạt động bằng cách tham gia nhiều nền tảng thương mại điện tử khác nhau.",
   impact: "Vươn ra nhiều quốc gia hơn với danh mục sản phẩm đa dạng",
-  details: "Chúng tôi ra mắt dòng sản phẩm thêu tùy chỉnh và nâng cấp vận hành để đáp ứng nhu cầu ngày càng tăng.",
+  details: "Chúng tôi ra mắt dòng sản phẩm tùy chỉnh và nâng cấp vận hành để đáp ứng nhu cầu ngày càng tăng.",
   achievement: "Thâm nhập thị trường quốc tế",
   metrics: "10+ quốc gia → 50.000+ đơn hàng"
 },
@@ -201,10 +201,10 @@ const milestones = [
 {
   year: "2025",
   title: "Bùng nổ tăng trưởng",
-  description: "Văn phòng chính hoạt động hết công suất, Ethan Ecom mở thêm chi nhánh thứ hai chuyên về thêu.",
-  impact: "Team thêu được thành lập",
+  description: "Văn phòng chính hoạt động hết công suất, Ethan Ecom mở thêm chi nhánh thứ hai",
+  impact: "Mở rộng đội ngũ nhân viên",
   details: "Văn phòng 2 được cấp tốc chuẩn bị đến đón chào những nhân tài tề tựu về góp sức phát triển kinh doanh",
-  achievement: "+10 Máy thêu, nâng tổng số nhân viên lên 45",
+  achievement: "Nâng tổng số nhân viên lên 51",
   metrics: "2 văn phòng → 10.000+ đơn hàng custom"
 }
 
@@ -229,8 +229,8 @@ const designProcess = [
   {
     step: "03",
     title: "Thiết Kế & Chuẩn Bị",
-    description: "Tạo nhanh các thiết kế kỹ thuật số và mẫu thêu để sản xuất.",
-    details: "Chúng tôi tạo ra hình ảnh chất lượng cao và file thêu tùy chỉnh, sẵn sàng cho việc thực hiện của nhà cung cấp.",
+    description: "Tạo nhanh các thiết kế kỹ thuật số để sản xuất.",
+    details: "Chúng tôi tạo ra hình ảnh chất lượng cao và file tùy chỉnh, sẵn sàng cho việc thực hiện của nhà cung cấp.",
     duration: "Designer",
    },
   {
@@ -244,7 +244,7 @@ const designProcess = [
     step: "05",
     title: "Ra Mắt & Thực Hiện",
     description: "Phát hành trên các nền tảng và phối hợp với nhà cung cấp để giao hàng suôn sẻ.",
-    details: "Sản phẩm của chúng tôi hiện diện trên nhiều nền tảng bán lẻ và sáng tạo toàn cầu, bao gồm: TikTok Shop, Etsy, Amazon Handmade, eBay, Redbubble, Zazzle, Society6, Faire, Notonthehighstreet, cùng các kênh mạng xã hội như Facebook Shop, Instagram Shopping, Pinterest, YouTube Shopping.",
+    details: "Sản phẩm của chúng tôi hiện diện trên nhiều nền tảng bán lẻ và sáng tạo toàn cầu,cùng các kênh mạng xã hội",
     duration: "Fullfillment",
    }
 ];
@@ -576,7 +576,7 @@ export default function AboutUsAltPage() {
                   variants={elegantFadeIn}
                 >
                   <p className="text-xl text-gray-800 leading-relaxed font-studio-pro">
-Được khơi nguồn từ đam mê trong lĩnh vực thương mại sáng tạo, Ethan Ecom ra đời với sứ mệnh kết hợp giữa những thiết kế thêu táo bạo. Chúng tôi mang đến sự giao thoa độc đáo giữa nghệ thuật thủ công và tốc độ đổi mới của thương mại điện tử hiện đại.                  </p>
+Được khơi nguồn từ đam mê trong lĩnh vực thương mại sáng tạo, Ethan Ecom ra đời với sứ mệnh kết hợp giữa những thiết kế táo bạo. Chúng tôi mang đến sự giao thoa độc đáo giữa nghệ thuật thủ công và tốc độ đổi mới của thương mại điện tử hiện đại.                  </p>
                 </motion.div>
                 
                 <motion.div 

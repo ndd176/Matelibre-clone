@@ -6,7 +6,6 @@ import {
   CommitmentSection,
   CommunitySection,
   PositionCarousel,
-  MomentsList
 } from '@/components'
 import SimpleMoments from '@/components/sections/SimpleMoments'
 
@@ -18,9 +17,7 @@ const Home = () => {
       <SlidingText />
       <CommitmentSection />
       <CommunitySection />
-      {/* <MomentsList/> */}
       <SimpleMoments/>
-       
     </div>
   )
 }

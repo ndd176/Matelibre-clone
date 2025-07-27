@@ -10,33 +10,28 @@ const momentsData = [
     src: WEBSITE_IMAGES.moments.table1,
     top: 3165,
     leftPercent: 0.1,
-    text: 'Stay fresh, stay wild.',
-  },
+   },
 
   {
     src: WEBSITE_IMAGES.moments.table2,
     top: 4320,
     leftPercent: 0.15,
-    text: 'Every moment matters.',
-  },
+   },
   {
     src: WEBSITE_IMAGES.moments.table3,
     top: 3700,
     leftPercent: 0.59,
-    text: 'Find your flavor.',
-  },
+   },
   {
     src: WEBSITE_IMAGES.moments.table4,
     top: 2601,
     leftPercent: 0.65,
-    text: 'Naturally uplifting.',
-  },
+   },
     {
     src: WEBSITE_IMAGES.moments.table5,
     top: 4860,
     leftPercent: 0.62,
-    text: 'Sip. Smile. Repeat.',
-  },
+   },
 ]
 
 
@@ -127,9 +122,7 @@ export default function TransitionToCards() {
           transition={transforms[index]}
           className="z-10"
         >
-          <p className="text-white text-2xl font-bold text-center px-4 leading-snug">
-            {item.text}
-          </p>
+ 
         </FloatingImage>
       ))}
 
