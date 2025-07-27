@@ -232,23 +232,26 @@ export default function ParallaxHero() {
           borderBottomRightRadius: radius,
         }}
       >
-        {/* Background image */}
+        {/* Background image - Responsive optimization */}
       <div className="absolute inset-0 w-full h-full z-0">
         <Image
           src={backgroundImageUrl}
           alt="Hero Background"
           fill
           priority
-          sizes="100vw"
-          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+          className="object-cover object-center sm:object-center md:object-center"
+          style={{
+            objectPosition: 'center 30%', // Tối ưu vị trí ảnh cho mobile
+          }}
         />
       </div>
 
-        {/* Dark overlay */}
+        {/* Dark overlay - Responsive opacity */}
         <motion.div
           className="absolute inset-0 pointer-events-none z-10"
           initial={{ opacity: 1.5 }}
-          animate={{ opacity: 0.5 }}
+          animate={{ opacity: 0.4 }} // Giảm opacity cho mobile để ảnh sáng hơn
           transition={{ duration: 3, ease: 'easeOut' }}
           style={{
             backgroundColor: 'rgba(0, 0, 0, 1)',
@@ -259,14 +262,14 @@ export default function ParallaxHero() {
         />
       </motion.div>
 
-      {/* Foreground Content */}
+      {/* Foreground Content - Mobile optimized */}
 <motion.div
   style={{ y }}
-  className="absolute top-1/3 left-0 w-full px-6 sm:px-12 lg:px-24 -translate-x-4 sm:-translate-x-6 lg:-translate-x-8 z-30 text-white"
+  className="absolute top-1/4 sm:top-1/3 left-0 w-full px-4 sm:px-6 md:px-12 lg:px-24 z-30 text-white"
 >
 
-        <div className="max-w-screen-xl mx-auto space-y-6">
-          {/* Text lines */}
+        <div className="max-w-screen-xl mx-auto space-y-3 sm:space-y-6">
+          {/* Text lines - Responsive sizing and positioning */}
           {['NỘP CV', 'CHẦN CHỜ CHI!'].map((line, i) => (
             <motion.div
               key={line}
@@ -278,11 +281,12 @@ export default function ParallaxHero() {
                 stiffness: 100,
                 damping: 10,
               }}
-              className="font-studio-pro-bold tracking-tight"
+              className="font-studio-pro-bold  text-[30px] tracking-tight text-left"
               style={{
-                fontSize: 'clamp(32px, 8vw, 96px)',
+                fontSize: 'clamp(28px, 6vw, 96px)', // Giảm min size cho mobile
                 fontWeight: 400,
                 fontFamily: '"StudioProBold"',
+                lineHeight: '0.9', // Giảm line height cho mobile
               }}
             >
               {line}

@@ -149,7 +149,7 @@ export default function ProductCardList() {
                   ))}
                 </div>
                 {products.map((item, i) => (
-                  <div key={i} className="shrink-0 w-[80vw] sm:w-[400px] transition-transform hover:scale-[1.02] duration-300">
+                  <div key={i} className="shrink-0 w-[85vw] sm:w-[450px] transition-transform hover:scale-[1.02] duration-300">
                     <ProductCard {...item} />
                   </div>
                 ))}
