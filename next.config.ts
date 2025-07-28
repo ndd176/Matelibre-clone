@@ -96,10 +96,19 @@ const nextConfig: NextConfig = {
   }),
   // Cải thiện performance
   poweredByHeader: false,
+  async rewrites() {
+  return [
+    {
+      source: "/sitemap.xml",
+      destination: "/api/sitemap", // alias tới route động
+    },
+  ];
+},
   async headers() {
     return [
       {
         source: "/(.*)",
+        
         headers: [
           {
             key: "Access-Control-Allow-Origin",
