@@ -424,19 +424,34 @@ export default function AboutUsAltPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <h2 className="text-7xl md:text-6xl lg:text-9xl font-studio-pro-bold text-white leading-tight mb-8">
+            <h2
+              className="font-studio-pro-bold text-white leading-tight mb-6"
+              style={{
+                fontSize: 'clamp(3rem, 7vw, 7rem)',
+                lineHeight: '1.1',
+                wordBreak: 'break-word',
+              }}
+            >
               Ethan Ecom
             </h2>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="max-w-4xl mx-auto"
+            className="max-w-2xl mx-auto"
           >
-            <p className="text-xl md:text-2xl lg:text-3xl text-white leading-relaxed font-studio-pro">
-               <span className="text-white font-studio-pro-bold">Đồng lòng, đồng sức, bứt phá, gặt thành công</span>
+            <p
+              className="text-white leading-relaxed font-studio-pro font-studio-pro-bold"
+              style={{
+                fontSize: 'clamp(1.8rem, 3vw, 2.2rem)',
+                textShadow: '0 2px 8px rgba(0,0,0,0.25)',
+              }}
+            >
+              Đồng lòng, đồng sức, 
+              <br />
+              bứt phá, gặt thành công
             </p>
           </motion.div>
 

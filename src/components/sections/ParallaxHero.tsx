@@ -199,16 +199,27 @@
 //tạm thời chỉ dùng 1 ảnh
 // 'use client'
 
-import { useRef } from 'react'
+
+import { useRef, useEffect, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
- import { WEBSITE_IMAGES } from '../../lib/fast-images'
+import { WEBSITE_IMAGES } from '../../lib/fast-images'
+import ScrollDiscoverIndicator from '../ui/ScrollDiscoverIndicator'
 
 export default function ParallaxHero() {
   const ref = useRef(null)
   const { scrollY } = useScroll()
-  const y = useTransform(scrollY, [0, 1000], [0, -1400])
-  const radius = useTransform(scrollY, [0, 300], ['0px', '40px'])
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const onResize = () => setIsMobile(window.innerWidth < 768);
+      onResize();
+      window.addEventListener('resize', onResize);
+      return () => window.removeEventListener('resize', onResize);
+    }
+  }, []);
+  const y = useTransform(scrollY, [0, 1000], isMobile ? [0, -700] : [0, -1400]);
+  const radius = useTransform(scrollY, [0, 300], ['0px', '40px']);
 
   // Use background image from WEBSITE_IMAGES (Cloudinary optimized)
   // const backgroundImageUrl = WEBSITE_IMAGES.hero.main
@@ -225,28 +236,28 @@ export default function ParallaxHero() {
         initial={{ scale: 1.2 }}
         animate={{ scale: 1 }}
         transition={{ duration: 1, ease: 'easeOut' }}
-        className="fixed inset-0 z-20 overflow-hidden"
+        className="absolute inset-0 z-20 overflow-hidden"
         style={{
           y: y,
           borderBottomLeftRadius: radius,
           borderBottomRightRadius: radius,
+          willChange: 'transform',
         }}
       >
         {/* Background image - Responsive optimization */}
-      <div className="absolute inset-0 w-full h-full z-0">
-        <Image
-          src={backgroundImageUrl}
-          alt="Hero Background"
-          fill
-          priority
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-          className="object-cover object-center sm:object-center md:object-center"
-          style={{
-            objectPosition: 'center 30%', // Tối ưu vị trí ảnh cho mobile
-          }}
-        />
-      </div>
-
+        <div className="absolute inset-0 w-full h-full z-0">
+          <Image
+            src={backgroundImageUrl}
+            alt="Hero Background"
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+            className="object-cover object-center sm:object-center md:object-center"
+            style={{
+              objectPosition: 'center 30%', // Tối ưu vị trí ảnh cho mobile
+            }}
+          />
+        </div>
         {/* Dark overlay - Responsive opacity */}
         <motion.div
           className="absolute inset-0 pointer-events-none z-10"
@@ -263,11 +274,10 @@ export default function ParallaxHero() {
       </motion.div>
 
       {/* Foreground Content - Mobile optimized */}
-<motion.div
-  style={{ y }}
-  className="absolute top-1/4 sm:top-1/3 left-0 w-full px-4 sm:px-6 md:px-12 lg:px-24 z-30 text-white"
->
-
+      <motion.div
+        style={{ y }}
+        className="absolute top-1/4 sm:top-1/3 left-0 w-full px-4 sm:px-6 md:px-12 lg:px-24 z-30 text-white"
+      >
         <div className="max-w-screen-xl mx-auto space-y-3 sm:space-y-6">
           {/* Text lines - Responsive sizing and positioning */}
           {['NỘP CV', 'CHẦN CHỜ CHI!'].map((line, i) => (
@@ -281,21 +291,24 @@ export default function ParallaxHero() {
                 stiffness: 100,
                 damping: 10,
               }}
-              className="font-studio-pro-bold  text-[30px] tracking-tight text-left"
+              className="font-studio-pro-bold text-[30px] tracking-tight text-left"
               style={{
-                fontSize: 'clamp(28px, 6vw, 96px)', // Giảm min size cho mobile
+                fontSize: 'clamp(28px, 6vw, 96px)',
                 fontWeight: 400,
                 fontFamily: '"StudioProBold"',
-                lineHeight: '0.9', // Giảm line height cho mobile
+                lineHeight: '0.9',
               }}
             >
               {line}
             </motion.div>
           ))}
-
-          {/* Scroll Down Indicator */}
-         </div>
+        </div>
       </motion.div>
+
+      {/* Scroll Down Indicator - Đặt dưới khung ảnh */}
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-8 z-40">
+        <ScrollDiscoverIndicator />
+      </div>
     </section>
   )
 }

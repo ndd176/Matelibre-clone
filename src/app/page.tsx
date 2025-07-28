@@ -8,6 +8,7 @@ import {
   PositionCarousel,
 } from '@/components'
 import SimpleMoments from '@/components/sections/SimpleMoments'
+import ScrollDiscoverIndicator from '@/components/ui/ScrollDiscoverIndicator'
 
 const Home = () => {
   return (
@@ -18,6 +19,7 @@ const Home = () => {
       <CommitmentSection />
       <CommunitySection />
       <SimpleMoments/>
+      <ScrollDiscoverIndicator/>
     </div>
   )
 }

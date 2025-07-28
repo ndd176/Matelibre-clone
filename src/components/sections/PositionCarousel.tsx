@@ -157,7 +157,7 @@ export default function ProductCardList() {
             </div>
 
             {/* Nửa dưới: Marquee */}
-            <div className="relative h-1/2 w-full overflow-hidden">
+            <div className="relative h-1/2 w-full">
                <MarqueeBackground />
             </div>
 

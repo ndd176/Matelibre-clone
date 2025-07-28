@@ -49,11 +49,11 @@ export default function HeroSplitScrollEffect() {
         containerRef.current = el
         inViewRef(el)
       }}
-      className="relative h-[300vh] hidden lg:block"
+      className="relative h-[300vh]"
     >
-      <motion.div className="sticky top-0 h-screen w-full   bg-white">
+      <motion.div className="sticky top-0 h-screen w-full bg-white">
         {/* STAGE 1: Text fly in (đổi màu và fade out) */}
-        <div className="absolute inset-0 z-20 flex flex-col justify-center items-center">
+        <div className="absolute inset-0 z-20 flex flex-col justify-center items-center px-2 sm:px-0">
           <motion.h2
             style={{
               x: leftX,
@@ -61,10 +61,10 @@ export default function HeroSplitScrollEffect() {
               color: useTransform(textColorProgress, [0, 1], ['#000000', '#ffffff']),
               willChange: 'transform, opacity, color',
             }}
-            className="text-[clamp(32px,10vw,100px)] font-studio-pro-bold whitespace-nowrap"
-            >
-             NĂNG ĐỘNG
-            </motion.h2>
+            className="text-[clamp(22px,7vw,60px)] sm:text-[clamp(32px,10vw,100px)] font-studio-pro-bold whitespace-nowrap text-center"
+          >
+            NĂNG ĐỘNG
+          </motion.h2>
           <motion.h2
             style={{
               x: rightX,
@@ -72,9 +72,9 @@ export default function HeroSplitScrollEffect() {
               color: useTransform(textColorProgress, [0, 1], ['#000000', '#ffffff']),
               willChange: 'transform, opacity, color',
             }}
-            className="text-[clamp(32px,10vw,100px)] font-studio-pro-bold whitespace-nowrap"
+            className="text-[clamp(22px,7vw,60px)] sm:text-[clamp(32px,10vw,100px)] font-studio-pro-bold whitespace-nowrap text-center"
           >
-          SÁNG TẠO
+            SÁNG TẠO
           </motion.h2>
         </div>
 
@@ -92,6 +92,8 @@ export default function HeroSplitScrollEffect() {
             fill
             className="object-cover rounded-xl"
             priority
+            sizes="(max-width: 640px) 100vw, 80vw"
+            style={{ objectPosition: 'center' }}
           />
           <motion.div
             className="absolute inset-0 bg-black pointer-events-none"
@@ -105,22 +107,24 @@ export default function HeroSplitScrollEffect() {
         {/* STAGE 2: Final Text (overlay + text reveal) */}
           <div className="absolute inset-0 z-40 pointer-events-none">
             <div className="h-full flex flex-col justify-center">
-              <div className="sticky top-1/2 -translate-y-1/2 bottom-[5px] flex justify-center items-center">
+              <div className="sticky top-1/2 -translate-y-1/2 bottom-[5px] flex justify-center items-center px-2 sm:px-0">
                 <motion.h1
-            className="max-w-4xl text-white text-[clamp(48px,12vw,130px)] md:text-[clamp(32px,8vw,100px)] text-center leading-tight"
-            style={enabled ? {
-              clipPath: textClipPath,
-              fontFamily: 'var(--font-studio-pro-bold), "Arial Black", sans-serif',
-              fontWeight: 700,
-              willChange: 'clip-path',
-            } : { opacity: 0 }}
+                  className="max-w-2xl sm:max-w-4xl text-white text-[clamp(28px,8vw,60px)] sm:text-[clamp(48px,12vw,130px)] md:text-[clamp(32px,8vw,100px)] text-center leading-tight"
+                  style={enabled ? {
+                    clipPath: textClipPath,
+                    fontFamily: 'var(--font-studio-pro-bold), "Arial Black", sans-serif',
+                    fontWeight: 700,
+                    willChange: 'clip-path',
+                  } : { opacity: 0 }}
                 >
-              MÔI TRƯỜNG THÂN THIỆN
+                  MÔI TRƯỜNG 
+                  <br></br>
+                  THÂN THIỆN
                 </motion.h1>
               </div>
             </div>
-          </div>  
-           </motion.div>
+          </div>
+        </motion.div>
     </div>
   )
 }
