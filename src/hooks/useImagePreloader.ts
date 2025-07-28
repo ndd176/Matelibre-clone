@@ -75,7 +75,6 @@ export function useImagesPreloader(srcs: string[], priority = false) {
         img.onload = () => {
           setLoadingImages(prev => ({ ...prev, [cacheKey]: false }))
           setLoadedImages(prev => ({ ...prev, [cacheKey]: true }))
-          console.log('✅ Image preloaded successfully:', optimizedSrc)
         }
         
         img.onerror = () => {

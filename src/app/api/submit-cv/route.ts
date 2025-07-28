@@ -78,11 +78,7 @@ export async function POST(request: NextRequest) {
     await writeFile(filePath, buffer);
     
 
-    // Kiểm tra cấu hình email
-    console.log('📧 Email config:', {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS ? '***HIDDEN***' : 'NOT_SET'
-    });
+
 
     // Chuẩn bị email
     const mailOptions = {

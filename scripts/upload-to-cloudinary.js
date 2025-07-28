@@ -30,13 +30,11 @@ const heavyImages = [
 ]
 
 async function uploadImages() {
-  console.log('🚀 Starting Cloudinary upload...')
 
   for (const imageName of heavyImages) {
     const imagePath = path.join(__dirname, '../public/images', imageName)
 
     if (!fs.existsSync(imagePath)) {
-      console.log(`⚠️ File not found: ${imageName}`)
       continue
     }
 
@@ -52,16 +50,11 @@ async function uploadImages() {
         flags: ['progressive'],
       })
 
-      console.log(`✅ Uploaded: ${imageName} -> ${result.public_id}`)
-      console.log(
-        `📏 Size: ${Math.round(result.bytes / 1024)}KB (was ${Math.round(fs.statSync(imagePath).size / 1024)}KB)`
-      )
     } catch (error) {
       console.error(`❌ Failed to upload ${imageName}:`, error.message)
     }
   }
 
-  console.log('🎉 Upload completed!')
 }
 
 // Run upload

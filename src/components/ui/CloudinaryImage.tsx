@@ -39,7 +39,6 @@ export default function CloudinaryImage({
 
   const handleLoad = () => {
     setIsLoading(false)
-    console.log('✅ Cloudinary image loaded:', src)
   }
 
   const handleError = () => {

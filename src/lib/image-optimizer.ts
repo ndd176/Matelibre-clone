@@ -44,7 +44,6 @@ export const LOCAL_TO_OPTIMIZED_MAP: Record<string, string> = {
 export function getOptimizedImageUrl(originalUrl: string): string {
   // If there's an optimized version, use it
   if (LOCAL_TO_OPTIMIZED_MAP[originalUrl]) {
-    console.log(`🚀 Optimized: ${originalUrl} -> External CDN`)
     return LOCAL_TO_OPTIMIZED_MAP[originalUrl]
   }
   
@@ -93,6 +92,5 @@ export function preloadCriticalOptimizedImages() {
     link.href = url
     link.crossOrigin = 'anonymous'
     document.head.appendChild(link)
-    console.log('🔥 Preloading critical:', url)
   })
 }

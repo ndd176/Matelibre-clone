@@ -49,7 +49,6 @@ export default function OptimizedImage({
   const handleLoad = () => {
     setIsLoading(false)
     onLoad?.()
-    console.log(`✅ OptimizedImage loaded (${loadingPriority} priority):`, optimizedSrc.split('/').pop())
   }
 
   const handleError = () => {

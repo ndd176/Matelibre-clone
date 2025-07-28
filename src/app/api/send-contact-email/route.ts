@@ -34,11 +34,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log('📧 Sending contact email:', {
-      from: email,
-      name: name,
-      subject: subject
-    });
+
 
     // Chuẩn bị email gửi đến admin
     const adminMailOptions = {
@@ -138,11 +134,9 @@ export async function POST(request: NextRequest) {
 
     // Gửi email đến admin
     await transporter.sendMail(adminMailOptions);
-    console.log('✅ Admin email sent successfully');
 
     // Gửi email xác nhận đến khách hàng
     await transporter.sendMail(customerMailOptions);
-    console.log('✅ Customer confirmation email sent successfully');
 
     return NextResponse.json(
       { message: 'Tin nhắn đã được gửi thành công! Chúng tôi sẽ liên hệ lại với bạn sớm.' },

@@ -27,17 +27,10 @@ interface ProductCardData {
 
 function jobToProductCard(job: Job, idx: number): ProductCardData {
   // Debug image processing
-  console.log('🖼️ Processing job images:', {
-    jobId: job.id,
-    avatar_image: job.avatar_image,
-    sub_avatar: job.sub_avatar
-  })
+
   const canImageUrl = getImageUrl(job.avatar_image)
   const bgImageUrl = getImageUrl(job.sub_avatar)
-  console.log('📸 Generated URLs:', {
-    canImage: canImageUrl,
-    bgImage: bgImageUrl
-  })
+
   return {
     id: String(job.id),
     title: job.job_title,

@@ -9,7 +9,6 @@ export function usePerformanceMonitor() {
       // Monitor Core Web Vitals
       const observer = new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
-          console.log(`${entry.name}: ${entry.duration}ms`)
         }
       })
       
@@ -19,7 +18,6 @@ export function usePerformanceMonitor() {
       const lcpObserver = new PerformanceObserver((list) => {
         const entries = list.getEntries()
         const lastEntry = entries[entries.length - 1]
-        console.log('LCP:', lastEntry.startTime)
       })
       lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] })
       

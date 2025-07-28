@@ -23,17 +23,10 @@ function jobToProductCard(job: Job, index: number): ProductCardData {
   // Không random màu nữa, set trắng đen xen kẽ theo index
   const color = index % 2 === 0 ? 'white' : 'black'
   // Debug image processing
-  console.log('🖼️ Processing carousel job images:', {
-    jobId: job.id,
-    avatar_image: job.avatar_image,
-    sub_avatar: job.sub_avatar
-  })
+
   const canImageUrl = getImageUrl(job.avatar_image)
   const bgImageUrl = getImageUrl(job.sub_avatar)
-  console.log('📸 Generated carousel URLs:', {
-    canImage: canImageUrl,
-    bgImage: bgImageUrl
-  })
+
   return {
     id: job.id.toString(),
     title: job.job_title,
