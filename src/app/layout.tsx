@@ -51,6 +51,21 @@ export const metadata: Metadata = {
     shortcut: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
+  openGraph: {
+    title: "Ethan Ecom",
+    description: "Đồng lòng đồng sức bứt phá gặt thành công, được khơi nguồn từ đam mê trong lĩnh vực thương mại sáng tạo, Ethan Ecom ra đời với sứ mệnh kết hợp giữa những thiết kế táo bạo.",
+    url: "https://ethanecom.com", // <-- thay bằng URL thật của bạn
+    siteName: "Ethan Ecom",
+    images: [
+      {
+        url: "https://ethanecom.com/images/IMG_1011.jpg", // <-- ảnh đại diện link (1200x630)
+        width: 1200,
+        height: 630,
+        alt: "Ethan Ecom Preview",
+      },
+    ],
+    type: "website",
+  },
 };
 
 // Export default component
