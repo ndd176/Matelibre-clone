@@ -221,7 +221,7 @@ const CVSubmissionForm: React.FC<CVSubmissionFormProps> = ({ isOpen, onClose, po
             <div className="flex-1">
               <p className="text-blue-800 font-bold text-[16px]">🎉 CV đã được nộp thành công!</p>
               <p className="text-blue-700 font-bold text-[16px] mt-1">Cảm ơn bạn đã quan tâm đến Ethan! Chúng tôi sẽ liên hệ với bạn sớm.</p>
-              <p className="text-blue-600 font-bold text-[14px] mt-2">📧 Email xác nhận đã được gửi đến: {formData.email}</p>
+              {/* <p className="text-blue-600 font-bold text-[14px] mt-2">📧 Email xác nhận đã được gửi đến: {formData.email}</p> */}
             </div>
             <button onClick={() => setShowNotification(null)} className="ml-4 text-blue-700 hover:text-blue-900 font-bold text-[20px]">×</button>
           </motion.div>

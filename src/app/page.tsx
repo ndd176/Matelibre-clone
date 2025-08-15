@@ -6,6 +6,8 @@ import {
   CommitmentSection,
   CommunitySection,
   PositionCarousel,
+  EventBanner,
+  VideoSection,
 } from '@/components'
 import SimpleMoments from '@/components/sections/SimpleMoments'
 import ScrollDiscoverIndicator from '@/components/ui/ScrollDiscoverIndicator'
@@ -16,6 +18,8 @@ const Home = () => {
       <ParallaxHero />
       <PositionCarousel/>
       <SlidingText />
+      {/* <VideoSection /> */}
+      <EventBanner />
       <CommitmentSection />
       <CommunitySection />
       <SimpleMoments/>

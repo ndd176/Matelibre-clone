@@ -12,6 +12,8 @@ export { default as MomentsList } from './sections/MomentsList'
 export { default as PositionCarousel } from './sections/PositionCarousel'
 export { default as FAQSection } from './sections/FAQSection'
 export { default as ProductCard } from './sections/ProductCard'
+export { default as EventBanner } from './sections/EventBanner'
+export { default as VideoSection } from './sections/VideoSection'
 
 // UI Components
 export { default as AnimatedEnvelope } from './ui/AnimatedEnvelope'
