@@ -21,7 +21,7 @@ const transporter = nodemailer.createTransport({
 // Danh sách người nhận email
 const EMAIL_RECIPIENTS = [
   // 'hr@ethanecom.com',           // Email HR chính
-  'dinhduyn3@gmail.com',
+  'hr@ethanecom.com',
   'duydinh.forfun@gmail.com'    // Email backup/admin
 ];
 
