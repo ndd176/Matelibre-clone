@@ -16,77 +16,77 @@ export default function EventsPage() {
     },
     {
       id: 2,
-      src: '/images/community/0U0A0812.jpg',
+      src: '/images/community/0U0A0812.JPG',
       alt: 'Over Limitation Event - Workshop',
       title: 'Chia ngọt sẻ bùi',
       category: 'Behind the scence'
     },
     {
       id: 3,
-      src: '/images/community/0U0A0960.jpg',
+      src: '/images/community/0U0A0960.JPG',
       alt: 'Over Limitation Event - Presentation',
       title: 'Hân hoan',
       category: 'Behind the scence'
     },
     {
       id: 4,
-      src: '/images/community/0U0A0965.jpg',
+      src: '/images/community/0U0A0965.JPG',
       alt: 'Over Limitation Event - Networking',
       title: 'Phỏng vấn',
       category: 'Behind the scence'
     },
     {
       id: 5,
-      src: '/images/community/0U0A1084.jpg',
+      src: '/images/community/0U0A1084.JPG',
       alt: 'Over Limitation Event - Awards',
       title: 'Khán giả phấn khích',
       category: 'Party'
     },
     {
       id: 6,
-      src: '/images/community/0U0A1126.jpg',
+      src: '/images/community/0U0A1126.JPG',
       alt: 'Over Limitation Event - Group Photo',
       title: 'Tiệc nhảy sối động',
       category: 'Party'
     },
     {
       id: 7,
-      src: '/images/community/0U0A1163.jpg',
+      src: '/images/community/0U0A1163.JPG',
       alt: 'Over Limitation Event - Activities',
       title: 'Hồi hộp đón chờ kết quả',
       category: 'Party'
     },
     {
       id: 8,
-      src: '/images/community/0U0A1339.jpg',
+      src: '/images/community/0U0A1339.JPG',
       alt: 'Over Limitation Event - Celebration',
       title: 'Vui mừng phấn khởi',
       category: 'Party'
     },
     {
       id: 9,
-      src: '/images/community/0U0A1424.jpg', // Placeholder
+      src: '/images/community/0U0A1424.JPG', // Placeholder
       alt: 'Over Limitation Event - Behind the scenes',
       title: 'Nâng ly ăn mừng',
       category: 'Party'
     },
     {
       id: 10,
-      src: '/images/community/0U0A1646.jpg', // Placeholder
+      src: '/images/community/0U0A1646.JPG', // Placeholder
       alt: 'Over Limitation Event - Memories',
       title: 'Cất cao tiếng hát',
       category: 'Party'
     },
     {
       id: 11,
-      src: '/images/community/BQ5A8341.jpg', // Placeholder
+      src: '/images/community/BQ5A8341.JPG', // Placeholder
       alt: 'Over Limitation Event - Innovation',
       title: 'Kiểm tra danh sách thí sinh',
       category: 'Check in'
     },
     {
       id: 12,
-      src: '/images/community/BQ5A8423.jpg', // Placeholder
+      src: '/images/community/BQ5A8423.JPG', // Placeholder
       alt: 'Over Limitation Event - Together',
       title: 'Kiểm tra danh sách thí sinh',
       category: 'Check in'
